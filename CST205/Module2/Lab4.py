@@ -1,3 +1,6 @@
+def getPic():
+  return makePicture(pickAFile())
+
 def vertMirror():
   file = pickAFile()
   pic = makePicture(file)
@@ -87,6 +90,7 @@ def rotatePic(picture):
       setColor(getPixel(newPic, y, x), color)
   show(newPic)
   return newPic
+  
   
 def shrink(picture):
   width = getWidth(picture)
