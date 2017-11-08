@@ -1,7 +1,11 @@
 from array import array
 
-def getPic():
-  return makePicture(pickAFile())
+def loadArray():
+  picList = []
+  for i in range(9):
+    picList.append(makePicture(pickAFile()))
+  return picList
+  
 
 def pyCopy(source, target, targetX, targetY):
   sWidth = getWidth(source)
@@ -13,58 +17,95 @@ def pyCopy(source, target, targetX, targetY):
       pix = getPixel(source, x, y)
       color = getColor(pix)
       setColor(getPixel(target, (targetX + x), (targetY + y)), color)
-  show(target)
   return target
   
-def shrink(picture, wRatio, hRatio):
+def vertMirror(pic):
+  width = getWidth(pic)
+  height = getHeight(pic)
+  
+  for x in range(0, width/2):
+    for y in range(0, height):
+      pix = getPixel(pic, x, y)
+      color = getColor(pix)
+      setColor(getPixel(pic, (width - x - 1), y), color)
+  return pic
+  
+def horTopMirror(pic):
+  width = getWidth(pic)
+  height = getHeight(pic)
+  
+  for y in range(0, height/2):
+    for x in range(0, width):
+      pix = getPixel(pic, x, y)
+      color = getColor(pix)
+      setColor(getPixel(pic, x, (height - y - 1)), color)
+  return pic
+
+def horBotMirror(pic):
+  width = getWidth(pic)
+  height = getHeight(pic)
+  
+  for y in range(height/2, height):
+    for x in range(0, width):
+      pix = getPixel(pic, x, y)
+      color = getColor(pix)
+      setColor(getPixel(pic, x, (height - y - 1)), color)
+  return pic
+  
+def quadMirror(pic):
+  width = getWidth(pic)
+  height = getHeight(pic)
+  
+  for x in range(0, width/2):
+    for y in range(0, height):
+      pix = getPixel(pic, x, y)
+      color = getColor(pix)
+      setColor(getPixel(pic, (width - x - 1),  y), color)
+  
+  for y in range(0, height/2):
+    for x in range(0, width):
+      pix = getPixel(pic, x, y)
+      color = getColor(pix)
+      setColor(getPixel(pic, x, (height - y - 1)), color)
+  return pic 
+  
+  
+def rotatePic(picture):
   width = getWidth(picture)
   height = getHeight(picture)
-  newPic = makeEmptyPicture(width/wRatio, height/hRatio)
-  for x, newX in zip(range (0, width, wRatio), range(0, width/wRatio)):
-    for y, newY in zip(range (0, height, hRatio), range(0, height/hRatio)):
+  newPic = makeEmptyPicture(height, width)
+  for x in range (0, width):
+    for y in range (0, height):
       pix = getPixel(picture, x, y)
       color = getColor(pix)
-      setColor(getPixel(newPic, newX, newY), color)
-  #show(newPic)
+      setColor(getPixel(newPic, y, x), color)
   return newPic
+
 
   
 def makeCollage(picList = []):
   collage = makeEmptyPicture(2550, 3300)
   for x in picList:
-    #print type(x)
-    width = getWidth(x)
-    height = getHeight(x)
-    if(width > 1275 and height > 825):
-      newWidth = width / 1275
-      newHeight = height / 825
-      temp = shrink(x, newWidth, newHeight)
-    elif(width > 1275 and height < 825):
-      newWidth = width / 825
-      temp = shrink(x, newWidth, 1)
-    elif(width < 1275 and height > 825):
-      newHeight = height / 825
-      temp = shrink(x, 1, newHeight)
-    else:
-      temp = x
     index = picList.index(x)
     if (index == 0):
-      pyCopy(temp, collage, 0, 0)
+      pyCopy(vertMirror(x), collage, 0, 0)
     elif(index == 1):
-      pyCopy(temp, collage, 0, 825)
+      pyCopy(horTopMirror(x), collage, 0, 264)
     elif(index == 2):
-      pyCopy(temp, collage, 0, 1650)
+      pyCopy(horBotMirror(x), collage, 0, 528)
     elif(index == 3):
-      pyCopy(temp, collage, 0, 2475)
+      pyCopy(quadMirror(x), collage, 203, 0)
     elif(index == 4):
-      pyCopy(temp, collage, 1275, 0)
+      pyCopy(rotatePic(x), collage, 203, 264)
     elif(index == 5):
-      pyCopy(temp, collage, 1275, 825)
+      pyCopy(x, collage, 203, 528)
     elif(index == 6):
-      pyCopy(temp, collage, 1275, 1650)
+      pyCopy(x, collage, 406, 0)
     elif(index == 7):
-      pyCopy(temp, collage, 1275, 2475)
-  show(collage)
+      pyCopy(x, collage, 406, 264)
+    elif(index == 8):
+      pyCopy(x, collage, 406, 528)
+  return collage
     
 
       
