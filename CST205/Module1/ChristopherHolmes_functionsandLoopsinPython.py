@@ -38,7 +38,8 @@ def roseColoredGlasses():
     setBlue(p, b * 0.5)
     g = getGreen(p)
     setGreen(p, g * 0.5)
-  repaint(pic)
+  file = r"/Users/chris/Documents/GitHub/CSUMB/CST205/Module3/portfolio/roseGlasses.jpg"
+  writePictureTo(pic, file)
   
 def lightenUp():
   pic = getPic()
@@ -61,6 +62,8 @@ def makeNegative():
     setRed(p, negR)
     setGreen(p, negG)
     setBlue(p, negB)
+  file = r"/Users/chris/Documents/GitHub/CSUMB/CST205/Module3/portfolio/makeNegative.jpg"
+  writePictureTo(pic, file)
   repaint(pic)
 
 def BnW():
@@ -87,4 +90,6 @@ def betterBnW():
     setRed(p, avg)
     setGreen(p, avg)
     setBlue(p, avg)
+  file = r"/Users/chris/Documents/GitHub/CSUMB/CST205/Module3/portfolio/betterBnW.jpg"
+  writePictureTo(pic, file)
   repaint(pic)

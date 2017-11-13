@@ -38,6 +38,8 @@ def horBotMirror():
       pix = getPixel(pic, x, y)
       color = getColor(pix)
       setColor(getPixel(pic, x, (height - y - 1)), color)
+  file = r"/Users/chris/Documents/GitHub/CSUMB/CST205/Module3/portfolio/bottomToTopMirror.jpg"
+  writePictureTo(pic, file)
   repaint(pic)
   
 def quadMirror():
@@ -92,15 +94,18 @@ def rotatePic(picture):
   return newPic
   
   
-def shrink(picture):
-  width = getWidth(picture)
-  height = getHeight(picture)
+def shrink():
+  file = pickAFile()
+  pic = makePicture(file)
+  width = getWidth(pic)
+  height = getHeight(pic)
   newPic = makeEmptyPicture(width/2, height/2)
   for x, newX in zip(range (0, width, 2), range(0, width/2)):
     for y, newY in zip(range (0, height, 2), range(0, height/2)):
-      pix = getPixel(picture, x, y)
+      pix = getPixel(pic, x, y)
       color = getColor(pix)
       setColor(getPixel(newPic, newX, newY), color)
+  file = r"/Users/chris/Documents/GitHub/CSUMB/CST205/Module3/portfolio/shrinkPicture.jpg"
+  writePictureTo(newPic, file)
   show(newPic)
-  return newPic
   

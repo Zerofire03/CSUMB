@@ -105,7 +105,7 @@ def makeCollage(picList = []):
       pyCopy(x, collage, 406, 264)
     elif(index == 8):
       pyCopy(x, collage, 406, 528)
-  return collage
+  show(collage)
     
 
       

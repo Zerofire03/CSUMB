@@ -2,14 +2,19 @@
 #
 #
 # warm up
-def redEye():
-  pic = makePicture(pickAFile())
-  for px in getPixels(pic):
-    color = getColor(px)
-    if distance(color, red) < 175.0 :
-      setColor(px, black)
-  repaint(pic)    
-  show(pic)
+def remove(x1,x2,y1,y2):
+  for x in range(x1,x2):
+    for y in range(y1,y2):
+       px = getPixel(pic,x,y)
+       color = getColor(px)
+       if distance(color, red) < 200.0 :
+         setColor(px,makeColor((getGreen(px)+getBlue(px))/2))
+  file = r"/Users/chris/Documents/GitHub/CSUMB/CST205/Module3/portfolio/removeRedEye.jpg"
+  writePictureTo(pic, file)
+       
+#remove(58,78,81,100)#Hard Code cordinates for Eye 1
+#remove(208,229,81,100)#Hard Code cordinates for Eye 2    
+
 
 # Problem 1 sepia
 
@@ -91,7 +96,8 @@ def artify():
       setGreen(px, 159)
     elif G >= 192 and G < 256:
       setGreen(px, 223)
-  # end for
+  #file = r"/Users/chris/Documents/GitHub/CSUMB/CST205/Module3/portfolio/artify.jpg"
+  #writePictureTo(pic, file)
   show(pic)
 
 
@@ -107,4 +113,6 @@ def chromakey():
       colorBG = getColor(pxBG)
       if distance(color, green) < 200.0:
         setColor(px, colorBG) 
+  file = r"/Users/chris/Documents/GitHub/CSUMB/CST205/Module3/portfolio/chromaKey.jpg"
+  writePictureTo(pic, file)
   show(pic)
