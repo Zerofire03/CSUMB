@@ -1,0 +1,147 @@
+<file_created time="Wed Nov 15 10:55:07 PST 2017">
+<menu_button time="Wed Nov 15 10:57:21 PST 2017">Save Program As...</menu_button>
+<file_saved time="Wed Nov 15 10:57:32 PST 2017">D:\GitHub\CSUMB\CST205\Module4\Lab9\Lab9</file_saved>
+</file_created>
+<menu_button time="Wed Nov 15 10:57:35 PST 2017">Load Program</menu_button>
+<menu_button time="Wed Nov 15 10:57:53 PST 2017">Save Program As...</menu_button>
+<file_saved time="Wed Nov 15 10:57:55 PST 2017">D:\GitHub\CSUMB\CST205\Module4\Lab9\Lab9.py</file_saved>
+</file_created>
+<command_run time="Wed Nov 15 10:58:07 PST 2017">explore(soundFile)></command_run>
+<menu_button time="Wed Nov 15 10:59:37 PST 2017">Save Program</menu_button>
+<file_saved time="Wed Nov 15 10:59:37 PST 2017">D:\GitHub\CSUMB\CST205\Module4\Lab9\Lab9.py</file_saved>
+</file_created>
+<menu_button time="Wed Nov 15 10:59:38 PST 2017">Load Program</menu_button>
+<menu_button time="Wed Nov 15 11:00:01 PST 2017">makeSound</menu_button>
+<menu_button time="Wed Nov 15 11:00:21 PST 2017">Save Program</menu_button>
+<file_saved time="Wed Nov 15 11:00:21 PST 2017">D:\GitHub\CSUMB\CST205\Module4\Lab9\Lab9.py</file_saved>
+</file_created>
+<menu_button time="Wed Nov 15 11:00:23 PST 2017">Load Program</menu_button>
+<command_run time="Wed Nov 15 11:00:35 PST 2017">explore(sound)></command_run>
+<menu_button time="Wed Nov 15 11:02:17 PST 2017">makeEmptySound</menu_button>
+<menu_button time="Wed Nov 15 11:16:34 PST 2017">Save Program</menu_button>
+<file_saved time="Wed Nov 15 11:16:34 PST 2017">D:\GitHub\CSUMB\CST205\Module4\Lab9\Lab9.py</file_saved>
+</file_created>
+<menu_button time="Wed Nov 15 11:18:14 PST 2017">Save Program</menu_button>
+<file_saved time="Wed Nov 15 11:18:14 PST 2017">D:\GitHub\CSUMB\CST205\Module4\Lab9\Lab9.py</file_saved>
+</file_created>
+<menu_button time="Wed Nov 15 11:18:14 PST 2017">Load Program</menu_button>
+<command_run time="Wed Nov 15 11:18:46 PST 2017">new = clip(sound, 19383, 28613)></command_run>
+<menu_button time="Wed Nov 15 11:24:30 PST 2017">Save Program</menu_button>
+<file_saved time="Wed Nov 15 11:24:30 PST 2017">D:\GitHub\CSUMB\CST205\Module4\Lab9\Lab9.py</file_saved>
+</file_created>
+<menu_button time="Wed Nov 15 11:24:31 PST 2017">Load Program</menu_button>
+<menu_button time="Wed Nov 15 11:24:39 PST 2017">Save Program</menu_button>
+<file_saved time="Wed Nov 15 11:24:39 PST 2017">D:\GitHub\CSUMB\CST205\Module4\Lab9\Lab9.py</file_saved>
+</file_created>
+<command_run time="Wed Nov 15 11:24:41 PST 2017">new = clip(sound, 19383, 28613)></command_run>
+<menu_button time="Wed Nov 15 11:24:53 PST 2017">Save Program</menu_button>
+<file_saved time="Wed Nov 15 11:24:53 PST 2017">D:\GitHub\CSUMB\CST205\Module4\Lab9\Lab9.py</file_saved>
+</file_created>
+<menu_button time="Wed Nov 15 11:24:54 PST 2017">Load Program</menu_button>
+<command_run time="Wed Nov 15 11:24:57 PST 2017">new = clip(sound, 19383, 28613)></command_run>
+<menu_button time="Wed Nov 15 11:27:37 PST 2017">setSampleValueAt</menu_button>
+<menu_button time="Wed Nov 15 11:28:13 PST 2017">Save Program</menu_button>
+<file_saved time="Wed Nov 15 11:28:13 PST 2017">D:\GitHub\CSUMB\CST205\Module4\Lab9\Lab9.py</file_saved>
+</file_created>
+<menu_button time="Wed Nov 15 11:32:18 PST 2017">Save Program</menu_button>
+<file_saved time="Wed Nov 15 11:32:18 PST 2017">D:\GitHub\CSUMB\CST205\Module4\Lab9\Lab9.py</file_saved>
+</file_created>
+<menu_button time="Wed Nov 15 11:32:20 PST 2017">Load Program</menu_button>
+<menu_button time="Wed Nov 15 11:32:29 PST 2017">Save Program</menu_button>
+<file_saved time="Wed Nov 15 11:32:29 PST 2017">D:\GitHub\CSUMB\CST205\Module4\Lab9\Lab9.py</file_saved>
+</file_created>
+<menu_button time="Wed Nov 15 11:32:31 PST 2017">Load Program</menu_button>
+<command_run time="Wed Nov 15 11:32:37 PST 2017">new = clip(sound, 19383, 28613)></command_run>
+<command_run time="Wed Nov 15 11:32:44 PST 2017">explore(new)></command_run>
+<menu_button time="Wed Nov 15 12:14:50 PST 2017">Save Program</menu_button>
+<file_saved time="Wed Nov 15 12:14:50 PST 2017">D:\GitHub\CSUMB\CST205\Module4\Lab9\Lab9.py</file_saved>
+<file_opened time="Wed Nov 15 12:17:41 PST 2017">D:\GitHub\CSUMB\CST205\Module4\Lab9\Lab9.py</file_opened>
+<menu_button time="Wed Nov 15 12:17:44 PST 2017">Load Program</menu_button>
+<command_run time="Wed Nov 15 12:18:13 PST 2017">sound = makeSound(pickAFile())></command_run>
+<command_run time="Wed Nov 15 12:18:33 PST 2017">play(sound)></command_run>
+<command_run time="Wed Nov 15 12:18:45 PST 2017">explore(sound)></command_run>
+<command_run time="Wed Nov 15 12:19:24 PST 2017">new = clip(sound, 19170, 28897)></command_run>
+<command_run time="Wed Nov 15 12:19:27 PST 2017">play(new)></command_run>
+<command_run time="Wed Nov 15 12:19:32 PST 2017">explore(new)></command_run>
+<menu_button time="Wed Nov 15 12:19:40 PST 2017">Load Program</menu_button>
+<file_saved time="Wed Nov 15 12:19:43 PST 2017">D:\GitHub\CSUMB\CST205\Module4\Lab9\Lab9.py</file_saved>
+</file_created>
+<command_run time="Wed Nov 15 12:19:51 PST 2017">new = clip(sound, 19170, 28897)></command_run>
+<command_run time="Wed Nov 15 12:20:01 PST 2017">explore(new)></command_run>
+<menu_button time="Wed Nov 15 12:21:12 PST 2017">Save Program</menu_button>
+<file_saved time="Wed Nov 15 12:21:12 PST 2017">D:\GitHub\CSUMB\CST205\Module4\Lab9\Lab9.py</file_saved>
+</file_created>
+<menu_button time="Wed Nov 15 12:21:19 PST 2017">Load Program</menu_button>
+<command_run time="Wed Nov 15 12:21:37 PST 2017">new = clipBeg(sound, 0, 19170)></command_run>
+<command_run time="Wed Nov 15 12:21:40 PST 2017">explore(new)></command_run>
+<menu_button time="Wed Nov 15 12:24:38 PST 2017">Save Program</menu_button>
+<file_saved time="Wed Nov 15 12:24:38 PST 2017">D:\GitHub\CSUMB\CST205\Module4\Lab9\Lab9.py</file_saved>
+</file_created>
+<menu_button time="Wed Nov 15 12:24:40 PST 2017">Load Program</menu_button>
+<command_run time="Wed Nov 15 12:24:43 PST 2017">new = clipBeg(sound, 0, 19170)></command_run>
+<command_run time="Wed Nov 15 12:24:46 PST 2017">explore(new)></command_run>
+<menu_button time="Wed Nov 15 12:24:58 PST 2017">makeEmptySound</menu_button>
+<menu_button time="Wed Nov 15 12:25:48 PST 2017">Save Program</menu_button>
+<file_saved time="Wed Nov 15 12:25:48 PST 2017">D:\GitHub\CSUMB\CST205\Module4\Lab9\Lab9.py</file_saved>
+</file_created>
+<menu_button time="Wed Nov 15 12:25:49 PST 2017">Load Program</menu_button>
+<command_run time="Wed Nov 15 12:25:52 PST 2017">new = clipBeg(sound, 0, 19170)></command_run>
+<command_run time="Wed Nov 15 12:25:54 PST 2017">explore(new)></command_run>
+<menu_button time="Wed Nov 15 12:26:09 PST 2017">Save Program</menu_button>
+<file_saved time="Wed Nov 15 12:26:09 PST 2017">D:\GitHub\CSUMB\CST205\Module4\Lab9\Lab9.py</file_saved>
+</file_created>
+<menu_button time="Wed Nov 15 12:26:10 PST 2017">Load Program</menu_button>
+<command_run time="Wed Nov 15 12:26:12 PST 2017">new = clipBeg(sound, 0, 19170)></command_run>
+<command_run time="Wed Nov 15 12:26:17 PST 2017">explore(new)></command_run>
+<menu_button time="Wed Nov 15 12:26:58 PST 2017">Save Program</menu_button>
+<file_saved time="Wed Nov 15 12:26:58 PST 2017">D:\GitHub\CSUMB\CST205\Module4\Lab9\Lab9.py</file_saved>
+</file_created>
+<menu_button time="Wed Nov 15 12:27:00 PST 2017">Load Program</menu_button>
+<command_run time="Wed Nov 15 12:27:06 PST 2017">new = clip(sound, 19170, 28897)></command_run>
+<command_run time="Wed Nov 15 12:27:09 PST 2017">explore(new)></command_run>
+<menu_button time="Wed Nov 15 12:32:31 PST 2017">Save Program</menu_button>
+<file_saved time="Wed Nov 15 12:32:31 PST 2017">D:\GitHub\CSUMB\CST205\Module4\Lab9\Lab9.py</file_saved>
+</file_created>
+<command_run time="Wed Nov 15 12:33:44 PST 2017">double = makeEmptySound((end-start)*2, 11050)></command_run>
+<command_run time="Wed Nov 15 12:34:10 PST 2017">double = makeEmptySound(9230*2, 11050)></command_run>
+<command_run time="Wed Nov 15 12:34:46 PST 2017">copy(new, double, 9230)></command_run>
+<menu_button time="Wed Nov 15 12:34:55 PST 2017">Load Program</menu_button>
+<command_run time="Wed Nov 15 12:34:57 PST 2017">copy(new, double, 9230)></command_run>
+<menu_button time="Wed Nov 15 12:35:13 PST 2017">Save Program</menu_button>
+<file_saved time="Wed Nov 15 12:35:13 PST 2017">D:\GitHub\CSUMB\CST205\Module4\Lab9\Lab9.py</file_saved>
+</file_created>
+<menu_button time="Wed Nov 15 12:35:13 PST 2017">Load Program</menu_button>
+<command_run time="Wed Nov 15 12:35:15 PST 2017">copy(new, double, 9230)></command_run>
+<command_run time="Wed Nov 15 12:35:21 PST 2017">explore(double)></command_run>
+<command_run time="Wed Nov 15 12:35:42 PST 2017">explore(new)></command_run>
+<command_run time="Wed Nov 15 12:36:11 PST 2017">copy(new, double, 0)></command_run>
+<command_run time="Wed Nov 15 12:36:16 PST 2017">explore(double)></command_run>
+<command_run time="Wed Nov 15 12:36:55 PST 2017">double = makeEmptySound(9230*2)></command_run>
+<command_run time="Wed Nov 15 12:36:58 PST 2017">copy(new, double, 0)></command_run>
+<command_run time="Wed Nov 15 12:37:03 PST 2017">explore(double)></command_run>
+<menu_button time="Wed Nov 15 12:37:50 PST 2017">Program Area + Interactions Area</menu_button>
+<menu_button time="Wed Nov 15 12:40:22 PST 2017">Save Program</menu_button>
+<file_saved time="Wed Nov 15 12:40:22 PST 2017">D:\GitHub\CSUMB\CST205\Module4\Lab9\Lab9.py</file_saved>
+</file_created>
+<menu_button time="Wed Nov 15 12:40:23 PST 2017">Load Program</menu_button>
+<command_run time="Wed Nov 15 12:40:27 PST 2017">copy(new, double, 0)></command_run>
+<command_run time="Wed Nov 15 12:40:29 PST 2017">explore(double)></command_run>
+<command_run time="Wed Nov 15 12:41:03 PST 2017">double = makeEmptySound(9230*2, 11050)></command_run>
+<command_run time="Wed Nov 15 12:41:06 PST 2017">copy(new, double, 0)></command_run>
+<command_run time="Wed Nov 15 12:41:10 PST 2017">explore(double)></command_run>
+<command_run time="Wed Nov 15 12:41:23 PST 2017">copy(new, double, 9230)></command_run>
+<command_run time="Wed Nov 15 12:41:34 PST 2017">copy(new, double, 9229)></command_run>
+<command_run time="Wed Nov 15 12:41:48 PST 2017">copy(new, double, 9220)></command_run>
+<command_run time="Wed Nov 15 12:41:59 PST 2017">copy(new, double, 3000)></command_run>
+<command_run time="Wed Nov 15 12:42:03 PST 2017">explore(double)></command_run>
+<menu_button time="Wed Nov 15 12:50:38 PST 2017">Save Program</menu_button>
+<file_saved time="Wed Nov 15 12:50:38 PST 2017">D:\GitHub\CSUMB\CST205\Module4\Lab9\Lab9.py</file_saved>
+</file_created>
+<menu_button time="Wed Nov 15 12:50:42 PST 2017">Load Program</menu_button>
+<command_run time="Wed Nov 15 12:50:49 PST 2017">soundCollage()></command_run>
+<command_run time="Wed Nov 15 12:51:25 PST 2017">soundCollage = soundCollage()></command_run>
+<command_run time="Wed Nov 15 12:51:37 PST 2017">soundCollage = soundCollage()></command_run>
+<command_run time="Wed Nov 15 12:51:51 PST 2017">explore(soundCollage)></command_run>
+<menu_button time="Wed Nov 15 12:52:19 PST 2017">Save Program</menu_button>
+<file_saved time="Wed Nov 15 12:52:19 PST 2017">D:\GitHub\CSUMB\CST205\Module4\Lab9\Lab9.py</file_saved>
+</file_created>
