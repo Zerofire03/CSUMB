@@ -31,3 +31,12 @@ def maxSample():
     if getSampleValue(samples[x]) > max:
       max = getSampleValue(samples[x])
   return max
+  
+#Sets any sample value that is greater than 0 to the max, 32767
+#Sets any sample value that is less than 0 to the max negative, -32767
+def goToEleven(sound):
+  for sample in getSamples(sound):
+    if getSampleValue(sample) > 0:
+      setSampleValue(sample, 32767)
+    elif getSampleValue(sample) < 0:
+      setSampleValue(sample, -32767)
