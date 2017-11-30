@@ -157,4 +157,101 @@
 <command_run time="Mon Nov 20 15:12:50 PST 2017">chromaKeyed = chromakey(originalPic, lineDrawing)></command_run>
 <menu_button time="Mon Nov 20 15:18:51 PST 2017">Save Program</menu_button>
 <file_saved time="Mon Nov 20 15:18:51 PST 2017">D:\GitHub\CSUMB\CST205\Module3\Midterm.py</file_saved>
+<file_opened time="Tue Nov 21 08:04:38 PST 2017">D:\GitHub\CSUMB\CST205\Module3\Midterm.py</file_opened>
+<command_run time="Tue Nov 21 08:14:22 PST 2017">originalPic =  makePicture(pickAFile())></command_run>
+<command_run time="Tue Nov 21 08:14:51 PST 2017">show(originalPic)></command_run>
+<command_run time="Tue Nov 21 08:15:02 PST 2017">temp = originalPic></command_run>
+<command_run time="Tue Nov 21 08:15:09 PST 2017">lineDraw(originalPic, 20)></command_run>
+<menu_button time="Tue Nov 21 08:15:12 PST 2017">Load Program</menu_button>
+<file_saved time="Tue Nov 21 08:15:13 PST 2017">D:\GitHub\CSUMB\CST205\Module3\Midterm.py</file_saved>
+</file_created>
+<command_run time="Tue Nov 21 08:15:21 PST 2017">lineDraw(originalPic, 20)></command_run>
+<command_run time="Tue Nov 21 08:16:00 PST 2017">explore(originalPic)></command_run>
+<command_run time="Tue Nov 21 08:16:19 PST 2017">lineDrawing = originalPic></command_run>
+<command_run time="Tue Nov 21 08:16:52 PST 2017">originalPic = temp></command_run>
+<command_run time="Tue Nov 21 08:17:34 PST 2017">chromaKeyed = chromakey(lineDrawing, originalPic)></command_run>
+<command_run time="Tue Nov 21 08:21:33 PST 2017">explore(originalPic)></command_run>
+<command_run time="Tue Nov 21 08:21:46 PST 2017">explore(temp)></command_run>
+<command_run time="Tue Nov 21 08:22:04 PST 2017">originalPic =  makePicture(pickAFile())></command_run>
+<command_run time="Tue Nov 21 08:22:13 PST 2017">explore(originalPic)></command_run>
+<command_run time="Tue Nov 21 08:22:20 PST 2017">temp = originalPic></command_run>
+<command_run time="Tue Nov 21 08:22:25 PST 2017">explore(temp)></command_run>
+<command_run time="Tue Nov 21 08:22:38 PST 2017">lineDraw(originalPic, 20)></command_run>
+<command_run time="Tue Nov 21 08:22:53 PST 2017">explore(temp)></command_run>
+<menu_button time="Tue Nov 21 08:25:37 PST 2017">Save Program</menu_button>
+<file_saved time="Tue Nov 21 08:25:37 PST 2017">D:\GitHub\CSUMB\CST205\Module3\Midterm.py</file_saved>
+</file_created>
+<command_run time="Tue Nov 21 08:25:41 PST 2017">originalPic =  makePicture(pickAFile())></command_run>
+<command_run time="Tue Nov 21 08:25:53 PST 2017">temp = simpleCopy(originalPic)></command_run>
+<menu_button time="Tue Nov 21 08:25:55 PST 2017">Load Program</menu_button>
+<command_run time="Tue Nov 21 08:25:57 PST 2017">temp = simpleCopy(originalPic)></command_run>
+<command_run time="Tue Nov 21 08:26:15 PST 2017">lineDraw(originalPic, 20)></command_run>
+<command_run time="Tue Nov 21 08:26:37 PST 2017">explore(temp)></command_run>
+<command_run time="Tue Nov 21 08:26:45 PST 2017">explore(originalPic)></command_run>
+<menu_button time="Tue Nov 21 08:27:37 PST 2017">Save Program</menu_button>
+<file_saved time="Tue Nov 21 08:27:37 PST 2017">D:\GitHub\CSUMB\CST205\Module3\Midterm.py</file_saved>
+<file_opened time="Tue Nov 21 08:30:04 PST 2017">D:\GitHub\CSUMB\CST205\Module3\Midterm.py</file_opened>
+<command_run time="Tue Nov 21 08:30:15 PST 2017">originalPic =  makePicture(pickAFile())></command_run>
+<command_run time="Tue Nov 21 08:30:28 PST 2017">originalPic =  makePicture(pickAFile())></command_run>
+<command_run time="Tue Nov 21 08:30:52 PST 2017">temp = simpleCopy(originalPic)></command_run>
+<menu_button time="Tue Nov 21 08:30:58 PST 2017">Load Program</menu_button>
+<command_run time="Tue Nov 21 08:31:00 PST 2017">temp = simpleCopy(originalPic)></command_run>
+<command_run time="Tue Nov 21 08:31:16 PST 2017">lineDraw(originalPic, 20)></command_run>
+<command_run time="Tue Nov 21 08:31:35 PST 2017">lineDrawing = simpleCopy(originalPic)></command_run>
+<command_run time="Tue Nov 21 08:31:46 PST 2017">explore(lineDrawing)></command_run>
+<command_run time="Tue Nov 21 08:31:51 PST 2017">explore(temp)></command_run>
+<command_run time="Tue Nov 21 08:32:01 PST 2017">originalPic = simpleCopy(temp)></command_run>
+<command_run time="Tue Nov 21 08:32:10 PST 2017">show(originalPic)></command_run>
+<command_run time="Tue Nov 21 08:32:18 PST 2017">chromaKeyed = chromakey(lineDrawing, originalPic)></command_run>
+<menu_button time="Tue Nov 21 08:32:57 PST 2017">Save Program</menu_button>
+<file_saved time="Tue Nov 21 08:32:57 PST 2017">D:\GitHub\CSUMB\CST205\Module3\Midterm.py</file_saved>
+</file_created>
+<command_run time="Tue Nov 21 08:33:04 PST 2017">chromaKeyed = chromakey(lineDrawing, originalPic)></command_run>
+<menu_button time="Tue Nov 21 08:33:15 PST 2017">Load Program</menu_button>
+<command_run time="Tue Nov 21 08:33:17 PST 2017">chromaKeyed = chromakey(lineDrawing, originalPic)></command_run>
+<command_run time="Tue Nov 21 08:33:34 PST 2017">show(chromaKeyed)></command_run>
+<command_run time="Tue Nov 21 08:33:42 PST 2017">artify(chromaKeyed)></command_run>
+<command_run time="Tue Nov 21 08:33:51 PST 2017">show(chromaKeyed)></command_run>
+<command_run time="Tue Nov 21 08:34:03 PST 2017">artified = simpleCopy(chromaKeyed)></command_run>
+<command_run time="Tue Nov 21 08:34:20 PST 2017">bordered = addBorder(artified)></command_run>
+<command_run time="Tue Nov 21 08:34:32 PST 2017">show(bordered)></command_run>
+<menu_button time="Tue Nov 21 08:35:04 PST 2017">Save Program</menu_button>
+<file_saved time="Tue Nov 21 08:35:04 PST 2017">D:\GitHub\CSUMB\CST205\Module3\Midterm.py</file_saved>
+</file_created>
+<menu_button time="Tue Nov 21 08:35:05 PST 2017">Load Program</menu_button>
+<command_run time="Tue Nov 21 08:35:12 PST 2017">foo = comicFilter()></command_run>
+<command_run time="Tue Nov 21 08:36:12 PST 2017">show(foo)></command_run>
+<menu_button time="Tue Nov 21 08:36:54 PST 2017">Save Program</menu_button>
+<file_saved time="Tue Nov 21 08:36:54 PST 2017">D:\GitHub\CSUMB\CST205\Module3\Midterm.py</file_saved>
+</file_created>
+<menu_button time="Tue Nov 21 08:36:55 PST 2017">Load Program</menu_button>
+<command_run time="Tue Nov 21 08:36:57 PST 2017">foo = comicFilter()></command_run>
+<command_run time="Tue Nov 21 08:38:07 PST 2017">show(foo)></command_run>
+<command_run time="Tue Nov 21 08:39:31 PST 2017">foo = comicFilter()></command_run>
+<command_run time="Tue Nov 21 08:40:43 PST 2017">show(foo)></command_run>
+<command_run time="Tue Nov 21 09:35:17 PST 2017">file = r"D:\GitHub\CSUMB\CST205\Midterm\midtermPicture.jpg"></command_run>
+<command_run time="Tue Nov 21 09:35:42 PST 2017">writePictureTo(foo, file)></command_run>
+<menu_button time="Tue Nov 21 09:35:59 PST 2017">Save Program</menu_button>
+<file_saved time="Tue Nov 21 09:35:59 PST 2017">D:\GitHub\CSUMB\CST205\Module3\Midterm.py</file_saved>
+</file_created>
+<command_run time="Tue Nov 21 09:36:08 PST 2017">foo = comicFilter()></command_run>
+<command_run time="Tue Nov 21 09:37:11 PST 2017">writePictureTo(foo, file)></command_run>
+<menu_button time="Tue Nov 21 09:37:22 PST 2017">Load Program</menu_button>
+<menu_button time="Tue Nov 21 09:37:28 PST 2017">Save Program</menu_button>
+<file_saved time="Tue Nov 21 09:37:28 PST 2017">D:\GitHub\CSUMB\CST205\Module3\Midterm.py</file_saved>
+</file_created>
+<menu_button time="Tue Nov 21 09:37:30 PST 2017">Load Program</menu_button>
+<command_run time="Tue Nov 21 09:37:32 PST 2017">foo = comicFilter()></command_run>
+<command_run time="Tue Nov 21 09:38:50 PST 2017">writePictureTo(foo, file)></command_run>
+<menu_button time="Tue Nov 21 09:39:12 PST 2017">Save Program</menu_button>
+<file_saved time="Tue Nov 21 09:39:12 PST 2017">D:\GitHub\CSUMB\CST205\Module3\Midterm.py</file_saved>
+</file_created>
+<menu_button time="Tue Nov 21 09:39:14 PST 2017">Load Program</menu_button>
+<command_run time="Tue Nov 21 09:39:33 PST 2017">foo = comicFilter()></command_run>
+<command_run time="Tue Nov 21 09:40:45 PST 2017">writePictureTo(foo, file)></command_run>
+<menu_button time="Tue Nov 21 09:57:28 PST 2017">Save Program</menu_button>
+<file_saved time="Tue Nov 21 09:57:28 PST 2017">D:\GitHub\CSUMB\CST205\Module3\Midterm.py</file_saved>
+</file_created>
+<menu_button time="Tue Nov 21 10:17:01 PST 2017">Save Program</menu_button>
+<file_saved time="Tue Nov 21 10:17:01 PST 2017">D:\GitHub\CSUMB\CST205\Module3\Midterm.py</file_saved>
 </file_created>
