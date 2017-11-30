@@ -1,0 +1,2869 @@
+﻿/* Fix space at bottom of logo on homepage. */
+
+.csu-home .overlay-bg {display: none;}
+
+/* Fix space at bottom of logo on homepage. */
+
+/*Breadcrumb margin bottom fix*/
+.breadcrumb li { margin-bottom: 0 !important; }
+
+/*
+	Custom Ribbon Styles
+*/
+
+a.ms-rteElement-whiteactionlink { -ms-name: "White Link Button"; display: inline-block; padding: 10px; margin-bottom: 0px; font-weight: 400; line-height: 1.4285; text-align: center; white-space: normal; vertical-align: middle; -ms-touch-action: manipulation; touch-action: manipulation; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; background-image: none; border-radius: 6px; color: #cc0b2a; font-size: 1.14em; border: 1px solid #cc0b2a; text-decoration: none; word-break: keep-all;}
+    a.ms-rteElement-whiteactionlink:hover, a.ms-rteElement-whiteactionlink:focus, a.ms-rteElement-whiteactionlink:active { border: 1px solid #990C21; color: #990C21; text-decoration: none; }
+
+.csu .btn-primary { background-color: #cc0b2a; color: #fff; font-size: 1.125em; border: 1px solid #cc0b2a; }
+    .csu .btn-primary:hover, .csu .btn-primary:focus, .csu .btn-primary:active { background-color: #990C21; border: 1px solid #990C21; color: #fff; }
+
+a.ms-rteElement-actionlink, input.ms-rteElement-actionlink { -ms-name: "Red Link Button"; color: #fff !important; display: inline-block; padding: 8px 18px; margin-bottom: 0px; font-weight: 300; line-height: 1.4285; text-align: center; white-space: nowrap; vertical-align: middle; -ms-touch-action: manipulation; touch-action: manipulation; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; background-image: none; border-radius: 6px; background-color: #cc0b2a; color: #fff; font-size: 1.14em; border: 1px solid #cc0b2a; text-decoration: none; }
+    a.ms-rteElement-actionlink:visited, input.ms-rteElement-actionlink { background-color: #cc0b2a; color: #fff !important; font-size: 1.14em; border: 1px solid #cc0b2a; }
+
+a.ms-rteElement-rightarrowlink { -ms-name: "Right Arrow Link"; color: #cc0b2a; text-decoration: none; cursor: pointer; }
+
+    a.ms-rteElement-rightarrowlink::after { content: " \00BB"; }
+    a.ms-rteElement-rightarrowlink:visited { color: #cc0b2a; }
+    a.ms-rteElement-rightarrowlink:hover, a.ms-rteElement-rightarrowlink:focus, a.ms-rteElement-rightarrowlink:active { color: #990C21; text-decoration: none; }
+a.ms-rteElement-actionlink:hover, a.ms-rteElement-actionlink:focus, a.ms-rteElement-actionlink:active, input.ms-rteElement-actionlink:hover, input.ms-rteElement-actionlink:focus, input.ms-rteElement-actionlink:active { background-color: #990C21; border: 1px solid #990C21; color: #fff !important; font-weight: 300; text-decoration: none; }
+a.ms-rteElement-whiteactionlink:hover, a.ms-rteElement-whiteactionlink:focus, a.ms-rteElement-whiteactionlink:active { background-color: #cc0b2a; border: 1px solid #cc0b2a; color: #fff !important; /*font-weight: 300;*/ font-weight:normal; text-decoration: none; }
+
+@media (min-width:768px) {
+    a.ms-rteElement-whiteactionlink, a.ms-rteElement-actionlink { font-size: 1em; padding: 8px 18px; }
+}
+
+@media (min-width:992px) {
+}
+
+@media (min-width:1200px) {
+}
+
+/* SharePoint overwrites */
+.ms-core-listMenu-selected:link, .ms-core-listMenu-selected:visited, .ms-core-listMenu-selected { background: inherit; }
+
+/* bootstrap overwrites*/
+ul.list-unstyled { padding-left: 0px !important; padding-top: 0px !important; }
+
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 { min-height: 0 !important; }
+
+.generic .container { padding-right: 15px; padding-left: 15px; margin-right: auto; margin-left: auto; }
+
+.video-container, .news-events .ms-rte-embedil, .csu-profile .ms-rte-embedil  { position: relative; width: 100%; height: 0; padding-bottom: 56.25%; }
+.video-container-2 { position: relative; width: 70%; height: 0; padding-bottom: 39.25%; }
+
+.video, .iframevideo { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+@media (min-width:480px) {
+    .generic .container { width: 750px !important; }
+
+}
+
+@media (min-width:768px) {
+    .generic .container { width: 750px !important; }
+}
+
+@media (min-width:992px) {
+	.csu-profile .ms-rte-embedil  { position: relative; width: 85%; height: 0; padding-bottom: 45.25%; }
+    .generic .container { width: 970px !important; }
+}
+
+@media (min-width:1200px) {
+    .generic .container { width: 1170px !important; }
+}
+
+footer .footer-main-nav ul.ms-core-listMenu-root li { font-size: 18px; }
+
+/*
+	Hero Image Styles
+*/
+
+.hero2 a.ms-rteElement-actionlink { font-size: 16px; font-family: "Open Sans", sans-serif; margin-top: 10px; padding: 6px 12px; text-transform: none; }
+div#heroImageOverlayText { text-shadow: 0 0 5px rgba(0, 0, 0,1); }
+
+@media (max-width: 480px) {
+    .hero2.hero-style4 div.overlay { width: 100%; }
+    .hero2.hero-style4 div.left { left: 1%; top: 50%; line-height: 20px; }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .hero2.hero-style4 div.overlay { width: 100%; }
+    .hero2.hero-style4 div.bottom { bottom: -100px; top: 70%; }
+
+    .hero2.hero-style4 div.left { left: 1%; top: 70%; }
+}
+
+@media (min-width: 769px) {
+    .hero2.hero-style2 div.overlay { width: 130px; }
+    .hero2.hero-style3 div.overlay { width: 300px; }
+    .hero2.hero-style4 div.overlay { width: 800px; }
+    .hero2.hero-style3 div.bottom, .hero2.hero-style4 div.bottom { bottom: 15px; }
+    .hero2.hero-style3 div.left, .hero2.hero-style4 div.left { left: 15px; }
+}
+
+@media (min-width: 992px) {
+    .hero2.hero-style2 div.overlay { width: 130px; }
+    .hero2.hero-style2 div.center { left: 21%; }
+    .hero2.hero-style3 div.overlay { width: 200px; }
+    .hero2.hero-style3 div.center { left: 21%; }
+    .hero2.hero-style4 div.overlay { width: 850px; }
+    .hero2.hero-style3 div.bottom, .hero2.hero-style4 div.bottom { bottom: 20px; }
+    .hero2.hero-style3 div.left, .hero2.hero-style4 div.left { left: 20px; }
+}
+
+@media (max-width: 1200px){
+	#heroImageOverlayText br { display: none;}
+}
+
+@media (min-width: 1200px) {
+    .hero2.hero-style3 div.overlay { width: 150px; }
+
+    .hero2.hero-style4 div.overlay { width: 415px; }
+    .hero2.hero-style3 div.bottom, .hero2.hero-style4 div.bottom { bottom: 50px; }
+    .hero2.hero-style3 div.left, .hero2.hero-style4 div.left { left: 50px; }
+}
+
+.employee-profile .tab-content section { margin-bottom: 55px; }
+.spotlight .story-category { min-height: 29px; }
+    .spotlight .story-category.no-category { min-height: 0px; }
+.btn { border-radius: 6px; }
+
+.dashed-border { border: 1px dashed #000; }
+
+/*
+	Generic Page Layout Styles
+*/
+input[type="button"].ms-rteElement-actionlink { color: #fff !important; display: inline-block; padding: 8px 18px; margin-bottom: 0px; font-weight: 300; line-height: 1.4285; text-align: center; white-space: nowrap; vertical-align: middle; -ms-touch-action: manipulation; touch-action: manipulation; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; background-image: none; border-radius: 6px; background-color: #cc0b2a; color: #fff; font-size: 1.14em; border: 1px solid #cc0b2a; text-decoration: none; }
+.news-events main article a, .news-events main article a:link, .news-events main article a:visited { text-decoration: none !important; }
+/* AJR - Added */
+
+.edq-dataview-dashboards .news-events main, .edq-dataview-dashboards div#greyMiddle2Column {
+    padding-bottom: 0 !important;
+}
+
+.container main { padding-left: 100px; padding-right: 100px;}
+/* Fix for uncompliant div.page-title*/
+.profile-page div.page-title {
+   font-weight: 300 !important;
+    /*
+    max-width: 400px !important;
+    margin: .5em 0 1em 0 !important;
+    */
+    line-height: 1.3 !important;
+    border-bottom: none !important;
+    }
+ 
+ @media only screen 
+and (max-device-width : 736px) {
+	a.ms-rteElement-whiteactionlink, a.ms-rteElement-actionlink { white-space: inherit !important;}   
+}
+ 
+/* AJR - Added */
+.oswald {font-family: "oswald";}
+h5 {font-weight: bold; font-size: medium;}
+.ms-rtestate-field, .generic, .generic .ms-rtestate-field { word-wrap: normal; }
+.generic { letter-spacing: .5px; }
+    .generic h1 { font-size: 3.0em; }
+    .generic h4 { font-size: 1.35em; }
+    .generic h3 { font-size: 1.75em; }
+    .generic h2, h2 { font-size: 26.6px !Important; }
+ /* .generic h2, h2 { font-size: 1.9em; }*/
+    .generic .page-title { text-align: center; padding: 30px 0; font-weight: 100; margin-bottom: 25px; margin-top: 25px; /*font-size:2.25em;
+	font-weight: 700;*/ }
+.page-title { line-height: 1.1; }
+.generic .hero { clear: both; }
+.generic .action img { width: 100%; }
+.strong, .bold { font-weight:bold;}
+.normal {font-weight:normal;}
+@media (min-width: 480px) {
+    .generic .action { width: 335px; }
+    .generic h1 { font-size: 3.6em; }
+}
+
+body, h1, h2, h3, h4, h5, h6, #contentRow body, #contentRow .ms-core-navigation, .ms-rtestate-field h4 { font-family: "Open Sans", sans-serif; color: #1a1a1a; }
+.bot-hp { max-width: 1000px; }
+.home-bot-section p.large-font { margin: 20px 0; }
+#s4-bodyContainer { color: #1a1a1a; }
+#s4-workspace, #s4-bodyContainer { width: 100% !important; }
+.ms-rtestate-field h1,
+h1.ms-rteElement-H1,
+.ms-rtestate-field h2,
+h2.ms-rteElement-H2 { color: #2f2f2f; }
+.news-events aside .regular-box h4 { margin: 0; font-size: 1.5em; margin-bottom: 20px; font-weight: 700; }
+.news-events aside .white-box h4 { margin: 0; font-size: 1.5em; font-weight: 700; }
+/* AJR ADDED*/ .news-events aside .csuleader {width: 100%;}
+.ms-rtestate-field h3, h3.ms-rteElement-H3, .ms-rtestate-field h2, h2.ms-rteElement-H2 { line-height: 1.1; }
+
+.gray-border { border: 2px solid #e6e6e6; }
+.gray-border-left { border-left: 1px solid #e6e6e6; }
+@media (max-width:600px) { .gray-border-left { border-left: none; } }
+
+.bg-dark-gray { background-color: #2f2f2f; }
+.bg-med-gray { background-color: #e1e1e1; }
+.bg-light-gray { background-color: #f6f6f6; }
+.bg-lightest-gray { background-color: #fbfbfb; }
+.blue-text {color: #245E90;}
+.yellow-border-2px {    border: solid 2px #EBA900;}
+#noResultsMsg { text-align: center; }
+
+/* overrides */
+.inline-block { display: inline-block !important; }
+.mobile-only { display: none !Important; }
+.flex { display: flex !important; }
+.webkit { display: -webkit-box !important; }
+
+.spacer-10px { height: 10px; }
+.no-margin-top { margin-top: 0 !important; }
+.no-margin-bottom { margin-bottom: 0 !important; }
+.no-margin-top-bot { margin-top: 0 !important; margin-bottom: 0 !important; }
+.no-margin-left { margin-left: 0 !important; }
+a.no-margin, .no-margin {margin: 0 !important;}
+.margin-bottom-35px { margin-bottom: 35px !important; }
+
+.margin-top-15px { margin-top: 15px !important; }
+.margin-top-20px { margin-top: 20px !important; }
+.margin-top-25px { margin-top: 25px !important; }
+.margin-top-30px { margin-top: 30px !important; }
+.margin-top-35px { margin-top: 35px !important; }
+.margin-top-plus-40px { margin-top: 40px !important; }
+.margin-top-55px { margin-top: 55px !important; }
+.margin-bottom-15px { margin-bottom: 15px !important; }
+.margin-bottom-25px { margin-bottom: 25px !important; }
+.margin-bottom-30px { margin-bottom: 30px !important; }
+.margin-bottom-35px { margin-bottom: 35px !important; }
+.margin-bottom-40px { margin-bottom: 40px !important; }
+.margin-bottom-45px { margin-bottom: 45px !important; }
+.margin-bottom-55px { margin-bottom: 55px !important; }
+.margin-top-bot-25px { margin: 25px 0 !important; }
+.margin-top-bot-35px { margin: 35px 0 !important; }
+.margin-top-bot-55px { margin: 55px 0 !important; }
+
+.margin-top-bot-25px-centered { margin: 25px auto !important; }
+.margin-top-bot-30px-centered { margin: 30px auto !important; }
+.margin-top-bot-35px-centered { margin: 35px auto !important; }
+.margin-top-bot-55px-centered { margin: 55px auto !important; }
+
+.padding-top-bot-0px, .padding-top-bot-none { padding: 0px 0 !important; }
+.padding-top-bot-25px { padding: 25px 0 !important; }
+.padding-top-bot-35px { padding: 35px 0 !important; }
+.padding-top-bot-55px { padding: 55px 0 !important; }
+.padding-top-20px { padding-top: 20px !important; }
+.padding-top-25px { padding-top: 25px !important; }
+.padding-top-35px { padding-top: 35px !important; }
+.padding-top-55px { padding-top: 55px !important; }
+.padding-bottom-15px { padding-bottom: 15px !important; }
+.padding-bottom-25px { padding-bottom: 25px !important; }
+.padding-bottom-35px { padding-bottom: 35px !important; }
+.padding-bottom-45px { padding-bottom: 45px !important; }
+.padding-bottom-55px { padding-bottom: 55px !important; }
+.no-padding-top { padding-top: 0 !important; }
+.no-padding-bottom, .chancellors-urgent-message-to-daca-students main.col-md-9.col-lg-9.min-height  { padding-bottom: 0 !important; }
+.padding-all-25px { padding: 25px !important; }
+.padding-all-30px { padding: 30px !important; }
+.padding-all-55px { padding: 55px !important; }
+.padding-right-10px { padding-right: 10px !important; }
+.color-grey { color: #737373 !important; }
+.letter-spacing-0 { letter-spacing: 0 !important; }
+.float-left { float: left !important; }
+.float-right { float: right !important; }
+.grey-out-text { color: #aaaaaa !important; }
+blockquote p { font-size: 14px !important; }
+blockquote h4 { font-size: 19.04px !important; }
+ul ul { padding-top: 0px !Important; }
+ul.indent-list {margin-left: 2%;}
+p.table-legal-terms { font-size: .85em; }
+.inline-table { display: inline-table !important; }
+
+/* Questionmark Tooltip */
+
+img.quest-img { width: 18px; background: #fff; border-radius: 8px; }
+span.quest-inline img.quest-img { margin-top: 0px !important; margin-left: 0px !important; }
+img.quest-img { margin-top: 62px; margin-left: 12px;    position: relative; z-index: 99999999;}
+.tooltip {
+    width: 100%;
+    min-width: 200px;
+    z-index: 1 !Important;
+    position: absolute !Important;
+}
+/* Questionmark Tooltip */
+
+/*Selectize Override*/
+.selectize-control.multi .selectize-input > div.active { background: #cc0b2a !important; }
+/*Selectize Override*/
+/* Table Override */
+
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th { border-top: none; }
+
+/* Table Override */
+@media (min-width:768px) {
+    .no-padding-bottom-sm { padding-bottom: 0 !important; }
+    .width-75p, .generic .width-75p { width: 90% !important; }
+    .foundation .width-75p, .generic .foundation .width-75p { width: 80% !important; }
+    .width-65p, .generic .width-65p { width: 90% !important; }
+    .width-60p, .generic .width-60p, .width-45p, .generic .width-45p { width: 90% !important; }
+}
+
+@media (min-width:992px) {
+    .width-85p, .generic .width-85p { width: 85% !important; }
+    .width-75p, .generic .width-75p { width: 75% !important; }
+    .no-padding-bottom-md { padding-bottom: 0 !important; }
+    .width-65p, .generic .width-65p { width: 65% !important; }
+    .width-60p, .generic .width-60p { width: 60% !important; }
+    .width-45p, .generic .width-45p { width: 45% !important; }
+}
+
+.bottom-border-line { border-bottom: 1px solid #e6e6e6; padding-bottom: 20px; }
+.top-border-line { border-top: 1px solid #e6e6e6; }
+
+/*Listing*/
+.listing { margin: auto; }
+
+    .listing.gray-border { margin-top: 30px; padding: 20px 20px; }
+
+    .listing h2 { font-weight: 300; text-align: center; }
+
+    .listing ul { width: 90%; margin: auto; padding: 20px 0; }
+
+        .listing ul li { /*list-style: none;*/ padding-bottom: 20px; }
+.ms-rtestate-field ul, .ms-rtestate-field ol { padding: 20px; }
+    .ms-rtestate-field ul li, .ms-rtestate-field ol li { padding-bottom: 10px; }
+
+    .ms-rtestate-field ul.multiple-page-stack li { padding-bottom: 0; }
+
+/*
+.ms-rtestate-field ul li:last-of-type, .ms-rtestate-field ol li:last-of-type {padding-bottom: 0;}   
+*/
+/*
+.listing li::before { /*content: "\002022\00a0\00a0 "; color: #cc0b2a;
+        content: "â€¢ "; color: #cc0b2a;or whatever color you prefer 
+*/
+
+
+.listing .listing-link { text-align: center; padding-bottom: 10px; }
+
+@media (min-width:768px) {
+    .listing ul { width: 73%; margin: auto; padding: 20px 0; }
+    .listing.listing-medium ul { width: 76%; }
+}
+
+@media (min-width:992px) {
+    .generic .container { width: 970px !important; }
+}
+
+@media (min-width:1200px) {
+    .generic .container { width: 1170px !important; }
+}
+
+.listing.listing-small { margin: 55px auto 35px auto; width: 75%; }
+    .listing.listing-small ul { width: 100%; padding-left: 15px; }
+    .listing.listing-small .listing-link { text-align: left; }
+    .listing.listing-small li { list-style: disc; padding: 0px 0px 10px 0; }
+        .listing.listing-small li::before { content: none; }
+    .listing.listing-small a.ms-rteElement-whiteactionlink { padding: 6px 12px; }
+
+.search-container { display: table; margin: 55px auto; width: 75%; }
+    .search-container .search-container-label { float: left; padding-right: 40px; padding-top: 5px; font-style: italic; }
+    .search-container .search-container-box { float: left; }
+        .search-container .search-container-box .input-group { float: left; padding-right: 20px; }
+            .search-container .search-container-box .input-group input { border-radius: 4px; padding: 0 15px; }
+        .search-container .search-container-box .csu-search { float: left; }
+        .search-container .search-container-box a.btn { margin: 0; }
+
+    .search-container .csu-search-btn { position: relative; background-color: transparent; background-image: url(/_catalogs/masterpage/assets/images/mag-icon.png); background-repeat: no-repeat; min-width: inherit; width: 12px; height: 16px; border: 0; z-index: 100; margin-left: -26px; outline: 0; margin-top: 8px; }
+
+/* cards */
+.grey-card { background: #e6e6e6; }
+    .grey-card h4 { margin-top: 10px !important; margin-bottom: 10px !important; }
+    .grey-card .card-container-inner { padding: 15px 28px; }
+
+.card-container { width: 100%; margin: 0px auto; margin-bottom: 40px; }
+
+.card-container-small { }
+
+.card-container-tall { }
+
+.card-container img { width: 100%; }
+
+.card-container-inner { padding: 10px; }
+
+@media (min-width: 992px) {
+    .card-container-inner { padding: 25px; }
+}
+
+@media (min-width:1200px) {
+    .card-container-inner { padding: 45px; }
+    .card-container-inner-small { padding: 30px; }
+    /*	.card-container-inner { padding: 45px 55px; }*/
+}
+
+.card-container-inner h4 { padding-bottom: 5px; }
+.support-csu .card-container-inner h4 { }
+@media (max-width:768px) {
+   .profiles-container .profile {width: 70% !important;}
+   .henry-j-kaiser-family-foundation a#prevData { margin-bottom: 15px;}
+   .henry-j-kaiser-family-foundation a#nextData {margin-left: 2% !important;}
+   
+}
+
+.card-container-inner h3, .card-container-inner h2 { margin-top: 0px; margin-bottom: 20px; }
+
+.col-md-4 .card-container-inner { background-color: #fff; }
+
+.card-container a, .card-container a:visited, .listing a, .listing a:visited { color: #cc0b2a; }
+
+    .card-container a:hover, .card-container a:active .listing a:hover, .listing a:active { color: #990C21; text-decoration: none; }
+
+/* CSU Trustees' Award */
+.csu-trustees-awards h2.awardee-year {margin-top: 0;}
+.trustee-awards-profile.profile-page .awardee { margin-top: 15px;}
+.trustee-awards-profile.profile-page .heading-text {font-weight: bold;}
+.csu-trustees-awards.card-container h4 { margin-top: 0; }
+.trustee-quote-block { float: right;    width: 40%;}
+.awardee .bottomnav { text-transform: capitalize; }
+/*
+Page Title - AJR
+*/
+h1.page-title { font-weight: 100 !important; }
+div#contentRow img { max-width: 100%; height: auto; }
+/*
+	Text Styles - AJR
+*/
+.action-large a { color: #cc0b2a; }
+.action-large h2 { margin-top: 0; }
+.action-large p { margin: 20px 0; }
+
+.action-large { display: table; min-height: 230px; }
+    .action-large .action-image { float: left; padding: 10px 30px; }
+        .action-large .action-image img { width: 100%; }
+    .action-large .action-body { float: left; padding: 10px; }
+
+span.ms-rteStyle-cc0b2a-text { -ms-name: "CSU Red Text"; color: #cc0b2a; }
+.subhead { font-size: large !important; }
+/* TRUSTEES STYLES*/
+
+/* Federal Relations */
+.california-congressional-delegation .card-container-inner { padding: 55px; }
+    .california-congressional-delegation .card-container-inner.top { padding-top: 0 !important; }
+    .california-congressional-delegation .card-container-inner.bottom { padding-bottom: 15px; }
+.lobbying-disclosure-and-ethics h4:first-of-type { margin-top: 0 !important; }
+.california-congressional-delegation .card-container { margin-bottom: 0 !important; }
+.california-congressional-delegation h4 { margin-top: 0 !important; }
+.california-congressional-delegation .bottom-border-line { padding-bottom: 0px !important; }
+
+/* Federal Relations */
+
+/* CSUEA Donate Page */
+.csuea .bio {
+    max-width: 840px;
+    padding-top: 10px;
+/*    padding-top: 35px;*/
+}
+.csuea img.displayImage {
+/*    max-width: 300px !important;*/
+    max-width: 250px !important;
+    float: left;
+    margin-right: 35px;
+    margin-left: 160px;
+}
+.csuea a.right.carousel-control, .csuea a.left.carousel-control {
+    margin-top: 3%;
+    font-size: 10em !important;
+    color: #e6e6e6;
+    background-image: none;
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  
+.csuea .bio { max-width: 700px; }
+.csuea img.displayImage {
+	margin: 0 auto;
+    float: inherit !Important;
+    padding: 0;}
+}
+@media (min-width: 481px) and (max-width: 767px) {
+  
+.csuea img.displayImage {
+	margin: 0 auto;
+    float: inherit !Important;
+    padding: 0;}
+}
+@media (min-width: 320px) and (max-width: 480px) {
+.csuea img.displayImage {
+	margin: 0 auto;
+    float: inherit !Important;
+    padding: 0;}
+}
+/* CSUEA Donate Page */
+
+/* NAFSA */
+.nafsa .container.campuses { margin-left: auto !important; margin-right: auto !important; padding-bottom: 0px !important; }
+.nafsa p.center.width-75p { margin: auto; }
+.nafsa .campuses.margin-top-bot-55px { padding-top: 0; padding-bottom: 0; }
+.nafsa .right-zone3 h2 { margin-bottom: 16px !important; }
+.nafsa .list ul li, .nafsa .campuses .list-single ul li { padding-bottom: 0 !important; }
+.nafsa .right-zone3 a.ms-rteElement-actionlink { margin-top: 20px; }
+.nafsa .campuses h4 { border-bottom: 3px solid #C30B2A; padding-bottom: 10px; margin-top: 12px; }
+.nafsa .campuses h2 { border-bottom: transparent !important; padding-bottom: 10px; font-weight: lighter; }
+.nafsa p.testimonial-blurb { display: flex; padding-left: 17px; margin-right: 0px !important; }
+img.testimonial-img.ms-rtePosition-1 { max-width: 150px; height: auto !important; /* padding-top: 93px; */ }
+/* NAFSA */
+
+/* Undocumented Students */
+.legal-support-services td.ms-vb2.col-md-2 { padding-left: 0px !important; }
+.legal-support-services table { max-width: 1000px; margin-left: -20px; }
+.legal-support-services a.ms-headerSortTitleLink { font-size: 14px; color: #000; }
+.legal-support-services th { border-bottom: #cc0b2a solid; font-size: 14px; color: #000 !important; font-weight: bold; }
+.legal-support-services td.ms-vb2 ul { padding: 0 !important; }
+/* Undocumented Students */
+
+/* Agricultural Research Initiative (ARI) */
+
+/* Agricultural Research Initiative (ARI)*/
+
+/* Graduation Initiative 2025 */
+.symposium ul.list-unstyled {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+.symposium .news-events main, .symposium div#greyMiddle2Column {
+    padding-bottom: 0 !important;
+}
+
+.gi2025News .plain-lead-in {
+    padding-top: 0 !important;
+}
+.gi2025News .plain-lead-in a.newsSource {
+	color: #cc0b2a;
+}
+.top-border-line .plain-lead-in a.newsSource {
+	color: #cc0b2a;
+}
+.graudation-initiative-2025 div.news-events main .newsH2 h2 {
+	padding-top: 55px;
+	padding-bottom: 35px;
+}
+.graduation-initiative-2025 div.news-events main h4 {
+	margin-bottom: 0 !Important;
+	padding-bottom: 40px !Important;
+}
+
+div#gi2025video, div#gi2025video .col-sm-6:first-of-type {
+    padding-left: 0 !important;
+}
+#gi2025video iframe {
+    border: none;
+    max-width: 430px;
+    width: 100%;
+    height: 241px;
+}
+.co-requisite-mathematics-summit main, .pre-summit-webinar main{
+    padding-bottom: 0 !important;
+}
+@media only screen and (min-device-width : 768px) and (max-device-width : 1366px) and (-webkit-min-device-pixel-ratio: 1) {
+    /*#carouselFade .carousel-indicators li { width: 16.4% !important; }*/
+    #carouselFade .carousel-indicators li {width: 13.9% !important;}
+
+}
+.closing-the-achievement-gap .news-events main article { border-bottom: none; }
+#latestTweets { width: 250px; }
+ul.multiple-page-stack { min-height: 160px !important; }
+ .leading-with-data ul.multiple-page-stack li:nth-of-type(3) { margin-top: 60px !important; }
+ul.multiple-page-stack, ul.multiple-page-stack-double-buttons { padding-left: 25px !Important; }
+.leading-with-data .right-zone3 .styled-hr-1 { margin-left: 26px !important; margin-bottom: 3px; margin-top: 0px; }
+.leading-with-data aside span.menu-item-text { font-size: 14px; line-height: 22px; display: block; padding-bottom: 10px; }
+.leading-with-data .facultyDashboard { display: none; }
+.leading-with-data .styled-hr-1 { display: block !important; }
+.leading-with-data div#tweets, .leading-with-data div#follow, .leading-with-data section#latestTweets h1, .leading-with-data hr:first-of-type { display: none; }
+.leading-with-data .right-content { padding: 0px 10px 0px 5px !Important; }
+.leading-with-data main.col-md-9.col-lg-9.min-height { padding-bottom: 0px !important; }
+.right-content { padding: 0px 10px 0px 35px; margin: 35px 0; }
+    .right-content h2, .right-content p { margin-bottom: 20px !important; }
+.graduate-initiative .card-container-inner .gi2025-links a:link, .graduate-initiative .card-container-inner .gi2025-links a:visited, .default2 .card-container-inner .gi2025-links a:link, .default2 .card-container-inner .gi2025-links a:visited { color: #cc0b2a !important; }
+.card-container-inner .gi2025-links a:hover { text-decoration: underline !important; }
+
+.graduate-initiative h4 { margin: 0 !important; }
+.graduate-initiative.spotlight { background-color: transparent !important; padding-top: 15px !important; }
+.container.gi2025 { padding-left: 0px !important; /* width: 965px !important; */ }
+/* Check the style below*/
+
+.graduation-initiative-2025 #homepageSpotlight .container { width: 952px !important; }
+
+/* Graduation Initiative 2025 */
+
+/* Academic Preparation */
+
+.professional-development main ul ul, .professional-development main ul ul li {
+    padding-top: 0px !Important;
+    padding-bottom: 5px !important;
+    margin-bottom: 0 !important;
+}
+.eo-1100-and-1110-policy-changes main ul ul, .eo-1100-and-1110-policy-changes main ul ul li  {
+    padding-top: 0px !Important;
+    padding-bottom: 0px !important;
+    margin-bottom: 0 !important;
+}
+
+.academic-preparation hr.styled-hr-1 {
+    margin: 35px 0;
+}
+.academic-preparation div#greyMiddle2Column {
+    border-bottom: none;
+}
+/* Academic Preparation */
+
+/* Fact Book */
+@media screen and (max-width: 1024px) {
+    .fact-book-gi2025, .student-costs .card-container-inner { margin-left: 0px !Important; display: inline-block !Important; }
+    img.student-costs-graphic { margin-right: 0px !Important; }
+}
+
+img.student-costs-graphic { margin-right: 86px; }
+.facts-about-the-csu .padding-bottom-25px { padding-bottom: 35px !important; }
+.facts-about-the-csu hr.styled-hr-1 { margin-bottom: 25px; }
+.fact-book-gi2025 { margin-left: 33px; }
+.student-costs .card-container-inner { margin-left: 40px; }
+
+.student-costs .card-container { margin-bottom: 0px !important; }
+
+.students h4 { margin-top: 0 !important; }
+
+.introduction main.col-md-9.col-lg-9.min-height, .student-costs main.col-md-9.col-lg-9.min-height { padding-bottom: 0 !important; }
+/* Fact Book */
+
+/* Key Priorities for CSU Information Technology */
+
+.collapse-link span {
+    font-weight: normal;
+}
+span.its-kp-comp {
+    padding-left: 6px;
+    /* color: #cacbcc; */
+    color:#aaa;
+}
+
+.key-priorities-csu-its .card-container-inner {
+    padding: 25px !important;
+}
+.key-priorities-csu-its h4.vision-2-title {
+    width: 62%;
+}
+.key-priorities-csu-its h4.vision-2-title {
+    width: 96%;
+}
+@media only screen 
+and (min-device-width : 769px) 
+and (max-device-width : 1199px){
+.key-priorities-csu-its .card-container-inner {
+    padding: 15px !important;
+}
+.key-priorities-csu-its h4.vision-2-title {
+    width: 66%;
+}
+}
+@media only screen 
+and (min-device-width : 992px) 
+and (max-device-width : 1199px){
+.key-priorities-csu-its .card-container-inner {
+    padding: 15px !important;
+}
+.key-priorities-csu-its h4.vision-2-title {
+    width: 56% !important;
+}
+}
+
+/* Key Priorities for CSU Information Technology */
+
+/* Made in the CSU */
+.button-block { display: table; margin: 0 auto; }
+.made-in-the-csu ol.carousel-indicators em { font-size: 12px !important; }
+.made-in-the-csu-profile .profile-rollup-link a img { max-width: 175px !important; }
+div#profile-details-title.col-md-4 { margin-bottom: 6px; }
+.made-in-the-csu-profile div#mytitle { margin-left: -15px; }
+.dual-profile-img-caption { font-style: italic !important; font-size: small !important; }
+
+
+@media only screen and (max-width: 1023px) {
+    .made-in-the-csu-profile div#mytitle { margin-left: 0px; }
+}
+
+.get-involved iframe { margin: 0 auto !important; display: -webkit-box; }
+.made-in-the-csu .dropdown-ext h2 { display: none; }
+.profile-campus { color: #cc0b2a !important; }
+.made-in-the-csu #carouselFade .carousel-indicators li a { color: #2f2f2f !important; text-decoration: none !important; }
+.made-in-the-csu #carouselFade .carousel-indicators li.active a { color: #fff; text-decoration: none !important; }
+.made-in-the-csu-profile ul { display: inline-block; margin-left: 20px; }
+.made-in-the-csu-profile .heading-text { display: table; padding-left: 20px; }
+.made-in-the-csu-profile .image { float: left; padding: 20px 25px 10px 0; width: 85%; }
+    .made-in-the-csu-profile .image img { width: 100%; }
+.made-in-the-csu-profile .row h4.profile-campus { margin-bottom: 0; }
+.made-in-the-csu-profile #profile-details-title { color: #2f2f2f !important; font-weight: bold; font-size: 14px; }
+.made-in-the-csu-profile #profile-details-campus h4.profile-campus { color: #2f2f2f !important; font-size: 14px; }
+#moreCampusContainer { margin-left: 20px; }
+#carouselFade .carousel-indicators li { border: none !important; margin-bottom: 0 !important; padding: 22px 0px; }
+
+@media only screen and (min-width: 480px) {
+    .made-in-the-csu-profile .image { float: left; padding: 20px 25px 10px 0; width: 250px; }
+    .made-in-the-csu-profile .heading-text { padding-left: 0px; }
+}
+
+@media only screen and (min-width: 767px) {
+    .made-in-the-csu #carouselFade .carousel-indicators li.active a { color: #fff !important; }
+    .made-in-the-csu-profile .image { float: left; padding-top: 55px; }
+}
+
+@media only screen and (max-width: 766px) {
+    #carouselFade .carousel-indicators li.active { color: #2f2f2f !important; background-color: #fff !important; }
+    #carouselFade .carousel-indicators li a { color: #2f2f2f !important; background-color: transparent; display: block; padding: 20px; }
+    #carouselFade .carousel-indicators li { border-bottom: 1px solid #E6E6E6 !important; width: 100% !important; margin: auto 0; border-radius: 0; cursor: pointer !important; }
+        #carouselFade .carousel-indicators li:last-of-type { border-bottom: none !important; }
+
+    ol.carousel-indicators li, ol.carousel-indicators li.active { margin: 0 auto; width: 50% !important; }
+
+    /*
+.made-in-the-csu #carouselFade .carousel-indicators li.active a{
+color: #2f2f2f !important;
+text-align: center !important;
+}
+
+#carouselFade .carousel-indicators li{
+margin: auto 0;
+	}
+
+*/
+}
+/* Made in the CSU - Get Involved Map*/
+.get-involved h2 { display: block !important; }
+.get-involved .getInvolvedSideBar { display: none; }
+.campusLinks h4 { margin: 0 !important; }
+.campusLinks a { width: 100% !important; background-color: transparent !important; display: initial !important; }
+/* Made in the CSU */
+
+/* Basic Needs Initiative */
+.about-the-basic-needs-initiative h4 { margin-top: 0px !important; }
+.about-the-basic-needs-initiative .col-md-6 { padding-right: 20px !important; }
+.about-the-basic-needs-initiative .col-md-6:first-of-type { padding-left: 0px !important; }
+.basic-needs-initiative a.ms-rteElement-whiteactionlink, a.ms-rteElement-actionlink { max-width: 540px;}
+/* Basic Needs Initiative */
+
+/*Trustees Box CSS*/
+
+/* HISTORY */
+.img-w-caption-520px.history { width: 410px !important; }
+/* HISTORY */
+
+/* Advocacy and State Relations */
+.advocacy-and-state-relations .plain-lead-in { padding: 0 10% 0 10% !important; }
+    .advocacy-and-state-relations .plain-lead-in h4 { margin-top: 0px !important; }
+.advocacy-and-state-relations main.col-md-9.col-lg-9.min-height, .Advocacy-and-State-Relations main.col-md-9.col-lg-9.min-height { padding-bottom: 0px !important; }
+.Advocacy-and-State-Relations div#greyMiddle2Column { border-bottom-color: transparent !important; }
+.Advocacy-and-State-Relations .plain-lead-in.margin-top-bot-55px { padding: 0% 10% 0 10% !important; }
+.about-asr p.staff { margin-bottom: 1.5em; margin-left: 21%; }
+
+/* Advocacy and State Relations */
+
+/* COAST STYLES*/
+div#shareWithUs { min-height: 365px; }
+.inner.action.width-75p { margin: 40px auto; }
+/* COAST STYLES*/
+
+/* CALSTATE APPLY */
+a#mentor-link { margin: 0 !important; }
+
+.teaching-credential h4 {margin-top: 0 !important;}
+
+.teaching-credential .card-container.applyTeacherCard2 {
+    height: inherit !important;
+    margin-bottom: 0;
+}
+
+.freshman.action.width-60p { padding-bottom: 0px !important; }
+div.choosing-a-degree news-events main div.card-container-inner h4 { margin-top: 0px; margin-bottom: 12px; }
+/* CALSTATE APPLY */
+/* Chancellor Communications */
+
+.csu-chico-investiture-ceremony-march-3-2017.page-title.media-center-title { padding-left: 38px !important; padding-right: 38px !important; }
+
+/* Chancellor Communications */
+/* BOARD OF TRUSTEES - Chancellor Reports*/
+.livestream iframe.captions-frame { margin-left: 105px !important; padding: 0 60px 0 0; }
+.livestream .card-container.gray-border { max-width: 434px; margin-left: 0px; background-color: #e6e6e6; }
+    .livestream .card-container.gray-border p, .livestream .card-container.gray-border h4, .livestream .card-container.gray-border li { font-size: 10px !important; }
+    .livestream .card-container.gray-border ul { padding-bottom: 0px; padding-top: 0px; }
+.livestream .card-container-inner { padding-top: 20px !important; padding-bottom: 20px !important; }
+
+@media (max-width: 600px) {
+    .livestream iframe.captions-frame { margin-left: 0px !important; }
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+    .livestream iframe.captions-frame { margin-left: 0px !important; }
+}
+
+input#googleSearchBox { height: 43px; min-width: 250px; }
+button.search.btn.btn-primary { position: relative !important; }
+input.searchInput { max-width: 25%; margin-bottom: 0 !important; margin-right: 15px; }
+.chancellor-reports .row.bottom-border-line, .past-agendas .row.bottom-border-line { padding-bottom: 36px; }
+.title5updates p.large-font.width-75p.center, .PastNotices p.large-font.width-75p, .past-agendas p.large-font.width-75p, .other-legislative-issues p.large-font.width-75p { margin: 0 17.5%; }
+div#bot-open-sessions, div#resources { border: 1px solid #e6e6e6; padding: 12px; margin: 0 35px 15px; }
+
+.agenda h5 { font-weight: bold; }
+div#bot-open-sessions p { border-bottom: 1px solid #e6e6e6; padding-bottom: 11px; }
+    div#bot-open-sessions p:last-of-type { border-bottom: none; padding-bottom: 0 !important; margin-bottom: 10px !important; }
+div#resources { margin-bottom: 0 !important; }
+/* BOARD OF TRUSTEES - Chancellor Reports*/
+
+/* Wang Awards */
+/*.2017-awardees .multiple-page-stack li:nth-of-type(2) {    width: 61% !Important;}*/
+.wang-award input.ms-rteElement-actionlink { max-width: 9%; }
+.article-quote.full p { line-height: 1.2; }
+p.wang-award-year { margin-top: 20px; }
+.wang-award h4, h4.wang-title, h4.wang-award-title { margin-top: 0 !important; }
+h4.wang-award-title { margin-bottom: 0 !important; }
+.2017-awardees .multiple-page-stack li:nth-of-type(2) { width: 40%; }
+li.wang-info { width: 65% !important; }
+img.wang-awardee-img-home { max-width: 205px !important; min-height: 225px !important; max-height: 237px; }
+img.wang-awardee-img { max-width: 313px !important; min-height: 225px !important; margin-left: 40px !important; margin-bottom: 30px !important; margin-top: 55px !important; }
+img.ms-rtePosition-2.wang-awardee-img { padding-bottom: 12px; }
+.wang-award main.col-md-9.col-lg-9.min-height { padding-bottom: 0px; }
+.wang-accomplishments ul { padding-bottom: 0px; max-width: 70%; margin-bottom: 0px; }
+.wang-accomplishments h4 { margin-bottom: 0 !important; }
+h4.outstanding-dept { margin-top: 0 !important; }
+h4.outstanding-fac-awardee { margin-bottom: 0 !Important; margin-top: 15px !important; }
+/*2017 Awardees individual titles removed*/
+.dr-mariappan-jawaharlal .page-title, .dr-anita-silvers .page-title, .dr-keith-a-trujillo .page-title, .dr-ruth-h-yopp-edwards .page-title, .dr-debra-y-griffith .page-title { display: none; }
+/* Wang Awards */
+
+/* Trustee Awards */
+#sectRelatedNews p { margin-top: 13px; line-height: 23PX; font-size: 14px; }
+    #sectRelatedNews p a { margin-top: 8px; font-weight: inherit; }
+
+.trustees-container { margin-left: 15px; }
+.csu-trustees-awards.card-container.gray-border.margin-top-bot-55px a.ms-rteElement-whiteactionlink { margin-top: 1em; }
+.csu-trustees-awards.card-container.gray-border { max-width: 457px; }
+
+.profile-rollup-link a:nth-of-type(1) { font-weight: bold; }
+.profile-rollup-link a:nth-of-type(2) { font-weight: normal; }
+
+/*.profile.trustees-award:nth-child(-n+4) { padding-top: 15px !important; }*/
+
+/* Trustee Awards */
+
+/*
+/*
+	Blackbox Styles - AJR
+*/
+.blackbox { background-color: #2f2f2f; color: #fff; max-width: 441px; max-height: 407px; padding: 30px 41px 0px 41px; margin-bottom: 40px; }
+
+.greybox { background-color: #e1e1e1; color: #000; max-width: 441px; max-height: 407px; padding: 20px; margin-bottom: 40px; }
+    .blackbox h3, .greybox h3 { margin: 0; font-size: 1.9em; line-height: 1.2; }
+.staff-member { width: 200px; display: inline-block; float: left; }
+.break, .staff-box { clear: both; }
+.staff-box { width: 100%; display: inline-block; }
+
+@media (min-width:768px) {
+    .greybox { max-width: 441px; min-height: 255px; padding: 20px; }
+        .blackbox h3, .greybox h3 { margin: 0; font-size: 1.7em; line-height: 1.2; }
+}
+
+@media (min-width:992px) {
+    .greybox { max-width: 441px; min-height: 255px; padding: 20px; }
+        .blackbox h3, .greybox h3 { margin: 0; font-size: 2.1em; line-height: 1.2; }
+    .doing-business.greybox { min-height: 320px; }
+}
+
+@media (min-width:1200px) {
+    .greybox { max-width: 441px; min-height: 255px; padding: 30px 41px 30px 41px; }
+        .blackbox h3, .greybox h3 { margin: 0; font-size: 2.1em; line-height: 1.2; }
+    .doing-business.greybox { min-height: 255px; }
+}
+
+.blackbox-large { min-height: 340px; }
+
+a.btn.btn-primary { margin-top: 12px; }
+.action h4 { margin-bottom: 25px; }
+
+.action p { margin-bottom: 28px; }
+
+/* Hero with buttons*/
+
+.hero-w-options { background: URL("/attend/admissions/PublishingImages/admissions-hero.jpg") no-repeat center center #ccc; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; display: table; width: 100%; /*background: URL("http://cloud.calstate.edu/attend/admissions/PublishingImages/admissions-hero.jpg") no-repeat #ccc;
+    max-width: 1600px;
+    height: 852px;
+    display: block;
+    right: 0;
+    position: absolute;
+    width: 1600px;*/ }
+    .hero-w-options button:first-of-type, .hero-w-options a:first-of-type { margin-top: 2.5%; }
+    .hero-w-options button:last-of-type, .hero-w-options a:last-of-type { margin-bottom: 2.5%; }
+    .hero-w-options button, .hero-w-options a { background-color: rgba(0, 0, 0, 0.6); border: none; color: white; font-size: 1.35em; padding: 36px 32px; text-align: left; text-decoration: none; display: block; clear: both; width: 41%; margin-top: .5%; margin-bottom: .5%; }
+        .hero-w-options button::after, .hero-w-options a::after { color: #cc0b2a; content: "\0020\25BA"; }
+        .hero-w-options a:visited { color: #FFF; }
+.generic-table { display: table; margin: auto; padding: 50px 0; width: 835px; }
+    .generic-table p { padding: 10px 0; margin: 0; }
+
+@media only screen and (max-width: 768px) {
+    .hero-w-options button, .hero-w-options a { width: 100%; }
+    .generic-table { width: 100%; }
+}
+/* Custom Tables */
+
+/*Custom Table with csu-red Styling : Table Style: CSU Red */
+table.ms-rteTable-csu-red { -ms-name: "Table Style: CSU Red"; }
+/* sets the name of the table style */
+
+.ms-rteTable-csu-red { width: 100%; margin: 0; border-collapse: collapse; border-top: none; border-right: none; }
+â€‹ .ms-rteTable-csu-red td { border-bottom: 1px solid none; border-left: 1px solid none; }
+tr.ms-rteTableHeaderRow-csu-red { background-color: #cc0b2a; color: #FFF; }
+â€‹ .ms-rteTable-csu-red > tbody > tr > td, .ms-rteTable-csu-red > tbody > tr > th, td.ms-rteTableEvenCol-csu-red, td.ms-rteTableOddCol-csu-red, td.ms-rteTableFooterEvenCol-csu-red, td.ms-rteTableFooterEvenCol-green, td.ms-rteTableFooterOddCol-csu-red, td.ms-rteTableFooterOddCol-green { vertical-align: top; padding: 7px 5px 6px !important; }
+
+/*Custom Table with csu-red Styling : Table Style: CSU Red w/ Totals */
+table.ms-rteTable-csu-red-w-totals { -ms-name: "Table Style: CSU Red w/ Totals"; }
+    /* sets the name of the table style */
+    table.ms-rteTable-csu-red-w-totals tr:last-child { background-color: #FFF !Important; }
+.ms-rteTable-csu-red-w-totals { width: 100%; margin: 0; border-collapse: collapse; border-top: none; border-right: none; }
+â€‹ .ms-rteTable-csu-red-w-totals td { border-bottom: 1px solid none; border-left: 1px solid none; }
+
+tr.ms-rteTableHeaderRow-csu-red-w-totals { background-color: #cc0b2a; color: #FFF; }
+.ms-rteTable-csu-red-w-totals > tbody > tr > td, .ms-rteTable-csu-red-w-totals > tbody > tr > th, td.ms-rteTableEvenCol-csu-red, td.ms-rteTableOddCol-csu-red, tr.ms-rteTableFooterRow-csu-red, tr.ms-rteTableFooterRow-green { vertical-align: top; padding: 7px 5px 6px !important; }
+tr.ms-rteTableOddRow-csu-red-w-totals:last-of-type, tr.ms-rteTableEvenRow-csu-red-w-totals:last-of-type, tr.ms-rteTableFooterRow-csu-red-w-totals, tr.ms-rteTableFooterRow-green-w-totals { border-top: solid 1px #000; font-weight: bold; }
+
+/*Custom Table with csu-red Styling : Table Style: CSU Red w/ Totals and Averages */
+table.ms-rteTable-csu-red-w-totals-avg { -ms-name: "Table Style: CSU Red w/ Totals & Avg"; }
+/* sets the name of the table style */
+
+.ms-rteTable-csu-red-w-totals-avg { width: 100%; margin: 0; border-collapse: collapse; border-top: none; border-right: none; }
+â€‹ .ms-rteTable-csu-red-w-totals-avg td { border-bottom: 1px solid none; border-left: 1px solid none; }
+
+tr.ms-rteTableHeaderRow-csu-red-w-totals-avg { background-color: #cc0b2a; color: #FFF; }
+.ms-rteTable-csu-red-w-totals-avg > tbody > tr > td, .ms-rteTable-csu-red-w-totals-avg > tbody > tr > th, td.ms-rteTableEvenCol-csu-red, td.ms-rteTableOddCol-csu-red { vertical-align: top; padding: 7px 5px 6px !important; }
+tr.ms-rteTableOddRow-csu-red-w-totals-avg:nth-last-child(2), tr.ms-rteTableEvenRow-csu-red-w-totals-avg:nth-last-child(2) { border-top: solid 1px #000; font-weight: bold; background: #fff !important; }
+tr.ms-rteTableFooterRow-tan-w-totals, tr .ms-rteTableOddRow-tan-w-totals-avg:last-of-type, tr.ms-rteTableEvenRow-tan-w-totals-avg:last-of-type, tr.ms-rteTableOddRow-csu-red-w-totals-avg:last-of-type, tr.ms-rteTableEvenRow-csu-red-w-totals-avg:last-of-type, tr.ms-rteTableFooterRow-green-w-totals-avg, tr.ms-rteTableFooterRow-csu-red-w-totals-avg, tr.ms-rteTableFooterRow-tan-w-totals-avg { background: #e6e6e6; font-weight: bold; }
+
+/*Custom Table with Blue Styling : Table Style: CSU Blue */
+table.ms-rteTable-blue { -ms-name: "Table Style: CSU Blue"; }
+/* sets the name of the table style */
+
+.ms-rteTable-blue { width: 100%; margin: 0; border-collapse: collapse; border-top: none; border-right: none; }
+â€‹ .ms-rteTable-blue td { border-bottom: 1px solid none; border-left: 1px solid none; }
+tr.ms-rteTableHeaderRow-blue { background-color: #296194; color: #FFF; }
+â€‹ .ms-rteTable-blue > tbody > tr > td, .ms-rteTable-blue > tbody > tr > th, td.ms-rteTableEvenCol-blue, td.ms-rteTableOddCol-blue, td.ms-rteTableFooterEvenCol-blue, td.ms-rteTableFooterEvenCol-green, td.ms-rteTableFooterOddCol-blue, td.ms-rteTableFooterOddCol-green { vertical-align: top; padding: 7px 5px 6px !important; }
+
+/*Custom Table with Blue Styling : Table Style: CSU Blue w/ Totals */
+table.ms-rteTable-blue-w-totals { -ms-name: "Table Style: CSU Blue w/ Totals"; }
+    /* sets the name of the table style */
+    table.ms-rteTable-blue-w-totals tr:last-child { background-color: #FFF !Important; }
+.ms-rteTable-blue-w-totals { width: 100%; margin: 0; border-collapse: collapse; border-top: none; border-right: none; }
+â€‹ .ms-rteTable-blue-w-totals td { border-bottom: 1px solid none; border-left: 1px solid none; }
+
+tr.ms-rteTableHeaderRow-blue-w-totals { background-color: #296194; color: #FFF; }
+.ms-rteTable-blue-w-totals > tbody > tr > td, .ms-rteTable-blue-w-totals > tbody > tr > th, td.ms-rteTableEvenCol-blue, td.ms-rteTableOddCol-blue, tr.ms-rteTableFooterRow-blue, tr.ms-rteTableFooterRow-green { vertical-align: top; padding: 7px 5px 6px !important; }
+tr.ms-rteTableOddRow-blue-w-totals:last-of-type, tr.ms-rteTableEvenRow-blue-w-totals:last-of-type, tr.ms-rteTableFooterRow-blue-w-totals, tr.ms-rteTableFooterRow-green-w-totals { border-top: solid 1px #000; font-weight: bold; }
+
+/*Custom Table with Blue Styling : Table Style: CSU Blue w/ Totals and Averages */
+table.ms-rteTable-blue-w-totals-avg { -ms-name: "Table Style: CSU Blue w/ Totals & Avg"; }
+/* sets the name of the table style */
+
+.ms-rteTable-blue-w-totals-avg { width: 100%; margin: 0; border-collapse: collapse; border-top: none; border-right: none; }
+â€‹ .ms-rteTable-blue-w-totals-avg td { border-bottom: 1px solid none; border-left: 1px solid none; }
+
+tr.ms-rteTableHeaderRow-blue-w-totals-avg { background-color: #296194; color: #FFF; }
+.ms-rteTable-blue-w-totals-avg > tbody > tr > td, .ms-rteTable-blue-w-totals-avg > tbody > tr > th, td.ms-rteTableEvenCol-blue, td.ms-rteTableOddCol-blue { vertical-align: top; padding: 7px 5px 6px !important; }
+tr.ms-rteTableOddRow-blue-w-totals-avg:nth-last-child(2), tr.ms-rteTableEvenRow-blue-w-totals-avg:nth-last-child(2) { border-top: solid 1px #000; font-weight: bold; background: #fff !important; }
+tr.ms-rteTableFooterRow-tan-w-totals, tr .ms-rteTableOddRow-tan-w-totals-avg:last-of-type, tr.ms-rteTableEvenRow-tan-w-totals-avg:last-of-type, tr.ms-rteTableOddRow-blue-w-totals-avg:last-of-type, tr.ms-rteTableEvenRow-blue-w-totals-avg:last-of-type, tr.ms-rteTableFooterRow-green-w-totals-avg, tr.ms-rteTableFooterRow-blue-w-totals-avg, tr.ms-rteTableFooterRow-tan-w-totals-avg { background: #e6e6e6; font-weight: bold; }
+th.ms-rteTableFirstCol-blue { background-color: #296194; color: #FFF; }
+td.ms-rteTableLastCol-blue { font-weight:bold; }
+/*Custom Table with Green Styling : Table Style: CSU Green */
+table.ms-rteTable-green { -ms-name: "Table Style: CSU Green"; }
+/* sets the name of the table style */
+
+.ms-rteTable-green { width: 100%; margin: 0; border-collapse: collapse; border-top: none; border-right: none; }
+â€‹ .ms-rteTable-green td { border-bottom: 1px solid none; border-left: 1px solid none; }
+.ms-rteTable-green > tbody > tr > td, .ms-rteTable-green > tbody > tr > th, td.ms-rteTableEvenCol-green, td.ms-rteTableOddCol-green { vertical-align: top; padding: 7px 5px 6px !important; }
+
+/*Custom Table with Green Styling : Table Style: CSU Green w/ Totals */
+table.ms-rteTable-green-w-totals { -ms-name: "Table Style: CSU Green w/ Totals"; }
+/* sets the name of the table style */
+
+.ms-rteTable-green-w-totals { width: 100%; margin: 0; border-collapse: collapse; border-top: none; border-right: none; }
+â€‹ .ms-rteTable-green-w-totals td { border-bottom: 1px solid none; border-left: 1px solid none; }
+
+th.ms-rteTableEvenCol-green, th.ms-rteTableOddCol-green, th.ms-rteTableHeaderEvenCol-green, th.ms-rteTableHeaderOddCol-green, tr.ms-rteTableHeaderRow-green, tr .ms-rteTableHeaderRow-green-w-totals, tr.ms-rteTableHeaderRow-green-w-totals th, tr.ms-rteTableOddRow-green-w-totals th, tr.ms-rteTableEvenRow-green-w-totals th, th.ms-rteTableFirstCol-green { background-color: #58897e; color: #FFF; /*font-weight: normal;*/ }
+.ms-rteTable-green-w-totals > tbody > tr > td, .ms-rteTable-green-w-totals > tbody > tr > th, td.ms-rteTableEvenCol-green, td.ms-rteTableOddCol-green { vertical-align: top; padding: 7px 5px 6px !important; }
+tr.ms-rteTableOddRow-green-w-totals:last-of-type, tr.ms-rteTableEvenRow-green-w-totals:last-of-type { border-top: solid 1px #000; font-weight: bold; }
+
+/*Custom Table with Green Styling : Table Style: CSU Green w/ Totals and Averages */
+table.ms-rteTable-green-w-totals-avg { -ms-name: "Table Style: CSU Green w/ Totals & Avg"; }
+/* sets the name of the table style */
+
+.ms-rteTable-green-w-totals-avg { width: 100%; margin: 0; border-collapse: collapse; border-top: none; border-right: none; }
+â€‹ .ms-rteTable-green-w-totals-avg td { border-bottom: 1px solid none; border-left: 1px solid none; }
+
+tr.ms-rteTableHeaderRow-green-w-totals-avg, tr.ms-rteTableOddRow-green th { background-color: #58897e; color: #FFF; }
+.ms-rteTable-green-w-totals-avg > tbody > tr > td, .ms-rteTable-green-w-totals-avg > tbody > tr > th, td.ms-rteTableEvenCol-green, td.ms-rteTableOddCol-green { vertical-align: top; padding: 7px 5px 6px !important; }
+tr.ms-rteTableOddRow-green-w-totals-avg:nth-last-child(2), tr.ms-rteTableEvenRow-green-w-totals-avg:nth-last-child(2) { border-top: solid 1px #000; font-weight: bold; background: #FFF !important; }
+tr.ms-rteTableOddRow-green-w-totals-avg:last-of-type, tr.ms-rteTableEvenRow-green-w-totals-avg:last-of-type, tr.ms-rteTableEvenRow-tan-w-totals-avg:last-of-type { background: #e6e6e6; font-weight: bold; }
+
+tr .ms-rteTableOddRow-tan:nth-child(odd), tr.ms-rteTableEvenRow-tan:nth-child(odd), tr .ms-rteTableOddRow-green:nth-child(odd), tr.ms-rteTableEvenRow-green:nth-child(odd), .ms-rteTableEvenRow-blue-w-totals:nth-child(odd), tr.ms-rteTableEvenRow-blue:nth-child(odd), tr.ms-rteTableOddRow-blue-w-totals-avg:nth-child(odd), tr.ms-rteTableEvenRow-blue-w-totals-avg:nth-child(odd), tr.ms-rteTableOddRow-green-w-totals:nth-child(odd), tr.ms-rteTableEvenRow-green-w-totals:nth-child(odd), tr.ms-rteTableEvenRow-csu-red:nth-child(odd), tr.ms-rteTableOddRow-csu-red:nth-child(odd) { background: #f7f7f7; }
+
+/*Custom Table with Tan Styling : Table Style: CSU Tan */
+table.ms-rteTable-tan { -ms-name: "Table Style: CSU Tan"; }
+/* sets the name of the table style */
+
+.ms-rteTable-tan { width: 100%; margin: 0; border-collapse: collapse; border-top: none; border-right: none; }
+â€‹ .ms-rteTable-tan td { border-bottom: 1px solid none; border-left: 1px solid none; }
+.ms-rteTable-tan > tbody > tr > td, .ms-rteTable-tan > tbody > tr > th, td.ms-rteTableEvenCol-tan, td.ms-rteTableOddCol-tan { vertical-align: top; padding: 7px 5px 6px !important; }
+
+/*Custom Table with Tan Styling : Table Style: CSU Tan w/ Totals */
+table.ms-rteTable-tan-w-totals { -ms-name: "Table Style: CSU Tan w/ Totals"; }
+/* sets the name of the table style */
+
+.ms-rteTable-tan-w-totals { width: 100%; margin: 0; border-collapse: collapse; border-top: none; border-right: none; }
+â€‹ .ms-rteTable-tan-w-totals td { border-bottom: 1px solid none; border-left: 1px solid none; }
+
+th.ms-rteTableEvenCol-tan, th.ms-rteTableOddCol-tan, th.ms-rteTableHeaderEvenCol-tan, th.ms-rteTableHeaderOddCol-tan, tr.ms-rteTableHeaderRow-tan, tr .ms-rteTableHeaderRow-tan-w-totals, tr.ms-rteTableHeaderRow-tan-w-totals th, tr.ms-rteTableOddRow-tan-w-totals th, tr.ms-rteTableEvenRow-tan-w-totals th, th.ms-rteTableFirstCol-tan { background-color: #C9A876; color: #FFF; /*font-weight: normal;*/ }
+.ms-rteTable-tan-w-totals > tbody > tr > td, .ms-rteTable-tan-w-totals > tbody > tr > th, td.ms-rteTableEvenCol-tan, td.ms-rteTableOddCol-tan { vertical-align: top; padding: 7px 5px 6px !important; }
+tr.ms-rteTableOddRow-tan-w-totals:last-of-type, tr.ms-rteTableEvenRow-tan-w-totals:last-of-type { border-top: solid 1px #000; font-weight: bold; }
+
+/*Custom Table with Tan Styling : Table Style: CSU Tan w/ Totals and Averages */
+table.ms-rteTable-tan-w-totals-avg { -ms-name: "Table Style: CSU Tan w/ Totals & Avg"; }
+/* sets the name of the table style */
+
+.ms-rteTable-tan-w-totals-avg { width: 100%; margin: 0; border-collapse: collapse; border-top: none; border-right: none; }
+â€‹ .ms-rteTable-tan-w-totals-avg td { border-bottom: 1px solid none; border-left: 1px solid none; }
+
+tr.ms-rteTableHeaderRow-tan-w-totals-avg, tr.ms-rteTableOddRow-tan th { background-color: #C9A876; color: #FFF; }
+.ms-rteTable-tan-w-totals-avg > tbody > tr > td, .ms-rteTable-tan-w-totals-avg > tbody > tr > th, td.ms-rteTableEvenCol-tan, td.ms-rteTableOddCol-tan { vertical-align: top; padding: 7px 5px 6px !important; }
+tr.ms-rteTableOddRow-tan-w-totals-avg:nth-last-child(2), tr.ms-rteTableEvenRow-tan-w-totals-avg:nth-last-child(2) { border-top: solid 1px #000; font-weight: bold; background: #FFF !important; }
+tr.ms-rteTableOddRow-tan-w-totals-avg:last-of-type, tr.ms-rteTableEvenRow-tan-w-totals-avg:last-of-type { background: #e6e6e6; font-weight: bold; }
+
+tr .ms-rteTableOddRow-tan:nth-child(odd), tr.ms-rteTableEvenRow-tan:nth-child(odd), .ms-rteTableEvenRow-blue-w-totals:nth-child(odd), tr.ms-rteTableEvenRow-blue:nth-child(odd), tr.ms-rteTableOddRow-blue-w-totals-avg:nth-child(odd), tr.ms-rteTableEvenRow-blue-w-totals-avg:nth-child(odd), tr.ms-rteTableOddRow-tan-w-totals:nth-child(odd), tr.ms-rteTableEvenRow-tan-w-totals:nth-child(odd), tr.ms-rteTableOddRow-tan-w-totals-avg:nth-child(odd),
+tr.ms-rteTableEvenRow-tan-w-totals-avg:nth-child(odd) { background: #f7f7f7; }
+
+/* Purple */
+
+/*Custom Table with Purple Styling : Table Style: CSU Purple */
+table.ms-rteTable-purple { -ms-name: "Table Style: CSU Purple"; }
+/* sets the name of the table style */
+
+.ms-rteTable-purple { width: 100%; margin: 0; border-collapse: collapse; border-top: none; border-right: none; }
+â€‹ .ms-rteTable-purple td { border-bottom: 1px solid none; border-left: 1px solid none; }
+.ms-rteTable-purple > tbody > tr > td, .ms-rteTable-purple > tbody > tr > th, td.ms-rteTableEvenCol-purple, td.ms-rteTableOddCol-purple { vertical-align: top; padding: 7px 5px 6px !important; }
+
+/*Custom Table with Purple Styling : Table Style: CSU Purple w/ Totals */
+table.ms-rteTable-purple-w-totals { -ms-name: "Table Style: CSU Purple w/ Totals"; }
+/* sets the name of the table style */
+
+.ms-rteTable-purple-w-totals { width: 100%; margin: 0; border-collapse: collapse; border-top: none; border-right: none; }
+â€‹ .ms-rteTable-purple-w-totals td { border-bottom: 1px solid none; border-left: 1px solid none; }
+
+th.ms-rteTableEvenCol-purple, th.ms-rteTableOddCol-purple, th.ms-rteTableHeaderEvenCol-purple, th.ms-rteTableHeaderOddCol-purple, tr.ms-rteTableHeaderRow-purple, tr .ms-rteTableHeaderRow-purple-w-totals, tr.ms-rteTableHeaderRow-purple-w-totals th, tr.ms-rteTableOddRow-purple-w-totals th, tr.ms-rteTableEvenRow-purple-w-totals th, th.ms-rteTableFirstCol-purple { background-color: #57517B; color: #FFF; /*font-weight: normal;*/ }
+.ms-rteTable-purple-w-totals > tbody > tr > td, .ms-rteTable-purple-w-totals > tbody > tr > th, td.ms-rteTableEvenCol-purple, td.ms-rteTableOddCol-purple { vertical-align: top; padding: 7px 5px 6px !important; }
+tr.ms-rteTableOddRow-purple-w-totals:last-of-type, tr.ms-rteTableEvenRow-purple-w-totals:last-of-type { border-top: solid 1px #000; font-weight: bold; }
+
+/*Custom Table with Purple Styling : Table Style: CSU Purple w/ Totals and Averages */
+table.ms-rteTable-purple-w-totals-avg { -ms-name: "Table Style: CSU Purple w/ Totals & Avg"; }
+/* sets the name of the table style */
+
+.ms-rteTable-purple-w-totals-avg { width: 100%; margin: 0; border-collapse: collapse; border-top: none; border-right: none; }
+â€‹ .ms-rteTable-purple-w-totals-avg td { border-bottom: 1px solid none; border-left: 1px solid none; }
+
+tr.ms-rteTableHeaderRow-purple-w-totals-avg, tr.ms-rteTableOddRow-purple th { background-color: #57517B; color: #FFF; }
+.ms-rteTable-purple-w-totals-avg > tbody > tr > td, .ms-rteTable-purple-w-totals-avg > tbody > tr > th, td.ms-rteTableEvenCol-purple, td.ms-rteTableOddCol-purple { vertical-align: top; padding: 7px 5px 6px !important; }
+tr.ms-rteTableOddRow-purple-w-totals-avg:nth-last-child(2), tr.ms-rteTableEvenRow-purple-w-totals-avg:nth-last-child(2) { border-top: solid 1px #000; font-weight: bold; background: #FFF !important; }
+tr.ms-rteTableOddRow-purple-w-totals-avg:last-of-type, tr.ms-rteTableEvenRow-purple-w-totals-avg:last-of-type { background: #e6e6e6; font-weight: bold; }
+
+tr .ms-rteTableOddRow-purple:nth-child(odd), tr.ms-rteTableEvenRow-purple:nth-child(odd), .ms-rteTableEvenRow-blue-w-totals:nth-child(odd), tr.ms-rteTableEvenRow-blue:nth-child(odd), tr.ms-rteTableOddRow-blue-w-totals-avg:nth-child(odd), tr.ms-rteTableEvenRow-blue-w-totals-avg:nth-child(odd), tr.ms-rteTableOddRow-purple-w-totals:nth-child(odd), tr.ms-rteTableEvenRow-purple-w-totals:nth-child(odd), tr.ms-rteTableOddRow-purple-w-totals-avg:nth-child(odd),
+tr.ms-rteTableEvenRow-purple-w-totals-avg:nth-child(odd) { background: #f7f7f7; }
+
+/* Yellow */
+
+/*Custom Table with Yellow Styling : Table Style: CSU Yellow */
+table.ms-rteTable-yellow { -ms-name: "Table Style: CSU Yellow"; }
+/* sets the name of the table style */
+
+.ms-rteTable-yellow { width: 100%; margin: 0; border-collapse: collapse; border-top: none; border-right: none; }
+â€‹ .ms-rteTable-yellow td { border-bottom: 1px solid none; border-left: 1px solid none; }
+.ms-rteTable-yellow > tbody > tr > td, .ms-rteTable-yellow > tbody > tr > th, td.ms-rteTableEvenCol-yellow, td.ms-rteTableOddCol-yellow { vertical-align: top; padding: 7px 5px 6px !important; }
+
+/*Custom Table with Yellow Styling : Table Style: CSU Yellow w/ Totals */
+table.ms-rteTable-yellow-w-totals { -ms-name: "Table Style: CSU Yellow w/ Totals"; }
+/* sets the name of the table style */
+
+.ms-rteTable-yellow-w-totals { width: 100%; margin: 0; border-collapse: collapse; border-top: none; border-right: none; }
+â€‹ .ms-rteTable-yellow-w-totals td { border-bottom: 1px solid none; border-left: 1px solid none; }
+
+th.ms-rteTableEvenCol-yellow, th.ms-rteTableOddCol-yellow, th.ms-rteTableHeaderEvenCol-yellow, th.ms-rteTableHeaderOddCol-yellow, tr.ms-rteTableHeaderRow-yellow, tr .ms-rteTableHeaderRow-yellow-w-totals, tr.ms-rteTableHeaderRow-yellow-w-totals th, tr.ms-rteTableOddRow-yellow-w-totals th, tr.ms-rteTableEvenRow-yellow-w-totals th, th.ms-rteTableFirstCol-yellow { background-color: #EBA900; color: #FFF; /*font-weight: normal;*/ }
+.ms-rteTable-yellow-w-totals > tbody > tr > td, .ms-rteTable-yellow-w-totals > tbody > tr > th, td.ms-rteTableEvenCol-yellow, td.ms-rteTableOddCol-yellow { vertical-align: top; padding: 7px 5px 6px !important; }
+tr.ms-rteTableOddRow-yellow-w-totals:last-of-type, tr.ms-rteTableEvenRow-yellow-w-totals:last-of-type { border-top: solid 1px #000; font-weight: bold; }
+
+/*Custom Table with Yellow Styling : Table Style: CSU Yellow w/ Totals and Averages */
+table.ms-rteTable-yellow-w-totals-avg { -ms-name: "Table Style: CSU Yellow w/ Totals & Avg"; }
+/* sets the name of the table style */
+
+.ms-rteTable-yellow-w-totals-avg { width: 100%; margin: 0; border-collapse: collapse; border-top: none; border-right: none; }
+â€‹ .ms-rteTable-yellow-w-totals-avg td { border-bottom: 1px solid none; border-left: 1px solid none; }
+
+tr.ms-rteTableHeaderRow-yellow-w-totals-avg, tr.ms-rteTableOddRow-yellow th { background-color: #EBA900; color: #FFF; }
+.ms-rteTable-yellow-w-totals-avg > tbody > tr > td, .ms-rteTable-yellow-w-totals-avg > tbody > tr > th, td.ms-rteTableEvenCol-yellow, td.ms-rteTableOddCol-yellow { vertical-align: top; padding: 7px 5px 6px !important; }
+tr.ms-rteTableOddRow-yellow-w-totals-avg:nth-last-child(2), tr.ms-rteTableEvenRow-yellow-w-totals-avg:nth-last-child(2) { border-top: solid 1px #000; font-weight: bold; background: #FFF !important; }
+tr.ms-rteTableOddRow-yellow-w-totals-avg:last-of-type, tr.ms-rteTableEvenRow-yellow-w-totals-avg:last-of-type { background: #e6e6e6; font-weight: bold; }
+
+tr .ms-rteTableOddRow-yellow:nth-child(odd), tr.ms-rteTableEvenRow-yellow:nth-child(odd), .ms-rteTableEvenRow-blue-w-totals:nth-child(odd), tr.ms-rteTableEvenRow-blue:nth-child(odd), tr.ms-rteTableOddRow-blue-w-totals-avg:nth-child(odd), tr.ms-rteTableEvenRow-blue-w-totals-avg:nth-child(odd), tr.ms-rteTableOddRow-yellow-w-totals:nth-child(odd), tr.ms-rteTableEvenRow-yellow-w-totals:nth-child(odd), tr.ms-rteTableOddRow-yellow-w-totals-avg:nth-child(odd),
+tr.ms-rteTableEvenRow-yellow-w-totals-avg:nth-child(odd) { background: #f7f7f7; }
+
+
+/*Custom Grey Banded Table with csu-red border on topStyling : Table Style: Grey Banded w/ CSU Red Top Border */
+
+table.ms-rteTable-grey-w-csu-red-top { -ms-name: "Table Style: Grey Banded w/ CSU Red Top Border"; }
+
+/* sets the name of the table style */
+
+.ms-rteTable-grey-w-csu-red-top td {
+    text-align: center;
+}   
+.ms-rteTable-grey-w-csu-red-top tr:nth-child(2) {
+background-color: #e5e5e5;
+}
+.ms-rteTable-grey-w-csu-red-top td:nth-child(1) {
+    text-align: left !important;
+}
+.ms-rteTable-grey-w-csu-red-top th{
+font-weight:bold;
+text-align: center !important;
+border-bottom: #C30B2A solid 5px;}
+.ms-rteTable-grey-w-csu-red-top th:first-child{
+text-align: left !important;
+}
+.ms-rteTableOddCol-grey-w-csu-red-top {border-right: #fff solid 4px;}
+.ms-rteTable-grey-w-csu-red-top tr:nth-child(2) .ms-rteTableEvenCol-default:last-child {
+  border: none;
+}
+.ms-rteTable-grey-w-csu-red-top .ms-rteTableOddRow-default {
+background-color:#f7f7f7;
+}
+.ms-rteTable-grey-w-csu-red-top tr:nth-child(2) {
+background-color: #e5e5e5 ; font-weight:bold
+}
+/*
+
+tr:nth-child(odd) {background: #e6e6e6}
+
+th.ms-rteTableHeaderEvenCol-blue-w-totals, th.ms-rteTableHeaderOddCol-blue-w-totals, td.ms-rteTableEvenCol-blue-w-totals, td.ms-rteTableOddCol-blue-w-totals, td.ms-rteTableFooterEvenCol-blue-w-totals, td.ms-rteTableFooterOddCol-blue-w-totals, th.ms-rteTableHeaderOddCol-blue, th.ms-rteTableHeaderEvenCol-blue, td.ms-rteTableOddCol-blue, td.ms-rteTableEvenCol-blue, td.ms-rteTableFooterOddCol-blue, td.ms-rteTableFooterEvenCol-blue {
+    text-align: -webkit-right;
+    text-align: right;
+}
+th.ms-rteTableFirstCol-blue-w-totals, th.ms-rteTableFirstCol-blue {
+    font-weight: normal;
+    text-align: -webkit-left;
+    text-align: left;
+}*/
+
+/* Drop Down Styling */
+
+.drop-down-style-1.container { margin: 20px 0; }
+
+select.drop-down-style-1, button.btn.btn-default.dropdown-toggle { border: solid 1px #e6e6e6; padding: 10px 25px 10px 16px; margin-right: 10px; border-radius: 6px; -webkit-appearance: none; -moz-appearance: none; appearance: none; background-image: url('/_catalogs/masterpage/assets/images/red-dropdown-arrow.png'); line-height: 21px; background-repeat: no-repeat; background-position: 98% 55%; background-color: #FFF; width: 75%; max-width: 405px; background-size: 24px 15px !important; }
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    /* IE10+ CSS styles go here */
+    select.drop-down-style-1 { background-image: none !important; padding-right: 5px !important; }
+}
+
+input#button { min-width: 40px; display: inline-block; padding: 6px 6px; margin-bottom: 0px; font-weight: 400; line-height: 1.4285; text-align: center; white-space: nowrap; vertical-align: middle; -ms-touch-action: manipulation; touch-action: manipulation; cursor: pointer; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; background-image: none; border-radius: 6px; background-color: #cc0b2a; color: #fff; font-size: 0.93em; border: 1px solid #cc0b2a; text-decoration: none; }
+/* Image Captions Styles*/
+.imgStyle.ms-rtePosition-1 { margin-right: 10px !important; width: inherit !important; }
+.img-w-caption-520px { max-width: 520px; margin: 1%; padding: 1%; }
+    .img-w-caption-520px.float-right { margin-left: 1.75%; margin-right: 0; }
+    .img-w-caption-520px.float-left { margin-right: 1.75%; margin-left: 0; }
+    .img-w-caption-520px img { width: 98%; }
+/* Image Captions Styles*/
+/* MOVE ABOVE TO MAIN CSS FILE*/
+ul.listing-padding-5px li { padding-bottom:5px; }
+ul.listing-padding-0px li { padding-bottom: 0px; }
+@media (min-width: 769px) {
+    .listing { margin: auto; width: 840px; }
+
+    .listing-smaller { width: 470px; }
+
+    .listing-medium { width: 620px; }
+}
+
+@media (min-width:768px) {
+    .container-2col { width: 750px; }
+}
+
+@media (min-width:992px) {
+    .container-2col { width: 970px; }
+    .extend-row { margin-left: -100px; }
+}
+
+@media (min-width:1200px) {
+    .extend-row { margin-left: -100px; margin-right: -100px; }
+    .container-2col { width: 1095px; }
+}
+
+.generic, .generic h4, .research-story { color: #2f2f2f; }
+
+    .generic h4, h4 { font-weight: 700; line-height: 1.3; }
+
+    .generic h2, h2 { font-weight: 300; }
+
+    /* actions */
+    .generic .action, .action { margin: auto; padding-top: 40px; padding-bottom: 35px; text-align: center; }
+
+@media (min-width: 768px) {
+    /*.generic .action-full-width { width: 67%;}*/
+    .generic .action, .action { text-align: left; }
+}
+
+@media(max-width: 992px) {
+    .generic .action a.ms-rteElement-actionlink { display: table; text-align: center; margin: auto; }
+    .generic .action.action-full-width a.ms-rteElement-actionlink { display: inline-block; text-align: center; margin: 0; }
+}
+
+.generic .action-full-width { width: 90%; padding-top: 0px; text-align: center; }
+
+    .generic .action-full-width h2 { margin-top: 0; margin-bottom: 28px; }
+.generic .action p { }
+
+.generic .action h4 { color: #000; font-weight: bold; }
+
+.generic .action .btn-primary { font-size: 1.125em; }
+
+/*temp file*/
+
+.large-font { font-size: large !important; }
+.x-large-font, .xl-font { font-size: x-large !important; }
+.xx-large-font, .xxl-font { font-size: xx-large !important; }
+.action.action-full-width p { }
+
+/* Basic Link */
+
+a { color: #cc0b2a; text-decoration: none; }
+
+/* Box w. Hairline Border Code*/
+
+.thin-border-grey { border: #e6e6e6 thin solid; /*padding: 1.5em;*/ }
+    .thin-border-grey.two-wide-across { min-height: 355px; padding: 1.5em 0 1.5em 1.5em; }
+/* COLORS */
+.red-bg { background: #cc0b2a; }
+.red { color: #cc0b2a; }
+/*Hero w one button*/
+.hero-one-button { background: URL("/attend/admissions/PublishingImages/admissions-hero.jpg") no-repeat center center #ccc; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; display: table; width: 100%; }
+/* Centered button for Hero*/
+button.centered { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+button.red-bg.centered { color: #fff; text-transform: uppercase; font-size: x-large; padding: .5em 1.5em; border-radius: 6px; border: none; }
+    button.red-bg.centered:hover { background-color: #990C21; }
+
+/*
+Grey Bordered Box
+*/
+.light-grey-border { border: #f6f6f6 solid 1px; }
+.padding-0-5pct { padding: 0 5%; }
+.padding-2-5pct { padding: 2% 5%; }
+.center-text { text-align: center; }
+/*
+Full Width Grey Box
+*/
+.light-grey-bg { background: #fbfbfb; }
+/*
+Full width box buttons
+*/
+.full-width a { margin: 1%; min-width: 120px; }
+/*Multiple Story Stack*/
+/*.bg-light-gray:before {
+    margin-bottom: 4em;
+}*/
+.multiple-page-stack p { width: 100%; }
+.multiple-page-stack img { width: 100%; }
+li a.ms-rteElement-whiteactionlink.center-text { }
+.multiple-page-stack h2, .multiple-page-stack-double-buttons h2 { font-weight: 300; max-width: 400px; margin: .5em 0 1em 0; line-height: 1.3; border-bottom: none !important; }
+ul.multiple-page-stack, ul.multiple-page-stack-double-buttons { list-style: none; padding-left: 50px; padding-bottom: 20px; padding-top: 20px;  margin-bottom: 0; width: 100%; display: -webkit-inline-box; display: -ms-inline-box;  }
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+
+ul.multiple-page-stack li:nth-of-type(2) { width: 40%; }
+ul.multiple-page-stack, ul.multiple-page-stack-double-buttons { display: inline-flex;}
+}
+ul.multiple-page-stack-double-buttons { padding: 0 149px; }
+.multiple-page-stack-double-buttons li:nth-of-type(1) { width: 40%; }
+ul.multiple-page-stack-double-buttons li:nth-of-type(2), ul.multiple-page-stack-double-buttons li:nth-of-type(3), ul.multiple-page-stack-double-buttons li:nth-of-type(3) { width: 20%; }
+.multiple-page-stack li { PADDING-LEFT: 5%; }
+    .multiple-page-stack li:nth-of-type(1) { width: 30%; PADDING-LEFT: 0%; }
+.multiple-page-stack-double-buttons li:nth-of-type(1) { width: 30%; PADDING-LEFT: 0%; MARGIN-RIGHT: 7%; }
+
+.multiple-page-stack .2-col li:nth-of-type(2) { width: 70%; }
+.multiple-page-stack li:nth-of-type(2) { width: 40%; }
+
+ul.multiple-page-stack li:nth-of-type(3) { width: 30%; margin-top: 5em; }
+ul.multiple-page-stack-double-buttons li:nth-of-type(2), ul.multiple-page-stack-double-buttons li:nth-of-type(3), ul.multiple-page-stack-double-buttons li:nth-of-type(4) { width: 0%; margin-top: 2em; display: table; MARGIN-RIGHT: 20PX; }
+.styled-hr-1 { background-color: #e6e6e6; border: none; clear: both; color: #e6e6e6; height: 1px; }
+.margin-extend { margin-left: -20px; margin-right: -40px; }
+
+/* Feria de Educacion */
+.feria-de-educacion h4 {
+    margin-top: 0 !important;
+}
+.feria-de-educacion .card-container.gray-border.margin-bottom-55px {
+    min-height: 254px !important;
+}
+.feria-de-educacion .card-container-inner h4 {
+    padding-bottom: 0 !important;
+    margin-bottom: 12px !important;
+}
+.feria-de-educacion img.univision-logo {
+    max-width: 150px !important;
+}
+.feria-de-educacion ul.multiple-page-stack li {
+    margin: auto;
+}
+.feria-de-educacion .news-events main {
+    padding-bottom: 0 !important;
+    min-height: 1700px !important;    
+}
+.feria-de-educacion section#latestTweets {
+    padding-top: 25px;
+    margin-left: 0px;    
+}
+.feria-de-educacion img.soc-img {
+    max-width: initial;
+    width: initial !important;
+    padding-left: 10px;
+    
+}
+.feria-de-educacion img.soc-img.twitter, img.soc-img.ig {
+    padding-left: 25px;
+}
+.feria-de-educacion ul.multiple-page-stack h4 {
+    margin-bottom: 0 !important;
+}
+/* Feria de Educacion */
+
+/* CSU Trustees' Award */
+.news-events-subpage .heading-text { padding-bottom: 0px !important; }
+.trustee-image-block, .out-fac-image-block { }
+    .out-fac-image-block .image { float: left; padding-bottom: 25px; padding-right: 25px; width: 100%; }
+h2.col-md-4.ng-binding { height: 66px; }
+/* CAPP */
+table.capp-committee td {
+    text-align: center;
+}
+section.manual-spotlight .story-link:link, section.manual-spotlight .story-link:visited {
+    text-decoration: none;
+}
+section.manual-spotlight img {
+    width: 100%;
+}
+section.manual-spotlight .story-link:link h2, section.manual-spotlight .story-link:visited h2 {
+    font-size: 14px !important;
+    font-weight: 500;
+    line-height: 1.6;
+}
+section.manual-spotlight {
+    font-size: .8125em;
+    color: #C30B2A;
+    border-bottom: 3px solid #C30B2A;
+    min-height: 332px;
+    max-width: 294px;
+    /* margin: 0 auto 55px !important; */
+    margin: 0 15px !important;
+}
+/* CAPP */
+/*Outstanding faculty*/
+@media only screen and (max-device-width: 1480px) {
+    /*
+.outstanding .out-fac-nav .right-zone1 {
+    padding-left: 15px !important;
+}
+select#topicSelect, select#campusSelect, select#yearSelect, a#topicGoButton, a#campusGoButton, a#yearGoButton {
+    width: 75%;
+    margin-bottom: 12px;
+}
+a#topicGoButton {
+    margin-bottom: 0px !important;
+}
+*/
+}
+
+.out-fac-profile { padding-top: 22px; }
+.out-fac-image-block { margin-bottom: 15px; padding-top: 35px; }
+.out-fac-profile h2.page-title { margin-top: 0 !important; }
+.out-fac-profile .page-title { padding: 0px !important; }
+.out-fac-image-block img { width: 271px; height: 322px; }
+.out-fac-profile .article-quote.full { display: inline-block; width: 100% !important; margin-left: 0; }
+.out-fac-nav section.regular-box.padding-top-35px { margin-left: 0px !important; }
+hr.out-fac-hor-rule { margin: 50px 0; }
+#loadMoreButton { display: table; margin: auto; }
+
+@media (min-width: 768px) {
+    .out-fac-image-block .image { width: 30%; }
+    .out-fac-profile .article-quote.full { display: inline-block; width: 68% !important; margin-left: 0; }
+}
+
+/*Paying for College fixes*/
+div#pfcBorderBoxRight { padding-bottom: 7px; }
+#pfcBorderBoxLeft { padding-bottom: 0 !important; }
+
+@media (max-width:1200px) {
+    ul.multiple-page-stack { padding-left: 0px; }
+        ul.multiple-page-stack li:nth-of-type(3) { width: 30%; margin-top: 3em; }
+}
+
+@media all and (max-width: 769px) {
+	.video-hero .overlay-bg {background-color: transparent !important;}
+    li a.ms-rteElement-whiteactionlink.center-text, li a.ms-rteElement-actionlink.center-text { }
+    ul.multiple-page-stack li img, .multiple-page-stack h2, .multiple-page-stack p { max-width: 100%; width: 100%; }
+    ul.multiple-page-stack { padding-left: 0; display: block; }
+    .multiple-page-stack li:nth-of-type(1) { width: 100%; }
+    .multiple-page-stack li:nth-of-type(2) { width: 100%; }
+
+    ul.multiple-page-stack li:nth-of-type(3) { width: 100%; margin-top: .25em; }
+    .codedmemos.listings { float: none !important; padding-right: 0 !important; margin-left: 0px !important; }
+}
+
+.small-font, main article p.small-font { font-size: 10px; }
+.article-body img { padding: 5px; }
+
+@media (max-width: 480px) {
+    .small-font-sm, a.ms-rteElement-whiteactionlink.small-font-sm, a.ms-rteElement-actionlink.small-font-sm { font-size: 13px; }
+
+    .breadcrumb-wrapper { padding: 10px 0; }
+
+        .breadcrumb-wrapper > .container * { display: inline; }
+
+    .breadcrumb > li > ul > li > a { white-space: nowrap; }
+
+    .breadcrumb-wrapper i, .breadcrumb-wrapper .s4-breadcrumb-arrowcont, .breadcrumb-wrapper .ms-breadcrumb-anchor { display: none; }
+}
+
+@media (max-width: 769px) {
+    span.active { font-size: .75em; }
+    /**/ li a.ms-rteElement-whiteactionlink.center-text, li a.ms-rteElement-actionlink.center-text { margin: 0 auto; display: block; width: 60%; }
+    .multiple-page-stack h2 { text-align: -webkit-center; }
+    ul.multiple-page-stack li img { width: 100% !important; }
+}
+
+@media (min-width: 992px) and (max-width:1200px) {
+    .small-font-md, a.ms-rteElement-whiteactionlink.small-font-md, a.ms-rteElement-actionlink.small-font-md { font-size: 14px; }
+}
+
+.csu-profile h1 { font-size: 2.8em; }
+.csu-profile h2 { font-size: 1.6em; }
+.csu-profile .page-title { padding: 20px 0 20px 0; }
+.csu-profile .csu-profile-info { color: #cc0b2a; text-transform: uppercase; }
+
+/* 3 Across */
+/*.col-md-4 {
+    background-color: #F6F6F6;
+}*/
+/*.col-md-4 :nth-of-type(2) {
+    background-color: #FFF;
+}*/
+.plain-lead-in { padding: 5% 10% 0 10%; max-height: 420px; display: block; }
+    .plain-lead-in a { color: #cc0b2a; }
+
+/* Multi-Column Lists */
+
+/* Campuses */
+.campuses { max-width: 100% !important; }
+body.campuses { padding-top: 0px !important; }
+.campuses h2 { border-bottom: 3px solid #C30B2A; padding-bottom: 10px; }
+.container.campuses { max-width: 1000px !important; }
+img.campuses-img { max-width: 500px !important; }
+#campus-list a:visited, #campus-list a:focus { color: #cc0b2a; }
+
+#campus-list a:hover, #campus-list a:active { color: #990C21; }
+
+#campus-list h2 { margin-bottom: 40px; }
+
+ul#multi { list-style-type: none; }
+ul li { text-align: left; }
+
+@media (min-width:768px) {
+    div#campus-list { max-width: 75%; margin: 3.5em auto; }
+    ul#multi { margin: 0 auto 0 2em; padding: 0; overflow: auto; -moz-column-count: 3; /* Firefox */ -webkit-column-count: 3; /* Safari and Chrome */ column-count: 3; }
+
+        ul#multi li, ul li p { text-align: left; margin-bottom: .91em; }
+    #campus-list ul#multi li { margin-left: 5em !Important; padding: 0 !Important; }
+}
+
+/* Campuses */
+/* Minimum Page Lengths for short pages*/
+.media-resources, .campus-resources, .csu-fact-sheets { min-height: 2070px !important; }
+
+/* Single List Multiple Columns */
+#double li, .double li { }
+#double li, .double li { width: 50%; display: list-item; }
+    #double li p, .double li p { color: #cc0b2a; }
+#triple li, .triple li { width: 33.3%; display: list-item; }
+#double li, #triple li, .double li, .triple li { line-height: 1.5em; float: left; /*display: list-item;/**/ }
+
+.counselor-lists { -webkit-column-count: 2; /* Chrome, Safari, Opera */ -moz-column-count: 2; /* Firefox */ column-count: 2; }
+
+/* Single List Mulltiple Columns */
+
+h2.red-arrow-heading, h3.red-arrow-heading { background: url('/_catalogs/masterpage/assets/images/red-dropdown-arrow.png'); background-repeat: no-repeat; padding-left: 37px; background-position-y: 8px; font-weight: bold; }
+/* Multi-Column Lists */
+.center-search { text-align: -webkit-center; padding: 2% 0 0% 0; }
+.search-box { background: url('/_catalogs/masterpage/assets/images/mag-icon.png'); background-repeat: no-repeat; background-position: right center; width: 65%; margin-right: 1em; padding-left: 12px; background-position-y: center; background-position-x: 98%; border-radius: 2px; }
+.search-box-style-1-container { padding: 3% 0 0 0; }
+
+.diversity-stats { margin-left: -15px; padding-top: 10px; }
+    .diversity-stats li { padding-bottom: 15px; }
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    /* IE10+ CSS styles go here */
+    select.drop-down-style-1 { background-image: none !important; }
+    .multiple-page-stack li { padding-left: 5%; display: inline-block !important; }
+}
+
+ul.csu-matters-list li { padding-bottom: 1.5em; }
+.accreditation h2 { border-bottom: none !important; }
+.accreditation .list ul li a, .accreditation .list ul li a:link, .accreditation .list ul li a:visited { color: #cc0b2a; }
+.fac-staff.plain-lead-in:first-of-type { margin-top: 2%; }
+.chancellor-card.card-container.gray-border { max-width: 402px; margin: 55px auto; }
+.chancellor .card-level-2 div.card-container-inner { min-height: 215px !important; }
+
+.chancellor-card .card-container-inner { padding: 45px 10px 15px !important; }
+.chancellor .card-container-inner { padding: 25px 25px; }
+.chancellor .generic .page-title { text-align: center; padding: 30px 0 0; font-weight: 100; /* margin-bottom: 15px; */ }
+.csu-profile .page-title { text-align: left; }
+
+@media(min-width:480px) {
+    .alumni.card-container.gray-border { min-height: 405px !important; }
+}
+
+div.media-resources ul { margin: 15px 0 0 15px !important; }
+ul#double, ul.double, ul#triple, ul.triple, ul.list-red-text { margin: 15px 0 0 15px; }
+.media-resources ul.double { display: table; width: 100%; }
+.media-resources h4 { margin: 0 !important; }
+
+.red-text { color: #cc0b2a !important; }
+.grey-text { color: #767676 !important; }
+.green-text { color: #109039 !important; }
+.list-red-text li p { color: #cc0b2a; }
+.counselor input.search-box { height: 39px; }
+.bot ul { padding-left: 0; }
+    .bot ul li { padding-bottom: 12px; }
+.breadcrumb-wrapper ul li {padding-bottom: 0;}    
+    .bot ul.current-year { float: left; list-style: none; }
+    .bot ul.next-year { float: right; list-style: none; }
+ul.current-year li:first-of-type, ul.next-year li:first-of-type { font-weight: bold; color: #cc0b2a; }
+.bot.card-container { display: table; }
+img.bot-image { max-width: 390px; height: auto; float: right; margin-right: 5px; /*   margin-right: 2em;*/ }
+.margin-top-55px.home-bot-section.action.action-full-width { margin-left: 2em; }
+.std-border-bottom { border-bottom: 1px solid #e6e6e6; max-width: 1170px; }
+
+@media (max-width: 320px) {
+    .bot ul.next-year { float: left; }
+}
+
+.card-container-inner img, .card-container-inner p { margin-bottom: 15px; }
+    .card-container-inner p:last-of-type { margin-bottom: 28px; }
+.synergy.plain-lead-in { min-height: 210px; }
+
+.action.action-quarter-width { max-width: 21%; float: left; margin-right: 4%; }
+.action-quarter-width a.ms-rteElement-actionlink { margin-bottom: .75em; }
+ul.reddot { padding: 0; padding-left: 40px; }
+.reddot li { color: #cc0b2a; margin-bottom: 1.33em; }
+    .reddot li p { color: black; }
+.gray-border .card-container-inner h2 { margin-bottom: 28px; }
+.csusupport.card-container { min-height: 285px !important; }
+
+@media (max-width: 1000px) {
+    .action.action-quarter-width { max-width: 46%; float: left; margin-right: 2%; }
+}
+
+@media (max-width: 635px) {
+    li a.ms-rteElement-whiteactionlink.center-text, li a.ms-rteElement-actionlink.center-text { margin: 0 auto; display: block; width: 100%; }
+    .action.action-quarter-width { width: 100%; margin-left: 2%; max-width: 531px; }
+    .card-container { width: 96%; margin: 0px 2%; }
+}
+
+@media (max-width: 1199px) {
+    .multiple-page-stack h2 { text-align: center; }
+    ul.multiple-page-stack li img { width: 100% !important; }
+}
+
+.select-container h4 { text-align: center; }
+.select-container { padding-bottom: 50px; }
+.research-spotlight-container { padding-top: 50px; }
+    .research-spotlight-container h4, .research-spotlight-container p { padding-bottom: 10px; }
+    .research-spotlight-container a.ms-rteElement-actionlink { margin-bottom: 10px; }
+.research-spotlight-image img { padding: 15px; width: 100%; }
+
+.generic .cbs-List { padding: 0; padding-bottom: 20px; width: 100%; }
+
+.student-success-graphic { width: 100%; }
+.width-100p { width: 100%; }
+
+/*spotlight-carousel*/
+.select-container .drop-down-style-1-container { width: 80%; margin: auto; }
+.select-container select { width: 70%; }
+.highlight-carousels { display: table; }
+    .highlight-carousels .carousel-control { font-weight: 300; }
+    .highlight-carousels .story-category { min-height: 56px; padding-top: 10px; }
+
+.spotlight-carousel .carousel-inner { margin: auto; width: 85%; }
+.spotlight-carousel .carousel-control { background-image: none !important; color: #2f2f2f; font-size: 110px; width: 4%; }
+#modalCarousel img, #largeModalCarousel img { margin: auto; }
+.modal-header button, .modal-header button.close { min-width: 0; color: #fff; opacity: 1; }
+#modalCarousel .carousel-control, #largeModalCarousel .carousel-control { background-image: none !important; color: #fff; font-size: 110px; top: 150px; width: 4%; }
+.spotlight-carousel h2 { text-align: center; }
+.spotlight-carousel .tab-pane { padding-top: 0; }
+.spotlight-carousel { padding: 25px 0 10px 0; }
+    .spotlight-carousel .tab-pane section { margin-bottom: 10px; }
+
+@media (max-width:767px) {
+    .modal-lg, .modal-lg .modal-content, .modal-lg .carousel, .modal-lg .carousel-inner, .modal-lg .item { height: 100%; }
+        .modal-lg .modal-body { height: 86%; }
+    /* AJR COMMENT #hospitalityCarousel .carousel-inner { min-height: 280px; }*/
+}
+
+@media (min-width:992px) {
+    .modal-md { width: 900px; }
+    /* AJR COMMENT #hospitalityCarousel .carousel-inner { min-height: 280px; }*/
+}
+
+@media (min-width:1200px) {
+    .modal-lg { width: 75%; }
+}
+/*
+	research-story Page Layout Styles
+*/
+
+.more-highlights-container { margin: 55px auto !important; width: 100%; }
+.more-highlights-container { width: 850px; }
+
+.more-highlights-container { margin: 55px auto; }
+    .more-highlights-container h2 { float: left; margin: 10px 0 0 0; padding-right: 30px; }
+    .more-highlights-container .drop-down-style-1-container { float: left; width: 350px; }
+
+@media(min-width:768px) {
+    .more-highlights-container .drop-down-style-1-container { float: left; width: 350px; }
+}
+/*Ipad Specific Fixes*/
+@media(width:768px) {
+    .codedmemos.listings { padding-left: 55px; }
+}
+
+@media(min-width:992px) {
+    .more-highlights-container { width: 850px !important; }
+        .more-highlights-container .drop-down-style-1-container { float: left; width: 500px; }
+}
+
+.research-story h1, .research-story main article h1 { font-size: 2.4em; }
+.research-story main { }
+.research-story .article-right-panel { background-color: #f6f6f6; padding: 30px; }
+
+@media (min-width: 992px) {
+    .research-story .article-right-panel { float: right; margin-left: 40px; }
+}
+
+.research-story .article-right-panel .listing { width: 100%; }
+    .research-story .article-right-panel .listing h2 { text-align: left; font-weight: 700; margin-top: 0; }
+    .research-story .article-right-panel .listing ul { width: 100%; padding: 0 10px; }
+
+.research-story main .article-bar .research-topic { color: #cc0b2a; }
+
+.research-story .caption { border-bottom: 1px solid #ddd; color: #2f2f2f; font-style: italic; }
+    .research-story .caption p { margin-bottom: 2px; }
+
+.regular-box .drop-down-style-1 { padding: 5px; padding-right: 30px; width: 63%; }
+
+.research-story main .article-bar { margin: 0; }
+.research-story main article { padding-bottom: 0; }
+
+.regular-box .drop-down-style-1-container { padding-bottom: 20px; }
+.research-story aside .regular-box .ms-rteElement-actionlink, a.go-button-sm { padding: 6px 10px; color: #fff; }
+.research-topic { text-transform: uppercase; }
+.research-story .image-block { padding-bottom: 35px; }
+
+.profile-rollup .cbs-List { margin-bottom: 0; padding-bottom: 0; }
+.generic .share-component { margin-top: 10px; }
+.generic .article-bar { margin-top: 20px; }
+
+.generic .article-quote, .generic .article-quote h3, .news-events .article-quote h3 { border: none; color: #737373; font-family: Oswald; line-height: 1.2; text-transform: uppercase; width: 90%; }
+.article-quote h3 img { float: left; padding-right: 10px; width: 70px; }
+.generic .fa-quote-left { font-size: 2.2em; float: left; padding-right: 15px; padding-top: 5px; }
+.generic .article-bar { height: 40px; }
+.generic .article-body { padding-bottom: 40px; }
+
+.profile-page main p { margin-bottom: 20px; }
+.profile-page main .row h4 { margin: 10px 0; }
+.profile-page .heading-text, .profile-page main .heading-text { padding-bottom: 35px; }
+    .profile-page .heading-text h4 { margin: 0; font-weight: 400; }
+.profile-page main .page-title { font-weight: 400; padding: 55px 0 25px 0; }
+
+.profile-image-block { }
+.profile-image-block-small { width: 200px !important; padding-right: 20px !important; }
+
+.news-events .caption, .caption { padding: 5px 0 0px 0; color: #666; }
+.profile-image-block .caption { padding: 10px 0; }
+
+.ul-no-bullets { list-style: none; }
+.padding-left-0 { padding-left: 0; }
+
+@media(min-width:768px) {
+}
+
+@media(min-width:992px) {
+    .profile-image-block { float: left; padding-right: 40px; width: 285px; }
+        .profile-image-block img { width: 100%; }
+    .profile-page .right-zone1, .page-with-right-nav .right-zone1, .page-with-left-nav .right-zone1 { padding-left: 15px; }
+}
+
+@media (min-width:1200px) {
+    .profile-page .right-zone1, .page-with-right-nav .right-zone1, .page-with-left-nav .right-zone1 { padding-left: 35px; }
+}
+
+@media(max-width:480px) {
+    .article-bar .share-component { float: left; }
+
+    #newsCategory { font-size: medium !important; padding-bottom: 10px; min-width: 150px; }
+
+    .article-bar { display: table; }
+
+    .share-icons li { font-size: 12px !important; }
+
+    .hero2.hero-style3 img { width: 150%; }
+}
+
+.modal-content { background-color: transparent; border: none; box-shadow: none; }
+#profileImages { display: table; }
+    #profileImages i.fa-play { left: 45%; top: 30%; font-size: 90px; position: absolute; }
+    #profileImages video { width: 100%; }
+    #profileImages img, #profileImages .profile-video { cursor: pointer; margin: 1px auto; position: relative; width: 90%; }
+        #profileImages img:after { content: '\A'; position: absolute; width: 100%; height: 100%; top: 0; left: 0; background: rgba(0,0,0,0.6); opacity: 0; transition: all 1s; -webkit-transition: all 1s; }
+
+        #profileImages img:hover:after { opacity: 1; }
+.profile-link { display: table; float: left; margin: 1px; position: relative; }
+.profile-text { color: #fff; padding: 15px 20px 15px 30px; position: absolute; bottom: 0px; font-family: Oswald; font-weight: 300; }
+    .profile-text p { font-size: 1.4em; }
+    .profile-text h4 { color: #fff; line-height: 1; font-family: Oswald; font-size: 2em; font-weight: 300; text-transform: uppercase; line-height: 1.3; }
+
+.profile-link .profile-image { width: 100%; }
+.text-field input { width: 100%; }
+#moreProfilesContainer { width: 80%; margin: 40px auto; }
+.more-profile img { width: 100%; margin-bottom: 10px; }
+.more-profile-header { margin-bottom: 20px; }
+.more-profile .more-profile-title { margin-bottom: 10px; }
+.profile-link .overlay-bg { top: 0; left: 0; bottom: 0; right: 0; position: absolute; background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .7)); }
+
+    .profile-link .overlay-bg:hover { top: 0; left: 0; bottom: 0; right: 0; position: absolute; background: rgba(0, 0, 0, .7); }
+
+.in.modal-backdrop { filter: alpha(opacity=90); opacity: .9; }
+.spotlight .tab-pane section .story-video-overlay .fa-play-circle-o { font-size: 202px; }
+#imageGallery { display: table; padding-top: 30px; }
+    #imageGallery img { cursor: pointer; float: left; margin: 1px; padding: 0; }
+.profiles-container .profile a { display: block; /*text-decoration:underline; Commented out by AJR & JP*/ margin-bottom: 5px; }
+#imageGallery img:hover { -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */ filter: grayscale(100%); }
+.overlay-text { background: rgba(0,0,0,.7); color: #fff; position: absolute; bottom: 0px; font-weight: 300; font-size: 1.4em; width: 100%; }
+    .overlay-text p { padding: 15px 20px 15px 30px; }
+.profiles-container .profile img { width: 100%; margin-bottom: 5px; }
+
+.profiles-container .profile { margin: auto; padding-bottom: 50px; width: 40%; }
+aside .profiles-container .profile { padding-top: 30px; padding-bottom: 0; }
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px)  {
+.profiles-container .profile.trustees-award {
+    height: inherit;
+    width: auto !important;
+    max-width: 200px;
+}
+}
+
+@media (min-width:768px) {
+    aside .profiles-container .profile { padding: 0; padding-top: 30px; width: 75%; height: auto; max-width: 150px; }
+
+    .profile-video.trustees-award { margin-left: 20px; }
+    /*    .generic .article-quote, .news-events .article-quote { float: right; margin: 5px; padding-left: 25px; width: 28%; }*/
+    .trustee-image-block .image { margin-right: 5px; }
+    .generic .article-quote, .news-events .article-quote { float: right; margin: 5px; padding-left: 25px; width: 28%; }
+        .generic .article-quote.full, .news-events .article-quote.full { float: none; margin: 5px; padding-left: 0px; width: 100%; }
+            .generic .article-quote.full h3, .news-events .article-quote.full h3 { width: 100%; }
+
+        .generic .article-quote h3, .news-events .article-quote h3 { font-weight: 100; font-size: 2em; margin-top: 0; }
+    #profileImages img, #profileImages .profile-video { float: left; width: 48%; margin: 1px; }
+    .profile-link { width: 49.7%; }
+    .spotlight .tab-pane section .story-video-overlay .fa-play-circle-o { font-size: 260px; }
+    .profiles-container .profile { width: 25%; float: left; padding: 20px; height: 305px; }
+        .profiles-container .profile.trustees-award { min-height: 370px; }
+}
+
+@media (min-width:992px) {
+    .profile-link { width: 33.16%; }
+    .spotlight .tab-pane section .story-video-overlay .fa-play-circle-o { font-size: 160px; }
+    .profiles-container .profile { height: 295px; }
+        .profiles-container .profile a { display: block; /*text-decoration:underline; Commented out by AJR & JP*/ }
+        .profiles-container .profile.trustees-award { min-height: 405px;}
+}
+@media only screen 
+and (min-device-width : 1024px) 
+and (max-device-width : 1366px) {
+.profiles-container .profile.trustees-award { min-height: 405px; max-width: 170px; }
+}
+
+@media (min-width:992px) and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    /* IE10+ CSS styles go here */
+    .profile-link { width: 33.1%; }
+}
+
+@media (min-width:1200px) {
+    .profile-page .container main, .page-with-right-nav .container main { padding-right: 100px; }
+    .profiles-container .profile { height: 300px; padding: 25px; }
+    .profiles-container.executives-profiles .profile { height: 345px; padding: 30px; }
+    .profiles-container .profile.trustees-award { min-height: 405px; }
+    .profile-link { width: 33.18%; }
+    #profileImages img, #profileImages .profile-video { width: 49%; max-width: 690px !important; }
+}
+
+@media( min-width:1400px) {
+    /* aside .profiles-container .profile { padding:20px; width:215px;}*/
+    .profiles-container .profile { height: 300px; padding: 30px; }
+}
+
+@media (min-width:1200px) and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    /* IE10+ CSS styles go here */
+    .profile-link { width: 33.16%; }
+}
+
+@media (min-width:1700px) {
+    #profileImages img, #profileImages .profile-video { width: 49%; }
+}
+
+.link-item, .link-item a, .link-item a:link { font-family: "Open Sans", sans serif; }
+
+/*Employee Profile Pages*/
+.employee-profile-data { margin-bottom: 55px; }
+    .employee-profile-data .styled-hr-1 { margin: 35px 0; }
+    .employee-profile-data p { margin-bottom: 20px; }
+    .employee-profile-data h3 { margin-bottom: 20px; }
+
+@media (max-width:1200px) {
+    .data-body img { height: auto !important; width: 100% !important; }
+}
+
+/*   Individual page fixes   */
+.large-font.width-85p { width: 85%; margin-left: auto; margin-right: auto; }
+
+.choosing-a-campus.action { width: 80% !important; }
+.auto-margin-l-r { margin-left: auto !important; margin-right: auto !important; }
+.card-container-inner p:last-of-type { margin-bottom: 0px !important; }
+
+.contact-list li { padding: 1em 0; list-style-type: none; }
+    .contact-list li:first-child { padding-top: 0 !important; }
+.about-the-csu.greybox.no-margin-bottom { min-height: 235px; }
+.about-the-csu.action-full-width { width: 100% !important; }
+.about .card-container-inner { min-height: 429px !important; }
+ul.csu-matters-list { margin: auto; width: 65%; }
+ul.student-services.listing li:last-of-type { padding-bottom: 0; }
+.student-outreach-admissions-and-financial-aid-resources div#greyMiddle2Column {border-bottom: none;}
+.about h4 { margin-top: 0; }
+ul.Community-Partnerships-list { list-style: none; padding-left: 0px; margin-top: 1em; }
+li.longer { margin-right: 0px !important; width: 50% !important; }
+.action.width-75p.business-economy { min-height: 320px; }
+.business-economy p:last-of-type { margin-bottom: 0; }
+
+.planning-for-college.action { width: 400px !important; }
+
+.international-student.action { max-width: 400px !important; }
+.applying-to-a-program h2 { margin-top: 0; }
+.listing.gray-border.margin-top-bot-55px-centered.padding-all-55px.horizontal-center.applying-to-a-program { max-width: 681px; }
+
+ul.margin-top-55px.multiple-page-stack:first-of-type { padding-top: 0; }
+p.subhead.why-the-csu-matters { width: 75%; }
+.no-width { width: 100% !important; }
+.horizontal-center { margin-left: auto !important; margin-right: auto !important; }
+.clearfix { clear: both !important; }
+p.next-steps { width: 80%; margin: 0 10%; }
+.center { text-align: center; }
+a:visited { color: #990C21; }
+
+p.accreditation { margin-bottom: 55px; }
+ul#multi li { text-align: left; margin-bottom: .91em; }
+a.ms-rteElement-actionlink.buttons-4-across { margin: 10px; }
+div.student-services { margin: 2.5em 0; }
+.student-success.action.action-full-width { margin-bottom: 2em; }
+ul.student-services.list li { list-style-type: disc; }
+.community.greybox { min-height: 305px; }
+.sustainability.greybox { min-height: 250px; }
+.greybox.freshman { min-height: 320px; }
+
+.greybox.blackbox-large.diversity { min-height: 415px; }
+
+.education.greybox.blackbox-large { min-height: 390px; }
+
+@media (min-width:1200px) {
+    .greybox.blackbox-large.diversity { min-height: 375px; }
+    .greybox.freshman { min-height: 305px; }
+    .education.greybox.blackbox-large { min-height: 371px; }
+    .sustainability.greybox { min-height: 235px; }
+}
+
+.csu-system.action.action-full-width, .transfer-applying.action.action-full-width { width: 65% !important; }
+.transfer-applying.action.action-full-width { width: 65% !important; }
+.student-success.action.action-full-width { max-width: 420px; }
+img.doing-business { padding-bottom: 1.75em; width: 72% !important; }
+.doing-business.plain-lead-in { padding: 5% 10%; }
+.doing-business.action-body { padding: 5% 0% 10% 44%; float: right; }
+img.r-img { width: 100%; height: auto; }
+.student-success-graphic { max-width: 420px !important; }
+.spotlight .tab-pane section .story-link:link h2, .spotlight .tab-pane section .story-link:visited h2, section.manual-spotlight h2 { font-size: 1em !important; font-weight: 500; line-height: 1.6; }
+a.ms-rteElement-whiteactionlink, a.ms-rteElement-actionlink { max-width: 480px; }
+
+img.campuses-img { max-width: 500px; }
+/*  END MOVE TO MAIN FILE  */
+
+.administration.plain-lead-in { margin-top: 15px; }
+.about.plain-lead-in { padding: 5% 10%; }
+.about-card.card-container.gray-border { min-height: 150px; max-width: 60%; }
+.aux .card-container-inner, .about .card-container-inner { padding: 35px 30px; }
+.about a.ms-rteElement-whiteactionlink { margin-top: .75em; }
+.transparency .action-large { margin-top: 42px; }
+
+ul.main-list { display: -webkit-inline-box; list-style: none; }
+ul#col-1, ul#col-2, ul#col-3 { list-style: none; }
+.bot.plain-lead-in, .fac-staff.plain-lead-in { padding: 3% 10% 5%; }
+.careers.plain-lead-in { padding-top: 7%; padding-bottom: 3%; }
+ul.list { list-style-type: none; }
+.col-md-4 ul.list.first { PADDING-left: 170px; }
+.col-md-4 ul.list { MARGIN-LEFT: 42PX; }
+ul.list.third { MARGIN-LEFT: -48PX; }
+ul.list { list-style-type: none; MARGIN-BOTTOM: 48PX; }
+ul.student-services.list { margin-bottom: 0; }
+a.student-services.ms-rteElement-whiteactionlink { margin: 1.25em 2.5em 0; padding-left: 1.5em; padding-right: 1.5em; }
+#csuSideNavBox ul.root > li span.menu-item-text { cursor: pointer; }
+
+@media (max-width: 1199px) {
+    .about-card.card-container.gray-border { margin: 0px 5%; max-width: 90%; }
+    .multiple-page-stack h2 { margin: .5em 0 !important; }
+}
+
+@media (max-width: 768px) {
+    a.ms-rteElement-actionlink { font-size: medium; min-height: 0px !important; }
+
+    .about-card.card-container.gray-border.margin-top-bot-55px { margin-bottom: 5%; margin-left: 5%; }
+    .col-sm-4 { width: 100% !important; }
+    .greybox { width: 96%; margin: 0 2% !important; max-width: 100% !important; min-height: 100px !important; }
+    .doing-business.action-body { padding: 5% 0% 10%; float: left; }
+    .more-highlights-container { width: 100%; }
+}
+
+@media (max-width: 480px) {
+    a#topicGoButton, #topicSelect, a#campusResearchGoButton, #campusResearchSelect { width: 97%; max-width: 700px; }
+    a#topicGoButton, a#campusResearchGoButton { margin-top: 1em; }
+    section#sectRelatedNews { padding: 10% 20%; }
+    .related-article { max-width: 30%; margin-right: 3% !important; }
+    .news-events aside .white-box .related-article { max-width: 203px; }
+    .card-container-inner .ms-rteElement-actionlink { width: 100%; }
+}
+
+@media (max-width: 767px) {
+    .about-card.card-container.gray-border.margin-top-bot-55px.auto-margin-l-r { margin-top: 5% !important; margin-left: 2% !important; }
+    .codedmemos.listings { padding-left: 0px !important; }
+
+    .campus-list ul#multi li { text-align: -webkit-center !important; }
+    .foundation a.ms-rteElement-actionlink { width: 100%; margin-top: 1em; }
+    section#sectRelatedNews { padding: 10% !important; margin-left: 0 !important; }
+    /* FIn Aid Section*/
+    .action.action-full-width.right, .action.action-full-width.left { width: 100% !Important; }
+    .financial-aid.grants div#greyMiddle2Column { padding-left: 12px; }
+    .financial-aid .ms-rteElement-whiteactionlink { margin-bottom: 1.5em; }
+    .button-and-desc.col-md-2.center-text { margin-bottom: 1em !Important; }
+    .financial-aid.grants div#greyMiddle2Column { padding-left: 12px !Important; }
+    .action.action-full-width.right { padding-right: 0 !Important; }
+    .card-container.fa-types { width: 100%; margin: 0 0 1.5em 0 !important; border-bottom: 1px solid #e7e7e7; padding-bottom: 1.5em; text-align: -webkit-center; }
+    /* FIn Aid Section*/
+    .related-article { max-width: 100% !important; }
+
+    .highlight-carousels { width: 100%; }
+    .action img { max-width: 300px !important; height: auto !important; }
+    .media-resources ul.double, .media-resources ul, .ccc-resources ul.double, .ccc-resources ul { list-style: none; margin-left: 0; padding: 0; }
+    .news-events aside .white-box .related-article { max-width: 100% !important; }
+    .ccc-resources li { width: 100% !important; margin-right: 0 !important; }
+    h4.col-md-6, p.col-md-6 { border-bottom: none !important; }
+    .media-resources { height: 100% !important; }
+    .news-events aside, .regular-box .drop-down-style-1 { width: 94% !important; }
+    .freshman.greybox.blackbox-padded { padding-bottom: 20px !important; }
+    .student-services h4 { text-align: -webkit-center; }
+    a.student-services.ms-rteElement-whiteactionlink, a.student-services.ms-rteElement-whiteactionlink { margin: 1.25em 0 0; }
+    ul.student-services.list { text-align: -webkit-left; }
+    ul.community.multiple-page-stack { margin-top: 2em; }
+    .sustainability.greybox { margin-bottom: 3% !important; }
+    ul.large-font.diversity-stats { width: 90%; margin: 0 2%; }
+    .education.greybox.blackbox-large, .diversity.greybox.blackbox-large { min-height: 125px !important; }
+    span .greybox.blackbox-large, .greybox.blackbox-large { margin-bottom: 2% !important; }
+    .action.action-quarter-width.no-padding-top { border-bottom: solid 1px #e6e6e6; }
+    .action.action-quarter-width.no-padding-top { margin: 2% 0 !important; }
+    a.business-economy.ms-rteElement-actionlink { margin: 1.5em 0 !important; }
+    .business-economy.initiative.card-container.gray-border { margin-bottom: 5%; }
+    .action a.ms-rteElement-actionlink { margin-bottom: 1.5em; }
+    #campusGoButton { margin-top: 1em; }
+    h2.red-arrow-heading, h3.red-arrow-heading { background-position-y: 0px !important; }
+    .transfer-apply.action.action-full-width.text-center.large-font { max-width: 65% !important; }
+    .freshman.action { border-bottom: 1px solid #e6e6e6; padding: 0px 20px 35px !important; }
+        .freshman.action:last-child { border-bottom: none !important; }
+
+    h1 { font-size: xx-large !important; }
+    h2 { font-size: x-large !important; }
+    h3 { font-size: large !important; }
+    h4, h5, p, ul, ol, li, .ms-rteElement-whiteactionlink { font-size: medium !important; }
+
+    address h1 { font-size: large !important; }
+    ul#multi li { text-align: -webkit-center !important; }
+
+    .card-container.gray-border.card-container-small, .admissions.card-container.gray-border, .transfer.card-container.card-container-tall.gray-border { min-height: 120px !important; }
+    .transfer.card-container.card-container-tall.gray-border { margin: 4% 2.5%; }
+    .bot.card-container.gray-border { margin-bottom: 6%; }
+    .generic .action { padding: 20px !important; }
+    ul.list.third { MARGIN-LEFT: 0PX !important; }
+    ul.list { margin-bottom: 0; list-style-type: none; text-align: center; }
+    .bot.plain-lead-in { text-align: left !important; }
+        .bot.plain-lead-in:last-child { border: none; }
+    .bot.plain-lead-in { text-align: left !important; }
+    .bot ul.next-year { float: left !important; list-style: none; width: 100%; }
+    .counselor.search-box-style-1-container { padding: 7% 0; }
+    input.search-box { margin-bottom: 2% !important; }
+    img.doing-business { max-width: 96%; margin: 8% 2% 2%; }
+    img.student-success-profiles { width: 96%; margin: 2%; }
+    .doing-business.action-body { padding: 10% !important; padding-top: 0px !important; }
+    #double li, .double li, #triple li, .triple li { width: 100% !important; display: list-item; }
+    .paying-for-college p.col-md-6 { border: none; }
+    ul#multi { -moz-column-count: 1; -webkit-column-count: 1; column-count: 1 !important; padding-left: 0; }
+    .foundation a.ms-rteElement-actionlink { margin: 1.5em 0 2.5em; }
+    .card-container-inner { padding: 2em; }
+    .fac-staff.plain-lead-in { margin: 5%; }
+    .aux .card-container.gray-border { margin: 0% !important; width: 100%; }
+
+    li a.ms-rteElement-whiteactionlink.center-text, li a.ms-rteElement-actionlink.center-text { margin: 0 auto; display: block; width: 100%; }
+    a.ms-rteElement-whiteactionlink, a.ms-rteElement-actionlink { width: 100%; }
+    .aux a.ms-rteElement-whiteactionlink, .action a.ms-rteElement-actionlink, .action a.ms-rteElement-whiteactionlink, .faculty-staff.card-container.gray-border, a.ms-rteElement-whiteactionlink, a.ms-rteElement-actionlink, select#campusSelect, input.search-box { width: 96% !important; margin: 0 2%; }
+    .multiple-page-stack li { PADDING-left: 1% !important; }
+    .about.card-container.gray-border { margin: 2% 0% !important; width: 100%; }
+    .faculty-staff.card-container.gray-border { margin-bottom: 1.5em; margin: 2% !important; border: none; }
+    .faculty-staff .card-container-inner, .card-container-inner { padding: 25px !important; }
+    .drop-down-style-1 { margin-bottom: 1.5em; width: 90%; }
+    select#campusResearchSelect { width: 96%; margin: 2%; }
+    .quarters-story-buttons-wrapper.action.action-quarter-width { padding: 2%; }
+    #quarters-story-buttons-wrapper .action.action-quarter-width { padding-bottom: 0; }
+    .about a.ms-rteElement-whiteactionlink, .about a.ms-rteElement-actionlink, .chancellor a.ms-rteElement-whiteactionlink, .chancellor a.ms-rteElement-actionlink, a.btn { width: 100%; font-size: small; max-width: 480px; }
+    .action.action-quarter-width { margin-left: 0%; }
+
+    a.ms-rteElement-whiteactionlink, a.ms-rteElement-actionlink { width: 90%; font-size: small; }
+    .about .card-container.gray-border { margin: 0% !important; }
+    .bottom-border-line { border-bottom: none !important; }
+    /*    .row.bg-light-gray .col-md-6, .row .col-md-6 { border-bottom: 1px solid #e6e6e6; } */
+    .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 { padding-left: 15px; }
+}
+
+/* Start Mobile Fixes */
+
+/* Portrait and Landscape CELL */
+@media screen and (max-width: 736px) {
+    .desktop-only { display: none !important; }
+    .mobile-only { display: block !important; }
+}
+
+@media screen and (min-width: 737px) {
+    .desktop-only { display: block !important; }
+    .mobile-only { display: none !important; }
+}
+
+@media screen and (max-width: 736px) {
+    .planning-for-college.action { max-width: 100% !important; }
+
+    .graduate { margin-bottom: 12px !important; }
+    ul#multi { width: 96%; margin: 0; padding: 0; }
+    #campus-list ul#multi li { margin-left: 0EM !Important; PADDING: 0 !IMPORTANT; }
+    .about-card.card-container.gray-border { max-width: 96%; margin: 0px 2% 5% !important; }
+
+    h3, h4, a.ms-rteElement-rightarrowlink { text-align: center !important; }
+        h4.profile-campus { text-align: left !important; }
+    a.ms-rteElement-rightarrowlink { display: inline-block; }
+    .card-container.gray-border { max-width: 96% !important; margin: 2% 2% 6% !important; }
+    .about-card.card-container.gray-border { margin: 10px 2% 5% !important; }
+}
+
+@media screen and (max-width: 768px) {
+    .buttons-4-across { margin-bottom: 1.5em !important; }
+    a.ms-rteElement-actionlink { /* font-size: large;*/ min-height: 44px; }
+    .page-title { padding: 15px 0 !important; }
+    .about-the-csu.greybox { max-height: 200px !Important; margin-bottom: 12px !Important; }
+    .about-card.card-container.gray-border { margin-bottom: 5% !important; }
+    .margin-bottom-35px { margin-bottom: 20px !important; }
+    .margin-top-25px { margin-top: 10px !important; }
+    .margin-top-35px { margin-top: 20px !important; }
+    .margin-top-55px { margin-top: 40px !important; }
+    .margin-bottom-25px { margin-bottom: 10px !important; }
+    .margin-bottom-35px { margin-bottom: 20px !important; }
+    .margin-bottom-55px { margin-bottom: 40px !important; }
+    .margin-top-bot-25px { margin: 10px 0 !important; }
+    .margin-top-bot-35px { margin: 20px 0 !important; }
+    .margin-top-bot-55px { margin-top: 40px !important; margin-bottom: 40px !important; }
+
+    .margin-top-bot-25px-centered { margin: 10px auto !important; }
+    .margin-top-bot-35px-centered { margin: 20px auto !important; }
+    .margin-top-bot-55px-centered { margin: 40px auto !important; }
+
+    .padding-top-bot-25px { padding: 10px 0 !important; }
+    .padding-top-bot-35px { padding: 20px 0 !important; }
+    .padding-top-bot-55px { padding: 40px 0 !important; }
+    .padding-top-25px { padding-top: 10px !important; }
+    .padding-top-35px { padding-top: 20px !important; }
+    .padding-top-55px { padding-top: 40px !important; }
+    .padding-bottom-25px { padding-bottom: 10px !important; }
+    .padding-bottom-35px { padding-bottom: 20px !important; }
+    .padding-bottom-55px { padding-bottom: 40px !important; }
+    .no-padding-top { padding-top: 0 !important; }
+    .no-padding-bottom { padding-bottom: 0 !important; }
+    .padding-all-30px { padding: 30px !important; }
+    .padding-all-55px { padding: 30px !important; }
+    .padding-right-10px { padding-right: 10px !important; }
+
+    /* End Mobile Fixes */
+}
+
+/*iphone 5 only fixes */
+@media screen and (max-width: 480px) {
+    .generic .action { padding: 20px 0px !important; }
+    .hero2 div.overlay { left: 20px; line-height: 25px; width: 90%; }
+        .hero2 div.overlay, .hero2 div.overlay a { font-size: medium !important; }
+            .hero2 div.overlay a.ms-rteElement-actionlink { padding: 3px 10px; }
+}
+
+/*Executive Image location*/
+.exec-image { width: 150px; float: left; }
+
+/*Button with box, re-usable content classes*/
+.box-with-button { border: 1px solid #e6e6e6; padding-left: 30px; padding-bottom: 30px; padding-right: 30px; }
+
+.social-icons { }
+    .social-icons ul { padding-left: 15px; }
+        .social-icons ul li { float: left; list-style: none; padding-right: 15px; }
+
+/*Used HTMEA - Inustry Partners page*/
+.marginBottom-40px { margin-bottom: -40px; }
+
+/*Used HTMEA - Board of Advisors page*/
+.left-image-profile { padding-top: 50px; }
+    .left-image-profile img { width: 143px; margin-right: 20px; float: left; }
+/*Used HTMEA*/
+.htmea.collapsible-container strong { padding-right: 10px; }
+.news-events main .jobopenings-tabs { display: table; margin: auto; }
+.breakWord { word-wrap: break-word !important; }
+
+@media screen and (min-width: 1200px) {
+    .hospitality .suceedingCarousel { width: 90% !important; margin-left: 40px !important; }
+}
+
+.faculty-staff .card-container-inner h2 { margin-bottom: 1em !important; }
+
+.faculty-staff.card-container.gray-border { min-height: 432px !important; }
+/* Financial Aid */
+@media only screen 
+and (min-device-width : 736px) 
+ { 
+ .financial-aid .npcc .card-container-inner.card-container-inner-small{     height: 100%;
+    padding-top: 15px;
+    width: 460px !important;
+    margin: auto 0px auto -90px !important;}
+ }
+
+.doctoral-grants h4 {margin-top: 0 !important;}
+.doctoral-grants .bottom-border-line {border-bottom: none !important;}
+.doctoral-grants .col-md-12 .card-container-inner {padding-bottom: 0;}
+
+.doctoral-grants .col-sm-6 .card-container-inner {padding-top: 0;}
+
+
+p.work-study.large-font.center-text { width: 56%; margin: 0 auto 1em; }
+.fa-resources { margin-left: 160px; }
+p.faresources.large-font.margin-bottom-35 { width: 80%; margin: 0 auto; }
+.button-and-desc { max-width: 150px; display: inline-table; margin: 1.5%; }
+.list_h { margin-top: 1em; }
+
+    .list_h a { cursor: pointer; }
+.fa-first-col p, .fa-second-col p { margin-top: 1em; }
+h4.underline { border-bottom: 1px solid #e6e6e6; }
+    h4.underline.first-item { margin-top: .5em; }
+.financial-aid .campus-code { margin-top: 1em; margin-left: .3em; }
+.col-sm-12.grants-box { margin-left: 70px; }
+.button-and-desc a.ms-rteElement-whiteactionlink { margin-bottom: .8em; }
+.large-font.text-center.margin-bottom-55px.scholarships.width-75p,
+p.text-center.large-font.margin-bottom-55px.Loans.width-75p,
+p.large-font.text-center.margin-bottom-55px.grants.width-75p,
+p.text-center.large-font.margin-bottom-55px.Work-Study.width-75p,
+p.large-font.center-text.margin-bottom-55px.Vet-Aid.width-75p { margin: 0 auto; }
+.financial-aid main.col-md-9.col-lg-9.min-height { padding-bottom: 0; }
+.action-body.width-75p.text-center { margin: 0 auto; }
+.financial-aid.grants .bg-light-gray .action.action-full-width.left { width: 68%; padding-top: 0px !important; }
+.financial-aid.grants .bg-light-gray .action.action-full-width.right { width: 92%; padding-right: 60px; /*    padding-top: 0px !important;*/ }
+.financial-aid.grants .action.action-full-width { padding-top: 0 !important; }
+.grants h4.center-text { margin-top: 0; }
+.financial-aid.grants p.center-text.width-75p { margin-left: auto; margin-right: auto; }
+.financial-aid.grants h4.center-text { margin-top: 1.5em; }
+.col-sm-6 .action.action-full-width, .col-sm-6 .action.action-full-width.left { width: 80%; }
+.financial-aid.grants div#greyMiddle2Column { padding-left: 62px; }
+.col-sm-6 .action.action-full-width.right { padding-left: 25px; }
+.button-and-desc.col-md-2.center-text { max-width: 189px; margin: 0 14px; }
+
+@media screen and (max-width: 1342px) {
+    .button-and-desc.col-md-2 a.ms-rteElement-whiteactionlink { width: 500px; }
+    .button-and-desc.col-md-2.center-text { width: 100%; max-width: 1000px; margin: 0 auto; }
+}
+
+.financial-aid hr.col-md-12 { margin: 0 5%; width: 90%; }
+.fa-button-box h3 { margin-bottom: 35px; }
+.action.width-65p.fa-home-footer { padding-top: 0; padding-bottom: 0; }
+.card-container.fa-types { margin: 45px; max-width: 380px; }
+.fa-types h4, .fa-types-ws h4 { margin-top: 0 !important; }
+.fa-types .card-container-inner { padding: 0 !Important; }
+.fa-types-ws.margin-top-bot-55px { margin-top: 10px !Important; margin-bottom: 10px !Important; }
+/* Financial Aid */
+
+/* Support Budget */
+
+.health-care-premium-increase .page-title.media-center-title.padding-top-55px.padding-bottom-55px, .cost-of-1-percent-compensation-increase .page-title.media-center-title.padding-top-55px.padding-bottom-55px, .employer-paid-retirement-adjustment .page-title.media-center-title.padding-top-55px.padding-bottom-55px, .maintenance-of-new-facilities .page-title.media-center-title.padding-top-55px.padding-bottom-55px, .dental-insurance-premium-increase .page-title.media-center-title.padding-top-55px.padding-bottom-55px { margin-bottom: 0 !important; padding-bottom: 0 !important; }
+
+.total-row { border-bottom: 1px solid #000; border-top: 1px solid #000; font-weight: bold; }
+.total-row-bot { border-bottom: 1px solid #000; font-weight: bold; }
+
+.total-row-top { border-top: 1px solid #000; font-weight: bold; }
+.budget-book .plain-lead-in h4 { margin-top: 0; }
+.budget-book .plain-lead-in.margin-top-bot-35px.mid { padding-top: 0; }
+.support-budget.margin-top-bot-55px.center-text.width-75p { }
+.margin-centered { margin-left: auto; margin-right: auto; }
+.centered.width-75p { margin-left: auto; margin-right: auto; }
+.centered.width-85p { margin-left: auto; margin-right: auto; }
+.budget-book .card-container.gray-border { min-height: 150px !Important; }
+
+p.page-subtitle.media-center-title.padding-bottom-55px { padding-top: 15px !important; margin-bottom: 0 !important; text-align: center; /*font-size: 45px;*/ font-weight: 300; }
+
+/* Support Budget */
+
+/* Tuition Increase */
+.tuition-increase .container.bottom-border-line, .tuition-adjustment .container.bottom-border-line { border: none !important; }
+/* Tuition Increase */
+
+/* Honorary Degrees Styles */
+
+.honorary-degrees.full-width.padding-2-5pct.large-font, .honorary-degrees.full-width.padding-2-5pct.center-text.margin-bottom-55px { padding-top: 0 !important; }
+.honor-grad-profile p img { display: block !important; }
+.honor-grad-profile p:first-of-type { display: block; width: 165px; float: right; }
+
+/* Honorary Degrees Styles */
+
+/* Chancellors Cards Update*/
+.office-card.about-card.card-container.gray-border.margin-top-bot-55px.auto-margin-l-r { max-height: 220px; }
+.about-office-card.about-card.card-container.gray-border.margin-top-bot-55px.auto-margin-l-r { max-height: 293px; }
+/* Chancellors Cards Update*/
+
+/* Alumni*/
+.alumni.action.no-padding-top { width: 100%; }
+/* Alumni*/
+
+/* Inclusive Excellence */
+.inclusive-excellence .right-zone1 { padding-left: 0 !important; }
+.inclusive-excellence ul.list-one { margin-bottom: 0; padding-bottom: 0; }
+/* Inclusive Excellence */
+
+/* Fee Changes*/
+.fee-changes.card-container.gray-border { margin-top: 35px; min-height: 366px; }
+.fee-changes-2.card-container.gray-border { margin-top: 55px; }
+/* Fee Changes*/
+/* Google Maps - Responsive*/
+.maps-and-directions-to-chancellors-office .google-maps { min-height: 310px; }
+.google-maps { position: relative; padding-bottom: 15%; /*This is the aspect ratio*/ height: 0; overflow: hidden; margin-bottom: 32px; }
+    .google-maps iframe { position: absolute; top: 0; left: 0; width: 100% !important; height: 100% !important; }
+/* Google Maps - Responsive*/
+/* CSU Cares */
+.csucares div#greyMiddle2Column, .csucares div#greyTop2Column { border-bottom-color: transparent !important; }
+.csucares .article-quote.margin-top-55px.margin-bottom-25px { width: 100%; }
+.csucares span.quote-sig { font-size: .8em; }
+.csucares img.csucares-infographic { width: auto; max-height: 691px; }
+.csucares .intro { /* max-width: 86%; */ margin-left: auto; margin-right: auto; }
+.csucares .card-container-inner h4 { margin-top: 0px; }
+/* CSU Cares */
+
+/*Sustainability*/
+.campus-as-a-living-lab .campus-name { padding-bottom: 12px; text-align: -webkit-left; }
+
+img.sustainability-charts { max-width: 300px !Important; }
+.campus-as-a-living-lab h4, .sustainability-awards h4 { margin-top: 36px; margin-bottom: 24px; }
+/*Sustainability*/
+
+/*Hospitality*/
+.news-events aside .transparent { background-color: transparent; margin-left: 41px; margin-top: -1px; border-top: 1px solid #ddd; border-right: transparent; border-bottom: 1px solid #ddd; padding: 30px 25px 30px 0px; }
+    .news-events aside .transparent h1, .news-events aside .transparent h4 { margin: 0; font-size: 1.5em; font-weight: 700; color: #000; }
+
+/* CALSTATE APPLY */
+
+.apply .spotlight { background-color: transparent !important; }
+.campus-fee-estimate-comparison .option { font-weight: normal; }
+.apply h2 { margin-top: 0 !important; }
+
+.level-2-header th { background: #e6e6e6 !important; color: #1a1a1a; }
+.disclaimer { color: #aaaaaa; }
+
+table.campusEstimates th { color: #1a1a1a !important; }
+
+.faq tr.ms-rteTableFooterRow-csu-red, .financial-aid-faq tr.ms-rteTableFooterRow-csu-red { background-color: #e6e6e6; }
+.faq div, .financial-aid-faq div, .lower-division-transfer li, .upper-division-transfer li, .ccc-associate-degree-for-transfer li { line-height: 1.6; }
+.financial-aid-faq .bottom-border-line, .faq .bottom-border-line { border-bottom: transparent !important; }
+.level-2-header th { background: #e6e6e6 !important; color: #1a1a1a; }
+
+.financial-aid-faq .filterMenu, .faq .filterMenu { margin-left: 55px !important; }
+.financial-aid-faq div#topics h4, .faq div#topics h4 { margin-top: 0; margin-left: 15px; }
+.financial-aid-faq ul, .faq ul { padding-bottom: 0 !important; margin-bottom: 0 !Important; }
+.faqGroups h4 { margin-top: 15px !important; }
+.faq-topic-row hr { margin-top: 35px; }
+.financial-aid-faq .row.faqGroups h4:first-child, .faq .row.faqGroups h4:first-child { margin-top: 20px !important; margin-bottom: 0 !important; }
+.financial-aid-faq input#listSearch, .faq input#listSearch {max-width: 280px;}
+}.financial-aid-faq a#listSearchButton, .faq a#listSearchButton { margin-top: -14px; }
+.financial-aid-faq .faqItemDetail, .faq .faqItemDetail { padding-right: 30px; padding-left: 0 !important; }
+/*.faq .faqGroups {
+    -webkit-column-count: 2; /* Chrome, Safari, Opera */
+/*-moz-column-count: 2; /* Firefox */
+/*column-count: 2;
+}*/
+.graduate .top h4 { margin-top: 15px !important; }
+a#mentor-link { margin: 0 !important; }
+.choosing-a-degree .freshman.action.width-60p, .upper-division-transfer main, .lower-division-transfer main { padding-bottom: 0px !important; }
+
+div.choosing-a-degree news-events main div.card-container-inner h4 { margin-top: 0px; margin-bottom: 12px; }
+
+.getting-into-the-csu .action p { margin-bottom: 10px !important; }
+hr.apply-hr { border-top: 1px solid #eee !important; width: 86%; margin-top: 0 !important; margin-bottom: 0 !important; }
+.paying-for-college .top.action.width-60p.no-padding-top, .choosing-a-campus .top.action.width-60p.no-padding-top { margin-top: 55px !important; }
+.paying-for-college .bottom.action.width-60p.no-padding-top, .choosing-a-campus .bottom.action.width-60p.no-padding-top { margin-bottom: 55px !important; }
+
+.freshman.action.width-60p { padding-bottom: 0px !important; }
+div.choosing-a-degree news-events main div.card-container-inner h4 { margin-top: 0px; margin-bottom: 12px; }
+
+a.grey-box:hover { color: #FFF !important; background: #cc0b2a !important; }
+
+.apply .page-title, .middle-school-students div#applyAsContainer, .high-school-students div#applyAsContainer { display: none; }
+.high-school-students a.col-md-3.btn-box { width: 23% !important; }
+.apply h3 { margin-top: 0; }
+.apply hr.styled-hr-1 { margin: 30px 0; }
+.apply .button-5-pack { display: block; min-height: 90px; }
+.btn-box-apply { min-width: 100%; }
+.impaction { border-left: 1px solid #e6e6e6; }
+.left-offset-20px { margin-left: -20px; }
+.col-md-12.prep-impact { margin: 25px 0; }
+section.csuperb-stories.last {margin-bottom: 55px;}
+/*CSUPERB Styling start*/
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
+.csuperb-stories a.story-link {
+    height: INHERIT !important;
+}
+
+.action-body i.fa {
+    font-size: xx-large;
+    margin-right: .25em;
+}
+section.csuperb-stories.last a.story-link {
+    margin-bottom: 20px !important;
+}
+}
+
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 1024px) 
+{
+.multiple-page-stack-double-buttons p {
+    text-align: -webkit-center;
+}
+
+ul.multiple-page-stack-double-buttons li:nth-of-type(1), ul.multiple-page-stack-double-buttons li:nth-of-type(2), ul.multiple-page-stack-double-buttons li:nth-of-type(3), ul.multiple-page-stack-double-buttons li:nth-of-type(4){
+width:100% !important;}
+
+ul.multiple-page-stack-double-buttons {
+    display: block !important;
+    padding: 0 !important;
+    }
+section.csuperb-stories {
+    width: 280px !important;
+}
+.research-csuperb p a.ms-rteElement-actionlink {
+    margin-bottom: 2em !important;
+}
+
+.csuperb-stories a h2{
+    font-size: large !important;
+
+	}
+}
+@media only screen 
+and (min-device-width : 360px) 
+and (max-device-width : 736px) {
+.csuperb-stories a.story-link {
+    margin-bottom: 6em !important;
+}
+
+.research-csuperb p a.ms-rteElement-actionlink:nth-of-type(1) {
+    margin-top: 1.5em;
+}
+
+	section.csuperb-stories {
+    width: 100% !important;
+}
+
+.csuperb-stories a.story-link {
+    height: 300px;
+    display: block;
+    margin-bottom: 50px;
+}
+
+}
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
+section.csuperb-stories {
+    width: 280px !important;
+}
+ul.multiple-page-stack-double-buttons li h4 {
+    text-align: -webkit-center;
+}
+}
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) {
+section.csuperb-stories {
+    width: 33% !important;
+}
+}
+
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+{
+	ul.multiple-page-stack-double-buttons, ul.multiple-page-stack-double-buttons li {
+	    padding: 0 !important;
+	}
+	.multiple-page-stack-double-buttons li:nth-of-type(1) {
+    width: 30% !important;
+    }
+    /*ul.multiple-page-stack-double-buttons li:nth-of-type(1), ul.multiple-page-stack-double-buttons li:nth-of-type(2), ul.multiple-page-stack-double-buttons li:nth-of-type(3), ul.multiple-page-stack-double-buttons li:nth-of-type(4) {
+    width: 23% !important;}*/
+    li a.ms-rteElement-whiteactionlink.center-text, li a.ms-rteElement-actionlink.center-text {
+    margin: 0 auto;
+    display: block;
+    width: 100% !important;
+}
+    }
+ 
+.staff-member {
+    width: 200px;
+    display: inline-block;
+    float:left;
+} 
+.break {
+    clear: both;
+}
+.social-icons a .fa.fa-linkedin.fa-2, .social-icons a .fa.fa-twitter.fa-2, .social-icons a .fa.fa-facebook.fa-2 {
+    font-size: x-large !important;
+    margin-right: .5em;
+}
+.multiple-page-stack-double-buttons li.col-sm-6 {
+    padding-left: 0;
+    padding-right: 0;
+}
+ul.multiple-page-stack-double-buttons li:nth-of-type(2){
+    padding-left: 0;
+    padding-right: 0;    
+}
+.plain-lead-in.csuperb-home.about {
+    min-height: 318px;
+    padding-top: 55px;
+    padding-bottom: 55px;
+}
+.plain-lead-in.csuperb-home {
+    padding-top: 55px;
+    padding-bottom: 55px;
+}
+.csuperb-home.card-container.gray-border {
+    min-height: 175px !important;
+}
+
+section.csuperb-stories {
+    width: 333px;
+}
+.story-category {
+    border-bottom: 3px solid #C30B2A;
+    padding-bottom: 10px;
+}
+.csuperb-stories a.story-link {
+    height: 300px;
+    display: block;
+}
+.csuperb-stories .story-link h2 {
+    font-size: 1em !important;
+    width: 100%;
+    border-bottom: 3px solid #C30B2A;
+/*    padding-bottom: 10px;*/
+    padding-bottom: 71px;
+    }
+section.csuperb-stories img {
+    width: 100%;
+    height: auto;
+}
+
+/*CSUPERB Styling end*/
+@media only screen and (min-device-width : 320px) and (max-device-width : 350px) and (orientation : portrait) {
+    .apply-cards { height: inherit !important; }
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 736px) {
+img.quest-img {
+    display: none;
+}}
+@media only screen and (min-device-width : 320px) and (max-device-width : 736px) and (orientation : portrait) {
+    select#Campuses { background-image: url(/_catalogs/masterpage/assets/images/red-dropdown-arrow.png); background-repeat: no-repeat; background-position: 98% 55%; padding: 10px 25px 10px 16px; height: inherit; width: 100%; }
+    li a.ms-rteElement-rightarrowlink { text-align: center !important; text-align: -webkit-center; display: block; }
+    a.ms-rteElement-actionlink, a.ms-rteElement-actionlink:visited { font-size: 18px !important; }
+    .high-school-students a.col-md-3.btn-box { width: 100% !important; margin-bottom: 25px; }
+    .mobile-center { text-align: -webkit-center; text-align: center; }
+    .international a.ms-rteElement-rightarrowlink { font-size: initial !important; }
+    hr.apply-hr { display: none; }
+    h4.bni-research-title { text-align: left !important; }
+    .faqItemDetail { max-width: 335px !important; }
+    .financial-aid-faq input#listSearch, .faq input#listSearch { max-width: 280px; margin-bottom: 35px; }
+    .financial-aid-faq .filterMenu, .faq .filterMenu { margin-left: 0 !important; }
+
+    .gray-border.apply-cards { max-width: 90%; }
+    .left-offset-20px { margin-left: 0px !important; }
+    .apply.btn-box-apply { width: 168px !important; margin-bottom: 15px !important; }
+    .apply a.btn-box.btn-box-apply { padding-top: 35px !important; }
+    .apply .button-5-pack .col-sm-2 { margin-bottom: 15px; padding-left: 5px !important; }
+    .apply.impaction { margin-top: 100px !important; border-left: #e6e6e6 solid 1px !Important; }
+    .resources a.ms-rteElement-actionlink { margin-bottom: 25px; }
+    .apply a.btn-box.btn-box-apply { margin-bottom: 25px; }
+    .impaction { border-left: none !important; padding-top: 90px !important; height: inherit !important; }
+    .gray-border.apply-cards { width: 333px !important; }
+}
+
+/* Cal State Apply Freshman pages MJB  */
+a.grey-box { background-color: #e1e1e1; color: #000; }
+
+a.red-box { background-color: #C30B2A; color: #fff; }
+
+.btn-box { padding: 15px; font-weight: bold; margin: 0 5px; display: inline-block; text-align: center; }
+
+/* END Cal State Apply Freshman pages MJB */
+
+/* Cal State Apply - Trasnfer Page MJB  */
+.transfer a.grey-box { background-color: #e1e1e1; color: #000; height: 92px; padding-top: 26px; max-width: 190px; }
+
+.transfer .btn-box { padding: 15px; font-weight: bold; margin: 0 5px; display: inline-block; text-align: center; vertical-align: middle; }
+.transfer hr.apply-hr.second, .transfer hr.apply-hr.second { display: none; }
+.graduate ul.list-unstyled { padding-bottom: 0; }
+
+/* END Cal State Apply - Trasnfer Page MJB*/
+
+/*  CALSTATE APPLY - Campus Fee Tool */
+table.campusEstimates td { border-left: 5px solid #FFF; }
+table.campusEstimates tr:first-child { background: #fff !important; border-bottom: 5px solid #cc0b2a; }
+
+table.campusEstimates tr:nth-child(odd) { background: #fafafa; }
+td.fauxTableHeading { display: block !important; }
+th.spanned-row, td.spanned-row, tr.bg-grey { background: #efefef !important; border-left: 5px solid #FFF; }
+td.campus { border-left: 5px solid #FFF; }
+tr.black-border-top { border-top: #000 solid 1px; }
+.white, .white a { color: #fff !important; }
+th.spanned-row.red-bg.white, tr .spanned-row.red-bg.white { background: #cc0b2a !important; color: #fff !important; }
+table.campusEstimates tr td:first-child, table.campusEstimates tr th:first-child { display: table-cell; }
+table.campusEstimates tr td, table.campusEstimates tr th { display: none; }
+tr.mandatoryFees td { font-weight: bold; }
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 736px) {
+    /*.scrollable table.campusEstimates tr td:first-child, .scrollable table.campusEstimates tr th:first-child {
+    display: none !important;
+}*/
+    .mobile-scroll-x { overflow-x: scroll; }
+}
+/*  CALSTATE APPLY - Campus Fee Tool */
+
+.lower-division-transfer #greyMiddle2Column { border-bottom: none !important; }
+
+/* CALSTATE APPLY */
+
+/* Campus Bios */
+.campus-bios td.ms-rteTableEvenCol-0 { font-weight: bold; padding-right: 35px; }
+
+.campus-bios .page-title { font-size: 2.25em !important; color: #1a1a1a !important; font-weight: 700 !important; padding: 30px 0 20px 0 !important; text-align: left !important; margin-left: 15px; }
+
+/* Campus Bios */
+
+/* Collapsable div MJB  */
+a.collapse-link { color: black; font-weight: bold; text-decoration: none; font-size: 1.36em; border-bottom: 1px solid #e6e6e6; display: block; padding-bottom: 10px; margin-bottom: 10px; }
+/* END Collapsable div MJB */
+
+/* CASPER Pages MJB  */
+
+.casper h1.col-md-12.page-title, .high-unit-majors h1.col-md-12.page-title {max-width: 50%; float: none; margin-left: auto; margin-right: auto;}
+.registration-priorities ol, .transfer-credit-summary ol {padding: 0px !important; margin-bottom: 0;}
+.transcript-and-test-score-requirements i.fa.fa-times { color: #cc0b2a; font-size: x-large; display:block; margin:auto; text-align:center;}
+.transcript-and-test-score-requirements i.fa.fa-check { color: #677E38;font-size: x-large; display:block; margin:auto; text-align:center;}
+
+/* END CASPER Pages MJB  */
+
+
+/* Troops to College Pages MJB  */
+
+.educational-benefits-for-military-connected-students .page-title, .educational-benefits-for-dependents-of-veterans .page-title, .dependents-of-veterans .page-title{max-width: 75%; float: none; margin-left: auto; margin-right: auto;}
+.active-duty-students .page-title{max-width: 65%; float: none; margin-left: auto; margin-right: auto;}
+.educational-benefits-for-military-connected-students a.btn-box {min-width: 190px;}
+.educational-benefits-for-military-connected-students a.grey-box {background-color: #e1e1e1; color: #000; height: 92px; max-width: 190px;}
+
+/* END Troops to College Pages MJB  */
+
+
+/* Padding Bottom Fix */
+
+ .campus-support main, .service-for-students-with-disabilities  main, .active-duty-students .news-events main, .resources .news-events main{
+	padding-bottom: 0px !important;}
+}
+
+/* Padding Bottom Fix */
+
+
+/* Initially hide the content heavy div of a toggle */
+.init-hide { display: none; }
+/* Initially hide the content heavy div of a toggle */
+.borderBottom { border-bottom: 3px solid #C30B2A; }
+/*<!--Start Event Page Layout, HACU, SACNAS..-->*/
+.event .event-form { width: 90% !important; margin-left: 45px !important; }
+.event .errorField { display: inline-block; margin-top: -10px !important; color: red; }
+.event .disclaimer { font-size: 0.75em; color: #a6a6a6; }
+.event .margin-top-40px { margin-top: -40px !important; }
+.margin-top-15px { margin-top: 15px !important; }
+.margin-bottom-15px { margin-bottom: 15px !important; }
+.event .margin-left-15px { margin-left: 15px !important; }
+.event select { width: 100% !important; margin-right: 0px !important; }
+
+@media screen and (min-width: 1500px) {
+    #sacnasContainer select#CurrentStatus { max-width: 329px !important; }
+    #sacnasContainer select#IsStudent { max-width: 220px !important; }
+    #sacnasContainer .event-form { width: 0 !important; margin-left: 0 !important; }
+    #sacnasContainer select.drop-down-style-1 { max-width: none !important; }
+}
+
+@media screen and (min-width: 1280px) and (max-width: 1280px) {
+    #sacnasContainer select#CurrentStatus { max-width: 229px !important; }
+    #sacnasContainer select#IsStudent { max-width: 120px !important; }
+}
+
+@media screen and (min-width: 300px) and (max-width: 800px) {
+    .event .event-form { width: 100% !important; margin-left: 0px !important; }
+}
+/*<!--End Event Page Layout, HACU, SACNAS..-->*/
+
+/*Used for COAST images*/
+.coast .imgStyle { padding: 7px; width: 308px; margin-top: 5px; margin-right: 10px; margin-left: 10px; }
+.coast .imgCaption { font-size: 0.70em; margin: 0; }
+.coast .imgStyle.small { width: 150px !important; }
+.coast .large-button { max-width: inherit !important; font-size: 1em !important; padding: 10px !important; font-weight: inherit !important; }
+.coast .col-md-12 { padding-bottom: 15px; }
+
+/*filter dropdowns for award page*/
+.news-events .ms-csrlistview-controldiv { display: table; float: left; width: 100%; }
+.news-events .ms-InlineSearch-Outline-Baseline { border: none; padding-left: 0; width: 100%; }
+.news-events .ms-InlineSearch-DivBaseline { width: 100%; }
+input.ms-InlineSearch-SearchBox-Baseline.ms-InlineSearch-SearchBox-Baseline { background-color: white; border: 1px solid #ddd; border-radius: 5px; height: auto; padding: 10px 15px; margin-bottom: 12px; width: 100%; color: #000; }
+#resetFiltersButton { margin-top: 15px; }
+.news-events .ms-csrlistview-controldiv { width: 86%; }
+
+.news-events aside .ms-core-listMenu-verticalBox ul.ms-core-listMenu-root li i.fa-angle-down,
+.news-events aside .ms-core-listMenu-verticalBox ul.ms-core-listMenu-root li i.fa-angle-right { float: none; }
+.lastWord { white-space: nowrap; }
+#impactedSearch #tblPrograms strong { display: inline-block; padding-top: 15px; }
+
+#impactedSearch #tdStatusLink, #impactedSearch #tblPrograms { margin-top: 35px; }
+
+.bni-research-title { padding-top: 1px; }
+
+/* Forward */
+.hvr-forward { display: inline-block; vertical-align: middle; -webkit-transform: perspective(1px) translateZ(0); transform: perspective(1px) translateZ(0); box-shadow: 0 0 1px transparent; -webkit-transition-duration: 0.3s; transition-duration: 0.3s; -webkit-transition-property: transform; transition-property: transform; }
+    .hvr-forward:hover, .hvr-forward:focus, .hvr-forward:active { -webkit-transform: translateX(8px); transform: translateX(8px); }
+
+.filters-container { padding-top: 25px; }
+.results-campus-info { padding: 25px 0; }
+.more-info-link { display: block; margin: auto; width: 100%; white-space: nowrap; }
+a.ms-rteElement-actionlink.campus-link { margin-top: 35px; }
+.results-title { padding-bottom: 25px; font-size: 1.9em; }
+
+@media (max-width:480px){
+	.ms-webpart-chrome-fullWidth {
+		display:block;
+	}
+	.input-section select {
+		width: 100%;
+	}
+
+}
+@media (min-width:768px) {
+    .results-title { padding-bottom: 0px; font-size: 1.9em; }
+
+    /*#csuSideNavBox a.ms-core-listMenu-item { width:84%; }*/
+    .news-events .ms-csrlistview-controldiv { width: 43%; }
+    #resetFiltersButton { margin-left: 10%; }
+    #resetFiltersButton { margin-top: 0px; }
+    .resetFilterContainer { margin-top: -5px; }
+    .filters-container { padding: 55px 0 0 35px; }
+
+    .results-campus-info { padding: 55px 0; }
+    .more-info-link { display: block; padding-left: 15px; padding-top: 15px; white-space: nowrap; width: auto; }
+    a.ms-rteElement-actionlink.campus-link { margin-top: 0px; }
+}
+
+@media (min-width:992px) {
+    .campus-map img { width: 100%; }
+    /*#csuSideNavBox a.ms-core-listMenu-item { width:84%; }*/
+    .news-events .ms-csrlistview-controldiv { width: 43%; }
+    #resetFiltersButton { margin-left: 9%; }
+}
+
+@media (min-width:1200px) {
+    /*#csuSideNavBox a.ms-core-listMenu-item { width:88%; }*/
+
+    .news-events .ms-InlineSearch-Outline-Baseline { border: none; padding-left: 0; }
+}
+
+@media (min-width:1600px) {
+    /*#csuSideNavBox a.ms-core-listMenu-item { width:auto; }*/
+}
+/* Youtube Responsiveness */
+.videoWrapper { position: relative; padding-top: 30px; height: 0; overflow: hidden; max-width: 560px; height: 330px; }
+    .videoWrapper iframe, .video-container object, .video-container embed { max-width: 560px; max-height: 315px; position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+/* Youtube Responsiveness */
+.bold-text { font-weight: bold !important; }
+
+.combodropdown-okay { cursor: pointer; float: right; }
+.combodropdown-arrow { cursor: pointer; float: right; margin: 10px 0 0 -40px; position: absolute; }
+#contentBox .tooltip.right .tooltip-arrow { top: 60%; left: -2px; margin-top: -5px; border-width: 7px 7px 7px 0; border-right-color: #e1e1e1; }
+.tooltip-inner { white-space: pre-wrap; }
+#contentBox .selectize-dropdown { background: #fbfbfb; border: 1px solid #e1e1e1; padding: 10px 0px 0 15px; }
+.selectize-style-2 .selectize-dropdown { margin-left: 10% !important; width: 90% !important; }
+.selectize-style-1 .selectize-dropdown { opacity: .96; }
+#contentBox .dropdown-menu { background: #fbfbfb; border: 1px solid #e1e1e1; border-radius: 0; }
+#contentBox .selectize-dropdown-content { font-weight: bold; }
+.results-sort-by .field-label { padding-top: 10px; }
+.tooltip-questionmark { width: 15px; }
+.selectize-control.selectize-style-1 { display: inline-block; width: 75%; }
+.selectize-okay { float: right; padding-bottom: 10px; padding-right: 8px; }
+#contentBox .selectize-input { background-image: url('/_catalogs/masterpage/assets/images/red-dropdown-arrow.png'); background-repeat: no-repeat; background-position: 98% 55%; padding: 10px 25px 10px 16px; }
+#contentBox .keywords-input .selectize-input { background-image: url('/_catalogs/masterpage/assets/images/Dots.png'); background-repeat: no-repeat; background-position: 93% 55%; }
+#contentBox .tooltip-inner { background: #fbfbfb; border: 1px solid #e1e1e1; border-radius: 0; color: #000; font-size: 14px; font-family: "Open Sans", sans-serif; max-width: 300px; padding: 7px; }
+.campus-fee-estimate-comparison #contentBox .selectize-input {min-width: 300px;}
+
+.filter-container { display: inline-block; padding-bottom: 15px; }
+#sportsFilterContainer.filter-container { display: block; }
+#filtersContainer.in, #filtersContainer.collapsing { display: block !important; }
+.filters-container input[type=checkbox] { margin-bottom: 6px; }
+.filters-container input { width: auto; }
+.filter-container label { display: block; font-weight: normal; }
+.results-header { padding: 15px 10px; background: #fbfbfb; border-bottom: 5px solid #e1e1e1; }
+.results-campus-info img { width: 100%; }
+.input-section .col-sm-6, .input-section .col-sm-3 { padding: 0 40px 20px 40px; }
+.campus-info-sports { display: inline-block; }
+
+.eligibility-form label { font-weight: normal; padding-right: 35px; }
+    .eligibility-form label input { margin-right: 5px; margin-bottom: 6px; width: auto; }
+.dates-deadlines .field-label { width: 25%; }
+.dates-deadlines .field-input { width: 75%; }
+.csu-form .field-label, .csu-form .field-input { display: inline-block; }
+    .csu-form .field-input.field-full-width { width: 100%; }
+.csu-form .field-label { float: left; padding-right: 20px; padding-top: 8px; }
+.csu-form .field-row { padding-right: 20px; }
+.csu-form .field-row { min-height: 40px; }
+.csu-form .field-error { color: #cc0b2a; display: none; width: 200px; white-space: nowrap; }
+.csu-form .field-input input { margin-bottom: 4px; }
+.csu-form .field-input label { padding-top: 5px; }
+
+table#gpaCalcTable { background: #fafafa; border: 1px solid #d4d7dc; -moz-box-shadow: 0 1px 2px #d1d1d1; -webkit-box-shadow: 0 1px 2px #d1d1d1; box-shadow: 0 1px 2px #d1d1d1; margin-top: 35px; }
+#gpaCalcTable table th { font-weight: bold; text-align: center !important; }
+#gpaCalcTable th, #gpaCalcTable tr.my-gpa { color: #fff; background: #cc0b2a; }
+td.subheader { background: #9A9DA2; }
+table td, table th { padding: 9px 10px; }
+tr.my-gpa, td.subheader { font-weight: bold; color: #fff; }
+#gpaCalcTable td p { text-align: center; }
+
+.ms-navedit-editArea { display: none !important; }
+#tbLanguageWidget li.tb-branding-bottom { display: none !important; }
+
+/*temp file*/
+
+#freshGBox1 { padding-bottom: 65px; }
+#freshGBox2 { padding-bottom: 65px; }
+#pfcBorderBoxLeft { padding-bottom: 0px; }
+.col-sm-4.bg-lightest-gray { background-color: #fbfbfb; }
+#planetBids { width: 402px; }
+.btn-box-apply { width: 168px !important; height: 90px !important; }
+.apply-cards { padding: 30px !important; text-align: center !important; width: 250px; max-width: 23%; height: 300px; float: left; margin: 10px; }
+.applyTeacherCard { min-height: 340px; }
+#localizerWidgetContainer { display:none; }
+
+.table-style-1 { }
+.table-style-1 th { border-bottom:5px solid #cc0b2a; vertical-align:bottom; }
+
+.table-style-1 tr:nth-child(even) { background-color:#f7f7f7; }
+.table-style-2 {border-top:5px solid #cc0b2a;  border-style:solid hidden hidden hidden;} 
+.table-style-2 th {color: black !important; background-color:#cccccc;}
+.table-style-2-space {border-style: solid hidden hidden hidden !important;}
+.table-style-2 tr td {border-style: hidden !important;}
+.table-style-2 tr:nth-child(even) { background-color:#f7f7f7; }
+
+.qacontainer {  }
+.qacontainer h2, .news-events .qacontainer h2  { font-size: 1.9em; font-weight:bold; }
+.qacontainer .qaimage { float:left; width:49%; }
+.qabracket {float:left; height:480px; width:15%; }
+.qabracket-right {float:right; }
+.qainfocontainer {float:right; width:49%; }
+.qainfo {float:left; width:70%; }
+.qainfo p { padding-bottom:15px; }
+.article-slide { width: 100%; }
+@media (min-width:768px) {
+	.article-slide .item {min-height:600px; }
+}
+.article-slide .caoursel-nav-state { margin-top:10px; }
+.article-slide .carousel-nav-bar .carousel-control { color:#000; font-size:72px; position:relative; top:0; width:auto; }
+.article-slide .carousel-indicators { position: relative; left: 0;margin-bottom: 0; margin-left: 5px; padding-top:25px; width: 100%; }
+    .article-slide ol { padding: 0;padding-top: 13px;}
+    .article-slide .carousel-indicators li { border: medium none; border-radius: 0; float: left; height: 100%; margin-bottom: 0px; margin-left: 0; margin-right: 0px !important; margin-top: 0; padding: 0; width: 70px; }
+    .article-slide .carousel-indicators img { border: 2px solid #FFFFFF; float: left; left: 0; padding: 0; width: 100%; }
+    .article-slide .carousel-indicators .active img { border: 2px solid #428BCA; opacity: 0.7; }
+.article-slide .cont-slider { width: 75%; }
+@media (max-width:767px) {
+.csu-form .field-label {float:none; padding-right:0; }
+	.article-slide .carousel-indicators { display:none; }
+	.article-slide .cont-slider {width:100%; }
+	
+}
+
+@media(max-width:1200px){
+	.qacontainer .qaimage { display:block; float:none; padding-bottom:35px; width:100%; }
+	.qainfocontainer {float:none; width:100%; }
+
+}
+
+@media(max-width:992px){
+	.qacontainer .qaimage { display:block; float:none; padding-right :55px; padding-bottom:35px; }
+	
+}
+
+@media(max-width:768px){
+	.qacontainer .qaimage { display:block; float:none; padding-right :55px; padding-bottom:35px; }
+	footer .contact-info {text-align:center; padding-right:0px; }
+	.qabracket, .news-events main article img.qabracket { width:5%; }
+	.qainfo { width:90%; }
+}
+
+
+footer .contact-info { color: #fff; font-size: 0.9375em; margin-bottom: 15px; margin-top: 5px; padding-right:25px; }
+footer .contact-info a {color:#b2b2b2; }
+
+#status_preview {display:none; }

@@ -1,0 +1,774 @@
+var $j = jQuery;
+var PageIsInEditMode = false;
+var l2NavUlSelector = '.nav-l2>div>ul';
+var global_counters = [];
+
+if (typeof console === "undefined") {
+    console = {};
+    console.log = function () {
+        return;
+    };
+}
+var rp_debugModeOn = true;
+if (typeof debug === "undefined") {
+    debug = {};
+    debug.log = function (message) {
+        if (rp_debugModeOn == true) {
+            console.log(message);
+        }
+        return;
+    };
+}
+
+console.ReportAjaxResult = function (title, data) {
+    if (!rp_debugModeOn)
+        return;
+    console.log(title + ' Completed.');
+    console.log(data);
+}
+console.ReportAjaxError = function (title, xhr, ajaxOptions, thrownError) {
+    console.log(title + ' ERROR.');
+    console.log(xhr);
+    console.log(ajaxOptions);
+    console.log(thrownError);
+}
+
+
+
+function InitBranding() {
+    PageIsInEditMode = (document.forms[MSOWebPartPageFormName].MSOLayout_InDesignMode.value == '1');
+    if (PageIsInEditMode) {
+        $j(document.body).addClass('PageIsInEditMode');
+    }
+
+    if (PageIsInEditMode) {
+        $j(document.body).addClass('PageIsInEditMode');
+    }
+    InitSearchButton();
+    InitNav();
+    InitBreadcrumb();
+
+
+    //_spBodyOnLoadFunctionNames.push('LoadDefaultImages');
+    //setTimeout(LoadDefaultImages, 1500);
+}
+
+/* Default image requirements were added, built, and removed in the span of 48 hours
+Leaving code in here in case it comes back. 
+function HandleDefaultImages(imageList, defaultImage) {
+    
+    if (imageList == 'undefined' || imageList.length <= 0)
+        return;
+    imageList.imagesLoaded()
+    .progress(function (instance, image) {
+        if (!image.isLoaded) {
+            console.log('image is broken for ' + image.img.src);
+            console.log('change to:' + defaultImage);
+            image.img.src = defaultImage;
+        }
+    });
+}
+
+function LoadDefaultImages() {
+    var defaultRelatedNewsThumb = '/_catalogs/masterpage/assets/images/default-thumb-168x100.png';
+    var defaultSpotlightNewsThumb = '/_catalogs/masterpage/Assets/images/default-thumb-240x180.png';
+
+	var relatedNewsImages = $('.related-article img');
+	var spotlightImages = $('.spotlight img');
+	
+    HandleDefaultImages(relatedNewsImages , defaultRelatedNewsThumb);
+    HandleDefaultImages(spotlightImages , defaultSpotlightNewsThumb);
+}
+*/
+
+function AddElementToMobileNav(mobileNavDropdown, el, level) {
+    if (el.text() != '' && el.attr("href") != '') {
+        var displayText = el.text().replace('Currently selected', '');
+        if (level > 1)
+            displayText = '&nbsp;&nbsp;-&nbsp;' + displayText;
+		
+		if(el.attr("href") == undefined){
+			$j("<option value='" + el.attr("href") + "' disabled='disabled'>" + displayText + "</option>").appendTo(mobileNavDropdown);
+		}
+		else{
+			$j("<option value='" + el.attr("href") + "'>" + displayText + "</option>").appendTo(mobileNavDropdown);
+		}       
+    }
+}
+
+function InitRightNav() {
+    // var sideNavLinks = $j("aside .ms-core-listMenu-verticalBox a");
+    var mobileNavDropdown = $j(".select-nav");
+    var sideNavLinksCount = 0;
+
+    // Create default option "Go to..."
+    $j("<option />", {
+        "selected": "selected",
+        "value": "",
+        "text": "Go to..."
+    }).appendTo(mobileNavDropdown);
+
+    $('#csuSideNavBox  ul.root > li').each(function () {
+        //get menu item or header and add to mobile nav
+        var topMenuItem = $j(this).children('.menu-item');
+
+
+        if (topMenuItem.length >= 0) {
+            console.log('found ' + topMenuItem.length + ' top Menu Items (should only be 1).');
+            sideNavLinksCount++;
+
+            AddElementToMobileNav(mobileNavDropdown, topMenuItem, 1);
+
+            //now check if it has children
+            var childMenu = $j(this).children('ul');
+            if (childMenu.length > 0) {
+            	var $topMenuitemText = topMenuItem.find('.menu-item-text');
+				var wordArray = $topMenuitemText.html().split(/\s+/); 
+				var lastWord = wordArray.pop();
+				var firstPart = wordArray.join(' ');
+				
+				$topMenuitemText.html([firstPart, ' <span class="lastWord">', lastWord, '</span>'].join(''));
+                //add expand/collapse caret to top menu item
+                if (topMenuItem.hasClass('selected')) {
+                    $topMenuitemText.find('.lastWord').append('<i class="fa fa-angle-right display-none" aria-hidden="true"></i><i class="fa fa-angle-down " aria-hidden="true"></i>');
+                    topMenuItem.parent().find('.fa-angle-down').removeClass('display-none');
+                    topMenuItem.addClass('display-none');
+                    topMenuItem.parent().find('ul').css('display', 'block');
+                }
+                else{
+                	$topMenuitemText.find('.lastWord').append('<i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-angle-down display-none" aria-hidden="true"></i>');
+                }
+                    
+
+                childMenu.find('a.menu-item').each(function () {
+                	var $currentItem = $(this);
+                    AddElementToMobileNav(mobileNavDropdown, $currentItem, 2);
+                    
+                    if($currentItem.hasClass('selected')){
+                    	topMenuItem.parent().find('.fa-angle-down').removeClass('display-none');
+	                    topMenuItem.parent().find('.fa-angle-right').addClass('display-none');
+	                    topMenuItem.parent().find('ul').css('display', 'block');
+                    }
+                })
+            }
+        }
+    });
+
+
+
+    $('#csuSideNavBox ul.root > li > ul').each(function () {
+
+
+        $(this).parent().children('.menu-item').each(function () {
+            var el = $j(this);
+            sideNavLinksCount++;
+
+
+
+        });
+
+    });
+
+    // To make dropdown actually work
+    mobileNavDropdown.change(function () {
+        window.location = $j(this).find("option:selected").val();
+    });
+
+
+    if (sideNavLinksCount == 0) {
+        mobileNavDropdown.hide();
+    }
+        //hook up collapse action to down arrow
+    $('#csuSideNavBox ul.root > li i.fa-angle-right, #csuSideNavBox ul.root > li i.fa-angle-down').click(function (e) {
+    	//check if target has a href
+    	var $this = $(this);
+    	if($this.hasClass('menu-item-text')){
+    		var hrefValue = $this.parents('a:first').attr('href');
+    		if(typeof(hrefValue) == 'undefined'){
+    			return true;    			
+    		}
+    	}
+    	var $parent = $(this).parents('li:first');
+    	if($parent.find('.fa-angle-right').hasClass('display-none')){
+    		$parent.find('ul').css('display', 'none');
+    		$parent.find('.fa-angle-right').removeClass('display-none');
+    		$parent.find('.fa-angle-down').addClass('display-none');
+    	}
+    	else{
+    		$parent.find('ul').css('display', 'block');
+    		$parent.find('.fa-angle-right').addClass('display-none');
+    		$parent.find('.fa-angle-down').removeClass('display-none');
+    	}
+    	
+    	
+    });
+    
+    $('#csuSideNavBox ul.root > li span.menu-item-text').click(function(e){
+    	var $this = $(this);
+		if(e.target.className.indexOf('fa-angle') == -1){
+			if($this.hasClass('menu-item-text')){
+				var $aTag = $this.parents('a:first');
+	    		var hrefValue = $aTag.attr('href');
+	    		var targetValue = $aTag.attr('target');
+	    		if(hrefValue != "" && targetValue != "_blank"){
+	    			window.location = hrefValue;
+	    		}
+	    	}
+		}
+		else{
+			return false;
+		}    	
+    });
+
+/*
+    //hook up expand action to right arrow
+    $('#csuSideNavBox ul.root > li i.fa-angle-right').click(function () {
+        $(this).parent().find('.fa-angle-down').removeClass('display-none');
+        $(this).addClass('display-none');
+        $(this).parent().find('ul').css('display', 'block');
+    });
+
+    //hook up collapse action to down arrow
+    $('#csuSideNavBox ul.root > li i.fa-angle-down').click(function () {
+        $(this).parent().find('.fa-angle-right').removeClass('display-none');
+        $(this).addClass('display-none');
+        $(this).parent().find('ul').css('display', 'none');
+    });
+*/
+
+}
+
+function collapseSearchBox() {
+    if ($j(".csu-search").hasClass("search-expand") && $j(".csu-search").val() === "") {
+        $j(".csu-search").removeClass("search-expand", 250, "easeOutSine");
+    }
+}
+
+
+function InitSearchButton() {
+    $j(function () {
+        //expand search if back button was pushed and search box already has text in it
+        //need to do this on document ready
+        if (!$j(".csu-search").hasClass("search-expand") && $j(".csu-search").val() !== "") {
+            $j(".csu-search").addClass("search-expand");
+        };
+    });
+
+    // Expand Search
+    $j(".csu-search-btn, .csu-search").click(function (event) {
+        if (!$j(".csu-search").hasClass("search-expand")) {
+            $j(".csu-search").addClass("search-expand", 250, "easeOutSine");
+            document.getElementById("utilityNavSearchFormQuery").focus();
+            event.preventDefault();
+        }
+        event.stopPropagation();
+    });
+    $j(".csu-search").focus(function (event) {
+        $j(this).click();
+    }).blur(function (event) {
+        collapseSearchBox();
+    });
+    //collapse search
+    $j(document).click(function (event) {
+        collapseSearchBox();
+    });
+
+    var currentSearchBox = 'utilityNavSearchFormQuery';
+    function setLeftNavSearchOnClick() {
+        currentSearchBox = 'leftNavSearchFormQuery';
+    }
+    function setutilityNavSearchOnClick() {
+        currentSearchBox = 'utilityNavSearchFormQuery';
+    }
+
+    //handle search boxes
+    $j('#leftNavSearchFormQuery').keyup(setLeftNavSearchOnClick);
+    $j('#leftNavSearchFormSubmitButton').mousedown(setLeftNavSearchOnClick);
+    $j('#utilityNavSearchFormQuery').keyup(setutilityNavSearchOnClick);
+    $j('#utilityNavSearchFormSubmitButton').mousedown(setutilityNavSearchOnClick);
+
+    $j('#utilityNavSearchFormSubmitButton, #leftNavSearchFormSubmitButton').click(function (event) {
+        var queryText = $j('#' + currentSearchBox).val();
+
+        if (queryText !== "") {
+            window.location.href = "http://google.calstate.edu/search?access=p&site=calstate_edu&output=xml_no_dtd&client=csu_frontend&sort=date%253AD%253AL%253Ad1&proxystylesheet=csu_frontend&oe=UTF-8&q=" + queryText;
+        }
+
+        event.preventDefault();
+    });
+}
+
+
+
+function toggleLevel2LeftNavMenuItem(menuItem, animate) {
+    if (menuItem.hasClass('down')) {
+        animate ? menuItem.parent().children('ul').slideUp(200) : menuItem.parent().children('ul').hide();
+        menuItem.removeClass('down');
+    } else {
+        animate ? $j(l2NavUlSelector).children('li').children('ul').slideUp(200) : $j(l2NavUlSelector).children('li').children('ul').hide();
+        $j(l2NavUlSelector).children('li').children('.menu-item').removeClass('down');
+        animate ? menuItem.parent().children('ul').slideDown(200) : menuItem.parent().children('ul').show();
+        menuItem.addClass('down');
+    }
+};
+
+function toggleLeftNav() {
+    if ($j('.pushmenu').hasClass('pushmenu-open')) {
+        $j('.pushmenu-push').animate({
+            left: 0
+        }, 250, 'easeInOutQuad');
+        $j('.blackout').fadeOut(250);
+        $j('.pushmenu').removeClass('pushmenu-open');
+        removeTabbingFromLeftNav();
+        //set aria-expanded to false
+        $j('a.nav-list').attr('aria-expanded', 'false');
+    } else {
+        $j('.pushmenu-push').animate({
+            left: 420
+        }, 250, 'easeInOutQuad');
+        $j('.blackout').fadeIn(250);
+        $j('.pushmenu').addClass('pushmenu-open');
+        addTabbingToLeftNav();
+        //set aria-expanded to true
+        $j('a.nav-list').attr('aria-expanded', 'true');
+    }
+};
+
+function removeTabbingFromLeftNav() {
+    //remove all tabindex attributes from nav items and anchor tags so they can't receive focus from tabbing
+    $j(l2NavUlSelector).children('li').find('.menu-item').removeAttr('tabindex');
+    $j('.pushmenu').find('a').attr('tabindex', '-1');
+    $j('.pushmenu').find('input').attr('tabindex', '-1');
+};
+
+function addTabbingToLeftNav() {
+    //add tabindex attributes to nav items and remove from anchor tags so they can receive focus from tabbing
+    $j(l2NavUlSelector).children('li').find('.menu-item').attr('tabindex', '0');
+    $j('.pushmenu').find('a').removeAttr('tabindex');
+    $j('.pushmenu').find('input').removeAttr('tabindex');
+};
+
+function InitNav() {
+    // Off canvas menu
+    $nav_list = $j('.nav-list');
+    $site_section = $j(document).getUrlParam('csu_section');
+
+    $nav_list.click(toggleLeftNav);
+
+    //initially hide all sub nav items on left nav
+    $j(l2NavUlSelector).children('li').find('ul').hide();
+
+    //initially remove all tabindex attributes from nav items and anchor tags
+    removeTabbingFromLeftNav();
+
+    // Off Canvas level 2 headers animations, interactions and resets
+    $j(l2NavUlSelector).children('li').children('.menu-item').click(function (event) {
+        var menuItem = $j(this);
+        toggleLevel2LeftNavMenuItem(menuItem, true);
+
+        //prevent navigation if there are child links
+        if (menuItem.parent().children('ul').length)
+            event.preventDefault();
+    }).keydown(function (event) {
+        var code = event.which;
+        // 13 = Return
+        if (code === 13) {
+            $j(this).click();
+            event.preventDefault();
+        }
+    });
+
+    // Header Tabs animations, interactions and resets
+    $j('.nav-l1-link').click(function () {
+        $csu_section = $j(this).attr('csu-section');
+        if ($j($csu_section).hasClass('down') && !$j('.pushmenu').hasClass('pushmenu-open')) {
+            $j($csu_section).parent().find('.nav-l3').slideUp(200);
+            $j($csu_section).removeClass('down');
+        } else {
+            $j('.nav-l2-head').removeClass('down');
+            $j('.nav-l3').slideUp(0);
+            $j($csu_section).parent().find('.nav-l3').slideDown(200);
+            $j($csu_section).addClass('down');
+        }
+    });
+
+    // Page to page persistance
+    if ($site_section) {
+        $site_section = "." + $site_section;
+        $j($site_section).parent().find('.nav-l3').slideDown(200);
+        $j($site_section).parent().find('.nav-l4').slideDown(200);
+        $j($site_section).addClass('down');
+    }
+
+    // Level 3 headers animations, interactions and resets
+    $j(l2NavUlSelector).children('li').children('ul').children('li').children('.menu-item').click(function (event) {
+        if ($j(this).hasClass('down')) {
+            $j(this).parent().children('ul').stop().slideUp(200);
+            $j(this).removeClass('down');
+        } else {
+            $j(this).parent().children('ul').stop().slideDown(200);
+            $j(this).addClass('down');
+        }
+
+        //prevent navigation if there are child links
+        if ($j(this).parent().children('ul').length)
+            event.preventDefault();
+    });
+
+    //add lines at custom intervals
+    $j('nav .menu-item-text').each(function () {
+        var menuText = $(this).html().trim();
+        if (menuText == 'Paying for College')
+            AddDividerToNav($(this));
+        else if (menuText == 'International')
+            AddDividerToNav($(this));
+        else if (menuText == 'Sustainability')
+            AddDividerToNav($(this));
+        else if (menuText == 'About the CSU')
+            AddDividerToNav($(this));
+        else if (menuText == 'Auxiliary Organizations')
+            AddDividerToNav($(this));
+    });
+
+}
+
+function AddDividerToNav(jElement) {
+    jElement.parent().parent().parent().after('<li class="bottom-divider"></li>');
+}
+
+
+function getTopLevelBreadcrumbAnchorTagByTitle(title) {
+    return $j('.breadcrumb a').filter(function (index) {
+        return $j(this).text() === title;
+    });
+}
+
+function InitBreadcrumb() {
+    console.log('InitBreadcrumb');
+
+    var csu_breadcrumb = $j('.breadcrumb');
+
+    //hide the root node
+    csu_breadcrumb.children('li').children('a').remove();
+    //get rid of slash after root node
+    if (csu_breadcrumb.length > 0) {
+        var slashAndRemainingMarkup = csu_breadcrumb.children('li').children(':contains("/")');
+        if (slashAndRemainingMarkup && slashAndRemainingMarkup.length) {
+            slashAndRemainingMarkup.html(slashAndRemainingMarkup.html().substr(1).replace('&amp;#39;', "'"));
+        }
+    }
+
+    //handle click on top level nav items
+    var impactBcLink = getTopLevelBreadcrumbAnchorTagByTitle('Impact of the CSU'),
+        attendBcLink = getTopLevelBreadcrumbAnchorTagByTitle('Attend'),
+        csuSystemBcLink = getTopLevelBreadcrumbAnchorTagByTitle('The CSU System'),
+        resourceBcLink = getTopLevelBreadcrumbAnchorTagByTitle('Resource Center');
+
+    WireUpBreadcrumbHandler(impactBcLink);
+    WireUpBreadcrumbHandler(attendBcLink);
+    WireUpBreadcrumbHandler(csuSystemBcLink);
+    WireUpBreadcrumbHandler(resourceBcLink);
+}
+
+function WireUpBreadcrumbHandler(breadcrumbLink) {
+    if (breadcrumbLink.length == 0)
+        return;
+
+    $j(breadcrumbLink).attr('href', 'javascript:void(0);')
+
+    $j(breadcrumbLink).click(function (event) {
+        //open left nav
+        toggleLeftNav();
+        //expand sub menu
+        var submenuTitle = $j(this).text();
+        var submenuNavItem = $j(l2NavUlSelector).children('li').children('.menu-item').filter(function () {
+            return $j(this).text() === submenuTitle;
+        });
+        if (!submenuNavItem.hasClass('down'))
+            toggleLevel2LeftNavMenuItem(submenuNavItem);
+        event.preventDefault();
+    });
+}
+
+
+
+function getSearchValue(relevantResultsTableRow, propertyName, defaultValue) {
+    if (defaultValue == undefined) {
+        defaultValue = '';
+    }
+    var cellResult = relevantResultsTableRow.Cells.results;
+    for (var i = 0; i < cellResult.length; i++) {
+        if (relevantResultsTableRow.Cells.results[i].Key == propertyName) {
+            if (relevantResultsTableRow.Cells.results[i].Value) {
+                return relevantResultsTableRow.Cells.results[i].Value;
+            }
+            return defaultValue;
+        }
+    }
+    return defaultValue;
+}
+
+function removeGuids(value) {
+    var valueParts = value.split("|");
+    if (valueParts.length == 5) {
+        var valuePartsParts = valueParts[3].split(';');
+        if (valuePartsParts.length > 0) {
+            return valuePartsParts[0]
+        }
+        else {
+            return value;
+        }
+    }
+    else if (valueParts.length == 8 || valueParts.length == 9) {
+    	var valuePartsParts = valueParts[3].split(';');
+    	var valuePartsParts2 = valueParts[7].split(';');
+        if (valuePartsParts.length > 0) {
+            return valuePartsParts[0] + ", " + valuePartsParts2[0]; 
+        }
+        else {
+            return value;
+        }
+    }
+    else {
+        return value;
+    }
+
+}
+
+
+function ConvertNewsitemToJSON(relevantResultsTableRow) {
+    var jsonData = {};
+    jsonData.Title = getSearchValue(relevantResultsTableRow, 'Title');
+
+    jsonData.UniqueId = getSearchValue(relevantResultsTableRow, 'UniqueId');
+    jsonData.ListItemId = getSearchValue(relevantResultsTableRow, 'ListItemId');
+    jsonData.Path = getSearchValue(relevantResultsTableRow, 'Path');
+    jsonData.ArticleByline = getSearchValue(relevantResultsTableRow, 'ArticleByline');
+    jsonData.ArticleStartDate = getSearchValue(relevantResultsTableRow, 'ArticleStartDateOWSDATE');
+    jsonData.Body = getSearchValue(relevantResultsTableRow, 'PublishingPageContentOWSHTML');
+    jsonData.ThumbnailImage = getSearchValue(relevantResultsTableRow, 'PublishingImage');
+    jsonData.Initiative = removeGuids(getSearchValue(relevantResultsTableRow, 'owstaxIdInitiative'));
+	
+	jsonData.ThumbnailImage = jsonData.ThumbnailImage.replace('src','ng-src');
+	jsonData.AltTag = "";
+    var imgTags = $j(jsonData.ThumbnailImage);
+    if (imgTags.length > 0){
+        jsonData.ThumbnailImage = imgTags.attr('ng-src');
+        jsonData.AltTag = imgTags.attr('alt');
+    }
+
+    if (typeof(jsonData.ThumbnailImage) != 'undefined' && jsonData.ThumbnailImage != '') {
+    	
+        var questionMarkIndex = jsonData.ThumbnailImage.indexOf("?");
+        if (questionMarkIndex > 0)
+            jsonData.ThumbnailImage = jsonData.ThumbnailImage.substring(0, jsonData.ThumbnailImage.indexOf("?")).trim() + '?RenditionId=5';
+        else
+            jsonData.ThumbnailImage = jsonData.ThumbnailImage + '?RenditionId=5';
+    }
+
+    jsonData.NewsTopic = getSearchValue(relevantResultsTableRow, 'CSUNewsTopic');
+    jsonData.SecondaryNewsTopics = getSearchValue(relevantResultsTableRow, 'CSUSecondaryNewsTopics');
+    jsonData.NewsType = getSearchValue(relevantResultsTableRow, 'CSUNewsType');
+    jsonData.IntroText = getSearchValue(relevantResultsTableRow, 'CSUIntroText');
+
+    jsonData.ListId = getSearchValue(relevantResultsTableRow, 'ListId');
+    jsonData.Date = moment(jsonData.ArticleStartDate).format("MMM DD, YYYY");
+    jsonData.YouTubeUrl = getSearchValue(relevantResultsTableRow, 'CSUYouTubeUrl');
+    return jsonData;
+}
+
+function BuildSingleTopicConditional(topicName, topicType) {
+    if (topicType.toLowerCase() == 'site')
+        return ' (CSUSiteTopic:"' + topicName + '" OR CSUSecondarySiteTopics:"' + topicName + '") ';
+    else if (topicType.toLowerCase() == 'news')
+        return ' (CSUNewsTopic:"' + topicName + '" OR CSUSecondaryNewsTopics:"' + topicName + '") ';
+    else if (topicType.toLowerCase() == 'csuperbnews')
+        return ' (CSUNewsTopic:"' + topicName + '" OR CSUSecondaryNewsTopics:"' + topicName + '") ';
+    else if (topicType.toLowerCase() == 'research')
+        return ' (owstaxIdInitiative:"' + topicName + '") ';
+    else if (topicType.toLowerCase() == 'researchinitiative')
+        return ' (owstaxIdResearchTopic:"' + topicName + '") ';
+}
+
+function getTopicContentViaSearch(topicString, topicType, rowLimit, excludeCurrentPath) {
+    var d = $j.Deferred();
+    var additionalConditions = '';
+
+    var topicStringSplit = topicString.split(',');
+
+    for (var i = 0; i <= topicStringSplit.length; i++) {
+        var topicName = topicStringSplit[i];
+
+        if (typeof (topicName) == 'undefined' || topicName.trim() == '' || topicName.trim() == 'research' || topicName.trim() == 'researchInitiative')
+            continue;
+        if (i > 0)
+            additionalConditions += 'OR';
+        additionalConditions += BuildSingleTopicConditional(topicName, topicType);
+
+    }
+    additionalConditions = ' AND (' + additionalConditions + ')';
+    getContentViaSearchByTopicType(additionalConditions, topicType, rowLimit, excludeCurrentPath).then(function (response) {
+        d.resolve(response);
+    });
+    return d;
+}
+
+function getContentViaSearchByTopicType(additionalConditions, topicType, rowLimit, excludeCurrentPath) {
+    var d = $j.Deferred();
+    var output = [];
+
+    var cTypeId = '';
+
+    if (topicType == 'news')
+        cTypeId = '0x010100C568DB52D9D0A14D9B2FDCC96666E9F2007948130EC3DB064584E219954237AF3900242457EFB8B24247815D688C526CD44D0058028A2DDBC14CCF8C7F21C96499E147';
+    else if (topicType == 'csuperbnews'){
+    	cTypeId = '0x010100C568DB52D9D0A14D9B2FDCC96666E9F2007948130EC3DB064584E219954237AF3900242457EFB8B24247815D688C526CD44D0083CF8297A4D862419B61F11A30720686';
+    }
+    else if (topicType == 'site')
+        cTypeId = '0x010100C568DB52D9D0A14D9B2FDCC96666E9F2007948130EC3DB064584E219954237AF3900376B953A204945E78936D781A3B4C851';
+    else if (topicType == 'research')
+        cTypeId = '0x010100C568DB52D9D0A14D9B2FDCC96666E9F2007948130EC3DB064584E219954237AF3900242457EFB8B24247815D688C526CD44D00B65B478EE9A35C46A69A4AB69CCB8162';
+    else if (topicType == 'employeeprofile')
+        cTypeId = '0x010100C568DB52D9D0A14D9B2FDCC96666E9F2007948130EC3DB064584E219954237AF3900242457EFB8B24247815D688C526CD44D006CA2DEE92FF91A4A9A731D1321FDEDC7';
+
+
+    var selectProperties = 'Path,UniqueId,Title,ListId,ListItemId,ArticleByline,ArticleStartDateOWSDATE,PublishingPageContentOWSHTML,PublishingImage,CSUNewsTopic,CSUSecondaryNewsTopics,CSUIntroText, CSUNewsType,owstaxIdInitiative';
+    var sortList = 'CSUPriorityOWSCHCS:ascending,ArticleStartDateOWSDATE:descending,CSUArticleStartTime:descending';
+
+    getContentViaSearch(cTypeId, additionalConditions, selectProperties, sortList, rowLimit, excludeCurrentPath).then(function (response) {
+        var results = response.RelevantResults.Table.Rows.results;
+        for (var i = 0; i < results.length; i++) {
+            var item = ConvertNewsitemToJSON(results[i]);
+            output.push(item);
+        }
+        d.resolve(output);
+    });
+    return d;
+}
+
+function getContentViaSearch(contentTypeId, additionalConditions, selectProperties, sortList, rowLimit, excludeCurrentPath) {
+    var deferred = jQuery.Deferred();
+    var queryString = 'querytext=%27+ContentTypeId:' + contentTypeId + '* ';
+
+    queryString += additionalConditions;
+
+    //if (additionalConditions.indexOf('Path') < 0)
+        //queryString += " +Path:" + encodeURIComponent(_spPageContextInfo.siteAbsoluteUrl) + " ";
+
+    if (excludeCurrentPath)
+        queryString += '-Path:' + encodeURIComponent(location.href.replace("'","''").replace("%27","''")) + " ";
+
+    queryString += '%27';
+
+    if (selectProperties != null && selectProperties != '')
+        queryString += '&selectproperties=%27' + selectProperties + '%27';
+
+    if (sortList != null && sortList != '')
+        queryString += '&sortlist=%27' + sortList + '%27';
+
+    queryString += '&trimduplicates=false&rowlimit=' + rowLimit;
+
+    var requestUri = _spPageContextInfo.webAbsoluteUrl + "/_api/search/query?" + queryString;
+
+    var queryparametertemplate = "&querytemplatepropertiesurl='spfile://webroot/queryparametertemplate.xml'";
+    if (_spPageContextInfo.userId != undefined)
+        queryparametertemplate = '';
+
+    requestUri += queryparametertemplate;
+
+    console.log('getContentViaSearch');
+    console.log(requestUri);
+
+    jQuery.ajax({
+        url: requestUri,
+        contentType: "application/json;odata=verbose",
+        headers: { "Accept": "application/json;odata=verbose" },
+        success: function (data, request) {
+            console.ReportAjaxResult('getContentViaSearch', data);
+            var dataResults = data.d.query.PrimaryQueryResult;
+            deferred.resolve(dataResults);
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.ReportAjaxError('getContentViaSearch', xhr, ajaxOptions, thrownError);
+        }
+    });
+    return deferred.promise();
+};
+
+function convertCsomToJSON(listItem){
+	var item = listItem.get_fieldValues();
+	var jsonData = {};
+	jsonData.ThumbnailImage = item["PublishingRollupImage"];
+	jsonData.AltTag = "";
+	if(jsonData.ThumbnailImage == null){
+		jsonData.ThumbnailImage = item["PublishingPageImage"];
+	}
+	if(jsonData.ThumbnailImage != null){
+		jsonData.ThumbnailImage = jsonData.ThumbnailImage.replace('src','ng-src');
+		var imgTags = $(jsonData.ThumbnailImage);
+	    if (imgTags.length > 0){
+	        jsonData.ThumbnailImage = imgTags.attr('ng-src');
+	        jsonData.AltTag = imgTags.attr('alt');
+	    }
+		if (typeof(jsonData.ThumbnailImage) != 'undefined' && jsonData.ThumbnailImage != '' && jsonData.ThumbnailImage != null) {
+	    	
+	        var questionMarkIndex = jsonData.ThumbnailImage.indexOf("?");
+	        if (questionMarkIndex > 0)
+	            jsonData.ThumbnailImage = jsonData.ThumbnailImage.substring(0, jsonData.ThumbnailImage.indexOf("?")).trim() + '?RenditionId=5';
+	        else
+	            jsonData.ThumbnailImage = jsonData.ThumbnailImage + '?RenditionId=5';
+	    }
+	}
+
+	jsonData.Title = item["Title"];
+	jsonData.Priority = item["CSU_Priority"];
+	jsonData.ArticleStartDate = new Date(item["ArticleStartDate"]);
+	jsonData.ArticleStartDate = moment(jsonData.ArticleStartDate).format("MMM DD, YYYY");
+
+	jsonData.NewsTopic = item["CSU_NewsTopic"] ? item["CSU_NewsTopic"].Label : null;
+	jsonData.SecondaryNewsTopics = JSON.stringify(item["CSU_SecondaryNewsTopics"]);
+	jsonData.Path = item["FileRef"];
+	jsonData.PinToHome = item["PinToHome"];
+	return jsonData;
+}
+
+function GetRelatedNews(newsTopic){
+	SP.SOD.executeFunc('sp.js','SP.ClientContext',function(){
+		//get news context
+		var newsCtx = new SP.ClientContext("/csu-system/news");
+		
+		function getNewsItems(ctx){
+			//get pages list
+			var list = ctx.get_web().get_lists().getByTitle("Pages");
+			var query  = new SP.CamlQuery();
+			query.set_viewXml("<View>"+    								
+								"<Query>" + 
+								"<Where><And><Eq><FieldRef Name='ContentType' /><Value Type='Lookup'>CSU News</Value></Eq><Eq><FieldRef Name='CSU_SecondaryNewsTopics' /><Value Type='Lookup'>"+newsTopic+"</Value></Eq></And></Where>" +
+								"<OrderBy><FieldRef Name='CSU_ArticleStartDate' Ascending='FALSE' /><FieldRef Name='CSU_ArticleStartTime' Ascending='FALSE' /></OrderBy>" +
+								"</Query><RowLimit>3</RowLimit></View>");
+			//query list 
+			var items = list.getItems(query);
+		
+			//transform results
+			ctx.load(items, 'Include(ArticleStartDate, CSU_ArticleStartTime, PinToHome, Title, PublishingRollupImage, PublishingPageImage, CSU_NewsTopic, CSU_SecondaryNewsTopics, FileRef)');
+			ctx.executeQueryAsync(function() {
+				var allItems = [];
+				for(var i = 0; i < items.get_count();i++) {
+					var pageItem = items.getItemAtIndex(i);					
+					var newsItem = convertCsomToJSON(pageItem);				
+					if(newsItem.ThumbnailImage != null){
+						showRelatedContent("news", "sectRelatedNews", newsItem.ThumbnailImage, newsItem.Path, newsItem.Title, newsItem.ArticleStartDate.substring(0, 10), newsItem.NewsTopic);
+					}
+	
+				}	
+				$('#sectRelatedNews').removeClass('display-none').prepend("<h2>Related Articles</h2>");
+			},function(){
+				
+			});
+		
+		}
+		
+		getNewsItems(newsCtx);
+	
+	});
+}

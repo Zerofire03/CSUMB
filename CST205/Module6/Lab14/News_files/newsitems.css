@@ -1,0 +1,57 @@
+﻿.additional-link{
+	color: #b61029 !important;
+}
+article {
+    padding: 60px 0;
+    margin-right: 40px;
+    border-bottom: 1px solid #ddd;
+    color: #1a1a1a;
+}
+.btn-primary{
+	background-color: #b61029;
+    color: #fff;
+    font-size: 0.9375em;
+    border: 1px solid #b61029;
+    }
+
+h2 {
+   font-size: 1.75em !important;
+    font-weight: 300;
+    margin: 0px 0;
+    /* text-align: left; */
+    line-height: 1.1;
+    color: inherit;
+    display: block;
+    font-size: 1.5em;
+    -webkit-margin-before: 0.83em;
+    -webkit-margin-after: 0.83em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    margin-bottom: 10px !important;
+    }
+    
+ a:link, a:visited {
+    color: #1a1a1a;
+    text-decoration: none;
+}
+.article-date {
+    font-size: 0.8125em;
+    color: #b61029;
+    margin-bottom: 15px;
+}
+p {
+    margin: 0 0 10px;
+    margin-top:50px;
+    font-size:1em;
+    display:block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    
+}
+.cbs-List
+{
+	width:50% !important
+}
+
