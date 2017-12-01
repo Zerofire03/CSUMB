@@ -1,3 +1,7 @@
+#Lab 8
+#Chris Holmes
+#Chris Buckey
+#Patrick Gonzalez
 #sound = makeSound(pickAFile())
 
 def increaseVolume(sound):

@@ -1,3 +1,5 @@
+#Christopher Holmes
+#Lab 9
 #file = pickAFile()
 #sound = makeSound(pickAFile())
 
@@ -64,4 +66,14 @@ def increaseVolumeRange(sound):
    for sample in range(0, getLength(sound)):
       value = getSampleValueAt(sound, sample)
       setSampleValueAt(sound, sample, value * 2)
+      
+def reverse(sound):
+  soundlen = getLength(sound)
+  backwards = makeEmptySound(soundlen, 11050)
+  index = soundlen-1
+  for sample in range(0, soundlen):
+    value = getSampleValueAt(sound, sample)
+    setSampleValueAt(backwards, index, value)
+    index = index -1
+  return backwards
   

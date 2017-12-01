@@ -1,9 +1,6 @@
-#Chris Holmes
-#Midterm 1 CST205
-#ComicBook Filter
-
-#Chromakey function that we wrote previously to add the background to a pic
 def chromakey(pic, picBG):
+  #pic =  makePicture(pickAFile())
+  #picBG =  makePicture(pickAFile())
   for x in range(0, getWidth(pic)):
     for y in range(0, getHeight(pic)):
       px = getPixel(pic, x, y)
@@ -13,8 +10,10 @@ def chromakey(pic, picBG):
       if distance(color, white) < 200.0:
         setColor(px, colorBG)
   return pic
-
-#The artify function that I used to make the picture have that comicbook   
+  #show(pic)
+  #file = r"/Users/chris/Documents/GitHub/CSUMB/CST205/Module3/portfolio/mergedColorArtify.jpg"
+  #writePictureTo(pic, file)
+  
 def artify(pic):
   # Current color range	New value for color
   #color < 64	31
@@ -57,8 +56,8 @@ def artify(pic):
       setGreen(px, 159)
     elif G >= 192 and G < 256:
       setGreen(px, 223)
+  #show(pic)
 
-#Copy function that starts the picture at a given coordinate
 def copyStartBackground(picture, background, xStart, yStart):
   width = getWidth(picture)
   height = getHeight(picture)
@@ -67,9 +66,8 @@ def copyStartBackground(picture, background, xStart, yStart):
       pix = getPixel(picture, x, y)
       color = getColor(pix)
       setColor(getPixel(background, x, y), color)
- 
+  #return 
 
-#BEtter black and white function we previously wrote
 def betterBnW(pic):
   pixels = getPixels(pic)
   for p in pixels:
@@ -82,7 +80,6 @@ def betterBnW(pic):
     setBlue(p, avg)
   return pic
 
-#Line drawing function that creates the line drawing used for the contrast in the picture
 def lineDraw(pic, largeEnough):  
   pic = betterBnW(pic) #Resulting image is BnW, should probably convert to BnW
   
@@ -103,16 +100,15 @@ def lineDraw(pic, largeEnough):
       else:
         setColor(pix, white)
 
-#Function used to add the border to the final picture. Border is currently set to blue.
 def addBorder(pic):
+  #pic =  makePicture(pickAFile())
   width = getWidth(pic)
   height = getHeight(pic)
   borderThickness = 20
   largeBlank = makeEmptyPicture(width+borderThickness, height+borderThickness, blue)
   copyStartBackground(pic, largeBlank, borderThickness, borderThickness)
   return largeBlank
-
-#Simple copy function used to copy a picture  
+  
 def simpleCopy(picture):
   width = getWidth(picture)
   height = getHeight(picture)
@@ -122,20 +118,19 @@ def simpleCopy(picture):
       pix = getPixel(picture, x, y)
       color = getColor(pix)
       setColor(getPixel(newPic, x, y), color)
+  #show(newPic)
   return newPic
-
-#Comicbook filter that calls all the functions and does all the work.    
-def comicFilter():
-  originalPic =  makePicture(pickAFile()) #Function call to select the picture you want to have the modifications done to
-  temp = simpleCopy(originalPic) #Save the original picture into a temp file so that we can use it later
-  lineDraw(originalPic, 20) #Line Draw function call that makes the line drawing picture used for contrast
-  lineDrawing = simpleCopy(originalPic) #Save the line drawing picture into a variable
-  originalPic = simpleCopy(temp) #Copy the original picture from the temp variable back into the originalPic variable
-  chromaKeyed = chromakey(lineDrawing, originalPic) #Call the chromakey function to add the colored background onto the line drawing
-  artify(chromaKeyed) #Call the artify function to give it that comicbookesq look
-  artified = simpleCopy(chromaKeyed) #Save the chromakeyed file into the aritified variable
-  bordered = addBorder(artified) #Call the function to add the border to the final picture
-  return bordered #Return the finished picture
   
-#file = r"D:\GitHub\CSUMB\CST205\Midterm\midtermPicture.jpg"
-#writePictureTo(foo, file)
+def comicFilter():
+  originalPic =  makePicture(pickAFile())
+  temp = simpleCopy(originalPic)
+  lineDraw(originalPic, 20)
+  lineDrawing = simpleCopy(originalPic)
+  originalPic = simpleCopy(temp)
+  chromaKeyed = chromakey(lineDrawing, originalPic)
+  artify(chromaKeyed)
+  artified = simpleCopy(chromaKeyed)
+  bordered = addBorder(artified)
+  return bordered
+  
+  

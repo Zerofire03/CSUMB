@@ -1,0 +1,688 @@
+var CSU_NewsArchiveLoadMoreLimit = 10;
+
+function CSU_HideIfEmpty(jElement) {
+    if (jElement.length == 0)
+        return;
+    if (CSU_CheckIsEmpty(jElement))
+        jElement.css('display', 'none');
+    else
+        jElement.css('display', 'block');
+}
+function CSU_CheckIsEmpty(jElement) {
+    if (jElement.length == 0)
+        return true;
+    if (jElement.html().trim().replace('&nbsp;', '') == '')
+        return true;
+
+    return false;
+}
+
+function SetTextWrappingBehavior() {
+    jQuery('.image-block img').imagesLoaded()
+   .progress(function (instance, image) {
+       if (image.isLoaded) {
+           if (image.img.width < 420) {
+               jQuery('.image-block').addClass('wrap-text');
+           }
+       }
+   });
+}
+
+function SetArticleTimeDate() {
+    if ($('div.ArticleStartDate input').length == 0)
+        return;
+
+    var strArticleStartDate = $('div.ArticleStartDate input').val();
+    var strArticleStartTime = $('div.ArticleStartTime select[id$="Hours"]').val();
+
+    if (strArticleStartDate != undefined) {
+        if (strArticleStartDate.length > 5) {
+            var dateParts = strArticleStartDate.split("/");
+            strYear = dateParts[2];
+            strMonth = dateParts[0];
+            strDay = dateParts[1];
+        }
+        $('div.ArticleStartTime input').val(strArticleStartDate);
+    }
+    if (strArticleStartTime == "12 AM") {
+        //default to current time
+        $('div.ArticleStartTime select[id$="Hours"]')[0].selectedIndex = (new Date()).getHours();
+        var minuteIndex = Math.round((new Date()).getMinutes() / 5);
+        if (minuteIndex < 0)
+            minuteIndex = 0;
+        $('div.ArticleStartTime select[id$="Minutes"]')[0].selectedIndex = minuteIndex;
+    }
+}
+
+function RenderYouTubePlayer(videoDivId, youTubeUrl) {
+    jQuery(videoDivId).html('<iframe width="560" height="315" src="' + youTubeUrl + '" frameborder="0" allowfullscreen></iframe>');
+    jQuery(videoDivId).removeClass('display-none');
+}
+
+function InitRelatedContent(topic, secondarytopic, topicType, sectRelatedDivId) {
+    console.log('InitRelatedContent("' + topic + '")');
+    topicType = topicType.toLowerCase()
+    var parentDiv = document.getElementById(sectRelatedDivId);
+    var topicQueryParams = topic.trim();
+    if (secondarytopic != '') {
+        topicQueryParams += ',';
+        topicQueryParams += secondarytopic;
+    }
+
+    if (topicQueryParams == '')
+        return;
+
+    getTopicContentViaSearch(topicQueryParams, topicType, 3, true).then(function (results) {
+        var outputHtml = '';
+        if (results.length == 0) {
+        }
+        else {
+            var heading = document.createElement("h1");
+            switch (topicType.toLowerCase()) {
+                case "news":
+                case "csuperbnews":
+                    heading.innerText = "Related Articles";
+                    break;
+                case "research":
+                    heading.innerText = "Related Highlights";
+                    break;
+                case "researchinitiative":
+                    heading.innerText = "Related Highlights";
+                    break;
+
+                default:
+                    heading.innerText = "Related Pages";
+            }
+
+            //heading.innerText = topicType.toLowerCase() == "news" ? "Related Articles" : "Related Pages";
+            parentDiv.appendChild(heading);
+
+            for (var i = 0; i < results.length; i++) {
+                var result = results[i];
+                if (topicType == "research") {
+                    showRelatedContent(topicType, sectRelatedDivId, result.ThumbnailImage, result.Path, result.Title, result.ArticleStartDate.substring(0, 10), result.Initiative);
+                }
+                else if (topicType == "researchinitiative") {
+                    showRelatedContent(topicType, sectRelatedDivId, result.ThumbnailImage, result.Path, result.Title, result.ArticleStartDate.substring(0, 10), result.Initiative);
+                }
+                else {
+                    showRelatedContent(topicType, sectRelatedDivId, result.ThumbnailImage, result.Path, result.Title, result.ArticleStartDate.substring(0, 10), result.NewsTopic);
+                }
+            }
+            $(parentDiv).removeClass('display-none');
+        }
+        console.ReportAjaxResult('getRelatedContentResultsUsingREST', results);
+    });
+}
+
+function showRelatedContent(topicType, sectRelatedDivId, imageSrc, linkHREF, title, articleDate, articleCategory) {
+    var parentDiv = document.getElementById(sectRelatedDivId);
+    var ulRelatedPages;
+    if (topicType == "site" && typeof (ulRelatedPages) == 'undefined') {
+        var ulRelatedPages = document.createElement("ul");
+        ulRelatedPages.id = "ulRelatedPages";
+        ulRelatedPages.className = "helpful-links";
+        parentDiv.appendChild(ulRelatedPages);
+    }
+
+    if (topicType == "news" || topicType == "research" || topicType == "researchinitiative" || topicType == "csuperbnews") {
+        var divRelatedNews = document.createElement("div");
+        divRelatedNews.className = "related-article";
+        var aTag = document.createElement("a");
+        aTag.href = linkHREF;
+        if (imageSrc != '') {
+            var imageTag = document.createElement("img");
+            imageTag.src = imageSrc.substring(0, imageSrc.indexOf("?")).trim() + '?RenditionID=7';
+            imageTag.alt = "";
+            aTag.appendChild(imageTag);
+        }
+        var headerLink = document.createElement("h2");
+        headerLink.innerHTML = title;
+        aTag.appendChild(headerLink);
+
+        var divCategory = document.createElement("div");
+        divCategory.className = "ra-category";
+        divCategory.innerHTML = articleCategory;
+
+        divRelatedNews.appendChild(aTag);
+        divRelatedNews.appendChild(divCategory);
+
+        parentDiv.appendChild(divRelatedNews);
+    }
+    else {
+        var li = document.createElement("li");
+        var aTag = document.createElement("a");
+        aTag.href = linkHREF;
+        aTag.innerHTML = title;
+        li.appendChild(aTag);
+        ulRelatedPages.appendChild(li);
+    }
+}
+/*
+function parseXMLResult(result) {
+    var jsonObject = JSON.parse(result);
+    var results = jsonObject.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results;
+}*/
+
+function InitCuratedLinks() {
+    var objRelatedLinksHtml = '';
+    $j('.hidden-var.relatedlink').each(function () {
+        var title = $j(this).find('.Title').html().trim().replace('&nbsp;', '');
+        var URL_ATag = $j(this).find('.URL a');
+        var URL = '';
+        if (URL_ATag.length > 0)
+            URL = URL_ATag.attr('href');
+
+        if (title.length > 0 && URL.length > 0) {
+            objRelatedLinksHtml += ('<li><a href="{0}">{1}</a></li>').replace('{0}', URL).replace('{1}', title);
+        }
+    });
+
+    if (objRelatedLinksHtml != '') {
+        var wrapper = '<h1>You might also be interested in...</h1><ul class="helpful-links">{0}</ul>';
+        objRelatedLinksHtml = wrapper.replace('{0}', objRelatedLinksHtml);
+        $j('#sectRelatedLinks').html(objRelatedLinksHtml);
+        $j('#sectRelatedLinks').removeClass('display-none');
+    }
+}
+
+function InitNewsListing() {
+    $('.newsListing').each(function () {
+        var IsInitialized = $(this).attr('IsInitialized');
+        if (IsInitialized != 'true') {
+            $(this).attr('IsInitialized', 'true')
+            $(this).find('#btnMore').click(function () {
+                var parentDiv = $(this).closest('.newsListing');
+                getSearchResultsUsingREST(parentDiv);
+            });
+        }
+    });
+}
+
+function InitArchivesListing() {
+    /* TODO: Make this work for news archive page http://csu.rightpoint.com/csu-system/media-center/Pages/Archive.aspx?Year=2016
+    */
+    $('.newsArchiveListing').each(function () {
+        var IsInitialized = $(this).attr('IsInitialized');
+        if (IsInitialized != 'true') {
+            $(this).attr('IsInitialized', 'true');
+            $(this).find('#btnMore').click(function () {
+                var parentDiv = $(this).closest('.newsArchiveListing');
+                getSearchResultsUsingREST(parentDiv);
+            });
+        }
+    });
+}
+
+function getNewsData(parentDiv, imageSrc, linkHREF, title, articleDate, articleContent, articleCategory, newsType, csuNewsType, csuIntroText) {
+    var isCOAST = false;
+    if (location.href.toLowerCase().indexOf('coast') > 0)
+        isCOAST = true;
+
+    if (isCOAST) {
+        var article = document.createElement("div");
+        article.className = "inner";
+    }
+    else {
+        var article = document.createElement("article");
+    }
+
+    var imageTag = document.createElement("img");
+    imageTag.className = "pull-right";
+    var xmlDoc = "";
+
+    if (window.DOMParser) {
+        parser = new DOMParser();
+        var imgSource = imageSrc.substring(0, (imageSrc.indexOf("/>") + 2));
+        xmlDoc = parser.parseFromString(imgSource, "text/xml");
+    }
+    /*else
+     {
+        xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+        xmlDoc.async=false;
+        xmlDoc.loadXML(imageSrc);
+     }*/
+
+    var imgTags = xmlDoc.getElementsByTagName("img");
+    if (imgTags.length > 0) {
+        var src = imgTags[0].getAttribute('src');
+
+        if (src != "" && typeof (src) != "undefined" && src != null) {
+            src = src.indexOf("?") > 0 ? src.substr(0, src.indexOf("?")) : src;
+            xmlDoc.getElementsByTagName("img")[0].setAttribute('src', src + '?RenditionID=6');
+            imageTag.src = xmlDoc.getElementsByTagName("img")[0].getAttribute('src');
+            imageTag.alt = "";
+        }
+    }
+
+    var category = document.createElement("div");
+    category.className = "article-category";
+
+    var displayTypeCategory = '';
+
+    displayTypeCategory = csuNewsType != '' ? csuNewsType + ': ' + articleCategory : articleCategory;
+
+    category.innerHTML = displayTypeCategory;
+
+    var linkTitle = document.createElement("a");
+    linkTitle.href = linkHREF;
+
+    var headerLink = document.createElement("h2");
+    headerLink.innerHTML = title;
+
+    var articleDiv = document.createElement("div");
+    articleDiv.className = "article-date";
+    var dat = new Date(articleDate);
+    articleDiv.innerHTML = parseInt(dat.getMonth() + 1) + "/" + dat.getUTCDate() + "/" + dat.getUTCFullYear();
+
+    var content = document.createElement("p");
+    content.innerHTML = (csuIntroText !== '' ? csuIntroText : articleContent).substring(0, 300);
+    var moreContent = document.createElement("a");
+    moreContent.href = linkHREF;
+    moreContent.className = "additional-link";
+    moreContent.innerHTML = "More>>";
+
+    article.appendChild(category);
+    article.appendChild(imageTag);
+    linkTitle.appendChild(headerLink);
+    article.appendChild(linkTitle);
+    article.appendChild(articleDiv);
+    article.appendChild(content);
+    article.appendChild(moreContent);
+
+    if (isCOAST) {
+        var articleWrapper = document.createElement("article");
+        articleWrapper.appendChild(article);
+        parentDiv.find('.divBtnMore').before(articleWrapper);
+    }
+    else {
+        parentDiv.find("#btnMore").before(article);
+    }
+}
+
+function getNewsDataCsom(parentDiv, imageSrc, linkHREF, title, articleDate, articleContent, articleCategory, newsType, csuNewsType, csuIntroText) {
+    var isCOAST = false;
+    if (location.href.toLowerCase().indexOf('coast') > 0)
+        isCOAST = true;
+
+    if (isCOAST) {
+        var article = document.createElement("div");
+        article.className = "inner";
+    }
+    else {
+        var article = document.createElement("article");
+    }
+
+    var imageTag = document.createElement("img");
+    imageTag.className = "pull-right";
+    var xmlDoc = "";
+	
+	if(imageSrc){
+		imageSrc = imageSrc.replace('src', 'ng-src');
+		var imageUrl = $(imageSrc).attr('ng-src');		
+		var imageUrlParts = imageUrl.split("?");
+        if (imageUrlParts.length > 1) {
+            imageUrl = imageUrlParts[0];
+        }
+        imageUrl = imageUrl + "?RenditionID=6";
+        imageTag.src =  imageUrl;
+        imageTag.alt = "";
+	}
+
+    var category = document.createElement("div");
+    category.className = "article-category";
+
+    var displayTypeCategory = '';
+
+    displayTypeCategory = csuNewsType != '' ? csuNewsType + ': ' + articleCategory : articleCategory;
+
+    category.innerHTML = displayTypeCategory;
+
+    var linkTitle = document.createElement("a");
+    linkTitle.href = linkHREF;
+
+    var headerLink = document.createElement("h2");
+    headerLink.innerHTML = title;
+
+    var articleDiv = document.createElement("div");
+    articleDiv.className = "article-date";
+    var dat = new Date(articleDate);
+    articleDiv.innerHTML = parseInt(dat.getMonth() + 1) + "/" + dat.getUTCDate() + "/" + dat.getUTCFullYear();
+
+    var content = document.createElement("p");
+    content.innerHTML = (csuIntroText ? csuIntroText : articleContent).substring(0, 300);
+    var moreContent = document.createElement("a");
+    moreContent.href = linkHREF;
+    moreContent.className = "additional-link";
+    moreContent.innerHTML = "More>>";
+
+    article.appendChild(category);
+    article.appendChild(imageTag);
+    linkTitle.appendChild(headerLink);
+    article.appendChild(linkTitle);
+    article.appendChild(articleDiv);
+    article.appendChild(content);
+    article.appendChild(moreContent);
+
+    if (isCOAST) {
+        var articleWrapper = document.createElement("article");
+        articleWrapper.appendChild(article);
+        parentDiv.find('.divBtnMore').before(articleWrapper);
+    }
+    else {
+        parentDiv.find("#btnMore").before(article);
+    }
+}
+
+function getNewsArchiveData(parentDiv, imageSrc, linkHREF, title, articleDate, articleContent, articleCategory, newsType, csuNewsType, csuIntroText) {
+    /*
+    <div class="item link-item">
+      <a href="http://csu.rightpoint.com/csu-system/media-center/Pages/csu-summer-arts-2016-extends-application-deadline-to-june-24---and-they-want-you.aspx">
+        <div class="pp_publishdate">5/13/2016</div>
+        <div class="pp_headline">CSU Summer Arts 2016 Extends Application Deadline to June 24 - And They Want You! </div>
+      </a>
+    </div>
+    */
+
+    var divBtnMore = parentDiv.find('.divBtnMore');
+
+    var dat = new Date(articleDate);
+    var publishDate = '' + parseInt(dat.getMonth() + 1) + "/" + dat.getUTCDate() + "/" + dat.getUTCFullYear();
+
+    $('<div class="item link-item">' +
+        '<a href="' + linkHREF + '">' +
+          '<div class="pp_publishdate">' + publishDate + '</div>' +
+          '<div class="pp_headline">' + title + '</div>' +
+        '</a>' +
+      '</div>').insertBefore(divBtnMore);
+}
+
+function parseNewsListingXMLResult(parentDiv, response, newsType) {
+    var newsTypeFormatted = newsType.toLowerCase() == "press release" ? "press-release" : newsType.toLowerCase();
+    var results = response.RelevantResults.Table.Rows.results;
+
+    if (results.length == 0) {
+        parentDiv.append("<div>Reached the end of the news feed.</div>");
+        var btnMore = parentDiv.find("#btnMore");
+
+        btnMore.removeClass("morebutton");
+        btnMore.addClass("morebuttonnonews");
+        btnMore.prop('disabled', true);
+    }
+    else {
+        $.each(results,
+        	function (index, result) {
+        	    getNewsData(parentDiv,
+		            getSearchValue(result, 'PublishingImage'),
+		            getSearchValue(result, 'Path'),
+		            getSearchValue(result, 'Title'),
+		            getSearchValue(result, 'ArticleStartDateOWSDATE').substring(0, 10),
+		            getSearchValue(result, 'PublishingPageContentOWSHTML'),
+		            getSearchValue(result, 'CSUNewsTopic'),
+		            newsTypeFormatted,
+		            getSearchValue(result, 'CSUNewsType'),
+		            getSearchValue(result, 'CSUIntroText')
+	            );
+        	}
+        );
+    }
+}
+
+function parseNewsArchiveListingXMLResult(parentDiv, response, newsType) {
+    var newsTypeFormatted = newsType.toLowerCase() == "press release" ? "press-release" : newsType.toLowerCase();
+    var results = response.RelevantResults.Table.Rows.results;
+
+    if (results.length == 0) {
+        parentDiv.append("<div>Reached the end of the news feed.</div>");
+        var btnMore = parentDiv.find("#btnMore");
+
+        //btnMore.removeClass("morebutton");
+        //btnMore.addClass("morebuttonnonews");
+        btnMore.prop('disabled', true);
+    }
+    else {
+        $.each(results,
+          function (index, result) {
+              getNewsArchiveData(parentDiv,
+                getSearchValue(result, 'PublishingImage'),
+                getSearchValue(result, 'Path'),
+                getSearchValue(result, 'Title'),
+                getSearchValue(result, 'ArticleStartDateOWSDATE').substring(0, 10),
+                getSearchValue(result, 'PublishingPageContentOWSHTML'),
+                getSearchValue(result, 'CSUNewsTopic'),
+                newsTypeFormatted,
+                getSearchValue(result, 'CSUNewsType'),
+                getSearchValue(result, 'CSUIntroText')
+              );
+          }
+        );
+    }
+}
+
+function parseNewsArchiveListingXMLResultCsom(parentDiv, response, newsType) {
+    var newsTypeFormatted = newsType.toLowerCase() == "press release" ? "press-release" : newsType.toLowerCase();
+    var count = response.get_count();
+
+    if (count == 0) {
+        parentDiv.append("<div>Reached the end of the news feed.</div>");
+        var btnMore = parentDiv.find("#btnMore");
+
+        //btnMore.removeClass("morebutton");
+        //btnMore.addClass("morebuttonnonews");
+        btnMore.prop('disabled', true);
+    }
+    else {
+        for (var i = 0; i < count; i++) {
+            var currentItem = response.getItemAtIndex(i).get_fieldValues();
+            getNewsDataCsom(parentDiv,
+              currentItem.PublishingPageImage,
+              currentItem.FileRef,
+              currentItem.Title,
+              currentItem.ArticleStartDate.format("MM/dd/yyyy"),
+              currentItem.PublishingPageContent,
+              currentItem.CSU_NewsTopic ? currentItem.CSU_NewsTopic.Label : "",
+              newsTypeFormatted,
+              currentItem.CSU_NewsType ? currentItem.CSU_NewsType.Label : "",
+              currentItem.CSU_IntroText);
+        }
+    }
+}
+
+var morePosition;
+var allMorePosition;
+var pressMorePosition;
+var storyMorePosition;
+var videoMorePosition;
+// this method is used by both the news and the archive pages for fetching additional records
+function getSearchResultsUsingREST(parentDiv) {
+    var newsType = "All";
+    var webFilter = "";
+    var activeTab = $("ul.nav-tabs").children(".active");
+
+    if (activeTab.length > 0) {
+        $("ul.nav-tabs").children(".active");
+    }
+
+    // get the news count from the newscount data attribute if it exists, otherwise, take it from the dom attribute
+    // the news count stored in the dom attribute is hard coded in the XSL template
+    var iNewsCount = parseInt(parentDiv.data('newscount') || parentDiv.attr('newsCount'));
+
+    // set the number of rows to return in the "load more" query
+    var rowLimit = CSU_NewsArchiveLoadMoreLimit;
+
+    var webFilter = '';
+    if (_spPageContextInfo.webAbsoluteUrl.indexOf("/csu-system/news") > 0) {
+        webFilter += "+Path:" + _spPageContextInfo.siteAbsoluteUrl + "/csu-system/news/ ";
+
+        // only set the news type if the tabs are present on the page
+        if ($("ul.nav-tabs") && $("ul.nav-tabs").length > 0) {
+            newsType = $("ul.nav-tabs").children(".active").first().text().trim();
+        }
+        webFilter = encodeURIComponent(webFilter);
+    }
+    else if (window.location.href.toLowerCase().indexOf("archive") > 0) {
+        var urlLowerCase = window.location.href.toLowerCase();
+        if (urlLowerCase.indexOf("archive.aspx") > 0) {
+            newsType = 'Press Release';
+        }
+        else if (urlLowerCase.indexOf("archivestories.aspx") > 0) {
+            newsType = 'Story';
+        }
+        else if (urlLowerCase.indexOf("archive-budget.aspx") > 0) {
+            newsType = 'Budget Central';
+        }
+        else if (urlLowerCase.indexOf("archive-testimonials.aspx") > 0) {
+            newsType = 'Story';
+            webFilter = webFilter + " CSUNewsType:\"Voices and Views\" ";
+        }
+        else if (urlLowerCase.indexOf("archive-science-and-csu.aspx") > 0) {
+            newsType = 'Science and CSU';
+        }
+    }
+    else {
+        //all other subsites: COAST, media-center, etc
+        webFilter = "Path:" + _spPageContextInfo.webAbsoluteUrl + " ";
+        webFilter = encodeURIComponent(webFilter);
+    }
+
+    var queryparametertemplate = "&querytemplatepropertiesurl='spfile://webroot/queryparametertemplate.xml'";
+    if (_spPageContextInfo.userId != undefined)
+        queryparametertemplate = '';
+
+    //check for year
+    var year = $j(document).getUrlParam('Year');
+
+    if (!year) {
+        year = $j(document).getUrlParam('year');
+    }
+
+    if (year) {
+        webFilter = webFilter + " CSUArticleYear:\"" + year + "\" ";
+    }
+
+    var searchUrl;
+
+    SP.SOD.executeFunc('sp.js', 'SP.ClientContext', function () {
+        var ctx = new SP.ClientContext.get_current();
+        var list = ctx.get_web().get_lists().getByTitle("Pages");
+        var query = new SP.CamlQuery();
+        getMorePosition(newsType);
+        if(morePosition){
+        	query.set_listItemCollectionPosition(morePosition);
+        }
+        
+        if (newsType == 'All') {
+	        query.set_viewXml("<View>" +
+					"<Query>" +
+					//"<Where><IsNotNull><FieldRef Name='CSU_ArticleStartTime' /></IsNotNull></Where>" +
+					"<OrderBy><FieldRef Name='CSU_ArticleStartTime' Ascending='False' /></OrderBy>" +
+					"</Query><RowLimit>15</RowLimit></View>");
+	    } else {
+	        query.set_viewXml("<View>" +
+					"<Query>" +
+					"<Where><Eq><FieldRef Name='CSU_NewsType' /><Value Type='Lookup'>" + newsType + "</Value></Eq></Where>" +
+					"<OrderBy><FieldRef Name='CSU_ArticleStartTime' Ascending='False' /></OrderBy>" +
+					"</Query><RowLimit>15</RowLimit></View>");	            
+	    }
+
+        var items = list.getItems(query);
+        
+        if(!morePosition){
+        	ctx.load(items);
+			ctx.executeQueryAsync(function () {
+	            var itemCount = items.get_count();
+	            if (items.get_count() > 0) {
+	            	morePosition = items.get_listItemCollectionPosition();
+	            	//parseNewsArchiveListingXMLResultCsom(parentDiv, items, newsType);
+
+	            	query.set_listItemCollectionPosition(morePosition);
+					items = list.getItems(query);
+	                ctx.load(items);
+					ctx.executeQueryAsync(function () {
+			            var itemCount = items.get_count();
+			            if (items.get_count() > 0) {
+			            	morePosition = items.get_listItemCollectionPosition();
+			                parseNewsArchiveListingXMLResultCsom(parentDiv, items, newsType);
+			                updateMorePosition(newsType, morePosition);
+
+			                
+			            }
+			        });
+
+	            }
+	        });
+        }else{
+        	ctx.load(items);
+	        //ctx.load(items, 'Include(Title, PublishingPageImage, FileRef, ID, ArticleStartDate, PublishingPageContent, CSU_NewsTopic, CSU_NewsType, CSU_IntroText, PublishingRollupImage, Created)');
+	        ctx.executeQueryAsync(function () {
+	            var itemCount = items.get_count();
+	            if (items.get_count() > 0) {
+	            	morePosition = items.get_listItemCollectionPosition();
+	                parseNewsArchiveListingXMLResultCsom(parentDiv, items, newsType);
+	                updateMorePosition(newsType, morePosition)
+	            }
+	        });
+        }
+
+        
+    });
+
+    /*
+    jQuery.ajax({
+        url: searchUrl,
+        contentType: "application/json;odata=verbose",
+        headers: { "Accept": "application/json;odata=verbose" },
+        success: function (data, request) {
+          // dynamically chose the render method based on whether we are on the archive page
+          if (parentDiv.hasClass('newsArchiveListing')) {
+            parseNewsArchiveListingXMLResult(parentDiv, data.d.query.PrimaryQueryResult, newsType);
+          } else {
+            parseNewsListingXMLResult(parentDiv, data.d.query.PrimaryQueryResult, newsType);
+          }
+          //var currentNewsCount = parseInt(parentDiv.attr('newsCount'));
+            parentDiv.data('newscount', iNewsCount + rowLimit);
+            parentDiv.attr('newsCount', iNewsCount + rowLimit);
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            var parentDiv = document.getElementById('divParent');
+            var msg = document.createElement("div");
+            msg.innerHTML = "An error occurred while searching for related content : " + thrownError;
+            parentDiv.appendChild(msg);
+        }
+    });
+    */
+}
+
+function getMorePosition(newsType){
+	switch(newsType){
+		case 'All':
+			morePosition = allMorePosition;
+			break;
+		case 'Press Release':
+			morePosition = pressMorePosition;
+			break;
+		case 'Story':
+			morePosition = storyMorePosition;
+			break;
+		case 'Video':	
+			morePosition = videoMorePosition;
+			break;
+	}
+}
+
+function updateMorePosition(newsType, moreValue){
+	switch(newsType){
+		case 'All':
+			allMorePosition = moreValue;
+			break;
+		case 'Press Release':
+			pressMorePosition = moreValue;
+			break;
+		case 'Story':
+			storyMorePosition = moreValue;
+			break;
+		case 'Video':	
+			videoMorePosition = moreValue;
+			break;
+	}
+}

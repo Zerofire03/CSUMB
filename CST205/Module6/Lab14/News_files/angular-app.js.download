@@ -1,0 +1,613 @@
+var csuApp = angular.module("csu-app", []);
+
+csuApp.config(function ($compileProvider) {
+    $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|javascript):/);
+});
+
+csuApp.filter('newsTopicFilter', [function () {
+    return function (items, searchText) {
+        var filtered = [];
+        searchText = searchText;
+        angular.forEach(items, function (item) {
+            if (item.NewsTopic == searchText || item.SecondaryNewsTopics.indexOf(searchText) >= 0)
+                filtered.push(item);
+        });
+
+        return filtered;
+    };
+}]);
+
+csuApp.controller("SpotlightController", function ($scope, $sce) {
+    $scope.SpotlightTitle = "In the Spotlight";
+    $scope.topicString = [];
+    $scope.topics = [];
+    $scope.allNewsItems = [];
+    $scope.topicNewsItems = [];
+    $scope.currentTopic = '#topic0';
+    $scope.topicQueryParams = '';
+
+    $scope.optionSelectionMade = function () {
+        console.log('$scope.optionSelectionMade:' + $scope.currentTopic);
+        //reflect ng-model change of $scope.currentTopic
+        var selector = "#ulSpotlight a[href='" + $scope.currentTopic + "']";
+        jQuery(selector).trigger("click");
+    };
+
+    $scope.tabSelectionMade = function ($event) {
+        //console.log('$scope.tabSelectionMade:' + selection);
+        console.log($event.target);
+        //reflect tab selection in dropdown by updating the underlying model $scope.currentTopic
+        $scope.currentTopic = $event.target.hash;
+    };
+
+    $scope.init = function (title, topicString) {
+        //This function is sort of private constructor for controller
+        $scope.SpotlightTitle = title;
+        $scope.topicString = topicString;
+        var topicStringSplit = topicString.split(',');
+
+        for (var i = 0; i <= topicStringSplit.length; i++) {
+            var topicName = topicStringSplit[i];
+            if (typeof topicName == 'undefined' || topicName.trim() == '')
+                continue;
+
+            var topic = [];
+            topic.id = 'topic' + i + 1;
+            topic.displayName = topicName.trim();
+            if (topic.displayName != '') {
+                $scope.topicQueryParams += ' CSUNewsTopic:"' + topic.displayName + '"';
+                $scope.topics.push(topic);
+            }
+        }
+
+        $("#ulSpotlight").tab();
+        //$("#ulSpotlight").tab("option", "selected", 0);
+
+        $scope.currentTopic = 'topic0';
+
+        var allNewsTopic = '';
+
+        //get top 4 stories anywhere
+        if (window.location.href.toLowerCase().indexOf('alumni') > 0)
+            allNewsTopic = BuildSingleTopicConditional('Alumni', 'News');
+        else if (title == "Research News")
+            allNewsTopic = BuildSingleTopicConditional('Research', 'News');
+        else if (title == "Basic Needs News")
+            allNewsTopic = BuildSingleTopicConditional('Basic Needs', 'News');
+
+        getContentViaSearchByTopicType(allNewsTopic, "news", 10).then(function (results) {
+            var view_output = [];
+            for (var i = 0; i < results.length; i++) {
+                //results[i].Body = $sce.trustAsHtml(results[i].Body);
+
+                if (results[i].ThumbnailImage != '')
+                    view_output.push(results[i]);
+            }
+            $scope.allNewsItems = view_output;
+
+            //console.ReportAjaxResult('SpotlightController', $scope.allNewsItems);
+            $scope.$apply();
+            csu.adjustSpotlightTitleHeight();
+        });
+
+        getTopicContentViaSearch($scope.topicString, "News", 50).then(function (results) {
+            var view_output = [];
+            for (var i = 0; i < results.length; i++) {
+                //results[i].Body = $sce.trustAsHtml(results[i].Body);
+
+                if (results[i].ThumbnailImage != '')
+                    view_output.push(results[i]);
+            }
+            $scope.topicNewsItems = view_output;
+
+            //console.ReportAjaxResult('SpotlightController', $scope.topicNewsItems);
+            $scope.$apply();
+            csu.adjustSpotlightTitleHeight();
+        });
+    };
+});
+
+csuApp.controller("SpotlightcsomController", function ($scope, $sce) {
+    $scope.SpotlightTitle = "In the Spotlight";
+    $scope.topicString = [];
+    $scope.topics = [];
+    $scope.allNewsItems = [];
+    $scope.topicNewsItems = [];
+    $scope.currentTopic = '#topic0';
+    $scope.topicQueryParams = '';
+
+    $scope.optionSelectionMade = function () {
+        console.log('$scope.optionSelectionMade:' + $scope.currentTopic);
+        //reflect ng-model change of $scope.currentTopic
+        var selector = "#ulSpotlight a[href='" + $scope.currentTopic + "']";
+        jQuery(selector).trigger("click");
+    };
+
+    $scope.tabSelectionMade = function ($event) {
+        //console.log('$scope.tabSelectionMade:' + selection);
+        console.log($event.target);
+        //reflect tab selection in dropdown by updating the underlying model $scope.currentTopic
+        $scope.currentTopic = $event.target.hash;
+    };
+
+    $scope.init = function (title, topicString) {
+        //This function is sort of private constructor for controller
+        $scope.SpotlightTitle = title;
+        $scope.topicString = topicString;
+        var topicStringSplit = topicString.split(',');
+
+        for (var i = 0; i <= topicStringSplit.length; i++) {
+            var topicName = topicStringSplit[i];
+            if (typeof topicName == 'undefined' || topicName.trim() == '')
+                continue;
+
+            var topic = [];
+            topic.id = 'topic' + i + 1;
+            topic.displayName = topicName.trim();
+            if (topic.displayName != '') {
+                $scope.topicQueryParams += ' CSUNewsTopic:"' + topic.displayName + '"';
+                $scope.topics.push(topic);
+            }
+        }
+
+        $("#ulSpotlight").tab();
+        //$("#ulSpotlight").tab("option", "selected", 0);
+
+        $scope.currentTopic = 'topic0';
+        SP.SOD.executeFunc('sp.js', 'SP.ClientContext', function () {
+            //get news context
+            var newsCtx = new SP.ClientContext("/csu-system/news");
+
+            //get media center context
+            //var mediaCtx = new SP.ClientContext("/csu-system/media-center");
+
+            function getNewsItems(ctx) {
+                //get pages list
+                var list = ctx.get_web().get_lists().getByTitle("Pages");
+                var pinnedQuery = new SP.CamlQuery();
+                pinnedQuery.set_viewXml("<View>" +
+    								"<Query>" +
+    								"<Where><Eq><FieldRef Name='ContentType' /><Value Type='Lookup'>CSU News</Value></Eq></Where>" +
+    								"<OrderBy><FieldRef Name='PinToHome' Ascending='FALSE' /><FieldRef Name='CSU_ArticleStartTime' Ascending='FALSE' /></OrderBy>" +
+        							"</Query><RowLimit>1</RowLimit></View>");
+                var topQuery = new SP.CamlQuery();
+                topQuery.set_viewXml("<View>" +
+    								"<Query>" +
+    								"<Where><Eq><FieldRef Name='ContentType' /><Value Type='Lookup'>CSU News</Value></Eq></Where>" +
+    								"<OrderBy><FieldRef Name='CSU_ArticleStartDate' Ascending='FALSE' /><FieldRef Name='CSU_ArticleStartTime' Ascending='FALSE' /></OrderBy>" +
+        							"</Query><RowLimit>4</RowLimit></View>");
+
+                var query = new SP.CamlQuery();
+                query.set_viewXml("<View>" +
+    								"<Query>" +
+    								"<Where><Eq><FieldRef Name='ContentType' /><Value Type='Lookup'>CSU News</Value></Eq></Where>" +
+    								"<OrderBy><FieldRef Name='CSU_ArticleStartDate' Ascending='FALSE' /><FieldRef Name='CSU_ArticleStartTime' Ascending='FALSE' /></OrderBy>" +
+        							"</Query><RowLimit>75</RowLimit></View>");
+                //query list
+                var items = list.getItems(query);
+                var pinnedItem = list.getItems(pinnedQuery);
+                var topItems = list.getItems(topQuery);
+
+                //transform results
+
+                ctx.load(pinnedItem, 'Include(ArticleStartDate, CSU_ArticleStartTime, PinToHome, Title, PublishingPageImage, CSU_NewsTopic, CSU_SecondaryNewsTopics, FileRef, ID, PublishingRollupImage)');
+                ctx.load(topItems, 'Include(ArticleStartDate, CSU_ArticleStartTime, PinToHome, Title, PublishingPageImage, CSU_NewsTopic, CSU_SecondaryNewsTopics, FileRef, ID, PublishingRollupImage)');
+                ctx.executeQueryAsync(function () {
+                    var allItems = [];
+                    var topItem
+                    for (var i = 0; i < pinnedItem.get_count() ; i++) {
+                        var pageItem = pinnedItem.getItemAtIndex(i);
+                        topItem = csuApp.convertCsomToJSON(pageItem);
+                        if (topItem.ThumbnailImage != null) {
+                            allItems.push(topItem);
+                        }
+                    }
+
+                    for (var i = 0; i < topItems.get_count() ; i++) {
+                        var pageItem = topItems.getItemAtIndex(i);
+                        var newsItem = csuApp.convertCsomToJSON(pageItem);
+                        if (newsItem.ThumbnailImage != null && newsItem.Id != topItem.Id) {
+                            allItems.push(newsItem);
+                        }
+                    }
+
+                    $scope.allNewsItems = allItems;
+                    $scope.$apply();
+                    csu.adjustSpotlightTitleHeight();
+                    ctx.load(items, 'Include(ArticleStartDate, CSU_ArticleStartTime, PinToHome, Title, PublishingPageImage, CSU_NewsTopic, CSU_SecondaryNewsTopics, FileRef, ID, PublishingRollupImage)');
+                    ctx.executeQueryAsync(function () {
+                        for (var i = 0; i < items.get_count() ; i++) {
+                            var pageItem = items.getItemAtIndex(i);
+                            var newsItem = csuApp.convertCsomToJSON(pageItem);
+                            var found = false;
+                            for (var j = 0; j < allItems.length; j++) {
+                                if (allItems[j].Id == newsItem.Id) {
+                                    found = true;
+                                    break;
+                                }
+                            }
+
+                            if (!found && newsItem.ThumbnailImage != null && newsItem.Id != topItem.Id) {
+                                allItems.push(newsItem);
+                            }
+                        }
+                        $scope.$apply();
+                        csu.adjustSpotlightTitleHeight();
+                    }, function () {
+                    });
+                }, function () {
+                });
+            }
+
+            getNewsItems(newsCtx);
+            //getNewsItems(mediaCtx);
+        });
+    };
+});
+
+csuApp.controller("SpotlightCsomTopicController", function ($scope, $sce) {
+    $scope.SpotlightTitle = "In the Spotlight";
+    $scope.topicString = [];
+    $scope.topics = [];
+    $scope.allNewsItems = [];
+    $scope.topicNewsItems = [];
+    $scope.currentTopic = '#topic0';
+    $scope.topicQueryParams = '';
+
+    $scope.optionSelectionMade = function () {
+        console.log('$scope.optionSelectionMade:' + $scope.currentTopic);
+        //reflect ng-model change of $scope.currentTopic
+        var selector = "#ulSpotlight a[href='" + $scope.currentTopic + "']";
+        jQuery(selector).trigger("click");
+    };
+
+    $scope.tabSelectionMade = function ($event) {
+        //console.log('$scope.tabSelectionMade:' + selection);
+        console.log($event.target);
+        //reflect tab selection in dropdown by updating the underlying model $scope.currentTopic
+        $scope.currentTopic = $event.target.hash;
+    };
+
+    $scope.init = function (title, topicString) {
+        //This function is sort of private constructor for controller
+        $scope.SpotlightTitle = title;
+        $scope.topicString = topicString;
+        var topicStringSplit = topicString.split(',');
+
+        for (var i = 0; i <= topicStringSplit.length; i++) {
+            var topicName = topicStringSplit[i];
+            if (typeof topicName == 'undefined' || topicName.trim() == '')
+                continue;
+
+            var topic = [];
+            topic.id = 'topic' + i + 1;
+            topic.displayName = topicName.trim();
+            if (topic.displayName != '') {
+                $scope.topicQueryParams += ' CSUNewsTopic:"' + topic.displayName + '"';
+                $scope.topics.push(topic);
+            }
+        }
+
+        $("#ulSpotlight").tab();
+        //$("#ulSpotlight").tab("option", "selected", 0);
+
+        $scope.currentTopic = 'topic0';
+        SP.SOD.executeFunc('sp.js', 'SP.ClientContext', function () {
+            //get news context
+            var newsCtx = new SP.ClientContext("/csu-system/news");
+
+            function getNewsItems(ctx) {
+                //get pages list
+                var list = ctx.get_web().get_lists().getByTitle("Pages");
+                var primaryQuery = new SP.CamlQuery();
+                primaryQuery.set_viewXml("<View>" +
+    								"<Query>" +
+    								"<Where><Eq><FieldRef Name='CSU_NewsTopic' /><Value Type='Lookup'>" + topicString + "</Value></Eq></Where>" +
+    								"<OrderBy><FieldRef Name='CSU_ArticleStartDate' Ascending='FALSE' /><FieldRef Name='CSU_ArticleStartTime' Ascending='FALSE' /></OrderBy>" +
+        							"</Query><RowLimit>4</RowLimit></View>");
+
+                var secondaryQuery = new SP.CamlQuery();
+                secondaryQuery.set_viewXml("<View>" +
+    								"<Query>" +
+    								"<Where><Eq><FieldRef Name='CSU_SecondaryNewsTopics' /><Value Type='Lookup'>" + topicString + "</Value></Eq></Where>" +
+    								"<OrderBy><FieldRef Name='CSU_ArticleStartDate' Ascending='FALSE' /><FieldRef Name='CSU_ArticleStartTime' Ascending='FALSE' /></OrderBy>" +
+        							"</Query><RowLimit>4</RowLimit></View>");
+
+                //query list
+                var primaryItems = list.getItems(primaryQuery);
+                var secondaryItems = list.getItems(secondaryQuery);
+                //transform results
+                ctx.load(primaryItems, 'Include(ArticleStartDate, CSU_ArticleStartTime, PinToHome, Title, PublishingPageImage, CSU_NewsTopic, CSU_SecondaryNewsTopics, FileRef, ID, PublishingRollupImage)');
+                ctx.load(secondaryItems, 'Include(ArticleStartDate, CSU_ArticleStartTime, PinToHome, Title, PublishingPageImage, CSU_NewsTopic, CSU_SecondaryNewsTopics, FileRef, ID, PublishingRollupImage)');
+                ctx.executeQueryAsync(function () {
+                    var allItems = [];
+                    for (var i = 0; i < primaryItems.get_count() ; i++) {
+                        var pageItem = primaryItems.getItemAtIndex(i);
+                        var newsItem = csuApp.convertCsomToJSON(pageItem);
+                        var found = false;
+                        for (var j = 0; j < allItems.length; j++) {
+                            if (allItems[j].Id == newsItem.Id) {
+                                found = true;
+                                break;
+                            }
+                        }
+
+                        if (!found && newsItem.ThumbnailImage != null && (newsItem.NewsTopic == topicString || newsItem.SecondaryNewsTopics.indexOf(topicString) >= 0)) {
+                            allItems.push(newsItem);
+                        }
+                    }
+
+                    for (var i = 0; i < secondaryItems.get_count() ; i++) {
+                        var pageItem = secondaryItems.getItemAtIndex(i);
+                        var newsItem = csuApp.convertCsomToJSON(pageItem);
+                        var found = false;
+                        for (var j = 0; j < allItems.length; j++) {
+                            if (allItems[j].Id == newsItem.Id) {
+                                found = true;
+                                break;
+                            }
+                        }
+
+                        if (!found && newsItem.ThumbnailImage != null && (newsItem.NewsTopic == topicString || newsItem.SecondaryNewsTopics.indexOf(topicString) >= 0)) {
+                            allItems.push(newsItem);
+                        }
+                    }
+					allItems.sort(function(a, b){
+						return a.ArticleStartDate < b.ArticleStartDate;
+					});
+                    $scope.allNewsItems = allItems;
+                    $scope.$apply();
+                    csu.adjustSpotlightTitleHeight();
+                }, function () {
+                });
+            }
+
+            getNewsItems(newsCtx);
+            //getNewsItems(mediaCtx);
+        });
+    };
+});
+
+csuApp.controller("NewsTopicController", function ($scope, $sce) {
+    $scope.SpotlightTitle = "In the Spotlight";
+    $scope.topicString = [];
+    $scope.topics = [];
+    $scope.allNewsItems = [];
+    $scope.topicNewsItems = [];
+    $scope.currentTopic = '#topic0';
+    $scope.topicQueryParams = '';
+
+    $scope.optionSelectionMade = function () {
+        console.log('$scope.optionSelectionMade:' + $scope.currentTopic);
+        //reflect ng-model change of $scope.currentTopic
+        var selector = "#ulSpotlight a[href='" + $scope.currentTopic + "']";
+        jQuery(selector).trigger("click");
+    };
+
+    $scope.tabSelectionMade = function ($event) {
+        //console.log('$scope.tabSelectionMade:' + selection);
+        console.log($event.target);
+        //reflect tab selection in dropdown by updating the underlying model $scope.currentTopic
+        $scope.currentTopic = $event.target.hash;
+    };
+
+    $scope.init = function (title, topicString) {
+        //This function is sort of private constructor for controller
+        $scope.SpotlightTitle = title;
+        $scope.topicString = topicString;
+        var topicStringSplit = topicString.split(',');
+
+        for (var i = 0; i <= topicStringSplit.length; i++) {
+            var topicName = topicStringSplit[i];
+            if (typeof topicName == 'undefined' || topicName.trim() == '')
+                continue;
+
+            var topic = [];
+            topic.id = 'topic' + i + 1;
+            topic.displayName = topicName.trim();
+            if (topic.displayName != '') {
+                $scope.topicQueryParams += ' CSUNewsTopic:"' + topic.displayName + '"';
+                $scope.topics.push(topic);
+            }
+        }
+
+        $("#ulSpotlight").tab();
+        //$("#ulSpotlight").tab("option", "selected", 0);
+
+        $scope.currentTopic = 'topic0';
+
+        var allNewsTopic = BuildSingleTopicConditional(topicString, 'News');
+
+        getContentViaSearchByTopicType(allNewsTopic, "news", 10).then(function (results) {
+            var view_output = [];
+            for (var i = 0; i < results.length; i++) {
+                //results[i].Body = $sce.trustAsHtml(results[i].Body);
+
+                if (results[i].ThumbnailImage != '')
+                    view_output.push(results[i]);
+            }
+            $scope.allNewsItems = view_output;
+
+            //console.ReportAjaxResult('SpotlightController', $scope.allNewsItems);
+            $scope.$apply();
+            csu.adjustSpotlightTitleHeight();
+        });
+
+        getTopicContentViaSearch($scope.topicString, "News", 50).then(function (results) {
+            var view_output = [];
+            for (var i = 0; i < results.length; i++) {
+                //results[i].Body = $sce.trustAsHtml(results[i].Body);
+
+                if (results[i].ThumbnailImage != '')
+                    view_output.push(results[i]);
+            }
+            $scope.topicNewsItems = view_output;
+
+            //console.ReportAjaxResult('SpotlightController', $scope.topicNewsItems);
+            $scope.$apply();
+            csu.adjustSpotlightTitleHeight();
+        });
+    };
+});
+
+csuApp.controller("SingleNewsTopicController", function ($scope, $sce) {
+    $scope.SpotlightTitle = "In the Spotlight";
+    $scope.topicString = [];
+    $scope.topics = [];
+    $scope.allNewsItems = [];
+    $scope.topicNewsItems = [];
+    $scope.currentTopic = '#topic0';
+    $scope.topicQueryParams = '';
+
+    $scope.optionSelectionMade = function () {
+        console.log('$scope.optionSelectionMade:' + $scope.currentTopic);
+        //reflect ng-model change of $scope.currentTopic
+        var selector = "#ulSpotlight a[href='" + $scope.currentTopic + "']";
+        jQuery(selector).trigger("click");
+    };
+
+    $scope.tabSelectionMade = function ($event) {
+        //console.log('$scope.tabSelectionMade:' + selection);
+        console.log($event.target);
+        //reflect tab selection in dropdown by updating the underlying model $scope.currentTopic
+        $scope.currentTopic = $event.target.hash;
+    };
+
+    $scope.init = function (title, topicString) {
+        //This function is sort of private constructor for controller
+        $scope.SpotlightTitle = title;
+        $scope.topicString = topicString;
+        var topicStringSplit = topicString.split(',');
+
+        for (var i = 0; i <= topicStringSplit.length; i++) {
+            var topicName = topicStringSplit[i];
+            if (typeof topicName == 'undefined' || topicName.trim() == '')
+                continue;
+
+            var topic = [];
+            topic.id = 'topic' + i + 1;
+            topic.displayName = topicName.trim();
+            if (topic.displayName != '') {
+                $scope.topicQueryParams += ' CSUNewsTopic:"' + topic.displayName + '"';
+                $scope.topics.push(topic);
+            }
+        }
+
+        $("#ulSpotlight").tab();
+        //$("#ulSpotlight").tab("option", "selected", 0);
+
+        $scope.currentTopic = 'topic0';
+
+        var allNewsTopic = BuildSingleTopicConditional(topicString, 'News');
+
+        getContentViaSearchByTopicType(allNewsTopic, "news", 4).then(function (results) {
+            var view_output = [];
+            for (var i = 0; i < results.length; i++) {
+                //results[i].Body = $sce.trustAsHtml(results[i].Body);
+
+                if (results[i].ThumbnailImage != '')
+                    view_output.push(results[i]);
+            }
+            $scope.allNewsItems = view_output;
+
+            //console.ReportAjaxResult('SpotlightController', $scope.allNewsItems);
+            $scope.$apply();
+            csu.adjustSpotlightTitleHeight();
+        });
+    };
+});
+
+Array.prototype.move = function (old_index, new_index) {
+    if (new_index >= this.length) {
+        var k = new_index - this.length;
+        while ((k--) + 1) {
+            this.push(undefined);
+        }
+    }
+    this.splice(new_index, 0, this.splice(old_index, 1)[0]);
+    return this; // for testing purposes
+};
+
+csuApp.convertCsomToJSON = function (listItem) {
+    var item = listItem.get_fieldValues();
+    var jsonData = {};
+    jsonData.ThumbnailImage = item["PublishingRollupImage"];
+    jsonData.AltTag = "";
+    if (jsonData.ThumbnailImage == null) {
+        jsonData.ThumbnailImage = item["PublishingPageImage"];
+    }
+    if (jsonData.ThumbnailImage != null) {
+        jsonData.ThumbnailImage = jsonData.ThumbnailImage.replace('src', 'ng-src');
+        var imgTags = $(jsonData.ThumbnailImage);
+        if (imgTags.length > 0) {
+            jsonData.ThumbnailImage = imgTags.attr('ng-src');
+            jsonData.AltTag = imgTags.attr('alt');
+        }
+        if (typeof (jsonData.ThumbnailImage) != 'undefined' && jsonData.ThumbnailImage != '' && jsonData.ThumbnailImage != null) {
+            var questionMarkIndex = jsonData.ThumbnailImage.indexOf("?");
+            if (questionMarkIndex > 0)
+                jsonData.ThumbnailImage = jsonData.ThumbnailImage.substring(0, jsonData.ThumbnailImage.indexOf("?")).trim() + '?RenditionId=5';
+            else
+                jsonData.ThumbnailImage = jsonData.ThumbnailImage + '?RenditionId=5';
+        }
+    }
+
+    jsonData.Title = item["Title"];
+    jsonData.Priority = item["CSU_Priority"];
+    jsonData.ArticleStartDate = new Date(item["ArticleStartDate"]);
+    //jsonData.ArticleStartDate = moment(jsonData.ArticleStartDate).format("MMM DD, YYYY");
+
+    jsonData.NewsTopic = item["CSU_NewsTopic"] ? item["CSU_NewsTopic"].Label : null;
+    jsonData.SecondaryNewsTopics = JSON.stringify(item["CSU_SecondaryNewsTopics"]);
+    jsonData.Path = item["FileRef"];
+    jsonData.PinToHome = item["PinToHome"];
+    jsonData.Id = item["ID"];
+    return jsonData;
+}
+
+csuApp.controller("EmployeeProfileSpotlightController", function ($scope, $sce) {
+    $scope.topicString = [];
+    $scope.topics = [];
+    $scope.allNewsItems = [];
+    $scope.topicNewsItems = [];
+    $scope.currentTopic = '#topic0';
+    $scope.topicQueryParams = '';
+
+    $scope.optionSelectionMade = function () {
+        console.log('$scope.optionSelectionMade:' + $scope.currentTopic);
+        //reflect ng-model change of $scope.currentTopic
+        var selector = "#ulSpotlight a[href='" + $scope.currentTopic + "']";
+        jQuery(selector).trigger("click");
+    };
+
+    $scope.tabSelectionMade = function ($event) {
+        //console.log('$scope.tabSelectionMade:' + selection);
+        console.log($event.target);
+        //reflect tab selection in dropdown by updating the underlying model $scope.currentTopic
+        $scope.currentTopic = $event.target.hash;
+    };
+
+    $scope.init = function (title) {
+        //This function is sort of private constructor for controller
+        $scope.SpotlightTitle = title;
+
+        $scope.currentTopic = 'topic0';
+
+        var allNewsTopic = '';
+
+        getContentViaSearchByTopicType(allNewsTopic, "employeeprofile", 10).then(function (results) {
+            var view_output = [];
+            for (var i = 0; i < results.length; i++) {
+                //results[i].Body = $sce.trustAsHtml(results[i].Body);
+
+                if (results[i].ThumbnailImage != '')
+                    view_output.push(results[i]);
+            }
+            $scope.allNewsItems = view_output;
+
+            //console.ReportAjaxResult('SpotlightController', $scope.allNewsItems);
+            $scope.$apply();
+            csu.adjustSpotlightTitleHeight();
+        });
+    };
+});

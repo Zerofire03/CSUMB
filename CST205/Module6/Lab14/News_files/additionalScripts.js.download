@@ -1,0 +1,1164 @@
+﻿var csu = csu || {};
+(function ($, csu) {
+	
+    csu.fixCardContainersHeight = function () {
+        var $cardContainers = $('.card-container');
+        var $cardContainerInner = $('.card-container-inner');
+        var $allRows = $('div.row');
+        var bodyWidth = $(window).width();
+
+        $cardContainers.css('height', 'auto');
+        
+        $allRows.each(function(){
+        	var $rowCards = $(this).find('.card-container');
+        	var rowMaxHeight = 0;
+        	$rowCards.each(function(){
+	        	var currentHeight = $(this).height();
+	        	
+	        	if(currentHeight > rowMaxHeight && bodyWidth > 768){
+	        		rowMaxHeight = currentHeight;
+	        	} else {
+	        	// AJR adjust cards on mobile interface
+					$cardContainerInner.css('height', '100%');
+	        	}	        	
+        	});
+        	
+    		// AJR adjust cards on mobile interface
+        	if(rowMaxHeight == 0){
+        		$rowCards.css('height','100%');
+        	} else{
+        		$rowCards.css('height', rowMaxHeight + 'px');
+        	}        	
+        });
+        
+        if ($cardContainers.length > 1) {
+            $(window).resize(function () {
+                $cardContainers.css('height', 'auto');
+        
+		        $allRows.each(function(){
+		        	var $rowCards = $(this).find('.card-container');
+		        	var rowMaxHeight = 0;
+		        	$rowCards.each(function(){
+			        	var currentHeight = $(this).height();
+			        	
+			        	if(currentHeight > rowMaxHeight){
+			        		rowMaxHeight = currentHeight; 
+			        	}
+		        	});
+		        	
+					$rowCards.css('height', rowMaxHeight + 'px');
+		        	
+		        });
+            });
+        }
+        
+        var $qaContainers = $('.qacontainer');
+		$qaContainers.each(function(){
+	    	if(bodyWidth > 768){
+		    	var imageHeight = $(this).find('.qaimage').height();
+				$(this).find('.qabracket').height(imageHeight);
+	    	} else {
+		    	var imageHeight = $(this).find('.qainfo').height();
+				$(this).find('.qabracket').height(imageHeight);
+	    	}
+			
+		});
+		
+		if($qaContainers.length > 0){
+			$(window).resize(function () {
+				bodyWidth = $(window).width();
+
+               $qaContainers.each(function(){
+			    	if(bodyWidth > 768){
+				    	var imageHeight = $(this).find('.qaimage').height();
+						$(this).find('.qabracket').height(imageHeight);
+			    	} else {
+				    	var imageHeight = $(this).find('.qainfo').height();
+						$(this).find('.qabracket').height(imageHeight);
+			    	}
+					
+				});
+            });
+		}
+    };
+    csu.fixGrayBoxesHeight = function () {
+        $('.col-sm-4.bg-lightest-gray').each(function () {
+            //get parent container
+            $(this).css("height", "");
+            $container = $(this).parents('.container:first');
+            var maxHeight = 0;
+            $container.find('.col-sm-4').each(function () {
+                if ($(this).height() > maxHeight) {
+                    maxHeight = $(this).height();
+                }
+            });
+            $(this).height(maxHeight);
+
+        });
+    }
+/* Function used to decide if the navigation container(aside) is larger than the main container(main), if so it adjusts the page accordingly */
+
+ csu.evenTheSections = function () {
+        /*var mainHeight = $('main').css('height', 'auto').height();
+        var asideHeight = $('aside').css('height', 'auto').height();
+        var newAsideHeight = asideHeight + 325;
+        console.log("Main & Aside Sections are now even!!!");
+       if (asideHeight > mainHeight) {
+       document.getElementsByTagName("main").removeAttribute("style");
+			$('main').height(newAsideHeight);
+        }*/
+        var mainHeight = $('main').css('height', 'auto').height();
+        var asideHeight = $('aside').css('height', 'auto').height();
+		var newMainHeight = asideHeight;
+        /*
+	        alert(asideHeight );
+	        alert(newAsideHeight );
+        */
+       if (asideHeight > mainHeight) {
+	   $("aside").removeAttr("style");
+	   $("main").removeAttr("style");
+			$('main').height(newMainHeight);
+			console.log("Main & Aside Sections are now even!!!");
+        } else if (asideHeight < mainHeight){
+        console.log("Main & Aside Sections are already Even");
+			}
+    };
+
+/* Function used to copy URL and use it to make a css class */
+    function includes(container, value) {
+        var returnValue = false;
+        var pos = container.indexOf(value);
+        if (pos >= 0) {
+            returnValue = true;
+        }
+        return returnValue;
+    }
+    csu.urlToCSS = function () {
+        var url = window.location.pathname.replace(/\/$/, "");
+        var filename = url.substring(url.lastIndexOf('/') + 1).toLowerCase();
+        var defaultPage = includes(url, "default.aspx");
+        if (defaultPage == true) {
+            url = $(location).attr('href').split('/');
+            filename = url[url.length - 3];
+        } else {
+            filename = url.substring(url.lastIndexOf('/') + 1).replace(".aspx", "").toLowerCase();
+        }
+        document.body.className = filename;
+        console.log("CSS Class: " + filename);
+    };
+    
+
+    /*Function used to add iframe for video to lightbox modal. Add the URL to the id of the tag.*/
+    csu.appendLightBoxVideoData = function () {
+        $('.light_Box_Video').each(function () {
+            $(this).click(function () {
+                var bodyWidth = $(window).width();
+
+                if (bodyWidth < 768) {
+                    window.location = $(this).attr('id');
+                }
+
+                var htmlToAppend = '<iframe width="860" height="515" src="',
+					url = $(this).attr('id');
+
+                if (typeof url !== 'undefined' && url !== '') {
+                    htmlToAppend += url + '?badge=0&amp;autoplay=1&amp;html5=1" frameborder="0" allowfullscreen="" class="embed-responsive-item"></iframe>';
+
+                    $('#myModal .carousel-inner').each(function () {
+                        var carouselParent = $(this).parent().parent().parent().parent().parent().attr('class');
+
+                        carouselParent = typeof carouselParent !== 'undefined' ? carouselParent : '';
+
+                        if (carouselParent.indexOf('modal') !== -1) {
+                            $(this).empty();
+                            $(this).append(htmlToAppend);
+                        }
+                    });
+
+                    $('#myModal').modal('show');
+                }
+            });
+        });
+    };
+
+    csu.getMoreEmployeeProfiles = function () {
+        //contentTypeId, additionalConditions, selectProperties, sortList, rowLimit, excludeCurrentPath
+        var ctId = "0x010100C568DB52D9D0A14D9B2FDCC96666E9F2007948130EC3DB064584E219954237AF3900242457EFB8B24247815D688C526CD44D006CA2DEE92FF91A4A9A731D1321FDEDC7";
+        var selectProperties = "Path,Title,PublishingImage";
+        var $moreProfilesContainer = $('#sectRelatedNews');
+        getContentViaSearch(ctId, "", selectProperties, "", 5, true).then(function (data) {
+            var results = data.RelevantResults.Table.Rows.results;
+            if (results.length > 1) {
+                var html = "";
+                var firstIndex = Math.floor((Math.random() * results.length));
+                var secondIndex = firstIndex;
+                while (firstIndex == secondIndex) {
+                    secondIndex = Math.floor((Math.random() * results.length));
+                }
+                html += getMoreEmployeeProfilePreview(results[firstIndex]);
+                html += "<hr class='styled-hr-1'>";
+                html += getMoreEmployeeProfilePreview(results[secondIndex]);
+
+                $moreProfilesContainer.append(html);
+            }
+            else {
+                $moreProfilesContainer.hide();
+            }
+        });
+    };
+    csu.hideEmptyTitleField = function () {
+        var $pageTitle = $('.page-title');
+        var pageTitleValue = $pageTitle.text().trim();
+
+        if (pageTitleValue == "") {
+            $pageTitle.hide();
+        }
+    }
+    csu.adjustCardContainer = function () {
+        var highestBox = 0;
+        $('.card-container-inner').each(function () {
+            if ($(this).height() > highestBox) {
+                highestBox = $(this).height();
+            }
+        });
+        $('.card-container-inner').height(highestBox);
+    }
+
+    csu.getMoreCsuProfiles = function () {
+        //contentTypeId, additionalConditions, selectProperties, sortList, rowLimit, excludeCurrentPath
+        var ctId = "0x010100C568DB52D9D0A14D9B2FDCC96666E9F2007948130EC3DB064584E219954237AF3900242457EFB8B24247815D688C526CD44D000940782E7B336048B9CA96AC37BA3134";
+        var selectProperties = "Path,ArticleByLine,HeroImageOWSIMGE";
+        var $moreProfilesContainer = $('#moreProfilesContainer');
+        SP.SOD.executeFunc('sp.js', 'SP.ClientContext', function () {
+			var ctx = new SP.ClientContext.get_current();
+			var list = ctx.get_web().get_lists().getByTitle("Pages");
+			var query = new SP.CamlQuery();
+			query.set_viewXml("<View>" +
+						"<Query>" +
+						"<Where><And><IsNotNull><FieldRef Name='HeroImage' /></IsNotNull><Neq><FieldRef Name='FileRef' /><Value Type='File'>"+window.location.pathname+"</Value></Neq></And></Where>" +
+						"<OrderBy><FieldRef Name='Created' Ascending='False' /></OrderBy>" +
+						"</Query><RowLimit>10</RowLimit></View>");
+			var items = list.getItems(query);
+			ctx.load(items, 'Include(Title, PublishingPageImage, FileRef, ID, CSUProfileName, CSUProfileType, Initiative, HeroImage, ArticleByLine, PublishingRollupImage)');
+			ctx.executeQueryAsync(function () {
+				var itemCount = items.get_count();
+				if (items.get_count() > 0) {
+					var html = "";
+	                var firstIndex = Math.floor((Math.random() * itemCount));
+	                var secondIndex = firstIndex;
+	                var thirdIndex = firstIndex;
+	                
+	                while (firstIndex == secondIndex) {
+	                    secondIndex = Math.floor((Math.random() * itemCount));
+	                }
+	                	                
+	                html += getMoreProfilePreviewCsom(items.getItemAtIndex(firstIndex).get_fieldValues());
+	                html += "<hr class='styled-hr-1'>";
+	                html += getMoreProfilePreviewCsom(items.getItemAtIndex(secondIndex).get_fieldValues());
+	
+	                $moreProfilesContainer.find('.more-profiles').append(html);
+	 
+				}
+			});
+		});
+
+    };
+    
+    csu.adjustMoreLink = function (pageName) {
+        var $moreLink = $('.moreLink');
+        var href = $moreLink.attr('href');
+        if (!pageName) {
+            return false;
+        }
+        href = href.replace('Archive.aspx', pageName);
+        hrefParts = href.split('?');
+        if (hrefParts.length > 1) {
+            href = hrefParts[0];
+        }
+        $moreLink.attr('href', href);
+    }
+
+    csu.setupCarousel = function () {
+        /* copy loaded thumbnails into carousel */
+            var carouselInit = false;
+
+            /* when clicking a thumbnail */
+            $('#profileImages img').click(function () {
+                if (!carouselInit) {
+                    carouselInit = true;
+                    $('#profileImages img').each(function (i) {
+                        var item = $('<div class="item"></div>');
+                        var itemDiv = $('<img/>');//.parents('div');
+                        var imageUrl = $(this).attr('src');
+                        var altText = $(this).attr('alt');
+                        var titleText = $(this).attr('title');
+                        var imageSrcParts = imageUrl.split('?');
+		                if (imageSrcParts.length > 1) {
+		                    imageUrl = imageSrcParts[0];
+		                }
+
+                        if (titleText != '' && typeof(titleText) != 'undefined') {
+                            item.append('<div class="overlay-bg"><div class="overlay-text"><p>' + titleText + '</p></div></div>');
+                        }
+                        else if (altText != '') {
+                            item.append('<div class="overlay-bg"><div class="overlay-text"><p>' + altText + '</p></div></div>');
+                        }
+                        $(itemDiv).attr('src', imageUrl);
+
+                        $(itemDiv).appendTo(item);
+                        item.appendTo('#largeModal .carousel-inner');
+                        if (i == 0) { // set first item active
+                            item.addClass('active');
+                        }
+
+                        /* activate the carousel */
+                        $('#largeModalCarousel').carousel({ interval: false });
+                    });
+                }
+                var idx = $(this).index();
+
+                var id = parseInt(idx);
+                $('#largeModal').modal('show'); // show the modal
+                $('#largeModalCarousel').carousel(id); // slide carousel to selected        
+          });
+          
+          $('#profileImages video, #profileImages i.fa-play').click(function(){
+          	var video = $(this).parent().find('video')[0];
+          	var $playButton = $(this).parent().find('i.fa-play');
+          	if(video.paused){
+          		video.play();
+          		video.controls = true;
+          		$playButton.hide();
+          	}
+          	else{
+          		video.pause();
+          		video.controls = false;
+          		$playButton.show();
+          	}
+          });
+          
+          var $profileVideos = $('.profile-video');
+        if ($profileVideos.length > 0) {
+            $(window).resize(function () {
+            	$profileVideos.each(function(){
+            		var width = $(this).width();
+            		var height = width * .6;
+            		height = Math.round(height);
+            		$(this).height(height);
+            	});        
+		    });
+        }
+    };
+
+    csu.adjustSpotlightTitleHeight = function () {
+        var $titles = $('.spotlight .tab-pane section .story-link:link h2');
+        var maxHeight = 0;
+        $titles.each(function () {
+            if ($(this).height() > maxHeight) {
+                maxHeight = $(this).height();
+            }
+        });
+
+        $titles.each(function () {
+            $(this).css("height", maxHeight);
+        });
+    }
+    csu.setDataDropdowns = function () {
+        var currentPath = window.location.pathname;
+        $("option[value='" + currentPath + "']").attr('selected', 'selected');
+    }
+
+    csu.generateImageGallery = function () {
+        if (imageGalleryHtml) {
+            imageGalleryHtml = imageGalleryHtml.replace(/src/g, 'ng-src');
+            var $imageGalleryContainer = $('#imageGallery');
+            var $imageGalleryHtml = $("<div>" + imageGalleryHtml + "</div>");
+            var $images = $imageGalleryHtml.find('img');
+            var newHtml = "";
+            $images.each(function () {
+                var imageSrc = $(this).attr('ng-src');
+                var orgSrc = imageSrc;
+                var imageSrcParts = imageSrc.split('?');
+                var imageAltText = $(this).attr('alt');
+                var imageTitle = $(this).attr('title') ? $(this).attr('title').replace(/\"/g, '&quot;') : "";
+                if (imageSrcParts.length > 1) {
+                    imageSrc = imageSrcParts[0];
+                }
+                imageSrc = imageSrc + "?RenditionID=6";
+                newHtml += '<img src="' + imageSrc + '" alt="' + imageAltText + '" title="' + imageTitle + '" data-orgsrc="' + orgSrc + '" />';
+            });
+
+            $imageGalleryContainer.html(newHtml);
+
+            var carouselInit = false;
+
+            /* when clicking a thumbnail */
+            $('#imageGallery img').click(function () {
+                if (!carouselInit) {
+                    carouselInit = true;
+                    $('#imageGallery img').each(function (i) {
+                        var item = $('<div class="item"></div>');
+                        var itemDiv = $('<img/>');//.parents('div');
+                        var imageUrl = $(this).attr('data-orgsrc');
+                        var altText = $(this).attr('alt');
+                        var titleText = $(this).attr('title');
+                        if (titleText != '') {
+                            item.append('<div class="overlay-bg"><div class="overlay-text"><p>' + titleText + '</p></div></div>');
+                        }
+                        else if (altText != '') {
+                            item.append('<div class="overlay-bg"><div class="overlay-text"><p>' + altText + '</p></div></div>');
+                        }
+                        $(itemDiv).attr('src', imageUrl);
+
+                        $(itemDiv).appendTo(item);
+                        item.appendTo('#largeModal .carousel-inner');
+                        if (i == 0) { // set first item active
+                            item.addClass('active');
+                        }
+
+                        /* activate the carousel */
+                        $('#largeModalCarousel').carousel({ interval: false });
+                    });
+                }
+                var idx = $(this).index();
+
+                var id = parseInt(idx);
+                $('#largeModal').modal('show'); // show the modal
+                $('#largeModalCarousel').carousel(id); // slide carousel to selected
+            });
+        }
+    }
+    
+    csu.generateImageGallery2 = function () {
+        if (imageGalleryHtml) {
+            imageGalleryHtml = imageGalleryHtml.replace(/src/g, 'ng-src');
+            var $imageGalleryContainer = $('#imageGallery');
+            var $imageGalleryHtml = $("<div>" + imageGalleryHtml + "</div>");
+            var $images = $imageGalleryHtml.find('img');
+            var newHtml = "";
+			var slidesHtml = "";
+			var indicatorsHtml = "";
+			var counter = 0;
+
+            $images.each(function () {
+                var imageSrc = $(this).attr('ng-ng-src');
+                var orgSrc = imageSrc;
+                var imageSrcParts = imageSrc.split('?');
+                var imageAltText = $(this).attr('alt');
+                var imageTitle = $(this).attr('title') ? $(this).attr('title') : "";
+                if (imageSrcParts.length > 1) {
+                    imageSrc = imageSrcParts[0];
+                }
+                imageSrc = imageSrc + "?RenditionID=6";
+                newHtml += '<img src="' + imageSrc + '" alt="' + imageAltText + '" title="' + imageTitle + '" data-orgsrc="' + orgSrc + '" />';
+				    slidesHtml += '<div class="item">'+
+      '<img alt="" title="" src="' + imageSrcParts[0] + '">'+
+    '</div>';
+				indicatorsHtml += '<li class="" data-slide-to="' + counter + '" data-target="#article-photo-carousel">' +
+      '<img alt="" src="' + imageSrc + '">'+
+    '</li>';
+    		counter++;
+            });
+			var carouselHtml = '<div class="carousel slide article-slide" id="article-photo-carousel">' +
+								  '<div class="carousel-inner cont-slider">' +
+									slidesHtml +
+								  '</div>'+
+								  '<ol class="carousel-indicators">'+
+									indicatorsHtml+
+								  '</ol>'+
+								'</div>';
+            $imageGalleryContainer.html(carouselHtml);
+
+        }
+    }
+
+    function getMoreEmployeeProfilePreview(result) {
+        var profileTemplate = "<div><div class='more-profile'><a><img/></a><div class='more-profile-title'></div><a class='ms-rteElement-rightarrowlink'>Read More</a></div></div>";
+        var path = result.Cells.results[2].Value;
+        var title = result.Cells.results[3].Value;
+        var heroImageHtml = "";
+        var $profileTemplate = $(profileTemplate);
+
+        if (result.Cells.results[4].Value) {
+            heroImageHtml = result.Cells.results[4].Value.replace('src', 'ng-src');
+            var imageUrl = $(heroImageHtml).attr('ng-src');
+            var imageUrlParts = imageUrl.split("?");
+            if (imageUrlParts.length > 1) {
+                imageUrl = imageUrlParts[0];
+            }
+            imageUrl = imageUrl + "?RenditionID=10";
+            $profileTemplate.find('img').attr('src', imageUrl);
+        } else {
+            $profileTemplate.find('img').hide();
+        }
+
+        $profileTemplate.find('.more-profile-title').html(title);
+        $profileTemplate.find('a').attr('href', path);
+
+        return $profileTemplate.html();
+    }
+
+    function getMoreProfilePreview(result) {
+        var profileTemplate = "<div><div class='more-profile'><a><img/></a><div class='more-profile-title'></div><a class='btn btn-primary no-margin-top'>Read More</a></div></div>";
+        var path = result.Cells.results[2].Value;
+        var title = result.Cells.results[3].Value;
+        var heroImageHtml = result.Cells.results[4].Value.replace('src', 'ng-src');
+        var imageUrl = $(heroImageHtml).attr('ng-src');
+        var imageUrlParts = imageUrl.split("?");
+        if (imageUrlParts.length > 1) {
+            imageUrl = imageUrlParts[0];
+        }
+        imageUrl = imageUrl + "?RenditionID=10";
+        var $profileTemplate = $(profileTemplate);
+        $profileTemplate.find('img').attr('src', imageUrl);
+        $profileTemplate.find('.more-profile-title').html(title);
+        $profileTemplate.find('a').attr('href', path);
+
+        return $profileTemplate.html();
+    }
+    
+    function getMoreProfilePreviewCsom(result) {
+        var profileTemplate = "<div><div class='more-profile'><a><img/></a><div class='more-profile-title'></div><a class='btn btn-primary no-margin-top'>Read More</a></div></div>";        var path = result.FileRef;
+        var path = result.FileRef;
+        var title = result.ArticleByLine;        
+        var heroImageHtml = result.HeroImage.replace('src', 'ng-src');
+        var heroText = result.ArticleByLine;
+        var profileName = result.CSUProfileName;
+        var profileType = result.CSUProfileType;
+        var profileCampus = result.Initiative.Label;
+        var imageUrl = $(heroImageHtml).attr('ng-src');
+        var imageUrlParts = imageUrl.split("?");
+        if (imageUrlParts.length > 1) {
+            imageUrl = imageUrlParts[0];
+        }
+        imageUrl = imageUrl + "?RenditionID=10";
+        var $profileTemplate = $(profileTemplate);
+        $profileTemplate.find('img').attr('src', imageUrl);
+        $profileTemplate.find('.more-profile-title').html(title);
+        $profileTemplate.find('a').attr('href', path);
+
+        return $profileTemplate.html();
+    }
+
+
+    function bindEvents() {
+        
+        $('#campusResearchGoButton').click(function () {
+            var hrefValue = $('#campusResearchSelect').val();
+            if (hrefValue.indexOf("Choose") == -1) {
+                window.location = hrefValue;
+            }
+        });
+		$('#yearGoButton').click(function () {
+            var hrefValue = $('#yearSelect').val();
+            if (hrefValue != "Choose a Year") {
+                window.location = hrefValue;
+            }
+        });
+
+        $('#topicGoButton').click(function () {
+            var hrefValue = $('#topicSelect').val();
+            if (hrefValue.indexOf("Choose") == -1) {
+                window.location = hrefValue;
+            }
+        });
+
+        $('.goButton, #campusGoButton').click(function () {
+            var $select = $(this).parent().find('select');
+            var hrefValue = $select.val();
+			var currentURL = location.href;
+			var $selectedOption = $select.find('option:selected');
+
+            if (hrefValue.indexOf("Choose") == -1 && hrefValue.indexOf("Select") == -1) {
+                if (currentURL.indexOf('hospitality-tourism') !== -1) {
+                    window.open(hrefValue);
+                } else {
+                	if($selectedOption.attr('data-target') == "_blank" || $(this).attr('data-target') == "_blank"){
+                		window.open(hrefValue);
+                	}
+                	else{
+                		window.location = hrefValue;
+                	}                  
+                }
+            }
+        });
+
+        $('.showButton').click(function () {
+            var $select = $(this).parent().find('select');
+            var categoryValue = $select.find('option:selected').attr('data-show-category');
+
+            if (categoryValue) {
+                $('div[data-show-section]').hide();
+                $('div[data-show-category]').hide();
+                $('div[data-show-category="' + categoryValue + '"]').show();
+            }
+        });
+
+        $('a[data-show-section]').click(function () {
+            var sectionValue = $(this).attr('data-show-section');
+
+            if (sectionValue) {
+                $('div[data-show-section]').hide();
+                $('div[data-show-section="' + sectionValue + '"]').show();
+            }
+        });
+
+        $('a.collapsible').click(function () {
+            var $this = $(this);
+            var $container = $(this).parents('.collapsible-container:first');
+            var $collapsibleTarget = $container.find('.collapsible-target:first');
+            var $anchorClass = $(this).attr('class');
+
+            if ($collapsibleTarget.length) {
+                $collapsibleTarget.collapse('toggle');
+                var linkText = $this.text(),
+					isButton = ($anchorClass.indexOf('non-button') === -1),
+					moreLessText = function () {
+					    if (linkText == "More") {
+					        $this.text("Less");
+					    } else {
+					        $this.text("More");
+					    }
+					},
+					arrowImage = function () { /*Note: this only works with a nested image for now. See HTMEA - Industry Participants HTML.*/
+					    var imageURL = '/_catalogs/masterpage/assets/images/red-right-arrow.png',
+							showLess = '/_catalogs/masterpage/assets/images/red-dropdown-arrow.png',
+							anchor_element = $($this)[0],
+							anchor_Children = $(anchor_element).children(),
+							image = '';
+
+					    anchor_Children = anchor_Children[0];
+
+					    image = $(anchor_Children).children('img');
+
+					    if (image[0].src.indexOf('red-right-arrow.png') !== -1) {
+					        imageURL = showLess;
+					    }
+
+					    image[0].src = imageURL;
+					};
+
+                if (isButton) {
+                    moreLessText();
+                } else {
+                    arrowImage();
+                }
+            }
+        });
+    }
+
+    function addConditionalBorder() {
+        //remove border if 2 column does not have content
+        var $containers = $('.bottom-border-line');
+
+        $containers.each(function () {
+            var $container = $(this);
+            if ($container.height() < 1) {
+                $container.removeClass("bottom-border-line");
+            }
+        });
+    }
+
+    csu.applyNbspFix = function() {
+        EnsureScript('SP.UI.RTE.js', typeof (RTE), function () {
+            // Removes ​ZWSP characters
+            if (RTE.Cursor.update == undefined)
+                return;
+            try {
+                var update_orig = RTE.Cursor.update;
+                RTE.Cursor.update = function () {
+                    update_orig();
+                    var range = RTE.Cursor.get_range();
+                    if (range.isValid() && range.$7z_0) {
+                        var editorElement = RTE.Canvas.getEditableRegion(range.parentElement());
+                        if (editorElement && editorElement.innerHTML) {
+                            editorElement.innerHTML = editorElement.innerHTML.replace(/\u200B/g, "");
+                        }
+                    }
+                }
+            } catch (e) {
+                console.log("RTE override error", e);
+            }
+        });
+    }
+
+    csu.moveQuote = function () {
+        //check if quote exist
+        var $quote = $(".article-quote");
+        if ($quote.length > 0) {
+            var $body = $('.article-body');
+            //check for multiple paragraphs
+            var $paragraphs = $body.find('p');
+
+            if ($paragraphs.length > 3) {
+                $paragraphs.eq(1).prepend($quote);
+            }
+        }
+    }
+
+    csu.populateJsWebparts = function () {
+        $('.csu-js-webpart').each(function () {
+            var listUrl = $(this).attr('data-list-url');
+            var webpartTitle = $(this).attr('data-webpart-title');
+            var $webpartContainer = $(this);
+            $.ajax({
+                url: listUrl,
+                contentType: "application/json;odata=verbose",
+                headers: { "Accept": "application/json;odata=verbose" },
+                success: function (data, request) {
+                    var results = data.d.results;
+                    var ulHtml = "";
+                    for (var i = 0; i < results.length; i++) {
+                        var currentItem = results[i];
+                        var cleanLineItem = currentItem.LineItem.replace(/​/g, "");
+                        var $cleanLineItem = $(cleanLineItem);
+                        $cleanLineItem.find('p').children().unwrap();
+                        cleanLineItem = $cleanLineItem.html();
+                        ulHtml += '<li>' + cleanLineItem + '</li>';
+                    }
+                    var webpartHtml = '<div class="action width-75p">' +
+	'<h4 class="no-margin-top">' + webpartTitle + '</h4>' +
+	'<ul class="mini-bullets">' +
+		ulHtml +
+	'</ul>' +
+'</div>';
+
+                    $webpartContainer.append(webpartHtml);
+                    csu.fixGrayBoxesHeight();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.ReportAjaxError('getContentViaSearch', xhr, ajaxOptions, thrownError);
+                }
+            });
+        });
+    }
+
+    csu.setupLargeCarousel = function () {
+        var $carouselLarge = $('.carousel-large');
+
+        $carouselLarge.each(function () {
+            var $this = $(this);
+            var $navState = $this.find('.caoursel-nav-state');
+            var totalCount = $this.find('.item').length;
+            var index = $this.find('.active').index() + 1;
+
+            $navState.html(index + " of " + totalCount);
+        });
+
+        $carouselLarge.on('slid.bs.carousel', function () {
+            var $this = $(this);
+            var $navState = $this.find('.caoursel-nav-state');
+            var totalCount = $this.find('.item').length;
+            var index = $this.find('.active').index() + 1;
+
+            $navState.html(index + " of " + totalCount);
+        })
+    }
+    
+    csu.getMoreInformation = function () {
+        var submitForm = function () { } || submitForm;
+
+        submitForm.prototype = {
+            addNewSubmission: function (allValues, thisRef) {
+                var studentSubmissionFormHTML = $('#studentSubmissionForm').html(),
+                    requestDigest = $("#__REQUESTDIGEST").val(),
+                    url = _spPageContextInfo.webServerRelativeUrl + "/_api/web/lists/GetByTitle('Student Information Submissions')/items",
+                    jsonString = JSON.stringify(allValues),
+                    formHTML = '',
+                    appendData = function () {
+                        $('#studentSubmissionForm').empty();
+                        $('#studentSubmissionForm').append(formHTML);
+                    },
+                    reloadForm = function () {
+                        $('#reloadForm').click(function () {
+                            formHTML = studentSubmissionFormHTML;
+                            appendData();
+                            thisRef.getSubmittedData();
+                        });
+                    };
+                clearFields = (function () {
+                    $('.selectionField').each(function (g, k) {
+                        var k_type = ($(this).attr('type') === 'text');
+
+                        if (k_type) {
+                            $(this).val('');
+                        } else {
+                            $(this).prop('selectedIndex', 0);
+                        }
+                    });
+                })();
+
+                $.ajax({
+                    url: url,
+                    method: "POST",
+                    data: jsonString,
+                    contentType: "application/json;odata=verbose",
+                    headers: {
+                        "Accept": "application/json;odata=verbose",
+                        "X-RequestDigest": requestDigest
+                    },
+                    success: function (data, request) {
+                        formHTML = '<div style="text-align: center;"><p class="large-font"><strong >Your request will be forwarded to the appropriate group, who will respond at their earliest convenience. Thank you for your interest in the California State University!</strong></p><p><a class="ms-rteElement-actionlink" id="reloadForm">Submit Another Request</a></p></div>';
+
+                        appendData();
+                        reloadForm();
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        formHTML = '<div style="text-align: center;"><p class="large-font"><font color="red"><strong>There was an issue submitting the form, please refresh the page and try again. If you continue to see this message, please email <a href="mailto: webservices@calstate.edu">webservices@calstate.edu.</a></strong></font></p></div>';
+
+                        appendData();
+                    }
+                });
+            },
+            getSubmittedData: function () {
+                var newSubmission = this.addNewSubmission,
+                    thisRef = this,
+                    resetFieldOnBlur = function () {
+                        $('.selectionField').each(function (q, s) {
+                            $(this).focus(function () {
+                                var string = '<span style="visibility: hidden;">&#160;</span>',
+                                    fieldName = $(this).attr('id');
+
+                                $(this).parent().children('.errorField').empty();
+                                $(this).parent().children('.errorField').append(string);
+                            });
+                        });
+                    };
+
+                $('#submitStudentData').click(function () {
+                    var allData = '{"__metadata":{"type":"SP.Data.StudentinformationsubmissionsListItem"}, ',
+						inst_value = '',
+						field_name = '',
+						error = false,
+						validateFields = function () {
+						    $.each(allData, function (e, h) {
+						        var errorString = 'Please enter a valid value.',
+									errorInFields = false,
+									elementType = $('[id="' + e + '"]').prop('type');
+
+						        switch (true) {
+						            case (h === ''):
+						            case (h === 'undefined'):
+						            case (typeof h === 'undefined'):
+						                if (e !== 'StudentPhoneNumber' && e !== '__metadata') {
+						                    errorInFields = true;
+
+						                    switch (elementType) {
+						                        case 'select-one':
+						                            errorString = 'Please select an option.'
+						                            break;
+						                    }
+						                }
+						                break;
+						            case (e === 'StudentPhoneNumber'):
+						                if (h.length < 10) {
+						                    errorString = 'Please enter a valid phone number';
+						                    errorInFields = true;
+						                }
+						                break;
+						            case (e === 'StudentEmail'):
+						                if (h.indexOf('@') === -1 || (h.indexOf('.edu') === -1 && h.indexOf('.net') === -1 && h.indexOf('.com') === -1)) {
+						                    errorString = 'Please enter a valid email address. Example xxxx@calstate.edu';
+						                    errorInFields = true
+						                } else {
+						                    var domain = h.substr(h.indexOf('@') + 1, h.lastIndexOf('.'));
+						                    domain = domain.substr(0, domain.lastIndexOf('.'));
+
+						                    if (domain === '') {
+						                        errorString = 'Please enter a valid email address. Example xxxx@calstate.edu';
+						                        errorInFields = true
+						                    }
+						                }
+						                break;
+						        }
+
+						        if (errorInFields) {
+						            $('[id="' + e + '"]').parent().children('.errorField').text(errorString);
+						            error = true;
+						        }
+						    });
+						},
+						submitData = function () {
+						    newSubmission(allData, thisRef);
+						},
+						getInputFields = function () {
+						    var field_length = Number($('.selectionField').length) - 1;
+
+						    $('.selectionField').each(function (e, p) {
+						        field_name = $(this).attr('id').trim();
+						        inst_value = $(this).attr('type') === 'text' ? $(this).val().trim() : $('select[id="' + field_name + '"] option:selected').val().trim();
+						        inst_value = $('[id="' + field_name + '"] option:selected').index() === 0 && inst_value !== 'Yes' ? '' : inst_value;
+
+						        switch (e) {
+						            case field_length:
+						                allData += '"' + field_name + '": "' + inst_value + '"}';
+						                break;
+						            default:
+						                allData += '"' + field_name + '": "' + inst_value + '", ';
+						                break;
+						        }
+						    });
+
+						    allData = JSON.parse(allData);
+						};
+
+                    getInputFields();
+                    validateFields();
+
+                    if (error) {
+                        resetFieldOnBlur();
+                    } else {
+                        submitData();
+                    }
+                });
+            },
+            init: function () {
+                var phoneNumberTrigger = (function () {
+                    $('#StudentPhoneNumber').change(function () {
+                        var phoneNumber = $(this).val();
+                        phoneNumber = phoneNumber.search(/\D/g) >= 0 ? phoneNumber.replace(/\D/g, '') : phoneNumber.search(/\W/g) ? phoneNumber.replace(/\W/g, '') : phoneNumber;
+
+                        $(this).val(phoneNumber);
+                    });
+                })();
+
+                this.getSubmittedData();
+            }
+        }
+
+        var submitForm_ = new submitForm;
+        submitForm_.init();
+    }
+    
+    function googleSearchInit(){
+		var $searchBox = $('#googleSearchBox');
+		var $goButton = $('#googleSearchGoButton');
+		
+		function performSearch(){
+			var queryUrl = "http://google.calstate.edu/search?";
+			var searchBoxValue = $searchBox.val();
+			if(searchBoxValue != ""){
+				var query = "q=" + searchBoxValue;
+				queryUrl += query;
+				$.each($searchBox[0].attributes, function() {
+					// this.attributes is not a plain object, but an array
+					// of attribute nodes, which contain both the name and value
+					if(this.specified) {
+					  if(this.name.indexOf('data-') == 0){
+						var attributeName = this.name.replace('data-', '');
+						var attributeValue = this.value;
+						queryUrl += "&" + attributeName + "=" + attributeValue
+					  }
+					}
+				});
+				
+				window.location = queryUrl;
+			}		
+		}
+		
+		$searchBox.keypress(function(e){
+			if(e.which == 13) {
+				performSearch();
+			}
+		});
+		
+		$goButton.click(performSearch);	
+	}
+	
+	csu.addDropdownArrows = function(){
+		$('.ms-vh-div').each(function(){
+	    	var $link = $(this);
+	    	var $downArrow = $(this).next().find('.ms-headerSortArrowLink:first');
+	    
+			var $downArrowCopy = $downArrow.clone();
+			$downArrow.find('img').hide();  
+		    $downArrowCopy.css('display','inline').css('padding-left','10px');
+		    $downArrowCopy.find('img').css('visibility','visible');
+		    $link.append($downArrowCopy);
+		});
+	};
+	
+	csu.toogleCollapsibleArticle = function(e){
+		var $img = $(e).find('img:first');
+		if($img.attr('src').indexOf('red-dropdown-arrow.png')!= -1){
+			$img.attr('src','/_catalogs/masterpage/assets/images/red-right-arrow.png');
+		}
+		else{
+			$img.attr('src','/_catalogs/masterpage/assets/images/red-dropdown-arrow.png');
+		}
+		$(e.nextSibling).collapse('toggle');
+	}
+	
+	csu.setupCarouselFade = function(){
+		var $carouselFade = $('#carouselFade');
+		if($carouselFade.length > 0){
+			var nextSlideTo = -1;
+			var isSliding = false;
+			var $carouselControls = $('.carousel-indicators li');
+			var carouselTarget = $carouselControls.first().attr('data-target');
+			if ( $(window).width() < 739) {
+				$carouselControls.removeAttr('data-target');  
+			}
+			$carouselFade.on('slid.bs.carousel', function(){
+				isSliding = false;
+				if(nextSlideTo > -1){
+					$carouselFade.carousel(nextSlideTo);
+					nextSlideTo = -1;
+					
+				}
+				
+			});
+			$carouselFade.on('slide.bs.carousel', function(){
+				isSliding = true;
+			});
+			$carouselControls.hover(function(){	
+				var slideTo = $(this).attr('data-slide-to');
+				if(isSliding){
+					nextSlideTo = parseInt(slideTo);
+				}
+				else{
+					if ( $(window).width() > 739) {      
+						$carouselFade.carousel(parseInt(slideTo));	
+					}
+				}
+			});
+			$carouselControls.click(function(){	
+				var href = $(this).attr('data-slide-href');
+				window.location = href;			
+			});
+
+		}
+	};
+	
+	csu.getCommentedValue = function(selector){
+		var value = "";
+		var contents = $(selector).contents();
+		if(contents.length > 1){
+			value = contents[1].data;
+		}
+		return data;
+
+	};
+	
+	csu.applyApplyUrl = function(){
+		//check url if within apply site
+		var isApplyPage = window.location.href.indexOf(".edu/apply") > -1;
+		
+		if(isApplyPage){
+			var date = new Date();
+			var minutes = 5;
+			date.setTime(date.getTime() + (minutes * 60 * 1000));
+			//save url to cookie
+			$.cookie('lastApplyPage', window.location.pathname , { expires: date, path: '/' });
+		}
+		else{
+			//read cookie
+			var lastUrl = $.cookie('lastApplyPage');
+			//display back button if not empty
+			
+			//calculate offset
+			var topOffset = $('.breadcrumb-wrapper').height() + $('#s4-titlerow').height() + $('.hero').height();
+			
+			if(lastUrl){
+				//$('ul.breadcrumb').prepend('<a href="' + lastUrl + '"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;Back to Apply &nbsp;</a>');
+				var $main = $('main');
+				var $aside = $('aside');
+				var $hero = $('.hero');
+				var stickyNavLink = '<span data-spy="affix" data-offset-top="' + topOffset  +'" data-target="#s4-workspace"  class="hvr-forward sticky-apply abs-right"><a href="' + lastUrl + '"><i class="fa fa-arrow-left" aria-hidden="true"></i>&nbsp;Back to Apply</a><a class="dismiss-button pull-right" href="javascript:void(0);">&nbsp;x&nbsp;</a></span>';
+				if($hero.length > 0){
+					$hero.parent().append(stickyNavLink);
+				}
+				else if($main.length > 0 && $aside.length > 0){
+					$main.parent().prepend(stickyNavLink);	
+				}
+				else{
+					$('h1.page-title').parent().append(stickyNavLink);	
+				}
+				$('a.dismiss-button').click(function(){
+					$.removeCookie('lastApplyPage', { path: '/' });
+					$('.sticky-apply').remove();
+				});
+			}			
+		}				
+	}
+	
+	   csu.addCommas = function(input){
+	  // If the regex doesn't match, `replace` returns the string unmodified
+	  return (input.toString()).replace(
+	    // Each parentheses group (or 'capture') in this regex becomes an argument 
+	    // to the function; in this case, every argument after 'match'
+	    /^([-+]?)(0?)(\d+)(.?)(\d+)$/g, function(match, sign, zeros, before, decimal, after) {
+	
+	      // Less obtrusive than adding 'reverse' method on all strings
+	      var reverseString = function(string) { return string.split('').reverse().join(''); };
+	
+	      // Insert commas every three characters from the right
+	      var insertCommas  = function(string) { 
+	
+	        // Reverse, because it's easier to do things from the left
+	        var reversed           = reverseString(string);
+	
+	        // Add commas every three characters
+	        var reversedWithCommas = reversed.match(/.{1,3}/g).join(',');
+	
+	        // Reverse again (back to normal)
+	        return reverseString(reversedWithCommas);
+	      };
+	
+	      // If there was no decimal, the last capture grabs the final digit, so
+	      // we have to put it back together with the 'before' substring
+	      return sign + (decimal ? insertCommas(before) + decimal + after : insertCommas(before + after));
+	    }
+	  );
+	};
+
+
+    function init() {
+        bindEvents();
+        addConditionalBorder();
+        csu.populateJsWebparts();
+        var inDesignMode = document.forms[MSOWebPartPageFormName].MSOLayout_InDesignMode.value;
+
+        if (inDesignMode == "1") {
+            // page is in edit mode
+
+            if (_spPageContextInfo && (_spPageContextInfo.userId == 26 || _spPageContextInfo.userId == 83 || _spPageContextInfo.userId == 39)) {
+                //csu.applyNbspFix();
+            }
+
+            $(function () {
+                $('.collapsible-container .collapse').each(function () {
+                    $(this).removeClass('.collapse').addClass('.dashed-border');
+                });
+            });
+        }
+        else {
+            // page is in browse mode
+            //moveQuote();
+            
+            csu.hideEmptyTitleField();
+            $(function () {
+            	csu.applyApplyUrl();
+                csu.adjustSpotlightTitleHeight();
+                csu.fixGrayBoxesHeight();
+                window.setTimeout(function () {
+                    csu.fixCardContainersHeight();
+                    csu.evenTheSections();
+                }, 500)
+                csu.getMoreInformation();
+                $('.js-webpart-titleCell').removeAttr('title');
+                googleSearchInit();
+            });
+
+            $('.profile-image-block .caption, .news-events .caption').each(function () {
+                if ($(this).height() > 0) {
+                    $(this).css('border-bottom', '1px #ddd solid');
+                }
+            });
+        }
+        csu.urlToCSS();
+        csu.setupLargeCarousel();
+    }
+    
+    init();
+})(jQuery, csu);
