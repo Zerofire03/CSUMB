@@ -1,23 +1,64 @@
 #Christopher Holmes
+#Patrick Gonzalez
 #Lab 13 Problem 1
 
-originalParagraph = "Missile and launch components have been moved to the east coast of North Korea in the \"last few days,\" a U.S. official with direct knowledge of the information told CNN Thursday. The apparent deployment comes amid further threatening statements by North Korea and heightened tensions in the region -- a situation that \"does not need to get hotter,\" a U.S. State Department spokeswoman said. The move of the missile and launch equipment could mean that Pyongyang, which unleashed another round of scathing rhetoric accusing the United States of pushing the region to the \"brink of war,\" may be planning a missile launch soon."
+#Original text of the news story
+try:
+    fin = open('Mario_NewsArticle.txt')
+except:
+    print("Something went wrong opening the file.")
+    
+#Madlibbed file
+try:
+    fout = open('MadLibbed_Mario_NewsArticle.txt', 'w')
+except:
+    print("Something went wrong opening the file.")
+    
+originalParagraph = fin.read()
 
-wordsList = []
+
+#List to hold each individual word from the paragraph
 words = originalParagraph.split()
-    
+
+#Lists to hold the answers the user gives and the questions provided to the user    
 userAnswers = []
-questions = ["What is your favorite animal? ", "Adverb. ", "Favorite place you want to travel to? ", "Proper noun. "]
+questions = ["adjective","noun","flavor","flavor","flavor","adjective","adjective","adverb","adjective","plural noun","noun"]
 
+#Loop to get answer to each question
 for question in questions:    
-    userAnswers.append(raw_input(question))
+    userAnswers.append(raw_input("Enter a %s: "%question))
 
+#Loop to insert the user supplied answers over original word
 for i, word in enumerate(words):
-    if i == 2:
+    if i == 20:
         words[i] = userAnswers[0]
+    elif i == 33:
+        words[i] = userAnswers[1]
+    elif i == 55:
+        words[i] = userAnswers[2]
+    elif i == 59:
+        words[i] = userAnswers[3]
+    elif i == 67:
+        words[i] = userAnswers[4]
+    elif i == 68:
+        words[i] = userAnswers[5]
+    elif i == 108:
+        words[i] = userAnswers[6]
+    elif i == 130:
+        words[i] = userAnswers[7]
+    elif i == 160:
+        words[i] = userAnswers[8]
+    elif i == 171:
+        words[i] = userAnswers[9]
+    elif i == 213:
+        words[i] = userAnswers[10]
     
+
+#Print out the finished Madlib    
 for word in words:
-    print word,
+    fout.write(word+" ")
+fout.close()
+fin.close()
     
 #Loop to get the index number of each of the words in the paragraph
 #for i, word in enumerate(words):
