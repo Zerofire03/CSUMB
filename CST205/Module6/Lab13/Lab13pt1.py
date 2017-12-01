@@ -8,12 +8,13 @@ try:
 except:
     print("Something went wrong opening the file.")
     
-#Madlibbed file
+#Madlibbed file to be written to
 try:
     fout = open('MadLibbed_Mario_NewsArticle.txt', 'w')
 except:
     print("Something went wrong opening the file.")
-    
+
+#Read in the file    
 originalParagraph = fin.read()
 
 
@@ -28,7 +29,7 @@ questions = ["adjective","noun","flavor","flavor","flavor","adjective","adjectiv
 for question in questions:    
     userAnswers.append(raw_input("Enter a %s: "%question))
 
-#Loop to insert the user supplied answers over original word
+#Loop to insert the user supplied answers over original word. The index of the word being replaced is hard coded, and the userAnswer is pulled from the list
 for i, word in enumerate(words):
     if i == 20:
         words[i] = userAnswers[0]
@@ -54,9 +55,11 @@ for i, word in enumerate(words):
         words[i] = userAnswers[10]
     
 
-#Print out the finished Madlib    
+#Write out the finished Madlid to the file that was opened in the begining
 for word in words:
     fout.write(word+" ")
+    
+#Close both of the files that we opened at the begining
 fout.close()
 fin.close()
     
