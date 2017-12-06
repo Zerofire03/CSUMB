@@ -1,5 +1,7 @@
 from random import *
 from __builtin__ import True
+import os
+import sys
 
 gameBoard = []
 answer = []
@@ -7,6 +9,22 @@ boardSize = 4
 pieces = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7]
 won = False
 numMatches = 0
+
+backOfCard = makePicture(os.path.join(os.getcwd(), 'backOfCard.png'))
+image1 = makePicture(os.path.join(os.getcwd(), 'Image1.JPG'))
+image2 = makePicture(os.path.join(os.getcwd(), 'Image2.JPG'))
+image3 = makePicture(os.path.join(os.getcwd(), 'Image3.JPG'))
+image4 = makePicture(os.path.join(os.getcwd(), 'Image4.JPG'))
+
+num2card = dict()
+num2card[0] = image1
+num2card[1] = image2
+num2card[2] = image3
+num2card[3] = image4
+num2card[4] = image1
+num2card[5] = image2
+num2card[6] = image3
+num2card[7] = image4
 
 def initializeGameBoard(board):
     for i in range(boardSize):
@@ -51,7 +69,7 @@ def checkGuess(firstX, firstY, secondX, secondY):
         return True
     else:
         False
-        
+       
 initializeGameBoard(gameBoard)
 initializeAnswerBoard(answer)
 printBoard(gameBoard)

@@ -1,5 +1,7 @@
 from random import *
 from __builtin__ import True
+import os
+import sys
 
 gameBoard = []
 answer = []
@@ -7,6 +9,15 @@ boardSize = 4
 pieces = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7]
 won = False
 numMatches = 0
+
+backOfCard = open(os.path.join(sys.path[0], 'backOfCard.png'))
+image1 = open(os.path.join(sys.path[0], 'Image1.JPG'))
+image2 = open(os.path.join(sys.path[0], 'Image2.JPG'))
+image3 = open(os.path.join(sys.path[0], 'Image3.JPG'))
+image4 = open(os.path.join(sys.path[0], 'Image4.JPG'))
+
+num2card = dict()
+num2card[1] = image1
 
 def initializeGameBoard(board):
     for i in range(boardSize):
