@@ -1,30 +1,26 @@
-from random import *
+from random import randint
 from __builtin__ import True
-import os
-import sys
+
+
 
 gameBoard = []
 answer = []
 boardSize = 4
 pieces = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7]
+backOfCards = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P']
+coordinates = {'A': (0, 0), 'B': (1,0), 'C': (2, 0), 'D': (3,0), 'E': (0,1), 'F': (1,1), 'G':(2,1), 'H': (3,1), 'I': (0,2), 'J': (1,2), 'K': (2,2), 'L': (3,2), 'M': (0,3), 'N': (1,3), 'O': (2,3), 'P': (3,3)}
 won = False
 numMatches = 0
 
-backOfCard = open(os.path.join(sys.path[0], 'backOfCard.png'))
-image1 = open(os.path.join(sys.path[0], 'Image1.JPG'))
-image2 = open(os.path.join(sys.path[0], 'Image2.JPG'))
-image3 = open(os.path.join(sys.path[0], 'Image3.JPG'))
-image4 = open(os.path.join(sys.path[0], 'Image4.JPG'))
-
-num2card = dict()
-num2card[1] = image1
 
 def initializeGameBoard(board):
+    cardNum = 0
     for i in range(boardSize):
         board.append([])
     for y in board:
         for x in range(boardSize):
-            y.append('X')
+            y.append(backOfCards[cardNum])
+            cardNum += 1
             
 def initializeAnswerBoard(board):
     for i in range(boardSize):
@@ -55,39 +51,72 @@ def printBoardGuess(gBoard, aBoard, firstX, firstY, secondX, secondY):
                 print gBoard[y][x],
         print
         
+def returnCoordinates(card):
+    if card == 'A':        
+        return coordinates['A']
+    elif card == 'B':
+        return coordinates['B']
+    elif card == 'C':
+        return coordinates['C']
+    elif card == 'D':
+        return coordinates['D']
+    elif card == 'E':
+        return coordinates['E']
+    elif card == 'F':
+        return coordinates['F']
+    elif card == 'G':
+        return coordinates['G']
+    elif card == 'H':
+        return coordinates['H']
+    elif card == 'I':
+        return coordinates['I']
+    elif card == 'J':
+        return coordinates['J']
+    elif card == 'K':
+        return coordinates['K']
+    elif card == 'L':
+        return coordinates['L']
+    elif card == 'M':
+        return coordinates['M']
+    elif card == 'N':
+        return coordinates['N']
+    elif card == 'O':
+        return coordinates['O']
+        
+    
+      
+
 def checkGuess(firstX, firstY, secondX, secondY):
     if answer[firstY][firstX] == answer[secondY][secondX]:
         gameBoard[firstY][firstX] = answer[firstY][firstX]
         gameBoard[secondY][secondX] = answer[secondY][secondX]
         return True
     else:
-        False
+        False  
         
 initializeGameBoard(gameBoard)
 initializeAnswerBoard(answer)
 printBoard(gameBoard)
-printBoard(answer)
+#printBoard(answer)
 
 while not won:
     guess1Already = True
     guess2Already = True
     while guess1Already:
-        guess1X = int(raw_input("Enter the X-Coordinate of the first guess: "))
-        guess1Y = int(raw_input("Enter the Y-Coordinate of the first guess: "))
-        if gameBoard[guess1Y][guess1X] != 'X':
-            print("You already matched that square, (%s,%s). Try again")%(guess1X, guess1Y)
+        guess1 = raw_input("Enter the letter of the first guess: ").upper()
+        if gameBoard[returnCoordinates(guess1)[1]][returnCoordinates(guess1)[0]] in pieces:
+            print("You already matched that square, %s. Try again")%guess1
             guess1Already = True
         else:
             break
     while guess2Already:
-        guess2X = int(raw_input("Enter the X-Coordinate of the second guess: "))
-        guess2Y = int(raw_input("Enter the Y-Coordinate of the second guess: "))
-        if gameBoard[guess2Y][guess2X] != 'X':
-            print("You already matched that square, (%s,%s). Try again")%(guess2X, guess2Y)
+        guess2 = raw_input("Enter the letter of the second guess: ").upper()
+        if gameBoard[returnCoordinates(guess2)[1]][returnCoordinates(guess2)[0]] in pieces:
+            print("You already matched that square, %s. Try again")%guess2
             guess2Already = True
         else:
             break
-    if checkGuess(guess1X, guess1Y, guess2X, guess2Y):
+    if checkGuess(returnCoordinates(guess1)[0], returnCoordinates(guess1)[1], returnCoordinates(guess2)[0], returnCoordinates(guess2)[1]):
         print("Match Found!")
         numMatches += 1
         if numMatches == 8:
@@ -96,4 +125,5 @@ while not won:
         printBoard(gameBoard)
     else:
         print("No match, try again.")
-        printBoardGuess(gameBoard, answer, guess1X, guess1Y, guess2X, guess2Y)
+        printBoardGuess(gameBoard, answer, returnCoordinates(guess1)[0], returnCoordinates(guess1)[1], returnCoordinates(guess2)[0], returnCoordinates(guess2)[1])
+        
