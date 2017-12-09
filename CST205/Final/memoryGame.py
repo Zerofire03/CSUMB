@@ -97,7 +97,7 @@ def checkGuess(firstX, firstY, secondX, secondY):
 initializeGameBoard(gameBoard)
 initializeAnswerBoard(answer)
 printBoard(gameBoard)
-#printBoard(answer)
+printBoard(answer)
 
 while not won:
     guess1Already = True
