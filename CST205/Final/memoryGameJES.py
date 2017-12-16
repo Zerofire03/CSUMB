@@ -186,6 +186,6 @@ def main():
         else:
             showInformation("No match, try again.")
             printBoardGuess(gameBoard, answer, coordinates[guess1][0], coordinates[guess1][1], coordinates[guess2][0], coordinates[guess2][1])
-            time.sleep(5)
+            sleep(5)
             printBoard(gameBoard)
        
