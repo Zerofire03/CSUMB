@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="uuid_id" version="2.0">
+    <metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf">
+        <dc:identifier opf:scheme="calibre" id="calibre_id">198</dc:identifier>
+        <dc:identifier opf:scheme="uuid" id="uuid_id">599b8598-76d2-4295-8bb7-2af769bb7561</dc:identifier>
+        <dc:title>Murach's MySQL, 2nd Edition</dc:title>
+        <dc:creator opf:file-as="Murach, Joel" opf:role="aut">Joel Murach</dc:creator>
+        <dc:contributor opf:file-as="calibre" opf:role="bkp">calibre (3.13.0) [https://calibre-ebook.com]</dc:contributor>
+        <dc:date>2015-03-02T08:00:00+00:00</dc:date>
+        <dc:description>&lt;div&gt;&lt;p&gt;&lt;em&gt;"If you ever wanted to learn to use MySQL, write SQL queries, create database elements, then this is the book to pick up."&lt;/em&gt; (JavaRanch.com)&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;"I was amazed at how much information was packed into this book."&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;"As a developer with almost 10 years of MySQL experience, I still picked up a lot of new detail on things I thought I knew."&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;"I found this to be a great introductory book to MySQL."&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;"Has already proven to be helpful in solving several challenges I've encountered on my current MySQL project."&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;That's a sampling of what developers said about the 1st Edition of Murach's MySQL.&lt;/p&gt;
+&lt;p&gt;Now, this 2nd Edition has been updated and improved throughout. As a result, it's easier than ever to use for learning MySQL from scratch, for switching to MySQL from another flavor of SQL (like MS SQL Server or Oracle), or for quickly looking up the forgotten details that are so essential as you develop database applications.&lt;/p&gt;
+&lt;p&gt;Section 1 introduces you to relational databases and SQL, shows you how to use the graphical MySQL Workbench to work with a MySQL database, and teaches you to code SQL queries to retrieve, add, update, and delete data in a MySQL database. Section 2 goes deeper into querying, showing you how to work with summary queries, subqueries, data types, and functions. Section 3 shows you how to design a MySQL database using an EER model, implement the design, and create views. Section 4 shows how to create stored procedures that provide functionality similar to procedural programming languages like PHP, Java, C++, C#, and VB. And Section 5 introduces you to database administration tasks like securing and backing up database data.&lt;/p&gt;
+&lt;p&gt;Whether you start from the beginning or jump in anywhere, it's a great guide for MySQL users at any level.&lt;/p&gt;
+&lt;p&gt;**&lt;/p&gt;&lt;/div&gt;</dc:description>
+        <dc:publisher>Mike Murach &amp; Associates</dc:publisher>
+        <dc:identifier opf:scheme="ISBN">9781890774820</dc:identifier>
+        <dc:identifier opf:scheme="AMAZON">1890774820</dc:identifier>
+        <dc:language>eng</dc:language>
+        <meta content="{&quot;Joel Murach&quot;: &quot;&quot;}" name="calibre:author_link_map"/>
+        <meta content="10" name="calibre:rating"/>
+        <meta content="2017-12-07T03:37:35.398722+00:00" name="calibre:timestamp"/>
+        <meta content="Murach's MySQL, 2nd Edition" name="calibre:title_sort"/>
+    </metadata>
+    <guide>
+        <reference href="cover.jpg" title="Cover" type="cover"/>
+    </guide>
+</package>
