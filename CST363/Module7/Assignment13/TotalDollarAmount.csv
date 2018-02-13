@@ -1,0 +1,136 @@
+CustomerId,CustomerName,City,ProductNumber,ProductName,Year,QuarterText,TotalDollarAmount
+3,"Able Ralph","San Antonio",BK002,"Advanced Kitchen Remodeling For Everyone",2013,Qtr4,74.85
+3,"Able Ralph","San Antonio",VK002,"Advanced Kitchen Remodeling",2013,Qtr4,89.70
+3,"Able Ralph","San Antonio",VB001,"Kitchen Remodeling Basics",2013,Qtr4,39.95
+3,"Able Ralph","San Antonio",BK001,"Kitchen Remodeling Basics For Everyone",2013,Qtr4,74.85
+3,"Able Ralph","San Antonio",VK001,"Kitchen Remodeling Basics",2013,Qtr4,74.75
+3,"Able Ralph","San Antonio",VB002,"Advanced Kitchen Remodeling I",2013,Qtr4,47.94
+3,"Able Ralph","San Antonio",VK002,"Advanced Kitchen Remodeling",2014,Qtr1,89.70
+3,"Able Ralph","San Antonio",BK002,"Advanced Kitchen Remodeling For Everyone",2014,Qtr1,74.85
+3,"Able Ralph","San Antonio",VB001,"Kitchen Remodeling Basics",2014,Qtr1,47.94
+3,"Able Ralph","San Antonio",VK001,"Kitchen Remodeling Basics",2014,Qtr1,89.70
+3,"Able Ralph","San Antonio",BK001,"Kitchen Remodeling Basics For Everyone",2014,Qtr1,74.85
+3,"Able Ralph","San Antonio",VB002,"Advanced Kitchen Remodeling I",2014,Qtr1,47.94
+3,"Able Ralph","San Antonio",BK001,"Kitchen Remodeling Basics For Everyone",2014,Qtr2,124.75
+3,"Able Ralph","San Antonio",VB002,"Advanced Kitchen Remodeling I",2014,Qtr2,79.90
+3,"Able Ralph","San Antonio",VK002,"Advanced Kitchen Remodeling",2014,Qtr2,149.50
+3,"Able Ralph","San Antonio",BK002,"Advanced Kitchen Remodeling For Everyone",2014,Qtr2,124.75
+3,"Able Ralph","San Antonio",VB001,"Kitchen Remodeling Basics",2014,Qtr2,87.89
+3,"Able Ralph","San Antonio",VK001,"Kitchen Remodeling Basics",2014,Qtr2,164.45
+4,"Baker Susan","San Antonio",VK004,"Heather Sweeney Seminar Live in Dallas on 25-OCT-13",2013,Qtr4,74.85
+4,"Baker Susan","San Antonio",BK001,"Kitchen Remodeling Basics For Everyone",2013,Qtr4,49.90
+4,"Baker Susan","San Antonio",VB001,"Kitchen Remodeling Basics",2013,Qtr4,15.98
+4,"Baker Susan","San Antonio",VK001,"Kitchen Remodeling Basics",2013,Qtr4,29.90
+4,"Baker Susan","San Antonio",BK002,"Advanced Kitchen Remodeling For Everyone",2013,Qtr4,74.85
+4,"Baker Susan","San Antonio",VK002,"Advanced Kitchen Remodeling",2013,Qtr4,44.85
+4,"Baker Susan","San Antonio",BK002,"Advanced Kitchen Remodeling For Everyone",2014,Qtr1,49.90
+4,"Baker Susan","San Antonio",BK001,"Kitchen Remodeling Basics For Everyone",2014,Qtr1,74.85
+4,"Baker Susan","San Antonio",VB001,"Kitchen Remodeling Basics",2014,Qtr1,23.97
+4,"Baker Susan","San Antonio",VK002,"Advanced Kitchen Remodeling",2014,Qtr1,29.90
+4,"Baker Susan","San Antonio",VK004,"Heather Sweeney Seminar Live in Dallas on 25-OCT-13",2014,Qtr1,49.90
+4,"Baker Susan","San Antonio",VK001,"Kitchen Remodeling Basics",2014,Qtr1,44.85
+4,"Baker Susan","San Antonio",VK002,"Advanced Kitchen Remodeling",2014,Qtr2,89.70
+4,"Baker Susan","San Antonio",BK002,"Advanced Kitchen Remodeling For Everyone",2014,Qtr2,149.70
+4,"Baker Susan","San Antonio",VK004,"Heather Sweeney Seminar Live in Dallas on 25-OCT-13",2014,Qtr2,149.70
+4,"Baker Susan","San Antonio",BK001,"Kitchen Remodeling Basics For Everyone",2014,Qtr2,149.70
+4,"Baker Susan","San Antonio",VB001,"Kitchen Remodeling Basics",2014,Qtr2,47.94
+4,"Baker Susan","San Antonio",VK001,"Kitchen Remodeling Basics",2014,Qtr2,89.70
+5,"Eagleton Sam","San Antonio",VB001,"Kitchen Remodeling Basics",2013,Qtr4,23.97
+5,"Eagleton Sam","San Antonio",BK001,"Kitchen Remodeling Basics For Everyone",2013,Qtr4,74.85
+5,"Eagleton Sam","San Antonio",VK001,"Kitchen Remodeling Basics",2013,Qtr4,44.85
+5,"Eagleton Sam","San Antonio",VB001,"Kitchen Remodeling Basics",2014,Qtr1,23.97
+5,"Eagleton Sam","San Antonio",BK001,"Kitchen Remodeling Basics For Everyone",2014,Qtr1,74.85
+5,"Eagleton Sam","San Antonio",VK001,"Kitchen Remodeling Basics",2014,Qtr1,44.85
+5,"Eagleton Sam","San Antonio",BK001,"Kitchen Remodeling Basics For Everyone",2014,Qtr2,124.75
+5,"Eagleton Sam","San Antonio",VB001,"Kitchen Remodeling Basics",2014,Qtr2,39.95
+5,"Eagleton Sam","San Antonio",VK001,"Kitchen Remodeling Basics",2014,Qtr2,74.75
+6,"Foxtrot Kathy",Dallas,VB003,"Kitchen Remodeling Dallas Style",2013,Qtr4,29.97
+6,"Foxtrot Kathy",Dallas,VK004,"Heather Sweeney Seminar Live in Dallas on 25-OCT-13",2013,Qtr4,74.85
+6,"Foxtrot Kathy",Dallas,VK003,"Kitchen Remodeling Dallas Style",2013,Qtr4,59.85
+6,"Foxtrot Kathy",Dallas,BK002,"Advanced Kitchen Remodeling For Everyone",2013,Qtr4,74.85
+6,"Foxtrot Kathy",Dallas,VK002,"Advanced Kitchen Remodeling",2013,Qtr4,44.85
+6,"Foxtrot Kathy",Dallas,VK002,"Advanced Kitchen Remodeling",2014,Qtr1,29.90
+6,"Foxtrot Kathy",Dallas,BK002,"Advanced Kitchen Remodeling For Everyone",2014,Qtr1,49.90
+6,"Foxtrot Kathy",Dallas,VK004,"Heather Sweeney Seminar Live in Dallas on 25-OCT-13",2014,Qtr1,49.90
+6,"Foxtrot Kathy",Dallas,VB003,"Kitchen Remodeling Dallas Style",2014,Qtr1,19.98
+6,"Foxtrot Kathy",Dallas,VK003,"Kitchen Remodeling Dallas Style",2014,Qtr1,39.90
+6,"Foxtrot Kathy",Dallas,VK002,"Advanced Kitchen Remodeling",2014,Qtr2,89.70
+6,"Foxtrot Kathy",Dallas,BK002,"Advanced Kitchen Remodeling For Everyone",2014,Qtr2,149.70
+6,"Foxtrot Kathy",Dallas,VK004,"Heather Sweeney Seminar Live in Dallas on 25-OCT-13",2014,Qtr2,149.70
+6,"Foxtrot Kathy",Dallas,VB003,"Kitchen Remodeling Dallas Style",2014,Qtr2,59.94
+6,"Foxtrot Kathy",Dallas,VK003,"Kitchen Remodeling Dallas Style",2014,Qtr2,119.70
+7,"George Sally",Dallas,BK002,"Advanced Kitchen Remodeling For Everyone",2013,Qtr4,74.85
+7,"George Sally",Dallas,BK001,"Kitchen Remodeling Basics For Everyone",2013,Qtr4,74.85
+7,"George Sally",Dallas,VK003,"Kitchen Remodeling Dallas Style",2013,Qtr4,59.85
+7,"George Sally",Dallas,VK004,"Heather Sweeney Seminar Live in Dallas on 25-OCT-13",2013,Qtr4,124.75
+7,"George Sally",Dallas,BK002,"Advanced Kitchen Remodeling For Everyone",2014,Qtr1,49.90
+7,"George Sally",Dallas,BK001,"Kitchen Remodeling Basics For Everyone",2014,Qtr1,49.90
+7,"George Sally",Dallas,VK003,"Kitchen Remodeling Dallas Style",2014,Qtr1,39.90
+7,"George Sally",Dallas,VK004,"Heather Sweeney Seminar Live in Dallas on 25-OCT-13",2014,Qtr1,124.75
+7,"George Sally",Dallas,VK004,"Heather Sweeney Seminar Live in Dallas on 25-OCT-13",2014,Qtr2,299.40
+7,"George Sally",Dallas,BK002,"Advanced Kitchen Remodeling For Everyone",2014,Qtr2,149.70
+7,"George Sally",Dallas,BK001,"Kitchen Remodeling Basics For Everyone",2014,Qtr2,149.70
+7,"George Sally",Dallas,VK003,"Kitchen Remodeling Dallas Style",2014,Qtr2,119.70
+8,"Hullett Shawn",Dallas,VB003,"Kitchen Remodeling Dallas Style",2013,Qtr4,29.97
+8,"Hullett Shawn",Dallas,VK004,"Heather Sweeney Seminar Live in Dallas on 25-OCT-13",2013,Qtr4,74.85
+8,"Hullett Shawn",Dallas,VK003,"Kitchen Remodeling Dallas Style",2013,Qtr4,59.85
+8,"Hullett Shawn",Dallas,VK004,"Heather Sweeney Seminar Live in Dallas on 25-OCT-13",2014,Qtr1,74.85
+8,"Hullett Shawn",Dallas,VB003,"Kitchen Remodeling Dallas Style",2014,Qtr1,29.97
+8,"Hullett Shawn",Dallas,VK003,"Kitchen Remodeling Dallas Style",2014,Qtr1,59.85
+8,"Hullett Shawn",Dallas,VK004,"Heather Sweeney Seminar Live in Dallas on 25-OCT-13",2014,Qtr2,124.75
+8,"Hullett Shawn",Dallas,VB003,"Kitchen Remodeling Dallas Style",2014,Qtr2,49.95
+8,"Hullett Shawn",Dallas,VK003,"Kitchen Remodeling Dallas Style",2014,Qtr2,99.75
+1,"Jacobs Nancy","Fort Worth",VB001,"Kitchen Remodeling Basics",2013,Qtr4,23.97
+1,"Jacobs Nancy","Fort Worth",BK001,"Kitchen Remodeling Basics For Everyone",2013,Qtr4,74.85
+1,"Jacobs Nancy","Fort Worth",VK001,"Kitchen Remodeling Basics",2013,Qtr4,44.85
+1,"Jacobs Nancy","Fort Worth",VB001,"Kitchen Remodeling Basics",2014,Qtr1,23.97
+1,"Jacobs Nancy","Fort Worth",BK001,"Kitchen Remodeling Basics For Everyone",2014,Qtr1,74.85
+1,"Jacobs Nancy","Fort Worth",VK001,"Kitchen Remodeling Basics",2014,Qtr1,44.85
+1,"Jacobs Nancy","Fort Worth",VB001,"Kitchen Remodeling Basics",2014,Qtr2,39.95
+1,"Jacobs Nancy","Fort Worth",VK001,"Kitchen Remodeling Basics",2014,Qtr2,74.75
+1,"Jacobs Nancy","Fort Worth",BK001,"Kitchen Remodeling Basics For Everyone",2014,Qtr2,124.75
+9,"Pearson Bobbi",Auston,VK002,"Advanced Kitchen Remodeling",2013,Qtr4,44.85
+9,"Pearson Bobbi",Auston,VB001,"Kitchen Remodeling Basics",2013,Qtr4,23.97
+9,"Pearson Bobbi",Auston,BK001,"Kitchen Remodeling Basics For Everyone",2013,Qtr4,74.85
+9,"Pearson Bobbi",Auston,VK001,"Kitchen Remodeling Basics",2013,Qtr4,44.85
+9,"Pearson Bobbi",Auston,VB002,"Advanced Kitchen Remodeling I",2013,Qtr4,23.97
+9,"Pearson Bobbi",Auston,VK002,"Advanced Kitchen Remodeling",2014,Qtr1,44.85
+9,"Pearson Bobbi",Auston,VB001,"Kitchen Remodeling Basics",2014,Qtr1,15.98
+9,"Pearson Bobbi",Auston,BK001,"Kitchen Remodeling Basics For Everyone",2014,Qtr1,49.90
+9,"Pearson Bobbi",Auston,VK001,"Kitchen Remodeling Basics",2014,Qtr1,29.90
+9,"Pearson Bobbi",Auston,VB002,"Advanced Kitchen Remodeling I",2014,Qtr1,23.97
+9,"Pearson Bobbi",Auston,VB002,"Advanced Kitchen Remodeling I",2014,Qtr2,39.95
+9,"Pearson Bobbi",Auston,VK002,"Advanced Kitchen Remodeling",2014,Qtr2,74.75
+9,"Pearson Bobbi",Auston,BK001,"Kitchen Remodeling Basics For Everyone",2014,Qtr2,149.70
+9,"Pearson Bobbi",Auston,VB001,"Kitchen Remodeling Basics",2014,Qtr2,47.94
+9,"Pearson Bobbi",Auston,VK001,"Kitchen Remodeling Basics",2014,Qtr2,89.70
+11,"Tyler Jenny",Dallas,VB003,"Kitchen Remodeling Dallas Style",2013,Qtr4,59.94
+11,"Tyler Jenny",Dallas,VK004,"Heather Sweeney Seminar Live in Dallas on 25-OCT-13",2013,Qtr4,149.70
+11,"Tyler Jenny",Dallas,VK002,"Advanced Kitchen Remodeling",2013,Qtr4,89.70
+11,"Tyler Jenny",Dallas,VK003,"Kitchen Remodeling Dallas Style",2013,Qtr4,119.70
+11,"Tyler Jenny",Dallas,VB002,"Advanced Kitchen Remodeling I",2013,Qtr4,47.94
+11,"Tyler Jenny",Dallas,VB002,"Advanced Kitchen Remodeling I",2014,Qtr1,47.94
+11,"Tyler Jenny",Dallas,VK004,"Heather Sweeney Seminar Live in Dallas on 25-OCT-13",2014,Qtr1,149.70
+11,"Tyler Jenny",Dallas,VB003,"Kitchen Remodeling Dallas Style",2014,Qtr1,59.94
+11,"Tyler Jenny",Dallas,VK002,"Advanced Kitchen Remodeling",2014,Qtr1,89.70
+11,"Tyler Jenny",Dallas,VK003,"Kitchen Remodeling Dallas Style",2014,Qtr1,119.70
+11,"Tyler Jenny",Dallas,VB002,"Advanced Kitchen Remodeling I",2014,Qtr2,79.90
+11,"Tyler Jenny",Dallas,VK002,"Advanced Kitchen Remodeling",2014,Qtr2,149.50
+11,"Tyler Jenny",Dallas,VB003,"Kitchen Remodeling Dallas Style",2014,Qtr2,99.90
+11,"Tyler Jenny",Dallas,VK003,"Kitchen Remodeling Dallas Style",2014,Qtr2,199.50
+11,"Tyler Jenny",Dallas,VK004,"Heather Sweeney Seminar Live in Dallas on 25-OCT-13",2014,Qtr2,249.50
+12,"Wayne Joan","Fort Worth",BK002,"Advanced Kitchen Remodeling For Everyone",2013,Qtr4,74.85
+12,"Wayne Joan","Fort Worth",VB003,"Kitchen Remodeling Dallas Style",2013,Qtr4,29.97
+12,"Wayne Joan","Fort Worth",VK002,"Advanced Kitchen Remodeling",2013,Qtr4,44.85
+12,"Wayne Joan","Fort Worth",VK004,"Heather Sweeney Seminar Live in Dallas on 25-OCT-13",2013,Qtr4,74.85
+12,"Wayne Joan","Fort Worth",VK003,"Kitchen Remodeling Dallas Style",2013,Qtr4,59.85
+12,"Wayne Joan","Fort Worth",BK002,"Advanced Kitchen Remodeling For Everyone",2014,Qtr1,74.85
+12,"Wayne Joan","Fort Worth",VK004,"Heather Sweeney Seminar Live in Dallas on 25-OCT-13",2014,Qtr1,74.85
+12,"Wayne Joan","Fort Worth",VK002,"Advanced Kitchen Remodeling",2014,Qtr1,44.85
+12,"Wayne Joan","Fort Worth",VB003,"Kitchen Remodeling Dallas Style",2014,Qtr1,29.97
+12,"Wayne Joan","Fort Worth",VK003,"Kitchen Remodeling Dallas Style",2014,Qtr1,59.85
+12,"Wayne Joan","Fort Worth",VK003,"Kitchen Remodeling Dallas Style",2014,Qtr2,99.75
+12,"Wayne Joan","Fort Worth",VK004,"Heather Sweeney Seminar Live in Dallas on 25-OCT-13",2014,Qtr2,124.75
+12,"Wayne Joan","Fort Worth",BK002,"Advanced Kitchen Remodeling For Everyone",2014,Qtr2,124.75
+12,"Wayne Joan","Fort Worth",VB003,"Kitchen Remodeling Dallas Style",2014,Qtr2,49.95
+12,"Wayne Joan","Fort Worth",VK002,"Advanced Kitchen Remodeling",2014,Qtr2,74.75
