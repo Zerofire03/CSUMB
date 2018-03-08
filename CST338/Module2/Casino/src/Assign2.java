@@ -20,16 +20,12 @@ public class Assign2
          if ( !(result.saveWinnings( winnings ) ))
          {
             System.out.println( "Max number of pulls exceeded. Game over." );
-            System.out.println( result.displayWinnings() );
-            System.out.printf( "Your total winnings were: $%d", result.getTotalWinnings() );
+            System.out.print(result.displayWinnings());
             System.exit(0);
          }
       }
       }while( bet != 0 );
-      System.out.println( "Thanks for playing at the Casino!" );
-      System.out.println( "Your individual winnings were:" );
-      System.out.println( result.displayWinnings() );
-      System.out.printf( "Your total winnings were: $%d", result.getTotalWinnings() );
+      System.out.print(result.displayWinnings());
       sc.close();
       
    }
@@ -237,6 +233,8 @@ class TripleString
    public String displayWinnings()
    {
       StringBuilder builder = new StringBuilder();
+      builder.append( "Thanks for playing at the Casino!\n" );
+      builder.append( "Your individual winnings were:\n" );
       
       int temp[] = new int[numPulls];
       for ( int i = 0; i < numPulls; i++ )
@@ -249,6 +247,12 @@ class TripleString
          builder.append(value + " ");
       }
       
+      int totalWinnings = 0;
+      for ( int i = 0; i < numPulls; i++ )
+      {
+         totalWinnings += pullWinnings[i];
+      }
+      builder.append("\n" + "Congratulations, you win: $" + totalWinnings);
       String winningsString = builder.toString();
       return winningsString;
    }
