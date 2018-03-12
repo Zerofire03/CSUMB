@@ -256,15 +256,4 @@ class TripleString
       String winningsString = builder.toString();
       return winningsString;
    }
-   
-   //Get total winnings
-   public int getTotalWinnings()
-   {
-      int totalWinnings = 0;
-      for ( int i = 0; i < numPulls; i++ )
-      {
-         totalWinnings += pullWinnings[i];
-      }
-      return totalWinnings;
-   }
 }
