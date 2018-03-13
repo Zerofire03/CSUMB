@@ -1,24 +1,69 @@
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Random;
 
 public class Assign3
 {
-
    public static void main(String[] args)
    {
-      Card testCardDefault = new Card();
-      System.out.println( testCardDefault.toString() );
+      int MAX_CARDS = 100;
+      Card testCard1 = new Card();
+      System.out.println( testCard1.toString() );
       
-      Card testCardInvalid = new Card( 'Y', Card.Suit.clubs );
-      System.out.println( testCardInvalid.toString() );
+      Card testCard2 = new Card( '5', Card.Suit.clubs );
+      System.out.println( testCard2.toString() );
       
-      Card testCardValid = new Card( 'J', Card.Suit.spades );
-      System.out.println( testCardValid.toString() );
+      Card testCard3 = new Card( 'J', Card.Suit.spades );
+      System.out.println( testCard3.toString() );
       
+      Card testCard4 = new Card( '7', Card.Suit.hearts );
+      System.out.println( testCard4.toString() );
+      
+      Card testCard5 = new Card( '2', Card.Suit.diamonds );
+      System.out.println( testCard5.toString() );
+      
+      Hand myHand = new Hand();
+      
+      
+      for( int i = 0; i < MAX_CARDS; i++ ) 
+      {
+         int mod = 1 % 5;
+         switch(mod)
+         {
+            case 1: myHand.takeCard(testCard1);
+            case 2: myHand.takeCard(testCard2);
+            case 3: myHand.takeCard(testCard3);
+            case 4: myHand.takeCard(testCard4);
+            case 5: myHand.takeCard(testCard5);
+         }
+      }
+      
+      System.out.println("Hand Full");
+      System.out.println("After deal");
+      System.out.println(myHand.toString());
+      
+      System.out.println("\nTesting inspectCard()");
+      System.out.println(myHand.inspectCard(10).toString());
+      System.out.println(myHand.inspectCard(105).toString());
       System.out.println("");
-      testCardInvalid.set( 'Q', Card.Suit.spades );
-      System.out.println( testCardInvalid.toString() );
       
-      testCardValid.set( 'Y', Card.Suit.clubs );
-      System.out.println( testCardValid.toString() );
+      for( int i = 0; i < MAX_CARDS; i++ ) 
+      {
+         System.out.print("Playing ");
+         System.out.print(myHand.playCard().toString());
+         System.out.println("");
+      }
+      
+      System.out.println("\nAfter playing all cards");
+      System.out.println(myHand.toString());
+      
+      Deck myDeck = new Deck(2);
+      do
+      {
+         Card temp = myDeck.dealCard();
+         //(myDeck.dealCard()).toString();
+         temp.toString();
+      }while(myDeck.getTopCard() != 0);
 
    }
 
@@ -149,7 +194,7 @@ class Hand
          {
             temp[i] = myCards[i];
          }
-         temp[numCards + 1] = card;
+         temp[numCards] = card;
          numCards += 1;
          myCards = temp;
          return true;
@@ -163,7 +208,7 @@ class Hand
    //Returns and removes the card in the top position of the array
    public Card playCard()
    {
-      Card returned = myCards[ numCards ];
+      Card returned = myCards[ numCards - 1 ];
       numCards -= 1;
       Card[] temp = new Card [ numCards ];
       for ( int i = 0; i < numCards; i++ )
@@ -172,5 +217,122 @@ class Hand
       }
       myCards = temp;
       return returned;     
+   }
+   
+   //Returns a string of the entire hand
+   public String toString()
+   {
+      StringBuilder temp = new StringBuilder();
+      temp.append("Hand = (");
+      for ( Card value : myCards )
+      {
+         temp.append(value);
+         temp.append(", ");
+      }
+      temp.append(")");
+      String returned = temp.toString();
+      return returned;
+   }
+   
+   //Accessor for numCards
+   public int getNumCards()
+   {
+      return numCards;
+   }
+   
+   //Accessor for an individual card
+   public Card inspectCard(int k)
+   {
+      if ( k < 0 | k > numCards )
+      {
+         return new Card('Y', Card.Suit.spades);
+      }
+      else
+      {
+         return myCards[k];
+      }
+   }
+}
+
+class Deck
+{
+   public final int MAX_CARDS = 6 * 52;
+   private static Card[] masterPack;
+   Card[] cards;
+   int topCard;
+   int numPacks;
+   
+   //Allocate master pack
+   static void allocateMasterPack()
+   {
+      char[] cardValue = {'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
+      masterPack = new Card [52];
+      for( int i = 0; i < 13; i++ )
+      {
+         masterPack[ 0 + ( i * 4 ) ] = new Card( cardValue[i], Card.Suit.hearts );
+         masterPack[ 1 + ( i * 4 ) ] = new Card( cardValue[i], Card.Suit.spades );
+         masterPack[ 2 + ( i * 4 ) ] = new Card( cardValue[i], Card.Suit.clubs );
+         masterPack[ 3 + ( i * 4 ) ] = new Card( cardValue[i], Card.Suit.diamonds );
+      }
+   }
+   
+   //Constructor no params
+   Deck()
+   {
+      allocateMasterPack();
+      numPacks = 1;
+      cards = masterPack;
+      topCard = cards.length;
+   }
+   
+   //Constructor params
+   Deck(int numPacks)
+   {
+      allocateMasterPack();
+      this.numPacks = numPacks;
+      cards = new Card[ numPacks * 52 ];
+      for( int i = 0; i < numPacks; i++ )
+      {
+         for( int j = 0; j < 52; j++ )
+         {
+            cards[ (i * 52) + j ] = masterPack[j];
+         }
+      }
+      topCard = cards.length;
+   }
+   
+   //Re-populate cards[] with the standard 52 x numPacks cards
+   void init(int numPacks)
+   {
+      this.numPacks = numPacks;
+      cards = new Card[ numPacks * 52 ];
+      for( int i = 0; i < numPacks; i++ )
+      {
+         for( int j = 0; j < 52; j++ )
+         {
+            cards[ (i * 52) + j ] = masterPack[0];
+         }
+      }
+      topCard = cards.length;
+   }
+   
+   //Mixes up the cards using a standard random number
+   void shuffle()
+   {
+      Collections.shuffle(Arrays.asList(cards));
+   }
+   
+   //Returns and removes the card in the top occupied position of cards[]
+   Card dealCard()
+   {
+      System.out.printf("dealCard: %d\n", topCard);
+      topCard -= 1;
+      return cards[topCard];
+   }
+   
+   //Accessor for the int of the topCard
+   int getTopCard()
+   {
+      return topCard;
    }
 }
