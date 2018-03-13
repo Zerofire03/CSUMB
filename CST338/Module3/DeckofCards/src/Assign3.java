@@ -145,16 +145,32 @@ class Hand
       if ( numCards + 1 <= MAX_CARDS )
       {
          Card[] temp = new Card[ numCards + 1 ];
-         for ( int i =0; i <= numCards; i++ )
+         for ( int i =0; i < numCards; i++ )
          {
-            
+            temp[i] = myCards[i];
          }
-         
+         temp[numCards + 1] = card;
+         numCards += 1;
+         myCards = temp;
          return true;
       }
       else
       {
          return false;
       }
+   }
+   
+   //Returns and removes the card in the top position of the array
+   public Card playCard()
+   {
+      Card returned = myCards[ numCards ];
+      numCards -= 1;
+      Card[] temp = new Card [ numCards ];
+      for ( int i = 0; i < numCards; i++ )
+      {
+         temp[i] = myCards[i];
+      }
+      myCards = temp;
+      return returned;     
    }
 }
