@@ -137,9 +137,9 @@ public class Assign2
 
 class TripleString
 {
-   String string1;
-   String string2;
-   String string3;
+   private String string1;
+   private String string2;
+   private String string3;
    public static final int MAX_LEN = 20;
    public static final int MAX_PULLS = 40;
    static int pullWinnings[] = new int[MAX_PULLS];
@@ -154,7 +154,7 @@ class TripleString
    }
    
    //Returns true if the string is valid, returns false if not valid
-   boolean validString( String str )
+   private boolean validString( String str )
    {
       if ( str.length() <= MAX_LEN && str != null && !str.isEmpty() )
       {
@@ -283,9 +283,21 @@ class TripleString
 
 /* -------------------- Sample Run ---------------------------* 
 How much would you like to bet (1 - 100); or 0 to quit?
--1
+-100
 How much would you like to bet (1 - 100); or 0 to quit?
 1000
+How much would you like to bet (1 - 100); or 0 to quit?
+50
+whirrrrrr .... and your pull is ... 
+BAR 7 cherries
+Sorry, you lose.
+
+How much would you like to bet (1 - 100); or 0 to quit?
+50
+whirrrrrr .... and your pull is ... 
+cherries 7 cherries
+Congratulations, you win: 250
+
 How much would you like to bet (1 - 100); or 0 to quit?
 50
 whirrrrrr .... and your pull is ... 
@@ -301,8 +313,38 @@ Congratulations, you win: 250
 How much would you like to bet (1 - 100); or 0 to quit?
 50
 whirrrrrr .... and your pull is ... 
-(space) BAR BAR
+BAR cherries (space)
 Sorry, you lose.
+
+How much would you like to bet (1 - 100); or 0 to quit?
+50
+whirrrrrr .... and your pull is ... 
+BAR cherries 7
+Sorry, you lose.
+
+How much would you like to bet (1 - 100); or 0 to quit?
+50
+whirrrrrr .... and your pull is ... 
+cherries BAR (space)
+Congratulations, you win: 250
+
+How much would you like to bet (1 - 100); or 0 to quit?
+50
+whirrrrrr .... and your pull is ... 
+BAR cherries BAR
+Sorry, you lose.
+
+How much would you like to bet (1 - 100); or 0 to quit?
+50
+whirrrrrr .... and your pull is ... 
+cherries cherries BAR
+Congratulations, you win: 750
+
+How much would you like to bet (1 - 100); or 0 to quit?
+50
+whirrrrrr .... and your pull is ... 
+cherries BAR BAR
+Congratulations, you win: 250
 
 How much would you like to bet (1 - 100); or 0 to quit?
 50
@@ -313,37 +355,25 @@ Congratulations, you win: 2500
 How much would you like to bet (1 - 100); or 0 to quit?
 50
 whirrrrrr .... and your pull is ... 
-BAR cherries (space)
+7 BAR cherries
 Sorry, you lose.
 
 How much would you like to bet (1 - 100); or 0 to quit?
 50
 whirrrrrr .... and your pull is ... 
-cherries BAR BAR
-Congratulations, you win: 250
-
-How much would you like to bet (1 - 100); or 0 to quit?
-50
-whirrrrrr .... and your pull is ... 
-BAR cherries BAR
+7 cherries BAR
 Sorry, you lose.
 
 How much would you like to bet (1 - 100); or 0 to quit?
 50
 whirrrrrr .... and your pull is ... 
-cherries BAR BAR
-Congratulations, you win: 250
+(space) BAR BAR
+Sorry, you lose.
 
 How much would you like to bet (1 - 100); or 0 to quit?
 50
 whirrrrrr .... and your pull is ... 
-cherries (space) BAR
-Congratulations, you win: 250
-
-How much would you like to bet (1 - 100); or 0 to quit?
-50
-whirrrrrr .... and your pull is ... 
-BAR cherries BAR
+7 BAR BAR
 Sorry, you lose.
 
 How much would you like to bet (1 - 100); or 0 to quit?
@@ -355,62 +385,26 @@ Sorry, you lose.
 How much would you like to bet (1 - 100); or 0 to quit?
 50
 whirrrrrr .... and your pull is ... 
-cherries BAR cherries
-Congratulations, you win: 250
-
-How much would you like to bet (1 - 100); or 0 to quit?
-50
-whirrrrrr .... and your pull is ... 
-cherries 7 cherries
-Congratulations, you win: 250
-
-How much would you like to bet (1 - 100); or 0 to quit?
-50
-whirrrrrr .... and your pull is ... 
-BAR BAR BAR
-Congratulations, you win: 2500
-
-How much would you like to bet (1 - 100); or 0 to quit?
-50
-whirrrrrr .... and your pull is ... 
-BAR 7 cherries
+(space) BAR (space)
 Sorry, you lose.
 
 How much would you like to bet (1 - 100); or 0 to quit?
 50
 whirrrrrr .... and your pull is ... 
-BAR BAR (space)
+(space) BAR cherries
 Sorry, you lose.
 
 How much would you like to bet (1 - 100); or 0 to quit?
 50
 whirrrrrr .... and your pull is ... 
-BAR BAR BAR
-Congratulations, you win: 2500
-
-How much would you like to bet (1 - 100); or 0 to quit?
-50
-whirrrrrr .... and your pull is ... 
-BAR 7 7
+BAR cherries 7
 Sorry, you lose.
 
 How much would you like to bet (1 - 100); or 0 to quit?
 50
 whirrrrrr .... and your pull is ... 
-7 7 BAR
-Sorry, you lose.
-
-How much would you like to bet (1 - 100); or 0 to quit?
-50
-whirrrrrr .... and your pull is ... 
-cherries BAR cherries
-Congratulations, you win: 250
-
-How much would you like to bet (1 - 100); or 0 to quit?
-50
-whirrrrrr .... and your pull is ... 
-(space) cherries (space)
-Sorry, you lose.
+cherries cherries BAR
+Congratulations, you win: 750
 
 How much would you like to bet (1 - 100); or 0 to quit?
 50
@@ -422,6 +416,6 @@ How much would you like to bet (1 - 100); or 0 to quit?
 0
 Thanks for playing at the Casino!
 Your individual winnings were:
-0 250 0 2500 0 250 0 250 250 0 0 250 250 2500 0 0 2500 0 0 250 0 250 
-Congratulations, you win: $9500
+0 250 0 250 0 0 250 0 750 250 2500 0 0 0 0 0 0 0 0 750 250 
+Congratulations, you win: $5250
 -------------------------------------------------------- */

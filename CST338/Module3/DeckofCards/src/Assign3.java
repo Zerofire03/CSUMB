@@ -258,12 +258,12 @@ class Deck
 {
    public final int MAX_CARDS = 6 * 52;
    private static Card[] masterPack;
-   Card[] cards;
-   int topCard;
-   int numPacks;
+   private Card[] cards;
+   private int topCard;
+   private int numPacks;
    
    //Allocate master pack
-   static void allocateMasterPack()
+   private static void allocateMasterPack()
    {
       char[] cardValue = {'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
       masterPack = new Card [52];
@@ -277,7 +277,7 @@ class Deck
    }
    
    //Constructor no params
-   Deck()
+   public Deck()
    {
       allocateMasterPack();
       numPacks = 1;
@@ -286,7 +286,7 @@ class Deck
    }
    
    //Constructor params
-   Deck(int numPacks)
+   public Deck(int numPacks)
    {
       allocateMasterPack();
       this.numPacks = numPacks;
@@ -302,7 +302,7 @@ class Deck
    }
    
    //Re-populate cards[] with the standard 52 x numPacks cards
-   void init(int numPacks)
+   public void init(int numPacks)
    {
       this.numPacks = numPacks;
       cards = new Card[ numPacks * 52 ];
@@ -310,28 +310,28 @@ class Deck
       {
          for( int j = 0; j < 52; j++ )
          {
-            cards[ (i * 52) + j ] = masterPack[0];
+            cards[ (i * 52) + j ] = masterPack[j];
          }
       }
       topCard = cards.length;
    }
    
    //Mixes up the cards using a standard random number
-   void shuffle()
+   public void shuffle()
    {
       Collections.shuffle(Arrays.asList(cards));
    }
    
    //Returns and removes the card in the top occupied position of cards[]
-   Card dealCard()
+   public Card dealCard()
    {
-      System.out.printf("dealCard: %d\n", topCard);
+      int temp = topCard - 1;
       topCard -= 1;
-      return cards[topCard];
+      return cards[temp];
    }
    
    //Accessor for the int of the topCard
-   int getTopCard()
+   public int getTopCard()
    {
       return topCard;
    }
