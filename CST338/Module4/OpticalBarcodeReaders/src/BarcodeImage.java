@@ -16,9 +16,9 @@ public class BarcodeImage implements Cloneable
    public BarcodeImage()
    {
       image_data = new boolean[MAX_HEIGHT][MAX_WIDTH];
-      for ( int i=0; i < MAX_HEIGHT; i++ )
+      for ( int i=0; i < image_data.length; i++ )
       {
-         for ( int j=0; j < MAX_WIDTH; j++ )
+         for ( int j=0; j < image_data[i].length; j++ )
          {
             image_data[i][j] = false;
          }
@@ -26,6 +26,27 @@ public class BarcodeImage implements Cloneable
    }
    
    //Constructor with string array passed in
+   /**
+   public BarcodeImage(String[] str_data)
+   {
+      image_data = new boolean[MAX_HEIGHT][MAX_WIDTH];
+      int imageIndex = 0;
+      if( !checkSize(str_data) )
+      {
+         return;
+      }
+      
+      for( int x = str_data.length-2; x > 1; x--)
+      {
+         for( int y = 1; y < str_data[x].length() - 1; y++)
+         {
+            image_data[imageIndex][y-1] = str_data[x].charAt(y) == '*' ? true : false;
+         }
+         imageIndex++;
+      }
+   }
+   **/
+   
    public BarcodeImage(String[] str_data)
    {
       image_data = new boolean[MAX_HEIGHT][MAX_WIDTH];
@@ -89,50 +110,37 @@ public class BarcodeImage implements Cloneable
    }
    
    //Checks the incoming data for every conceivable size or null error
-   /**
    private boolean checkSize(String[] data)
    {
-      if(data == null || data.length >= MAX_HEIGHT)
+      if(data == null || data.length > MAX_HEIGHT || data[0].length() > MAX_WIDTH)
       {
          return false;
       }
-      else
-      {
-         for( int i = 0; i < data.length; i++ )
-         {
-            if( data[i].length() > MAX_WIDTH )
-            {
-               return false;
-            }
-            else
-            {
-               return true;
-            }
-         }
-      }
+      return true;
    }
-   **/
+   
    
    //Displays the data to the console
    public void displayToConsole()
    {
-      for( int i = 0; i < MAX_HEIGHT; i++ )
+      for( int i = MAX_HEIGHT-1; i >= 0; i-- )
       {
-         StringBuilder data = new StringBuilder();
-         for( int j = 0; j < MAX_WIDTH; j++ )
+         if ( i < MAX_HEIGHT )
          {
-            if(image_data[i][j] == true)
+            System.out.print("\n");
+         }
+         for ( int j = 0; j < MAX_WIDTH; j++ )
+         {
+            if ( image_data[i][j] == true )
             {
-               data.append("*");
-               //System.out.println("displayToConsole true");
+               System.out.print("*");
             }
-            else if(image_data[i][j] == false)
+            else
             {
-               data.append(" ");
-               //System.out.println("displayToConsole false");
+               System.out.print(" ");
             }
          }
-         System.out.println(data);
+        
       }
    }
    
