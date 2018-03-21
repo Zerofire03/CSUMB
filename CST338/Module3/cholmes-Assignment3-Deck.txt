@@ -1,46 +1,3 @@
-<<<<<<< HEAD
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Random;
-import java.util.Scanner;
-
-public class Assign3
-{
-   public static void main(String[] args)
-   {
-      /**********Phase 1**********/
-      int MAX_CARDS = 100;
-      Card testCard1 = new Card();
-      System.out.println( testCard1.toString() );
-      
-      Card testCard2 = new Card( '5', Card.Suit.clubs );
-      System.out.println( testCard2.toString() );
-      
-      Card testCard3 = new Card( 'J', Card.Suit.spades );
-      System.out.println( testCard3.toString() );
-      
-      Card testCard4 = new Card( '7', Card.Suit.hearts );
-      System.out.println( testCard4.toString() );
-      
-      Card testCard5 = new Card( '2', Card.Suit.diamonds );
-      System.out.println( testCard5.toString() );
-      
-      /*********Phase 2***********/
-      
-      Hand myHand = new Hand();
-      
-      
-      for( int i = 0; i < MAX_CARDS; i++ ) 
-      {
-         int mod = 1 % 5;
-         switch(mod)
-         {
-            case 1: myHand.takeCard(testCard1);
-            case 2: myHand.takeCard(testCard2);
-            case 3: myHand.takeCard(testCard3);
-            case 4: myHand.takeCard(testCard4);
-            case 5: myHand.takeCard(testCard5);
-=======
 /*
  * Assignment 3: Decks of Cards
  * By:   Christopher Holmes
@@ -85,7 +42,6 @@ public class Assign3 {
          testHand.takeCard(ph2Card3);
          testHand.takeCard(ph2Card4);
          testHand.takeCard(ph2Card5);
->>>>>>> 67c12a6953a79f728e7d28403b5db0e75034745e
          }
 
       // show the full hand
@@ -97,73 +53,8 @@ public class Assign3 {
          Card pCard = testHand.playCard();
          System.out.println("Played card: " + pCard.toString());
       }
-<<<<<<< HEAD
-      
-      System.out.println("\nAfter playing all cards");
-      System.out.println(myHand.toString());
-      
-      /******Phase 3********/
-      
-      Deck myDeck = new Deck(2);
-      do
-      {
-         System.out.println(myDeck.dealCard().toString());
-      }while(myDeck.getTopCard() != 0);
 
       System.out.println("");
-      myDeck.init(2);
-      myDeck.shuffle();
-      do
-      {
-         System.out.println(myDeck.dealCard().toString());
-      }while(myDeck.getTopCard() != 0);
-      
-      Deck myDeckSingle = new Deck();
-      do
-      {
-         System.out.println(myDeckSingle.dealCard().toString());
-      }while(myDeckSingle.getTopCard() != 0);
-
-      System.out.println("");
-      myDeckSingle.init(1);
-      myDeckSingle.shuffle();
-      do
-      {
-         System.out.println(myDeckSingle.dealCard().toString());
-      }while(myDeckSingle.getTopCard() != 0);
-      
-      /**********Phase 4**********/
-      Scanner sc = new Scanner(System.in);
-      int numHands;
-      do
-      {
-         System.out.println("\nHow many hands? (1 - 10, please):");
-         numHands = sc.nextInt();
-      }while(numHands < 1 | numHands > 10);
-      sc.close();
-      
-      Deck phase4Deck = new Deck();
-      Hand hands[] = new Hand[numHands];
-      System.out.println(numHands);
-      System.out.println(hands.length);
-      System.out.println(phase4Deck.dealCard().toString());
-      
-      for(int i = 0; i < 52; i++)
-      {
-         //hands[i%4].takeCard(phase4Deck.dealCard());
-         hands[0].takeCard(phase4Deck.dealCard());
-      }
-      
-      for( Hand value: hands)
-      {
-         value.toString();
-      }
-      
-   }
-=======
-
-      System.out.println("");
->>>>>>> 67c12a6953a79f728e7d28403b5db0e75034745e
 
       // validate the empty hand
       System.out.println(testHand.toString());
