@@ -1,11 +1,13 @@
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Assign3
 {
    public static void main(String[] args)
    {
+      /**********Phase 1**********/
       int MAX_CARDS = 100;
       Card testCard1 = new Card();
       System.out.println( testCard1.toString() );
@@ -21,6 +23,8 @@ public class Assign3
       
       Card testCard5 = new Card( '2', Card.Suit.diamonds );
       System.out.println( testCard5.toString() );
+      
+      /*********Phase 2***********/
       
       Hand myHand = new Hand();
       
@@ -57,14 +61,63 @@ public class Assign3
       System.out.println("\nAfter playing all cards");
       System.out.println(myHand.toString());
       
+      /******Phase 3********/
+      
       Deck myDeck = new Deck(2);
       do
       {
-         Card temp = myDeck.dealCard();
-         //(myDeck.dealCard()).toString();
-         temp.toString();
+         System.out.println(myDeck.dealCard().toString());
       }while(myDeck.getTopCard() != 0);
 
+      System.out.println("");
+      myDeck.init(2);
+      myDeck.shuffle();
+      do
+      {
+         System.out.println(myDeck.dealCard().toString());
+      }while(myDeck.getTopCard() != 0);
+      
+      Deck myDeckSingle = new Deck();
+      do
+      {
+         System.out.println(myDeckSingle.dealCard().toString());
+      }while(myDeckSingle.getTopCard() != 0);
+
+      System.out.println("");
+      myDeckSingle.init(1);
+      myDeckSingle.shuffle();
+      do
+      {
+         System.out.println(myDeckSingle.dealCard().toString());
+      }while(myDeckSingle.getTopCard() != 0);
+      
+      /**********Phase 4**********/
+      Scanner sc = new Scanner(System.in);
+      int numHands;
+      do
+      {
+         System.out.println("\nHow many hands? (1 - 10, please):");
+         numHands = sc.nextInt();
+      }while(numHands < 1 | numHands > 10);
+      sc.close();
+      
+      Deck phase4Deck = new Deck();
+      Hand hands[] = new Hand[numHands];
+      System.out.println(numHands);
+      System.out.println(hands.length);
+      System.out.println(phase4Deck.dealCard().toString());
+      
+      for(int i = 0; i < 52; i++)
+      {
+         //hands[i%4].takeCard(phase4Deck.dealCard());
+         hands[0].takeCard(phase4Deck.dealCard());
+      }
+      
+      for( Hand value: hands)
+      {
+         value.toString();
+      }
+      
    }
 
 }
