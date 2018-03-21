@@ -56,13 +56,30 @@ public class Assignment4
 
          };
       
+      String[] sImageIn_3 =
+         {
+               "* * * * * * * * * * * * * * * * * *", 
+               "*                                 *", 
+               "***** ** * **** ****** ** **** **  ", 
+               "* **************      *************", 
+               "**  *  *        *  *   *        *  ", 
+               "* **  *     **    * *   * ****   **", 
+               "**         ****   * ** ** ***   ** ", 
+               "*   *  *   ***  *       *  ***   **", 
+               "*  ** ** * ***  ***  *  *  *** *   ", 
+               "***********************************"
+         };
+      
       BarcodeImage defaultConstructor = new BarcodeImage();
       System.out.println("Default Constructor");
       defaultConstructor.displayToConsole();
       System.out.println("\nImage In");
-      BarcodeImage imageIn = new BarcodeImage(sImageIn);
+      BarcodeImage imageIn = new BarcodeImage(sImageIn_3);
       imageIn.displayToConsole();
       System.out.println("End Image");
+      //System.out.println("DataMatrix");
+      //DataMatrix test = new DataMatrix("This");
+      //test.generateImageFromText();
 
    }
 
