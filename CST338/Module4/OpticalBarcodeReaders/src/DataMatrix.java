@@ -17,6 +17,15 @@ public class DataMatrix implements BarcodeIO
    private int actualWidth;
    private int actualHeight;
    
+   public void displayTextToConsole()
+   {
+      System.out.println(text);
+   }
+   public void displayImageToConsole()
+   {
+      image.displayToConsole();
+   }
+   
    //Default constructor
    public DataMatrix()
    {
@@ -158,6 +167,7 @@ public class DataMatrix implements BarcodeIO
       int lowerLeftY = 0;
       
       //Find the lower left corner of the image
+      outerloop:
       for( int x = 0; x < BarcodeImage.MAX_WIDTH; x++ )
       {
          for( int y = BarcodeImage.MAX_HEIGHT - 1; y >= 0; y-- )
@@ -165,8 +175,9 @@ public class DataMatrix implements BarcodeIO
             if( image.getPixel(y, x) )
             {
                lowerLeftX = x;
-               lowerLeftY = y;
-               break;
+               lowerLeftY = BarcodeImage.MAX_HEIGHT - y - 1;
+               System.out.printf("Lower left corner: x: %d y: %d\n", lowerLeftX, lowerLeftY);
+               break outerloop;
             }
          }         
       }
@@ -178,6 +189,87 @@ public class DataMatrix implements BarcodeIO
    }
    
    //Moves image down by offset
+   
+   private void shiftImageDown(int offset)
+   {
+      for( int x = 0; x < BarcodeImage.MAX_WIDTH; x++ )
+      {
+         //Store elements that are being dropped off into an array
+         boolean[] tmp = new boolean[offset];
+         int counter = 0;
+         for( int i = BarcodeImage.MAX_HEIGHT - 1; i > BarcodeImage.MAX_HEIGHT - offset; i-- )
+         {
+            //System.out.printf("counter: %d i: %d x: %d\n", counter, i, x);
+            tmp[counter] = image.getPixel(i, x);
+            counter++;
+         }
+         
+         //Shift Elements
+         for( int y = BarcodeImage.MAX_HEIGHT - 1; y > offset; y-- )
+         {
+            System.out.printf("x: %d y: %d\n", x, y);
+            image.setPixel(y, x, image.getPixel(y - offset, x));
+         }
+         
+       //Copy dropped elements
+         for( int i = 0; i < offset; i++ )
+         {
+            image.setPixel(i, x, tmp[i]);
+         }
+      }
+      /**
+      for( int y = 29; y > 0; y-- )
+      {
+         //Store elements that are being dropped off into an array
+         boolean[] tmp = new boolean[offset];
+         for( int i = 0; i < offset; i++ )
+         {
+            tmp[i] = image.getPixel(i, y);
+         }
+         
+         //Shift Elements
+         for( int x = 0; x < BarcodeImage.MAX_WIDTH - offset; x++)
+         {
+            System.out.printf("y: %d c: %d\n", y, x);
+            image.setPixel(y, x, image.getPixel(y + offset, x));
+         }
+      }
+      **/
+   }
+   
+   //Moves image to left by offset
+   public void shiftImageLeft(int offset)
+   {
+      for( int row = 0; row < BarcodeImage.MAX_HEIGHT; row++ )
+      {         
+         //Store elements that are being dropped off into an array
+         boolean[] tmp = new boolean[offset];
+         for ( int i = 0; i < offset; i++ )
+         {
+            tmp[i] = image.getPixel(row, i);
+            //System.out.printf("row: %d i: %d value: %s\n", row, i, String.valueOf(tmp[i]));
+         }
+         
+         //Shift elements
+         for ( int col = 0; col < BarcodeImage.MAX_WIDTH - offset; col++ )
+         {
+            image.setPixel(row, col, image.getPixel(row, col + offset));
+         }
+         
+         //Copy dropped elements
+         int counter = 0;
+         for( int i = BarcodeImage.MAX_WIDTH - offset; i < BarcodeImage.MAX_WIDTH; i++ )
+         {
+            System.out.printf("row: %d i: %d value: %s\n", row, i, String.valueOf(tmp[counter]));
+            image.setPixel(row, i, tmp[counter]);
+            counter++;
+         }
+         
+      }
+      
+   }
+   
+   /**
    private void shiftImageDown(int offset)
    {
       for( int loop = 0; loop < offset; loop++ )
@@ -186,29 +278,15 @@ public class DataMatrix implements BarcodeIO
          {
             for( int j = 0; j < BarcodeImage.MAX_WIDTH-1; j++ )
             {
+               //boolean temp = 
                image.setPixel(i+1, j, image.getPixel(i, j));
             }
             
          }
-      }
-      
+      }      
    }
-   
-   //Moves image to left by offset
-   private void shiftImageLeft(int offset)
-   {
-      for( int loop = 0; loop < offset; loop++ )
-      {
-         for( int i = 0; i < BarcodeImage.MAX_HEIGHT-1; i++ )
-         {
-            for( int j = 0; j < BarcodeImage.MAX_WIDTH-1; j++ )
-            {
-               image.setPixel(i, j, image.getPixel(i, j+1));
-            }
-            
-         }
-      }
-   }
+   **/
+ 
    
    //Displays the raw image in the DataMatrix
    public void displayRawImage()

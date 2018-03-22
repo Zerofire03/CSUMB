@@ -14,6 +14,8 @@ public class Assignment4
     */
    public static void main(String[] args)
    {
+      //width:42
+      //height:9
       String[] sImageIn =
          {
             "                                               ",

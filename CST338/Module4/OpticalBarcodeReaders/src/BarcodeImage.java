@@ -87,12 +87,7 @@ public class BarcodeImage implements Cloneable
    //Accessor for pixel
    boolean getPixel(int row, int col)
    {
-      if(image_data[row][col])
-      {
-         return image_data[row][col];
-      }
-      else
-         return false;
+      return image_data[row][col];      
    }
    
    //Mutator for pixel
@@ -121,6 +116,30 @@ public class BarcodeImage implements Cloneable
    
    
    //Displays the data to the console
+   //Displays the data to the console
+   public void displayToConsole()
+   {
+      for( int i = 0; i < MAX_HEIGHT; i++ )
+      {
+         StringBuilder data = new StringBuilder();
+         for( int j = 0; j < MAX_WIDTH; j++ )
+         {
+            if(image_data[i][j] == true)
+            {
+               data.append("*");
+               //System.out.println("displayToConsole true");
+            }
+            else if(image_data[i][j] == false)
+            {
+               data.append(" ");
+               //System.out.println("displayToConsole false");
+            }
+         }
+         System.out.println(data);
+      }
+   }
+   
+   /**
    public void displayToConsole()
    {
       for( int i = MAX_HEIGHT-1; i >= 0; i-- )
@@ -143,7 +162,7 @@ public class BarcodeImage implements Cloneable
         
       }
    }
-   
+   **/
    //Method that overrides the method of that name in Cloneable interface
    public BarcodeImage clone()
    {
