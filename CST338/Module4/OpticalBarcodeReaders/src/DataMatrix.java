@@ -23,7 +23,46 @@ public class DataMatrix implements BarcodeIO
    }
    public void displayImageToConsole()
    {
-      image.displayToConsole();
+      StringBuilder line = new StringBuilder();
+      //Add horizontal row of - to top
+      for( int x = 0; x < getActualWidth() + 2; x++ )
+      {
+         line.append('-');
+                  
+      }
+      System.out.println(line.toString());
+      for( int y = BarcodeImage.MAX_HEIGHT - getActualHeight() - 1; y > getActualHeight() - 1; y-- )
+      {
+         line = new StringBuilder();
+         for( int x = 0; x < getActualWidth(); x++ )
+         {
+            //Adds | if we are in the first column
+            if( x == 0 )
+            {
+               line.append('|');
+            }
+            
+            //Adds the data from the signal image
+            if( image.getPixel(y, x) )
+            {
+               line.append('*');
+               System.out.printf("x: %d y: %d value: %s\n", x, y, String.valueOf(image.getPixel(y, x)));
+            }
+            else if( !image.getPixel(y, x) )
+            {
+               line.append(' ');
+               System.out.printf("x: %d y: %d value: %s\n", x, y, String.valueOf(image.getPixel(y, x)));
+            }
+            
+            //Adds | if we are in the last column
+            if( x == getActualWidth() - 1 )
+            {
+               line.append('|');
+            }
+         }
+         //System.out.printf("y: %d %s\n", y, line.toString());
+      }
+    
    }
    
    //Default constructor
@@ -101,12 +140,13 @@ public class DataMatrix implements BarcodeIO
    private int computeSignalHeight()
    {
       int signalHeight = 0;
-      for( int y = BarcodeImage.MAX_HEIGHT - 1; y >= 0; y-- )
+      outterloop:
+      for( int y = BarcodeImage.MAX_HEIGHT - 1; y > 0; y-- )
       {
          if( !image.getPixel(y,0) )
          {
-            signalHeight = y - 1;
-            break;
+            signalHeight = BarcodeImage.MAX_HEIGHT - y - 2;
+            break outterloop;
          }
       }
       return signalHeight;
@@ -124,7 +164,7 @@ public class DataMatrix implements BarcodeIO
    {
       StringBuilder binaryDataStringBuilder = new StringBuilder();
       
-      for( int i = 0; i < BarcodeImage.MAX_HEIGHT; i++ )
+      for( int i = BarcodeImage.MAX_HEIGHT - getActualHeight(); i < BarcodeImage.MAX_HEIGHT - 1; i++ )
       {
          if( image.getPixel(i, col) )
          {
@@ -153,10 +193,11 @@ public class DataMatrix implements BarcodeIO
    public boolean translateImageToText()
    {
       StringBuilder imageTextStringBuilder = new StringBuilder();
-      for( int i = 0; i < BarcodeImage.MAX_WIDTH; i++ )
+      for( int i = 1; i < getActualWidth(); i++ )
       {
          imageTextStringBuilder.append(readCharFromCol(i));
       }
+      System.out.println(imageTextStringBuilder.toString());
       return true;
    }
    
@@ -176,7 +217,6 @@ public class DataMatrix implements BarcodeIO
             {
                lowerLeftX = x;
                lowerLeftY = BarcodeImage.MAX_HEIGHT - y - 1;
-               System.out.printf("Lower left corner: x: %d y: %d\n", lowerLeftX, lowerLeftY);
                break outerloop;
             }
          }         
@@ -199,7 +239,6 @@ public class DataMatrix implements BarcodeIO
          int counter = 0;
          for( int i = BarcodeImage.MAX_HEIGHT - 1; i > BarcodeImage.MAX_HEIGHT - offset; i-- )
          {
-            //System.out.printf("counter: %d i: %d x: %d\n", counter, i, x);
             tmp[counter] = image.getPixel(i, x);
             counter++;
          }
@@ -207,7 +246,7 @@ public class DataMatrix implements BarcodeIO
          //Shift Elements
          for( int y = BarcodeImage.MAX_HEIGHT - 1; y > offset; y-- )
          {
-            System.out.printf("x: %d y: %d\n", x, y);
+            //System.out.printf("x: %d y: %d\n", x, y);
             image.setPixel(y, x, image.getPixel(y - offset, x));
          }
          
@@ -217,24 +256,6 @@ public class DataMatrix implements BarcodeIO
             image.setPixel(i, x, tmp[i]);
          }
       }
-      /**
-      for( int y = 29; y > 0; y-- )
-      {
-         //Store elements that are being dropped off into an array
-         boolean[] tmp = new boolean[offset];
-         for( int i = 0; i < offset; i++ )
-         {
-            tmp[i] = image.getPixel(i, y);
-         }
-         
-         //Shift Elements
-         for( int x = 0; x < BarcodeImage.MAX_WIDTH - offset; x++)
-         {
-            System.out.printf("y: %d c: %d\n", y, x);
-            image.setPixel(y, x, image.getPixel(y + offset, x));
-         }
-      }
-      **/
    }
    
    //Moves image to left by offset
@@ -260,32 +281,12 @@ public class DataMatrix implements BarcodeIO
          int counter = 0;
          for( int i = BarcodeImage.MAX_WIDTH - offset; i < BarcodeImage.MAX_WIDTH; i++ )
          {
-            System.out.printf("row: %d i: %d value: %s\n", row, i, String.valueOf(tmp[counter]));
+            //System.out.printf("row: %d i: %d value: %s\n", row, i, String.valueOf(tmp[counter]));
             image.setPixel(row, i, tmp[counter]);
             counter++;
-         }
-         
-      }
-      
-   }
-   
-   /**
-   private void shiftImageDown(int offset)
-   {
-      for( int loop = 0; loop < offset; loop++ )
-      {
-         for( int i = BarcodeImage.MAX_HEIGHT-2; i > 0; i-- )
-         {
-            for( int j = 0; j < BarcodeImage.MAX_WIDTH-1; j++ )
-            {
-               //boolean temp = 
-               image.setPixel(i+1, j, image.getPixel(i, j));
-            }
-            
-         }
+         }         
       }      
    }
-   **/
  
    
    //Displays the raw image in the DataMatrix

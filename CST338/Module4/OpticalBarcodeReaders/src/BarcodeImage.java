@@ -25,28 +25,6 @@ public class BarcodeImage implements Cloneable
       }
    }
    
-   //Constructor with string array passed in
-   /**
-   public BarcodeImage(String[] str_data)
-   {
-      image_data = new boolean[MAX_HEIGHT][MAX_WIDTH];
-      int imageIndex = 0;
-      if( !checkSize(str_data) )
-      {
-         return;
-      }
-      
-      for( int x = str_data.length-2; x > 1; x--)
-      {
-         for( int y = 1; y < str_data[x].length() - 1; y++)
-         {
-            image_data[imageIndex][y-1] = str_data[x].charAt(y) == '*' ? true : false;
-         }
-         imageIndex++;
-      }
-   }
-   **/
-   
    public BarcodeImage(String[] str_data)
    {
       image_data = new boolean[MAX_HEIGHT][MAX_WIDTH];
@@ -93,7 +71,7 @@ public class BarcodeImage implements Cloneable
    //Mutator for pixel
    boolean setPixel(int row, int col, boolean value)
    {
-      if(row < MAX_WIDTH && 0 <= row && col < MAX_HEIGHT && 0 <= col)
+      if(row < MAX_HEIGHT && 0 <= row && col < MAX_WIDTH && 0 <= col)
       {
          image_data[row][col] = value;
          return true;
@@ -127,42 +105,17 @@ public class BarcodeImage implements Cloneable
             if(image_data[i][j] == true)
             {
                data.append("*");
-               //System.out.println("displayToConsole true");
             }
             else if(image_data[i][j] == false)
             {
                data.append(" ");
-               //System.out.println("displayToConsole false");
             }
          }
          System.out.println(data);
       }
    }
    
-   /**
-   public void displayToConsole()
-   {
-      for( int i = MAX_HEIGHT-1; i >= 0; i-- )
-      {
-         if ( i < MAX_HEIGHT )
-         {
-            System.out.print("\n");
-         }
-         for ( int j = 0; j < MAX_WIDTH; j++ )
-         {
-            if ( image_data[i][j] == true )
-            {
-               System.out.print("*");
-            }
-            else
-            {
-               System.out.print(" ");
-            }
-         }
-        
-      }
-   }
-   **/
+   
    //Method that overrides the method of that name in Cloneable interface
    public BarcodeImage clone()
    {
