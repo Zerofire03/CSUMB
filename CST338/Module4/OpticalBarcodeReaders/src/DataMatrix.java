@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 /**
  * 
  */
@@ -21,6 +19,7 @@ public class DataMatrix implements BarcodeIO
    {
       System.out.println(text);
    }
+   
    public void displayImageToConsole()
    {
       StringBuilder line = new StringBuilder();
@@ -31,7 +30,7 @@ public class DataMatrix implements BarcodeIO
                   
       }
       System.out.println(line.toString());
-      for( int y = BarcodeImage.MAX_HEIGHT - getActualHeight() - 1; y > getActualHeight() - 1; y-- )
+      for( int y = BarcodeImage.MAX_HEIGHT - getActualHeight() - 1; y < BarcodeImage.MAX_HEIGHT; y++ )
       {
          line = new StringBuilder();
          for( int x = 0; x < getActualWidth(); x++ )
@@ -46,12 +45,10 @@ public class DataMatrix implements BarcodeIO
             if( image.getPixel(y, x) )
             {
                line.append('*');
-               System.out.printf("x: %d y: %d value: %s\n", x, y, String.valueOf(image.getPixel(y, x)));
             }
             else if( !image.getPixel(y, x) )
             {
                line.append(' ');
-               System.out.printf("x: %d y: %d value: %s\n", x, y, String.valueOf(image.getPixel(y, x)));
             }
             
             //Adds | if we are in the last column
@@ -60,7 +57,7 @@ public class DataMatrix implements BarcodeIO
                line.append('|');
             }
          }
-         //System.out.printf("y: %d %s\n", y, line.toString());
+         System.out.println(line.toString());
       }
     
    }
@@ -181,10 +178,79 @@ public class DataMatrix implements BarcodeIO
    //looks at the internal text stored in the implementing class and produces a companion BarcodeImage
    public boolean generateImageFromText()
    {
-      char[] stringCharArray = text.toCharArray();
-      for( char ch : stringCharArray )
+      //Set image to blank image
+      clearImage();
+      
+      //Convert entire string of text into a char array to have each char accessible by for loop
+      char[] textCharArray = text.toCharArray();      
+           
+      for( int x = 0; x < textCharArray.length; x++ )
       {
-         System.out.println(Integer.toBinaryString(ch));
+         int counter = 0;
+         
+         //Build the spine of the image with no text data yet
+         for( int y = BarcodeImage.MAX_HEIGHT - 10; y < BarcodeImage.MAX_HEIGHT; y++ )
+         {
+            //Convert each char into it's binary digits and store it in a temp array
+            char[] temp = Integer.toBinaryString(textCharArray[x]).toCharArray();
+            
+            //Add left hand spine            
+            if( x == 0 )
+            {
+               image.setPixel(y, x, true);
+            }
+            
+            //Add bottom of spine
+            if( y == BarcodeImage.MAX_HEIGHT - 1 && x < textCharArray.length - 1 && x != 0)
+            {
+               image.setPixel(y, x, true);
+            }
+            
+            //Add top of spine
+            if( y == BarcodeImage.MAX_HEIGHT - Integer.toBinaryString(textCharArray[x]).length() - 1 )
+            {
+               //Add the trues when it is an even numbered column
+               if( x % 2 == 0 )
+               {
+                  //Checks to see if the stringCharArray has less than 8 binary digits
+                  if( Integer.toBinaryString(textCharArray[x]).length() < 7 )
+                  {
+                     image.setPixel(y - 3, x, true);
+                  }                  
+                  else
+                  {
+                     image.setPixel(y - 2, x, true);
+                  }                  
+               }
+            }
+            
+            //Add right of spine
+            if ( x == textCharArray.length - 1 )
+            {
+               //Add the trues when it is an even numbered row
+               if( (y+1) % 2 == 0 )
+               {
+                  image.setPixel(y, x, true);
+               }
+               if( y % 2 == 0 )
+               {
+                  image.setPixel(y + 1, x, true);
+               }
+            }
+            
+            if( x > 0 && x < textCharArray.length - 2 && y > BarcodeImage.MAX_HEIGHT - 9 && y < BarcodeImage.MAX_HEIGHT - 1 && counter < temp.length)
+            {
+               if(temp[counter] == '1')
+               {
+                  image.setPixel(BarcodeImage.MAX_HEIGHT - 2 - counter, x + 1, true);
+               }
+               else
+               {
+                  image.setPixel(BarcodeImage.MAX_HEIGHT - 2 - counter, x + 1, false);
+               }
+               counter++;
+            }
+         }
       }
       return true;
    }
@@ -286,6 +352,18 @@ public class DataMatrix implements BarcodeIO
             counter++;
          }         
       }      
+   }
+   
+   //Sets the image to white = false
+   private void clearImage()
+   {
+      for( int y = 0; y < BarcodeImage.MAX_HEIGHT; y++ )
+      {
+         for( int x = 0; x < BarcodeImage.MAX_WIDTH; x++ )
+         {
+            image.setPixel(y, x, false);
+         }
+      }
    }
  
    

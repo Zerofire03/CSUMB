@@ -16,15 +16,15 @@ public class Testing
    {
       //char[][] binaryStorage = new char[8][];
       char test = 'T';
-      String testString = "This is a SAMPLE run.";
-      char[] testStringChar = testString.toCharArray();
+      String testString = "Congrats"; //text in datamatrix
+      char[] testStringChar = testString.toCharArray(); //line 187 
       char[][] binaryStorage = new char[8][testStringChar.length];
       String[] binaryStringStorage = new String[testStringChar.length]; 
       
       //Convert each character in the string to binary data storing the resulting string in a string array
       for( int i = 0; i < testStringChar.length; i++ )
       {
-         //System.out.println(Integer.toBinaryString(testStringChar[i]));
+         System.out.println(Integer.toBinaryString(testStringChar[i]));
          binaryStringStorage[i] = Integer.toBinaryString(testStringChar[i]);
       }
       
