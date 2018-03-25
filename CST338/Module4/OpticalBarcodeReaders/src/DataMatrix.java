@@ -15,14 +15,18 @@ public class DataMatrix implements BarcodeIO
    private int actualWidth;
    private int actualHeight;
    
+   //Function to display the String text to the console.
    public void displayTextToConsole()
    {
       System.out.println(text);
    }
    
+   //Displays the image to the console with all extra whitespace removed and a border placed around it
    public void displayImageToConsole()
    {
+      //Stringbuilder to append each character for that line to
       StringBuilder line = new StringBuilder();
+      
       //Add horizontal row of - to top
       for( int x = 0; x < getActualWidth() + 2; x++ )
       {
@@ -30,6 +34,8 @@ public class DataMatrix implements BarcodeIO
                   
       }
       System.out.println(line.toString());
+      
+      //Add a | to the first column and the last column, and adds the data from the signal image
       for( int y = BarcodeImage.MAX_HEIGHT - getActualHeight() - 1; y < BarcodeImage.MAX_HEIGHT; y++ )
       {
          line = new StringBuilder();
@@ -92,7 +98,8 @@ public class DataMatrix implements BarcodeIO
       return true;
    }
    
-   //accepts some image, represented as a BarcodeImage object to be described below, and stores a copy of this image.
+   //accepts some image, represented as a BarcodeImage object to be described below, 
+   //and stores a copy of this image.
    public boolean scan( BarcodeImage bc )
    {
       if( bc.clone() != null )
@@ -122,8 +129,10 @@ public class DataMatrix implements BarcodeIO
    private int computeSignalWidth()
    {
       int signalWidth = 0;
+      //Loop to look through each of the columns in the lowest element
       for( int x = 0; x < BarcodeImage.MAX_WIDTH; x++ )
       {
+         //Returns when it finds the first false character
          if( !image.getPixel(BarcodeImage.MAX_HEIGHT-1,x) )
          {
             signalWidth = x - 1;
@@ -137,9 +146,11 @@ public class DataMatrix implements BarcodeIO
    private int computeSignalHeight()
    {
       int signalHeight = 0;
+      //Loop to check each element in the first column
       outterloop:
       for( int y = BarcodeImage.MAX_HEIGHT - 1; y > 0; y-- )
       {
+         //Returns when it finds the first false value
          if( !image.getPixel(y,0) )
          {
             signalHeight = BarcodeImage.MAX_HEIGHT - y - 2;
@@ -159,10 +170,13 @@ public class DataMatrix implements BarcodeIO
    //Reads binary data in column and returns the char
    private char readCharFromCol(int col)
    {
+      //stringBuilder to store each binary digit from our column in
       StringBuilder binaryDataStringBuilder = new StringBuilder();
       
+      //For loop to loop through each element in the column
       for( int i = BarcodeImage.MAX_HEIGHT - getActualHeight(); i < BarcodeImage.MAX_HEIGHT - 1; i++ )
       {
+         //Appends a 1 if the element has a true in it, 0 if it has a false
          if( image.getPixel(i, col) )
          {
             binaryDataStringBuilder.append('1');
@@ -172,6 +186,8 @@ public class DataMatrix implements BarcodeIO
             binaryDataStringBuilder.append('0');
          }         
       }
+      //Coneverts the stringbuilder to a string, parses the string to return the ascii number,
+      //and then casts that ascii number to a char and returns
       return (char)Integer.parseInt(binaryDataStringBuilder.toString(),2);
    }
    
@@ -258,6 +274,7 @@ public class DataMatrix implements BarcodeIO
    //looks at the image and converts it to text
    public boolean translateImageToText()
    {
+      //Reads each element in the image and displays out the text in the image
       StringBuilder imageTextStringBuilder = new StringBuilder();
       for( int i = 1; i < getActualWidth(); i++ )
       {

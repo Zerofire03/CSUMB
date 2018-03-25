@@ -58,20 +58,6 @@ public class Assignment4
 
          };
       
-      String[] sImageIn_3 =
-         {
-               "* * * * * * * * * * * * * * * * * *", 
-               "*                                 *", 
-               "***** ** * **** ****** ** **** **  ", 
-               "* **************      *************", 
-               "**  *  *        *  *   *        *  ", 
-               "* **  *     **    * *   * ****   **", 
-               "**         ****   * ** ** ***   ** ", 
-               "*   *  *   ***  *       *  ***   **", 
-               "*  ** ** * ***  ***  *  *  *** *   ", 
-               "***********************************"
-         };
-      
       BarcodeImage bc = new BarcodeImage(sImageIn);
       DataMatrix dm = new DataMatrix(bc);
      
@@ -79,7 +65,6 @@ public class Assignment4
       // First secret message
       dm.translateImageToText();
       dm.displayTextToConsole();
-      //dm.displayRawImage();
       dm.displayImageToConsole();
       
       // second secret message
@@ -87,14 +72,12 @@ public class Assignment4
       dm.scan(bc);
       dm.translateImageToText();
       dm.displayTextToConsole();
-      //dm.displayRawImage();
       dm.displayImageToConsole();
       
       // create your own message
       dm.readText("What a great resume builder this is!");
       dm.generateImageFromText();
       dm.displayTextToConsole();
-      //dm.displayRawImage();
       dm.displayImageToConsole();
    }
 
