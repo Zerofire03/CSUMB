@@ -10,134 +10,133 @@ public class BarcodeImage implements Cloneable
 {
    public static final int MAX_HEIGHT = 30;
    public static final int MAX_WIDTH = 65;
+
    private boolean[][] image_data;
-   
-   //Default constructor no params
+
+   /// accessors and mutators
+   public boolean getPixel(int row, int col)
+   {
+      // test for error conditions - out of index
+      if (checkRowCols(row, col))
+	 return false;
+
+      // [height][width]
+      return image_data[row][col];
+   }
+   public boolean setPixel(int row, int col, boolean value)
+   {
+      if (!checkRowCols(row, col))
+         return false;
+
+      // set the pixel value
+      image_data[row][col] = value;
+
+      return true;
+   }
+
+   /// Constuctors
    public BarcodeImage()
    {
       image_data = new boolean[MAX_HEIGHT][MAX_WIDTH];
-      for ( int i=0; i < image_data.length; i++ )
+
+      // initialize array to false
+      for (int height = 0; height < image_data.length; height++)
       {
-         for ( int j=0; j < image_data[i].length; j++ )
+         for (int width = 0; width < image_data[height].length; width++)
          {
-            image_data[i][j] = false;
+            image_data[height][width] = false;
          }
       }
    }
-   
+
+   // take a 1D array with length and populate the image
    public BarcodeImage(String[] str_data)
    {
-      //check to see if the string is of valid size, returns if its invalid
-      if( !checkSize(str_data) )
+      image_data = new boolean[MAX_HEIGHT][MAX_WIDTH];
+
+      // test for invalid array input
+      if (!checkSize(str_data))
       {
          return;
       }
-      
-      //Create an empty image_data, then loop through the string storing the corresponding true/false
-      image_data = new boolean[MAX_HEIGHT][MAX_WIDTH];
-      int dataLength = str_data.length - 1;
-      for ( int i=MAX_HEIGHT-1; i >= 0; i-- )
+
+      // loop through the array elements
+      // left columns is a solid marker and throw away
+      // bottom line is a solid marker and throw away
+      // right is on/off and throw away
+      // top is on/off and throw away
+      // loop through starting at the bottom-left and work up
+      // NOTE: Loop is not testing format of marker lines
+      //      effectively we are evaluating index 1 through length - 1
+      int imageIndex = 0;
+      for (int x = str_data.length-1; x >= 0; x--)
       {
-         for ( int j=0; j < MAX_WIDTH; j++ )
+         // evaluate the string within the array element
+         // left-most element is throw away
+         // right element is either a "*" or " " based on odd/even line and should be skipped
+         for (int y = 0; y < str_data[x].length(); y++)
          {
-            if( dataLength >= 0 )
+            image_data[imageIndex][y] = str_data[x].charAt(y) == '*' ? true : false;
+         }
+
+         imageIndex++;
+      }
+   }
+
+   // validate array is within specs
+   private boolean checkSize(String[] data)
+   {
+      if (data.length > MAX_HEIGHT || data[0].length() > MAX_WIDTH)
+      {
+         // error - should throw an exception here
+         System.out.println("BarCodeImage Constructor: The provided array is out of bounds.");
+         return false;
+      }
+
+      return true;
+   }
+
+   // validate the row and col params
+   private boolean checkRowCols(int rows, int cols)
+   {
+      if (rows > MAX_HEIGHT || cols > MAX_WIDTH)
+         return false;
+
+      return true;
+   }
+
+   // print the contents of the array to console for testing
+   public void displayToConsole()
+   {
+      // loop through top to bottom - max height
+      for (int x = MAX_HEIGHT-1; x >= 0; x--)
+      {
+         // print the return char
+         if (x < MAX_HEIGHT)
+         {
+            System.out.print("\n");
+         }
+
+         // loop through left->right - 0 index
+         for (int y = 0; y < MAX_WIDTH; y++)
+         {
+            if (image_data[x][y] == true)
             {
-               char[] dataCharArray = str_data[dataLength].toCharArray();
-               if( j < dataCharArray.length )
-               {
-                  if( dataCharArray[j] == DataMatrix.BLACK_CHAR )
-                  {
-                     image_data[i][j] = true;
-                  }
-                  else if ( dataCharArray[j] == DataMatrix.WHITE_CHAR )
-                  {
-                     image_data[i][j] = false;
-                  }
-               
-               }
-               else
-               {
-                  image_data[i][j] = false;
-               }
+               System.out.print("*");
             }
             else
             {
-               image_data[i][j] = false;
+               System.out.print(" ");
             }
          }
-         dataLength--;
-      }            
+      }
    }
    
-   //Accessor for pixel
-   public boolean getPixel(int row, int col)
+   @Override
+   public BarcodeImage clone() throws CloneNotSupportedException
    {
-      return image_data[row][col];      
+      BarcodeImage cloneImg = new BarcodeImage();
+      cloneImg.image_data = image_data.clone();
+      return cloneImg;
    }
-   
-   //Mutator for pixel
-   boolean setPixel(int row, int col, boolean value)
-   {
-      //checks to see if its a valid row and column, and sets the pixel if it is
-      if(row < MAX_HEIGHT && 0 <= row && col < MAX_WIDTH && 0 <= col)
-      {
-         image_data[row][col] = value;
-         return true;
-      }
-      else
-      {
-         return false;
-      }
-   }
-   
-   //Checks the incoming data for every conceivable size or null error
-   private boolean checkSize(String[] data)
-   {
-      if(data == null || data.length > MAX_HEIGHT || data[0].length() > MAX_WIDTH)
-      {
-         return false;
-      }
-      return true;
-   }
-   
-
-   //Displays the data to the console
-   public void displayToConsole()
-   {
-      //Loops through each element in the 2d array, appending the corresping char to bool value
-      for( int i = 0; i < MAX_HEIGHT; i++ )
-      {
-         StringBuilder data = new StringBuilder();
-         for( int j = 0; j < MAX_WIDTH; j++ )
-         {
-            if(image_data[i][j] == true)
-            {
-               data.append(DataMatrix.BLACK_CHAR);
-            }
-            else if(image_data[i][j] == false)
-            {
-               data.append(DataMatrix.WHITE_CHAR);
-            }
-         }
-         System.out.println(data);
-      }
-   }
-   
-   
-   //Method that overrides the method of that name in Cloneable interface
-   public BarcodeImage clone()
-   {
-      //checks to see if the clone works, if it does, returns the object. Failure returns null
-      try
-      {
-         BarcodeImage copy = (BarcodeImage)super.clone();
-         copy.image_data = (boolean[][])image_data.clone();
-         return copy;
-      }
-      catch (CloneNotSupportedException e)
-      {
-         return null;
-      }
-   }
-   
 }
