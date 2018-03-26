@@ -88,12 +88,12 @@ public class Assignment4
 // BarcodeIO interface - provides method sigs used by DataMatrix
 interface BarcodeIO
 {
-   public boolean scan(BarcodeImage bc);
-   public boolean readText(String text);
-   public boolean generateImageFromText();
-   public boolean translateImageToText();
-   public void displayTextToConsole();
-   public void displayImageToConsole();
+   public abstract boolean scan(BarcodeImage bc);
+   public abstract boolean readText(String text);
+   public abstract boolean generateImageFromText();
+   public abstract boolean translateImageToText();
+   public abstract void displayTextToConsole();
+   public abstract void displayImageToConsole();
 }
 
 // BarcodeImage class - stores the image and builds the array
@@ -672,4 +672,4 @@ What a great resume builder this is!
 |* *********************************  |
 |************************************ |
 
-***********************************/
+*********** END OUTPUT ************/
