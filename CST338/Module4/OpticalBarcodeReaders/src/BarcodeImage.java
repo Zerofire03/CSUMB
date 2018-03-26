@@ -17,7 +17,7 @@ public class BarcodeImage implements Cloneable
    public boolean getPixel(int row, int col)
    {
       // test for error conditions - out of index
-      if (checkRowCols(row, col))
+      if (!checkRowCols(row, col))
 	 return false;
 
       // [height][width]
@@ -68,18 +68,19 @@ public class BarcodeImage implements Cloneable
       // loop through starting at the bottom-left and work up
       // NOTE: Loop is not testing format of marker lines
       //      effectively we are evaluating index 1 through length - 1
-      int imageIndex = 0;
-      for (int x = str_data.length-1; x >= 0; x--)
+      //int heightIndex = 0;
+      for (int height = str_data.length-1; height >= 0; height--)
       {
          // evaluate the string within the array element
          // left-most element is throw away
          // right element is either a "*" or " " based on odd/even line and should be skipped
-         for (int y = 0; y < str_data[x].length(); y++)
+         for (int width = 0; width < str_data[height].length(); width++)
          {
-            image_data[imageIndex][y] = str_data[x].charAt(y) == '*' ? true : false;
+            //image_data[heightIndex][width] = str_data[height].charAt(width) == '*' ? true : false;
+            image_data[height][width] = str_data[height].charAt(width) == '*' ? true : false;
          }
 
-         imageIndex++;
+         //heightIndex++;
       }
    }
 
@@ -109,18 +110,20 @@ public class BarcodeImage implements Cloneable
    public void displayToConsole()
    {
       // loop through top to bottom - max height
-      for (int x = MAX_HEIGHT-1; x >= 0; x--)
+      //for (int height = MAX_HEIGHT-1; height >= 0; height--)
+      for (int height = 0; height <= MAX_HEIGHT-1; height++)
       {
          // print the return char
-         if (x < MAX_HEIGHT)
+         //if (height < MAX_HEIGHT)
+         if (height > 0)
          {
             System.out.print("\n");
          }
 
          // loop through left->right - 0 index
-         for (int y = 0; y < MAX_WIDTH; y++)
+         for (int width = 0; width < MAX_WIDTH; width++)
          {
-            if (image_data[x][y] == true)
+            if (image_data[height][width] == true)
             {
                System.out.print("*");
             }
@@ -136,7 +139,13 @@ public class BarcodeImage implements Cloneable
    public BarcodeImage clone() throws CloneNotSupportedException
    {
       BarcodeImage cloneImg = new BarcodeImage();
-      cloneImg.image_data = image_data.clone();
+      for (int height = 0; height < image_data.length; height++)
+      {
+	 for (int width = 0; width < image_data[height].length; width++)
+	 {
+	    cloneImg.image_data[height][width] = image_data[height][width];
+	 }
+      }
       return cloneImg;
    }
 }

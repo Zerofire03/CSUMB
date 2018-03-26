@@ -102,7 +102,7 @@ public class DataMatrix implements BarcodeIO
    //and stores a copy of this image.
    public boolean scan( BarcodeImage bc )
    {
-      if( bc.clone() != null )
+      try
       {
          image = bc.clone();
          cleanImage();
@@ -110,7 +110,10 @@ public class DataMatrix implements BarcodeIO
          actualHeight = computeSignalHeight();
          return true;
       }
-      return false;
+      catch (CloneNotSupportedException e)
+      {
+         return false;
+      }
    }
    
    //Accessor function for actualWidth

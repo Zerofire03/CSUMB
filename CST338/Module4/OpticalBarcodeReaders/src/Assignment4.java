@@ -60,7 +60,9 @@ public class Assignment4
       
       BarcodeImage bc = new BarcodeImage(sImageIn);
       DataMatrix dm = new DataMatrix(bc);
-     
+      
+      // TEST TEST TEST
+      //bc.displayToConsole();
       
       // First secret message
       dm.translateImageToText();
