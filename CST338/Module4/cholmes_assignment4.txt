@@ -1,0 +1,715 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf200
+{\fonttbl\f0\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red207\green191\blue173;\red255\green0\blue127;\red82\green227\blue246;
+\red249\green250\blue244;\red217\green229\blue119;\red167\green236\blue33;\red121\green171\blue255;\red236\green228\blue126;
+\red196\green140\blue255;}
+{\*\expandedcolortbl;;\csgenericrgb\c81176\c74902\c67843;\csgenericrgb\c100000\c0\c49804;\csgenericrgb\c32157\c89020\c96471;
+\csgenericrgb\c97647\c98039\c95686;\csgenericrgb\c85098\c89804\c46667;\csgenericrgb\c65490\c92549\c12941;\csgenericrgb\c47451\c67059\c100000;\csgenericrgb\c92549\c89412\c49412;
+\csgenericrgb\c76863\c54902\c100000;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs22 \cf1 /***\cf0 \
+\cf1  * \ul Chris\ulnone  \ul Holmes\cf0 \ulnone \
+\cf1  * \ul Michael\ulnone  \ul Loeser\cf0 \ulnone \
+\cf1  * \ul Patrick\ulnone  \ul Gonzalez\cf0 \ulnone \
+\cf1  * \ul Chris\ulnone  \ul Buckey\cf0 \ulnone \
+\cf1  *\cf0 \
+\cf1  * Assignment 4 \cf2 -\cf1  \ul Barcode\ulnone  Image Reader\cf0 \
+\cf1  ***/\cf0 \
+\pard\pardeftab720\partightenfactor0
+\cf3 public\cf2  \cf3 class\cf2  \cf4 Assignment4\cf0 \
+\pard\pardeftab720\partightenfactor0
+\cf5 \{\cf0 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf2    \cf1 /**\cf0 \
+\pard\pardeftab720\partightenfactor0
+\cf1     * \cf6 @param\cf1  args\cf0 \
+\cf1     */\cf0 \
+\pard\pardeftab720\partightenfactor0
+\cf2    \cf3 public\cf2  \cf3 static\cf2  \cf3 void\cf2  \cf7 main\cf5 (\cf4 String\cf5 []\cf2  \cf8 args\cf5 )\cf0 \
+\cf2    \cf5 \{\cf0 \
+\cf2       \cf1 //width:42\cf0 \
+\cf2       \cf1 //height:9\cf0 \
+\cf2       \cf4 String\cf5 []\cf2  sImageIn \cf3 =\cf0 \
+\cf2          \cf5 \{\cf0 \
+\cf2             \cf9 "                                               "\cf3 ,\cf0 \
+\cf2             \cf9 "                                               "\cf3 ,\cf0 \
+\cf2             \cf9 "                                               "\cf3 ,\cf0 \
+\cf2             \cf9 "     * * * * * * * * * * * * * * * * * * * * * "\cf3 ,\cf0 \
+\cf2             \cf9 "     *                                       * "\cf3 ,\cf0 \
+\cf2             \cf9 "     ****** **** ****** ******* ** *** *****   "\cf3 ,\cf0 \
+\cf2             \cf9 "     *     *    ****************************** "\cf3 ,\cf0 \
+\cf2             \cf9 "     * **    * *        **  *    * * *   *     "\cf3 ,\cf0 \
+\cf2             \cf9 "     *   *    *  *****    *   * *   *  **  *** "\cf3 ,\cf0 \
+\cf2             \cf9 "     *  **     * *** **   **  *    **  ***  *  "\cf3 ,\cf0 \
+\cf2             \cf9 "     ***  * **   **  *   ****    *  *  ** * ** "\cf3 ,\cf0 \
+\cf2             \cf9 "     *****  ***  *  * *   ** ** **  *   * *    "\cf3 ,\cf0 \
+\cf2             \cf9 "     ***************************************** "\cf3 ,\cf2   \cf0 \
+\cf2             \cf9 "                                               "\cf3 ,\cf0 \
+\cf2             \cf9 "                                               "\cf3 ,\cf0 \
+\cf2             \cf9 "                                               "\cf0 \
+\
+\cf2          \cf5 \}\cf3 ;\cf2       \cf0 \
+\cf2       \cf0 \
+\cf2       \cf4 String\cf5 []\cf2  sImageIn_2 \cf3 =\cf0 \
+\cf2          \cf5 \{\cf0 \
+\cf2                \cf9 "                                          "\cf3 ,\cf0 \
+\cf2                \cf9 "                                          "\cf3 ,\cf0 \
+\cf2                \cf9 "* * * * * * * * * * * * * * * * * * *     "\cf3 ,\cf0 \
+\cf2                \cf9 "*                                    *    "\cf3 ,\cf0 \
+\cf2                \cf9 "**** *** **   ***** ****   *********      "\cf3 ,\cf0 \
+\cf2                \cf9 "* ************ ************ **********    "\cf3 ,\cf0 \
+\cf2                \cf9 "** *      *    *  * * *         * *       "\cf3 ,\cf0 \
+\cf2                \cf9 "***   *  *           * **    *      **    "\cf3 ,\cf0 \
+\cf2                \cf9 "* ** * *  *   * * * **  *   ***   ***     "\cf3 ,\cf0 \
+\cf2                \cf9 "* *           **    *****  *   **   **    "\cf3 ,\cf0 \
+\cf2                \cf9 "****  *  * *  * **  ** *   ** *  * *      "\cf3 ,\cf0 \
+\cf2                \cf9 "**************************************    "\cf3 ,\cf0 \
+\cf2                \cf9 "                                          "\cf3 ,\cf0 \
+\cf2                \cf9 "                                          "\cf3 ,\cf0 \
+\cf2                \cf9 "                                          "\cf3 ,\cf0 \
+\cf2                \cf9 "                                          "\cf0 \
+\
+\cf2          \cf5 \}\cf3 ;\cf0 \
+\cf2       \cf0 \
+\cf2       \cf4 BarcodeImage\cf2  bc \cf3 =\cf2  \cf3 new\cf2  \cf7 BarcodeImage\cf5 (\cf2 sImageIn\cf5 )\cf3 ;\cf0 \
+\cf2       \cf4 DataMatrix\cf2  dm \cf3 =\cf2  \cf3 new\cf2  \cf7 DataMatrix\cf5 (\cf2 bc\cf5 )\cf3 ;\cf0 \
+\cf2       \cf0 \
+\cf2       \cf1 // TEST TEST TEST\cf0 \
+\cf2       \cf1 //bc.displayToConsole();\cf0 \
+\cf2       \cf0 \
+\cf2       \cf1 // First secret message\cf0 \
+\cf2       dm\cf3 .\cf7 translateImageToText\cf5 ()\cf3 ;\cf0 \
+\cf2       dm\cf3 .\cf7 displayTextToConsole\cf5 ()\cf3 ;\cf0 \
+\cf2       dm\cf3 .\cf7 displayImageToConsole\cf5 ()\cf3 ;\cf0 \
+\cf2       \cf0 \
+\cf2       \cf1 // second secret message\cf0 \
+\cf2       bc \cf3 =\cf2  \cf3 new\cf2  \cf7 BarcodeImage\cf5 (\cf2 sImageIn_2\cf5 )\cf3 ;\cf0 \
+\cf2       dm\cf3 .\cf7 scan\cf5 (\cf2 bc\cf5 )\cf3 ;\cf0 \
+\cf2       dm\cf3 .\cf7 translateImageToText\cf5 ()\cf3 ;\cf0 \
+\cf2       dm\cf3 .\cf7 displayTextToConsole\cf5 ()\cf3 ;\cf0 \
+\cf2       dm\cf3 .\cf7 displayImageToConsole\cf5 ()\cf3 ;\cf0 \
+\cf2       \cf0 \
+\cf2       \cf1 // create your own message\cf0 \
+\cf2       dm\cf3 .\cf7 readText\cf5 (\cf9 "What a great resume builder this is!"\cf5 )\cf3 ;\cf0 \
+\cf2       dm\cf3 .\cf7 generateImageFromText\cf5 ()\cf3 ;\cf0 \
+\cf2       dm\cf3 .\cf7 displayTextToConsole\cf5 ()\cf3 ;\cf0 \
+\cf2       dm\cf3 .\cf7 displayImageToConsole\cf5 ()\cf3 ;\cf0 \
+\cf2    \cf5 \}\cf0 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf5 \}\cf0 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf1 // BarcodeIO interface - provides method \ul sigs\ulnone  used by DataMatrix\cf0 \
+\pard\pardeftab720\partightenfactor0
+\cf3 interface\cf2  \cf4 BarcodeIO\cf0 \
+\pard\pardeftab720\partightenfactor0
+\cf5 \{\cf0 \
+\pard\pardeftab720\partightenfactor0
+\cf2    \cf3 public\cf2  \cf3 boolean\cf2  \cf7 scan\cf5 (\cf4 BarcodeImage\cf2  \cf8 bc\cf5 )\cf3 ;\cf0 \
+\cf2    \cf3 public\cf2  \cf3 boolean\cf2  \cf7 readText\cf5 (\cf4 String\cf2  \cf8 text\cf5 )\cf3 ;\cf0 \
+\cf2    \cf3 public\cf2  \cf3 boolean\cf2  \cf7 generateImageFromText\cf5 ()\cf3 ;\cf0 \
+\cf2    \cf3 public\cf2  \cf3 boolean\cf2  \cf7 translateImageToText\cf5 ()\cf3 ;\cf0 \
+\cf2    \cf3 public\cf2  \cf3 void\cf2  \cf7 displayTextToConsole\cf5 ()\cf3 ;\cf0 \
+\cf2    \cf3 public\cf2  \cf3 void\cf2  \cf7 displayImageToConsole\cf5 ()\cf3 ;\cf0 \
+\pard\pardeftab720\partightenfactor0
+\cf5 \}\cf0 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf1 // BarcodeImage class - stores the image and builds the array\cf0 \
+\pard\pardeftab720\partightenfactor0
+\cf3 class\cf2  \cf4 BarcodeImage\cf2  \cf3 implements\cf2  \cf4 Cloneable\cf0 \
+\pard\pardeftab720\partightenfactor0
+\cf5 \{\cf0 \
+\pard\pardeftab720\partightenfactor0
+\cf2    \cf3 public\cf2  \cf3 static\cf2  \cf3 final\cf2  \cf3 int\cf2  MAX_HEIGHT \cf3 =\cf2  \cf10 30\cf3 ;\cf0 \
+\cf2    \cf3 public\cf2  \cf3 static\cf2  \cf3 final\cf2  \cf3 int\cf2  MAX_WIDTH \cf3 =\cf2  \cf10 65\cf3 ;\cf0 \
+\
+\cf2    \cf3 private\cf2  \cf3 boolean\cf5 [][]\cf2  image_data\cf3 ;\cf0 \
+\
+\cf2    \cf1 /// \ul accessors\ulnone  and mutators\cf0 \
+\cf2    \cf3 public\cf2  \cf3 boolean\cf2  \cf7 getPixel\cf5 (\cf3 int\cf2  \cf8 row\cf3 ,\cf2  \cf3 int\cf2  \cf8 col\cf5 )\cf0 \
+\cf2    \cf5 \{\cf0 \
+\cf2       \cf1 // test for error conditions - out of index\cf0 \
+\cf2       \cf3 if\cf2  \cf5 (\cf3 !\cf7 checkRowCols\cf5 (\cf8 row\cf3 ,\cf2  \cf8 col\cf5 ))\cf0 \
+\cf2 	 \cf3 return\cf2  \cf3 false;\cf0 \
+\
+\cf2       \cf1 // [height][width]\cf0 \
+\cf2       \cf3 return\cf2  image_data\cf5 [\cf8 row\cf5 ][\cf8 col\cf5 ]\cf3 ;\cf0 \
+\cf2    \cf5 \}\cf0 \
+\cf2    \cf3 public\cf2  \cf3 boolean\cf2  \cf7 setPixel\cf5 (\cf3 int\cf2  \cf8 row\cf3 ,\cf2  \cf3 int\cf2  \cf8 col\cf3 ,\cf2  \cf3 boolean\cf2  \cf8 value\cf5 )\cf0 \
+\cf2    \cf5 \{\cf0 \
+\cf2       \cf3 if\cf2  \cf5 (\cf3 !\cf7 checkRowCols\cf5 (\cf8 row\cf3 ,\cf2  \cf8 col\cf5 ))\cf0 \
+\cf2          \cf3 return\cf2  \cf3 false;\cf0 \
+\
+\cf2       \cf1 // set the pixel value\cf0 \
+\cf2       image_data\cf5 [\cf8 row\cf5 ][\cf8 col\cf5 ]\cf2  \cf3 =\cf2  \cf8 value\cf3 ;\cf0 \
+\
+\cf2       \cf3 return\cf2  \cf3 true;\cf0 \
+\cf2    \cf5 \}\cf0 \
+\
+\cf2    \cf1 /// \ul Constuctors\cf0 \ulnone \
+\cf2    \cf3 public\cf2  \cf7 BarcodeImage\cf5 ()\cf0 \
+\cf2    \cf5 \{\cf0 \
+\cf2       image_data \cf3 =\cf2  \cf3 new\cf2  \cf3 boolean\cf5 [\cf2 MAX_HEIGHT\cf5 ][\cf2 MAX_WIDTH\cf5 ]\cf3 ;\cf0 \
+\
+\cf2       \cf1 // initialize array to false\cf0 \
+\cf2       \cf3 for\cf2  \cf5 (\cf3 int\cf2  height \cf3 =\cf2  \cf10 0\cf3 ;\cf2  height \cf3 <\cf2  image_data\cf3 .\cf2 length\cf3 ;\cf2  height\cf3 ++\cf5 )\cf0 \
+\cf2       \cf5 \{\cf0 \
+\cf2          \cf3 for\cf2  \cf5 (\cf3 int\cf2  width \cf3 =\cf2  \cf10 0\cf3 ;\cf2  width \cf3 <\cf2  image_data\cf5 [\cf2 height\cf5 ]\cf3 .\cf2 length\cf3 ;\cf2  width\cf3 ++\cf5 )\cf0 \
+\cf2          \cf5 \{\cf0 \
+\cf2             image_data\cf5 [\cf2 height\cf5 ][\cf2 width\cf5 ]\cf2  \cf3 =\cf2  \cf3 false;\cf0 \
+\cf2          \cf5 \}\cf0 \
+\cf2       \cf5 \}\cf0 \
+\cf2    \cf5 \}\cf0 \
+\
+\cf2    \cf1 // take a 1D array with length and populate the image\cf0 \
+\cf2    \cf3 public\cf2  \cf7 BarcodeImage\cf5 (\cf4 String\cf5 []\cf2  \cf8 str_data\cf5 )\cf0 \
+\cf2    \cf5 \{\cf0 \
+\cf2       image_data \cf3 =\cf2  \cf3 new\cf2  \cf3 boolean\cf5 [\cf2 MAX_HEIGHT\cf5 ][\cf2 MAX_WIDTH\cf5 ]\cf3 ;\cf0 \
+\
+\cf2       \cf1 // test for invalid array input\cf0 \
+\cf2       \cf3 if\cf2  \cf5 (\cf3 !\cf7 checkSize\cf5 (\cf8 str_data\cf5 ))\cf0 \
+\cf2       \cf5 \{\cf0 \
+\cf2          \cf3 return;\cf0 \
+\cf2       \cf5 \}\cf0 \
+\
+\cf2       \cf1 // loop through the array elements\cf0 \
+\cf2       \cf1 // left columns is a solid marker and throw away\cf0 \
+\cf2       \cf1 // bottom line is a solid marker and throw away\cf0 \
+\cf2       \cf1 // right is on/off and throw away\cf0 \
+\cf2       \cf1 // top is on/off and throw away\cf0 \
+\cf2       \cf1 // loop through starting at the bottom-left and work up\cf0 \
+\cf2       \cf1 // NOTE: Loop is not testing format of marker lines\cf0 \
+\cf2       \cf1 //      effectively we are evaluating index 1 through length - 1\cf0 \
+\cf2       \cf1 //\ul int\ulnone  heightIndex = 0;\cf0 \
+\cf2       \cf3 for\cf2  \cf5 (\cf3 int\cf2  height \cf3 =\cf2  \cf8 str_data\cf3 .\cf2 length\cf3 -\cf10 1\cf3 ;\cf2  height \cf3 >=\cf2  \cf10 0\cf3 ;\cf2  height\cf3 --\cf5 )\cf0 \
+\cf2       \cf5 \{\cf0 \
+\cf2          \cf1 // evaluate the string within the array element\cf0 \
+\cf2          \cf1 // left-most element is throw away\cf0 \
+\cf2          \cf1 // right element is either a "*" or " " based on odd/even line and should be skipped\cf0 \
+\cf2          \cf3 for\cf2  \cf5 (\cf3 int\cf2  width \cf3 =\cf2  \cf10 0\cf3 ;\cf2  width \cf3 <\cf2  \cf8 str_data\cf5 [\cf2 height\cf5 ]\cf3 .\cf7 length\cf5 ()\cf3 ;\cf2  width\cf3 ++\cf5 )\cf0 \
+\cf2          \cf5 \{\cf0 \
+\cf2             \cf1 //image_data[heightIndex][width] = str_data[height].charAt(width) == '*' ? true : false;\cf0 \
+\cf2             image_data\cf5 [\cf2 height\cf5 ][\cf2 width\cf5 ]\cf2  \cf3 =\cf2  \cf8 str_data\cf5 [\cf2 height\cf5 ]\cf3 .\cf7 charAt\cf5 (\cf2 width\cf5 )\cf2  \cf3 ==\cf2  \cf9 '*'\cf2  \cf3 ?\cf2  \cf3 true\cf2  \cf3 :\cf2  \cf3 false;\cf0 \
+\cf2          \cf5 \}\cf0 \
+\
+\cf2          \cf1 //heightIndex++;\cf0 \
+\cf2       \cf5 \}\cf0 \
+\cf2    \cf5 \}\cf0 \
+\
+\cf2    \cf1 // validate array is within \ul specs\cf0 \ulnone \
+\cf2    \cf3 private\cf2  \cf3 boolean\cf2  \cf7 checkSize\cf5 (\cf4 String\cf5 []\cf2  \cf8 data\cf5 )\cf0 \
+\cf2    \cf5 \{\cf0 \
+\cf2       \cf3 if\cf2  \cf5 (\cf8 data\cf3 .\cf2 length \cf3 >\cf2  MAX_HEIGHT \cf3 ||\cf2  \cf8 data\cf5 [\cf10 0\cf5 ]\cf3 .\cf7 length\cf5 ()\cf2  \cf3 >\cf2  MAX_WIDTH\cf5 )\cf0 \
+\cf2       \cf5 \{\cf0 \
+\cf2          \cf1 // error - should throw an exception here\cf0 \
+\cf2          \cf4 System\cf3 .\cf2 out\cf3 .\cf7 println\cf5 (\cf9 "BarCodeImage Constructor: The provided array is out of bounds."\cf5 )\cf3 ;\cf0 \
+\cf2          \cf3 return\cf2  \cf3 false;\cf0 \
+\cf2       \cf5 \}\cf0 \
+\
+\cf2       \cf3 return\cf2  \cf3 true;\cf0 \
+\cf2    \cf5 \}\cf0 \
+\
+\cf2    \cf1 // validate the row and \ul col\ulnone  \ul params\cf0 \ulnone \
+\cf2    \cf3 private\cf2  \cf3 boolean\cf2  \cf7 checkRowCols\cf5 (\cf3 int\cf2  \cf8 rows\cf3 ,\cf2  \cf3 int\cf2  \cf8 cols\cf5 )\cf0 \
+\cf2    \cf5 \{\cf0 \
+\cf2       \cf3 if\cf2  \cf5 (\cf8 rows\cf2  \cf3 >\cf2  MAX_HEIGHT \cf3 ||\cf2  \cf8 cols\cf2  \cf3 >\cf2  MAX_WIDTH\cf5 )\cf0 \
+\cf2          \cf3 return\cf2  \cf3 false;\cf0 \
+\
+\cf2       \cf3 return\cf2  \cf3 true;\cf0 \
+\cf2    \cf5 \}\cf0 \
+\
+\cf2    \cf1 // print the contents of the array to console for testing\cf0 \
+\cf2    \cf3 public\cf2  \cf3 void\cf2  \cf7 displayToConsole\cf5 ()\cf0 \
+\cf2    \cf5 \{\cf0 \
+\cf2       \cf1 // loop through top to bottom - max height\cf0 \
+\cf2       \cf1 //for (\ul int\ulnone  height = MAX_HEIGHT-1; height >= 0; height--)\cf0 \
+\cf2       \cf3 for\cf2  \cf5 (\cf3 int\cf2  height \cf3 =\cf2  \cf10 0\cf3 ;\cf2  height \cf3 <=\cf2  MAX_HEIGHT\cf3 -\cf10 1\cf3 ;\cf2  height\cf3 ++\cf5 )\cf0 \
+\cf2       \cf5 \{\cf0 \
+\cf2          \cf1 // print the return char\cf0 \
+\cf2          \cf1 //if (height < MAX_HEIGHT)\cf0 \
+\cf2          \cf3 if\cf2  \cf5 (\cf2 height \cf3 >\cf2  \cf10 0\cf5 )\cf0 \
+\cf2          \cf5 \{\cf0 \
+\cf2             \cf4 System\cf3 .\cf2 out\cf3 .\cf7 print\cf5 (\cf9 "\\n"\cf5 )\cf3 ;\cf0 \
+\cf2          \cf5 \}\cf0 \
+\
+\cf2          \cf1 // loop through left->right - 0 index\cf0 \
+\cf2          \cf3 for\cf2  \cf5 (\cf3 int\cf2  width \cf3 =\cf2  \cf10 0\cf3 ;\cf2  width \cf3 <\cf2  MAX_WIDTH\cf3 ;\cf2  width\cf3 ++\cf5 )\cf0 \
+\cf2          \cf5 \{\cf0 \
+\cf2             \cf3 if\cf2  \cf5 (\cf2 image_data\cf5 [\cf2 height\cf5 ][\cf2 width\cf5 ]\cf2  \cf3 ==\cf2  \cf3 true\cf5 )\cf0 \
+\cf2             \cf5 \{\cf0 \
+\cf2                \cf4 System\cf3 .\cf2 out\cf3 .\cf7 print\cf5 (\cf9 "*"\cf5 )\cf3 ;\cf0 \
+\cf2             \cf5 \}\cf0 \
+\cf2             \cf3 else\cf0 \
+\cf2             \cf5 \{\cf0 \
+\cf2                \cf4 System\cf3 .\cf2 out\cf3 .\cf7 print\cf5 (\cf9 " "\cf5 )\cf3 ;\cf0 \
+\cf2             \cf5 \}\cf0 \
+\cf2          \cf5 \}\cf0 \
+\cf2       \cf5 \}\cf0 \
+\cf2    \cf5 \}\cf0 \
+\cf2    \cf0 \
+\cf2    \cf1 @Override\cf0 \
+\cf2    \cf3 public\cf2  \cf4 BarcodeImage\cf2  \cf7 clone\cf5 ()\cf2  \cf3 throws\cf2  \cf4 CloneNotSupportedException\cf0 \
+\cf2    \cf5 \{\cf0 \
+\cf2       \cf4 BarcodeImage\cf2  cloneImg \cf3 =\cf2  \cf3 new\cf2  \cf7 BarcodeImage\cf5 ()\cf3 ;\cf0 \
+\cf2       \cf3 for\cf2  \cf5 (\cf3 int\cf2  height \cf3 =\cf2  \cf10 0\cf3 ;\cf2  height \cf3 <\cf2  image_data\cf3 .\cf2 length\cf3 ;\cf2  height\cf3 ++\cf5 )\cf0 \
+\cf2       \cf5 \{\cf0 \
+\cf2 	 \cf3 for\cf2  \cf5 (\cf3 int\cf2  width \cf3 =\cf2  \cf10 0\cf3 ;\cf2  width \cf3 <\cf2  image_data\cf5 [\cf2 height\cf5 ]\cf3 .\cf2 length\cf3 ;\cf2  width\cf3 ++\cf5 )\cf0 \
+\cf2 	 \cf5 \{\cf0 \
+\cf2 	    cloneImg\cf3 .\cf2 image_data\cf5 [\cf2 height\cf5 ][\cf2 width\cf5 ]\cf2  \cf3 =\cf2  image_data\cf5 [\cf2 height\cf5 ][\cf2 width\cf5 ]\cf3 ;\cf0 \
+\cf2 	 \cf5 \}\cf0 \
+\cf2       \cf5 \}\cf0 \
+\cf2       \cf3 return\cf2  cloneImg\cf3 ;\cf0 \
+\cf2    \cf5 \}\cf0 \
+\pard\pardeftab720\partightenfactor0
+\cf5 \}\cf0 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf1 // DataMatrix class - executes all translation functionality\cf0 \
+\pard\pardeftab720\partightenfactor0
+\cf3 class\cf2  \cf4 DataMatrix\cf2  \cf3 implements\cf2  \cf4 BarcodeIO\cf0 \
+\pard\pardeftab720\partightenfactor0
+\cf5 \{\cf0 \
+\pard\pardeftab720\partightenfactor0
+\cf2    \cf3 public\cf2  \cf3 static\cf2  \cf3 final\cf2  \cf3 char\cf2  BLACK_CHAR \cf3 =\cf2  \cf9 '*'\cf3 ;\cf0 \
+\cf2    \cf3 public\cf2  \cf3 static\cf2  \cf3 final\cf2  \cf3 char\cf2  WHITE_CHAR \cf3 =\cf2  \cf9 ' '\cf3 ;\cf2   \cf0 \
+\cf2    \cf3 private\cf2  \cf4 BarcodeImage\cf2  image\cf3 ;\cf0 \
+\cf2    \cf3 private\cf2  \cf4 String\cf2  text\cf3 ;\cf0 \
+\cf2    \cf3 private\cf2  \cf3 int\cf2  actualWidth\cf3 ;\cf0 \
+\cf2    \cf3 private\cf2  \cf3 int\cf2  actualHeight\cf3 ;\cf0 \
+\cf2    \cf0 \
+\cf2    \cf1 //Function to display the String text to the console.\cf0 \
+\cf2    \cf3 public\cf2  \cf3 void\cf2  \cf7 displayTextToConsole\cf5 ()\cf0 \
+\cf2    \cf5 \{\cf0 \
+\cf2       \cf4 System\cf3 .\cf2 out\cf3 .\cf7 println\cf5 (\cf2 text\cf5 )\cf3 ;\cf0 \
+\cf2    \cf5 \}\cf0 \
+\cf2    \cf0 \
+\cf2    \cf1 //Displays the image to the console with all extra whitespace removed and a border placed around it\cf0 \
+\cf2    \cf3 public\cf2  \cf3 void\cf2  \cf7 displayImageToConsole\cf5 ()\cf0 \
+\cf2    \cf5 \{\cf0 \
+\cf2       \cf1 //\ul Stringbuilder\ulnone  to append each character for that line to\cf0 \
+\cf2       \cf4 StringBuilder\cf2  line \cf3 =\cf2  \cf3 new\cf2  \cf7 StringBuilder\cf5 ()\cf3 ;\cf0 \
+\cf2       \cf0 \
+\cf2       \cf1 //Add horizontal row of - to top\cf0 \
+\cf2       \cf3 for\cf5 (\cf2  \cf3 int\cf2  x \cf3 =\cf2  \cf10 0\cf3 ;\cf2  x \cf3 <\cf2  \cf7 getActualWidth\cf5 ()\cf2  \cf3 +\cf2  \cf10 2\cf3 ;\cf2  x\cf3 ++\cf2  \cf5 )\cf0 \
+\cf2       \cf5 \{\cf0 \
+\cf2          line\cf3 .\cf7 append\cf5 (\cf9 '-'\cf5 )\cf3 ;\cf0 \
+\cf2                   \cf0 \
+\cf2       \cf5 \}\cf0 \
+\cf2       \cf4 System\cf3 .\cf2 out\cf3 .\cf7 println\cf5 (\cf2 line\cf3 .\cf7 toString\cf5 ())\cf3 ;\cf0 \
+\cf2       \cf0 \
+\cf2       \cf1 //Add a | to the first column and the last column, and adds the data from the signal image\cf0 \
+\cf2       \cf3 for\cf5 (\cf2  \cf3 int\cf2  y \cf3 =\cf2  \cf4 BarcodeImage\cf3 .\cf2 MAX_HEIGHT \cf3 -\cf2  \cf7 getActualHeight\cf5 ()\cf2  \cf3 -\cf2  \cf10 1\cf3 ;\cf2  y \cf3 <\cf2  \cf4 BarcodeImage\cf3 .\cf2 MAX_HEIGHT\cf3 ;\cf2  y\cf3 ++\cf2  \cf5 )\cf0 \
+\cf2       \cf5 \{\cf0 \
+\cf2          line \cf3 =\cf2  \cf3 new\cf2  \cf7 StringBuilder\cf5 ()\cf3 ;\cf0 \
+\cf2          \cf3 for\cf5 (\cf2  \cf3 int\cf2  x \cf3 =\cf2  \cf10 0\cf3 ;\cf2  x \cf3 <\cf2  \cf7 getActualWidth\cf5 ()\cf3 ;\cf2  x\cf3 ++\cf2  \cf5 )\cf0 \
+\cf2          \cf5 \{\cf0 \
+\cf2             \cf1 //Adds | if we are in the first column\cf0 \
+\cf2             \cf3 if\cf5 (\cf2  x \cf3 ==\cf2  \cf10 0\cf2  \cf5 )\cf0 \
+\cf2             \cf5 \{\cf0 \
+\cf2                line\cf3 .\cf7 append\cf5 (\cf9 '|'\cf5 )\cf3 ;\cf0 \
+\cf2             \cf5 \}\cf0 \
+\cf2             \cf0 \
+\cf2             \cf1 //Adds the data from the signal image\cf0 \
+\cf2             \cf3 if\cf5 (\cf2  image\cf3 .\cf7 getPixel\cf5 (\cf2 y\cf3 ,\cf2  x\cf5 )\cf2  \cf5 )\cf0 \
+\cf2             \cf5 \{\cf0 \
+\cf2                line\cf3 .\cf7 append\cf5 (\cf9 '*'\cf5 )\cf3 ;\cf0 \
+\cf2             \cf5 \}\cf0 \
+\cf2             \cf3 else\cf2  \cf3 if\cf5 (\cf2  \cf3 !\cf2 image\cf3 .\cf7 getPixel\cf5 (\cf2 y\cf3 ,\cf2  x\cf5 )\cf2  \cf5 )\cf0 \
+\cf2             \cf5 \{\cf0 \
+\cf2                line\cf3 .\cf7 append\cf5 (\cf9 ' '\cf5 )\cf3 ;\cf0 \
+\cf2             \cf5 \}\cf0 \
+\cf2             \cf0 \
+\cf2             \cf1 //Adds | if we are in the last column\cf0 \
+\cf2             \cf3 if\cf5 (\cf2  x \cf3 ==\cf2  \cf7 getActualWidth\cf5 ()\cf2  \cf3 -\cf2  \cf10 1\cf2  \cf5 )\cf0 \
+\cf2             \cf5 \{\cf0 \
+\cf2                line\cf3 .\cf7 append\cf5 (\cf9 '|'\cf5 )\cf3 ;\cf0 \
+\cf2             \cf5 \}\cf0 \
+\cf2          \cf5 \}\cf0 \
+\cf2          \cf4 System\cf3 .\cf2 out\cf3 .\cf7 println\cf5 (\cf2 line\cf3 .\cf7 toString\cf5 ())\cf3 ;\cf0 \
+\cf2       \cf5 \}\cf0 \
+\cf2     \cf0 \
+\cf2    \cf5 \}\cf0 \
+\cf2    \cf0 \
+\cf2    \cf1 //Default constructor\cf0 \
+\cf2    \cf3 public\cf2  \cf7 DataMatrix\cf5 ()\cf0 \
+\cf2    \cf5 \{\cf0 \
+\cf2       image \cf3 =\cf2  \cf3 new\cf2  \cf7 BarcodeImage\cf5 ()\cf3 ;\cf0 \
+\cf2       actualWidth \cf3 =\cf2  \cf10 0\cf3 ;\cf0 \
+\cf2       actualHeight \cf3 =\cf2  \cf10 0\cf3 ;\cf0 \
+\cf2       text \cf3 =\cf2  \cf9 ""\cf3 ;\cf0 \
+\cf2    \cf5 \}\cf0 \
+\cf2    \cf0 \
+\cf2    \cf1 //Constructor that takes in a \ul barcode\ulnone  image\cf0 \
+\cf2    \cf3 public\cf2  \cf7 DataMatrix\cf5 (\cf4 BarcodeImage\cf2  \cf8 image\cf5 )\cf0 \
+\cf2    \cf5 \{\cf0 \
+\cf2       \cf7 scan\cf5 (\cf8 image\cf5 )\cf3 ;\cf0 \
+\cf2       text \cf3 =\cf2  \cf9 ""\cf3 ;\cf0 \
+\cf2    \cf5 \}\cf0 \
+\cf2    \cf0 \
+\cf2    \cf1 //Constructor that takes in a string\cf0 \
+\cf2    \cf3 public\cf2  \cf7 DataMatrix\cf5 (\cf4 String\cf2  \cf8 text\cf5 )\cf0 \
+\cf2    \cf5 \{\cf0 \
+\cf2       image \cf3 =\cf2  \cf3 new\cf2  \cf7 BarcodeImage\cf5 ()\cf3 ;\cf0 \
+\cf2       \cf7 readText\cf5 (\cf8 text\cf5 )\cf3 ;\cf0 \
+\cf2    \cf5 \}\cf0 \
+\cf2    \cf0 \
+\cf2    \cf1 //accepts a text string to be eventually encoded in an image\cf0 \
+\cf2    \cf3 public\cf2  \cf3 boolean\cf2  \cf7 readText\cf5 (\cf2  \cf4 String\cf2  \cf8 text\cf2  \cf5 )\cf0 \
+\cf2    \cf5 \{\cf0 \
+\cf2       \cf3 this.\cf2 text \cf3 =\cf2  \cf8 text\cf3 ;\cf0 \
+\cf2       \cf3 return\cf2  \cf3 true;\cf0 \
+\cf2    \cf5 \}\cf0 \
+\cf2    \cf0 \
+\cf2    \cf1 //accepts some image, represented as a BarcodeImage object to be described below, \cf0 \
+\cf2    \cf1 //and stores a copy of this image.\cf0 \
+\cf2    \cf3 public\cf2  \cf3 boolean\cf2  \cf7 scan\cf5 (\cf2  \cf4 BarcodeImage\cf2  \cf8 bc\cf2  \cf5 )\cf0 \
+\cf2    \cf5 \{\cf0 \
+\cf2       \cf3 try\cf0 \
+\cf2       \cf5 \{\cf0 \
+\cf2          image \cf3 =\cf2  \cf8 bc\cf3 .\cf7 clone\cf5 ()\cf3 ;\cf0 \
+\cf2          \cf7 cleanImage\cf5 ()\cf3 ;\cf0 \
+\cf2          actualWidth \cf3 =\cf2  \cf7 computeSignalWidth\cf5 ()\cf3 ;\cf0 \
+\cf2          actualHeight \cf3 =\cf2  \cf7 computeSignalHeight\cf5 ()\cf3 ;\cf0 \
+\cf2          \cf3 return\cf2  \cf3 true;\cf0 \
+\cf2       \cf5 \}\cf0 \
+\cf2       \cf3 catch\cf2  \cf5 (\cf4 CloneNotSupportedException\cf2  e\cf5 )\cf0 \
+\cf2       \cf5 \{\cf0 \
+\cf2          \cf3 return\cf2  \cf3 false;\cf0 \
+\cf2       \cf5 \}\cf0 \
+\cf2    \cf5 \}\cf0 \
+\cf2    \cf0 \
+\cf2    \cf1 //\ul Accessor\ulnone  function for actualWidth\cf0 \
+\cf2    \cf3 public\cf2  \cf3 int\cf2  \cf7 getActualWidth\cf5 ()\cf0 \
+\cf2    \cf5 \{\cf0 \
+\cf2       \cf3 return\cf2  actualWidth\cf3 ;\cf0 \
+\cf2    \cf5 \}\cf0 \
+\cf2    \cf0 \
+\cf2    \cf1 //\ul Accessor\ulnone  function for actualHeight\cf0 \
+\cf2    \cf3 public\cf2  \cf3 int\cf2  \cf7 getActualHeight\cf5 ()\cf0 \
+\cf2    \cf5 \{\cf0 \
+\cf2       \cf3 return\cf2  actualHeight\cf3 ;\cf0 \
+\cf2    \cf5 \}\cf0 \
+\cf2    \cf0 \
+\cf2    \cf1 //Computers the actual width of the signal\cf0 \
+\cf2    \cf3 private\cf2  \cf3 int\cf2  \cf7 computeSignalWidth\cf5 ()\cf0 \
+\cf2    \cf5 \{\cf0 \
+\cf2       \cf3 int\cf2  signalWidth \cf3 =\cf2  \cf10 0\cf3 ;\cf0 \
+\cf2       \cf1 //Loop to look through each of the columns in the lowest element\cf0 \
+\cf2       \cf3 for\cf5 (\cf2  \cf3 int\cf2  x \cf3 =\cf2  \cf10 0\cf3 ;\cf2  x \cf3 <\cf2  \cf4 BarcodeImage\cf3 .\cf2 MAX_WIDTH\cf3 ;\cf2  x\cf3 ++\cf2  \cf5 )\cf0 \
+\cf2       \cf5 \{\cf0 \
+\cf2          \cf1 //Returns when it finds the first false character\cf0 \
+\cf2          \cf3 if\cf5 (\cf2  \cf3 !\cf2 image\cf3 .\cf7 getPixel\cf5 (\cf4 BarcodeImage\cf3 .\cf2 MAX_HEIGHT\cf3 -\cf10 1\cf3 ,\cf2 x\cf5 )\cf2  \cf5 )\cf0 \
+\cf2          \cf5 \{\cf0 \
+\cf2             signalWidth \cf3 =\cf2  x \cf3 -\cf2  \cf10 1\cf3 ;\cf0 \
+\cf2             \cf3 break;\cf0 \
+\cf2          \cf5 \}\cf0 \
+\cf2       \cf5 \}\cf0 \
+\cf2       \cf3 return\cf2  signalWidth\cf3 ;\cf0 \
+\cf2    \cf5 \}\cf0 \
+\cf2    \cf0 \
+\cf2    \cf1 //Computers the actual height of the signal\cf0 \
+\cf2    \cf3 private\cf2  \cf3 int\cf2  \cf7 computeSignalHeight\cf5 ()\cf0 \
+\cf2    \cf5 \{\cf0 \
+\cf2       \cf3 int\cf2  signalHeight \cf3 =\cf2  \cf10 0\cf3 ;\cf0 \
+\cf2       \cf1 //Loop to check each element in the first column\cf0 \
+\cf2       outterloop\cf3 :\cf0 \
+\cf2       \cf3 for\cf5 (\cf2  \cf3 int\cf2  y \cf3 =\cf2  \cf4 BarcodeImage\cf3 .\cf2 MAX_HEIGHT \cf3 -\cf2  \cf10 1\cf3 ;\cf2  y \cf3 >\cf2  \cf10 0\cf3 ;\cf2  y\cf3 --\cf2  \cf5 )\cf0 \
+\cf2       \cf5 \{\cf0 \
+\cf2          \cf1 //Returns when it finds the first false value\cf0 \
+\cf2          \cf3 if\cf5 (\cf2  \cf3 !\cf2 image\cf3 .\cf7 getPixel\cf5 (\cf2 y\cf3 ,\cf10 0\cf5 )\cf2  \cf5 )\cf0 \
+\cf2          \cf5 \{\cf0 \
+\cf2             signalHeight \cf3 =\cf2  \cf4 BarcodeImage\cf3 .\cf2 MAX_HEIGHT \cf3 -\cf2  y \cf3 -\cf2  \cf10 2\cf3 ;\cf0 \
+\cf2             \cf3 break\cf2  outterloop\cf3 ;\cf0 \
+\cf2          \cf5 \}\cf0 \
+\cf2       \cf5 \}\cf0 \
+\cf2       \cf3 return\cf2  signalHeight\cf3 ;\cf0 \
+\cf2    \cf5 \}\cf0 \
+\cf2    \cf0 \
+\cf2    \cf1 //Moves the image signal to the lower left of the 2d array\cf0 \
+\cf2    \cf3 private\cf2  \cf3 void\cf2  \cf7 cleanImage\cf5 ()\cf0 \
+\cf2    \cf5 \{\cf0 \
+\cf2       \cf7 moveImageToLowerLeft\cf5 ()\cf3 ;\cf0 \
+\cf2       \cf0 \
+\cf2    \cf5 \}\cf0 \
+\cf2    \cf0 \
+\cf2    \cf1 //Reads binary data in column and returns the char\cf0 \
+\cf2    \cf3 private\cf2  \cf3 char\cf2  \cf7 readCharFromCol\cf5 (\cf3 int\cf2  \cf8 col\cf5 )\cf0 \
+\cf2    \cf5 \{\cf0 \
+\cf2       \cf1 //stringBuilder to store each binary digit from our column in\cf0 \
+\cf2       \cf4 StringBuilder\cf2  binaryDataStringBuilder \cf3 =\cf2  \cf3 new\cf2  \cf7 StringBuilder\cf5 ()\cf3 ;\cf0 \
+\cf2       \cf0 \
+\cf2       \cf1 //For loop to loop through each element in the column\cf0 \
+\cf2       \cf3 for\cf5 (\cf2  \cf3 int\cf2  i \cf3 =\cf2  \cf4 BarcodeImage\cf3 .\cf2 MAX_HEIGHT \cf3 -\cf2  \cf7 getActualHeight\cf5 ()\cf3 ;\cf2  i \cf3 <\cf2  \cf4 BarcodeImage\cf3 .\cf2 MAX_HEIGHT \cf3 -\cf2  \cf10 1\cf3 ;\cf2  i\cf3 ++\cf2  \cf5 )\cf0 \
+\cf2       \cf5 \{\cf0 \
+\cf2          \cf1 //Appends a 1 if the element has a true in it, 0 if it has a false\cf0 \
+\cf2          \cf3 if\cf5 (\cf2  image\cf3 .\cf7 getPixel\cf5 (\cf2 i\cf3 ,\cf2  \cf8 col\cf5 )\cf2  \cf5 )\cf0 \
+\cf2          \cf5 \{\cf0 \
+\cf2             binaryDataStringBuilder\cf3 .\cf7 append\cf5 (\cf9 '1'\cf5 )\cf3 ;\cf0 \
+\cf2          \cf5 \}\cf0 \
+\cf2          \cf3 else\cf0 \
+\cf2          \cf5 \{\cf0 \
+\cf2             binaryDataStringBuilder\cf3 .\cf7 append\cf5 (\cf9 '0'\cf5 )\cf3 ;\cf0 \
+\cf2          \cf5 \}\cf2          \cf0 \
+\cf2       \cf5 \}\cf0 \
+\cf2       \cf1 //\ul Coneverts\ulnone  the \ul stringbuilder\ulnone  to a string, parses the string to return the \ul ascii\ulnone  number,\cf0 \
+\cf2       \cf1 //and then casts that \ul ascii\ulnone  number to a char and returns\cf0 \
+\cf2       \cf3 return\cf2  \cf5 (\cf3 char\cf5 )\cf4 Integer\cf3 .\cf7 parseInt\cf5 (\cf2 binaryDataStringBuilder\cf3 .\cf7 toString\cf5 ()\cf3 ,\cf10 2\cf5 )\cf3 ;\cf0 \
+\cf2    \cf5 \}\cf0 \
+\cf2    \cf0 \
+\cf2    \cf1 //looks at the internal text stored in the implementing class and produces a companion BarcodeImage\cf0 \
+\cf2    \cf3 public\cf2  \cf3 boolean\cf2  \cf7 generateImageFromText\cf5 ()\cf0 \
+\cf2    \cf5 \{\cf0 \
+\cf2       \cf1 //Set image to blank image\cf0 \
+\cf2       \cf7 clearImage\cf5 ()\cf3 ;\cf0 \
+\cf2       \cf0 \
+\cf2       \cf1 //Convert entire string of text into a char array to have each char accessible by for loop\cf0 \
+\cf2       \cf3 char\cf5 []\cf2  textCharArray \cf3 =\cf2  text\cf3 .\cf7 toCharArray\cf5 ()\cf3 ;\cf2       \cf0 \
+\cf2            \cf0 \
+\cf2       \cf3 for\cf5 (\cf2  \cf3 int\cf2  x \cf3 =\cf2  \cf10 0\cf3 ;\cf2  x \cf3 <\cf2  textCharArray\cf3 .\cf2 length\cf3 ;\cf2  x\cf3 ++\cf2  \cf5 )\cf0 \
+\cf2       \cf5 \{\cf0 \
+\cf2          \cf3 int\cf2  counter \cf3 =\cf2  \cf10 0\cf3 ;\cf0 \
+\cf2          \cf0 \
+\cf2          \cf1 //Build the spine of the image with no text data yet\cf0 \
+\cf2          \cf3 for\cf5 (\cf2  \cf3 int\cf2  y \cf3 =\cf2  \cf4 BarcodeImage\cf3 .\cf2 MAX_HEIGHT \cf3 -\cf2  \cf10 10\cf3 ;\cf2  y \cf3 <\cf2  \cf4 BarcodeImage\cf3 .\cf2 MAX_HEIGHT\cf3 ;\cf2  y\cf3 ++\cf2  \cf5 )\cf0 \
+\cf2          \cf5 \{\cf0 \
+\cf2             \cf1 //Convert each char into it's binary digits and store it in a \ul temp\ulnone  array\cf0 \
+\cf2             \cf3 char\cf5 []\cf2  temp \cf3 =\cf2  \cf4 Integer\cf3 .\cf7 toBinaryString\cf5 (\cf2 textCharArray\cf5 [\cf2 x\cf5 ])\cf3 .\cf7 toCharArray\cf5 ()\cf3 ;\cf0 \
+\cf2             \cf0 \
+\cf2             \cf1 //Add left hand spine            \cf0 \
+\cf2             \cf3 if\cf5 (\cf2  x \cf3 ==\cf2  \cf10 0\cf2  \cf5 )\cf0 \
+\cf2             \cf5 \{\cf0 \
+\cf2                image\cf3 .\cf7 setPixel\cf5 (\cf2 y\cf3 ,\cf2  x\cf3 ,\cf2  \cf3 true\cf5 )\cf3 ;\cf0 \
+\cf2             \cf5 \}\cf0 \
+\cf2             \cf0 \
+\cf2             \cf1 //Add bottom of spine\cf0 \
+\cf2             \cf3 if\cf5 (\cf2  y \cf3 ==\cf2  \cf4 BarcodeImage\cf3 .\cf2 MAX_HEIGHT \cf3 -\cf2  \cf10 1\cf2  \cf3 &&\cf2  x \cf3 <\cf2  textCharArray\cf3 .\cf2 length \cf3 -\cf2  \cf10 1\cf2  \cf3 &&\cf2  x \cf3 !=\cf2  \cf10 0\cf5 )\cf0 \
+\cf2             \cf5 \{\cf0 \
+\cf2                image\cf3 .\cf7 setPixel\cf5 (\cf2 y\cf3 ,\cf2  x\cf3 ,\cf2  \cf3 true\cf5 )\cf3 ;\cf0 \
+\cf2             \cf5 \}\cf0 \
+\cf2             \cf0 \
+\cf2             \cf1 //Add top of spine\cf0 \
+\cf2             \cf3 if\cf5 (\cf2  y \cf3 ==\cf2  \cf4 BarcodeImage\cf3 .\cf2 MAX_HEIGHT \cf3 -\cf2  \cf4 Integer\cf3 .\cf7 toBinaryString\cf5 (\cf2 textCharArray\cf5 [\cf2 x\cf5 ])\cf3 .\cf7 length\cf5 ()\cf2  \cf3 -\cf2  \cf10 1\cf2  \cf5 )\cf0 \
+\cf2             \cf5 \{\cf0 \
+\cf2                \cf1 //Add the trues when it is an even numbered column\cf0 \
+\cf2                \cf3 if\cf5 (\cf2  x \cf3 %\cf2  \cf10 2\cf2  \cf3 ==\cf2  \cf10 0\cf2  \cf5 )\cf0 \
+\cf2                \cf5 \{\cf0 \
+\cf2                   \cf1 //Checks to see if the stringCharArray has less than 8 binary digits\cf0 \
+\cf2                   \cf3 if\cf5 (\cf2  \cf4 Integer\cf3 .\cf7 toBinaryString\cf5 (\cf2 textCharArray\cf5 [\cf2 x\cf5 ])\cf3 .\cf7 length\cf5 ()\cf2  \cf3 <\cf2  \cf10 7\cf2  \cf5 )\cf0 \
+\cf2                   \cf5 \{\cf0 \
+\cf2                      image\cf3 .\cf7 setPixel\cf5 (\cf2 y \cf3 -\cf2  \cf10 3\cf3 ,\cf2  x\cf3 ,\cf2  \cf3 true\cf5 )\cf3 ;\cf0 \
+\cf2                   \cf5 \}\cf2                   \cf0 \
+\cf2                   \cf3 else\cf0 \
+\cf2                   \cf5 \{\cf0 \
+\cf2                      image\cf3 .\cf7 setPixel\cf5 (\cf2 y \cf3 -\cf2  \cf10 2\cf3 ,\cf2  x\cf3 ,\cf2  \cf3 true\cf5 )\cf3 ;\cf0 \
+\cf2                   \cf5 \}\cf2                   \cf0 \
+\cf2                \cf5 \}\cf0 \
+\cf2             \cf5 \}\cf0 \
+\cf2             \cf0 \
+\cf2             \cf1 //Add right of spine\cf0 \
+\cf2             \cf3 if\cf2  \cf5 (\cf2  x \cf3 ==\cf2  textCharArray\cf3 .\cf2 length \cf3 -\cf2  \cf10 1\cf2  \cf5 )\cf0 \
+\cf2             \cf5 \{\cf0 \
+\cf2                \cf1 //Add the trues when it is an even numbered row\cf0 \
+\cf2                \cf3 if\cf5 (\cf2  \cf5 (\cf2 y\cf3 +\cf10 1\cf5 )\cf2  \cf3 %\cf2  \cf10 2\cf2  \cf3 ==\cf2  \cf10 0\cf2  \cf5 )\cf0 \
+\cf2                \cf5 \{\cf0 \
+\cf2                   image\cf3 .\cf7 setPixel\cf5 (\cf2 y\cf3 ,\cf2  x\cf3 ,\cf2  \cf3 true\cf5 )\cf3 ;\cf0 \
+\cf2                \cf5 \}\cf0 \
+\cf2                \cf3 if\cf5 (\cf2  y \cf3 %\cf2  \cf10 2\cf2  \cf3 ==\cf2  \cf10 0\cf2  \cf5 )\cf0 \
+\cf2                \cf5 \{\cf0 \
+\cf2                   image\cf3 .\cf7 setPixel\cf5 (\cf2 y \cf3 +\cf2  \cf10 1\cf3 ,\cf2  x\cf3 ,\cf2  \cf3 true\cf5 )\cf3 ;\cf0 \
+\cf2                \cf5 \}\cf0 \
+\cf2             \cf5 \}\cf0 \
+\cf2             \cf0 \
+\cf2             \cf3 if\cf5 (\cf2  x \cf3 >\cf2  \cf10 0\cf2  \cf3 &&\cf2  x \cf3 <\cf2  textCharArray\cf3 .\cf2 length \cf3 -\cf2  \cf10 2\cf2  \cf3 &&\cf2  y \cf3 >\cf2  \cf4 BarcodeImage\cf3 .\cf2 MAX_HEIGHT \cf3 -\cf2  \cf10 9\cf2  \cf3 &&\cf2  y \cf3 <\cf2  \cf4 BarcodeImage\cf3 .\cf2 MAX_HEIGHT \cf3 -\cf2  \cf10 1\cf2  \cf3 &&\cf2  counter \cf3 <\cf2  temp\cf3 .\cf2 length\cf5 )\cf0 \
+\cf2             \cf5 \{\cf0 \
+\cf2                \cf3 if\cf5 (\cf2 temp\cf5 [\cf2 counter\cf5 ]\cf2  \cf3 ==\cf2  \cf9 '1'\cf5 )\cf0 \
+\cf2                \cf5 \{\cf0 \
+\cf2                   image\cf3 .\cf7 setPixel\cf5 (\cf4 BarcodeImage\cf3 .\cf2 MAX_HEIGHT \cf3 -\cf2  \cf10 2\cf2  \cf3 -\cf2  counter\cf3 ,\cf2  x \cf3 +\cf2  \cf10 1\cf3 ,\cf2  \cf3 true\cf5 )\cf3 ;\cf0 \
+\cf2                \cf5 \}\cf0 \
+\cf2                \cf3 else\cf0 \
+\cf2                \cf5 \{\cf0 \
+\cf2                   image\cf3 .\cf7 setPixel\cf5 (\cf4 BarcodeImage\cf3 .\cf2 MAX_HEIGHT \cf3 -\cf2  \cf10 2\cf2  \cf3 -\cf2  counter\cf3 ,\cf2  x \cf3 +\cf2  \cf10 1\cf3 ,\cf2  \cf3 false\cf5 )\cf3 ;\cf0 \
+\cf2                \cf5 \}\cf0 \
+\cf2                counter\cf3 ++;\cf0 \
+\cf2             \cf5 \}\cf0 \
+\cf2          \cf5 \}\cf0 \
+\cf2       \cf5 \}\cf0 \
+\cf2       \cf3 return\cf2  \cf3 true;\cf0 \
+\cf2    \cf5 \}\cf0 \
+\cf2    \cf0 \
+\cf2    \cf1 //looks at the image and converts it to text\cf0 \
+\cf2    \cf3 public\cf2  \cf3 boolean\cf2  \cf7 translateImageToText\cf5 ()\cf0 \
+\cf2    \cf5 \{\cf0 \
+\cf2       \cf1 //Reads each element in the image and displays out the text in the image\cf0 \
+\cf2       \cf4 StringBuilder\cf2  imageTextStringBuilder \cf3 =\cf2  \cf3 new\cf2  \cf7 StringBuilder\cf5 ()\cf3 ;\cf0 \
+\cf2       \cf3 for\cf5 (\cf2  \cf3 int\cf2  i \cf3 =\cf2  \cf10 1\cf3 ;\cf2  i \cf3 <\cf2  \cf7 getActualWidth\cf5 ()\cf3 ;\cf2  i\cf3 ++\cf2  \cf5 )\cf0 \
+\cf2       \cf5 \{\cf0 \
+\cf2          imageTextStringBuilder\cf3 .\cf7 append\cf5 (\cf7 readCharFromCol\cf5 (\cf2 i\cf5 ))\cf3 ;\cf0 \
+\cf2       \cf5 \}\cf0 \
+\cf2       \cf4 System\cf3 .\cf2 out\cf3 .\cf7 println\cf5 (\cf2 imageTextStringBuilder\cf3 .\cf7 toString\cf5 ())\cf3 ;\cf0 \
+\cf2       \cf3 return\cf2  \cf3 true;\cf0 \
+\cf2    \cf5 \}\cf0 \
+\cf2    \cf0 \
+\cf2    \cf1 //Moves image to lower left of 2d array\cf0 \
+\cf2    \cf3 private\cf2  \cf3 void\cf2  \cf7 moveImageToLowerLeft\cf5 ()\cf0 \
+\cf2    \cf5 \{\cf0 \
+\cf2       \cf3 int\cf2  lowerLeftX \cf3 =\cf2  \cf10 0\cf3 ;\cf0 \
+\cf2       \cf3 int\cf2  lowerLeftY \cf3 =\cf2  \cf10 0\cf3 ;\cf0 \
+\cf2       \cf0 \
+\cf2       \cf1 //Find the lower left corner of the image\cf0 \
+\cf2       outerloop\cf3 :\cf0 \
+\cf2       \cf3 for\cf5 (\cf2  \cf3 int\cf2  x \cf3 =\cf2  \cf10 0\cf3 ;\cf2  x \cf3 <\cf2  \cf4 BarcodeImage\cf3 .\cf2 MAX_WIDTH\cf3 ;\cf2  x\cf3 ++\cf2  \cf5 )\cf0 \
+\cf2       \cf5 \{\cf0 \
+\cf2          \cf3 for\cf5 (\cf2  \cf3 int\cf2  y \cf3 =\cf2  \cf4 BarcodeImage\cf3 .\cf2 MAX_HEIGHT \cf3 -\cf2  \cf10 1\cf3 ;\cf2  y \cf3 >=\cf2  \cf10 0\cf3 ;\cf2  y\cf3 --\cf2  \cf5 )\cf0 \
+\cf2          \cf5 \{\cf0 \
+\cf2             \cf3 if\cf5 (\cf2  image\cf3 .\cf7 getPixel\cf5 (\cf2 y\cf3 ,\cf2  x\cf5 )\cf2  \cf5 )\cf0 \
+\cf2             \cf5 \{\cf0 \
+\cf2                lowerLeftX \cf3 =\cf2  x\cf3 ;\cf0 \
+\cf2                lowerLeftY \cf3 =\cf2  \cf4 BarcodeImage\cf3 .\cf2 MAX_HEIGHT \cf3 -\cf2  y \cf3 -\cf2  \cf10 1\cf3 ;\cf0 \
+\cf2                \cf3 break\cf2  outerloop\cf3 ;\cf0 \
+\cf2             \cf5 \}\cf0 \
+\cf2          \cf5 \}\cf2          \cf0 \
+\cf2       \cf5 \}\cf0 \
+\cf2       \cf0 \
+\cf2       \cf1 //Call shift functions to move image to lower left by the offset found\cf0 \
+\cf2       \cf7 shiftImageDown\cf5 (\cf2 lowerLeftY\cf5 )\cf3 ;\cf0 \
+\cf2       \cf7 shiftImageLeft\cf5 (\cf2 lowerLeftX\cf5 )\cf3 ;\cf0 \
+\cf2       \cf0 \
+\cf2    \cf5 \}\cf0 \
+\cf2    \cf0 \
+\cf2    \cf1 //Moves image down by offset\cf0 \
+\cf2    \cf0 \
+\cf2    \cf3 private\cf2  \cf3 void\cf2  \cf7 shiftImageDown\cf5 (\cf3 int\cf2  \cf8 offset\cf5 )\cf0 \
+\cf2    \cf5 \{\cf0 \
+\cf2       \cf3 for\cf5 (\cf2  \cf3 int\cf2  x \cf3 =\cf2  \cf10 0\cf3 ;\cf2  x \cf3 <\cf2  \cf4 BarcodeImage\cf3 .\cf2 MAX_WIDTH\cf3 ;\cf2  x\cf3 ++\cf2  \cf5 )\cf0 \
+\cf2       \cf5 \{\cf0 \
+\cf2          \cf1 //Store elements that are being dropped off into an array\cf0 \
+\cf2          \cf3 boolean\cf5 []\cf2  tmp \cf3 =\cf2  \cf3 new\cf2  \cf3 boolean\cf5 [\cf8 offset\cf5 ]\cf3 ;\cf0 \
+\cf2          \cf3 int\cf2  counter \cf3 =\cf2  \cf10 0\cf3 ;\cf0 \
+\cf2          \cf3 for\cf5 (\cf2  \cf3 int\cf2  i \cf3 =\cf2  \cf4 BarcodeImage\cf3 .\cf2 MAX_HEIGHT \cf3 -\cf2  \cf10 1\cf3 ;\cf2  i \cf3 >\cf2  \cf4 BarcodeImage\cf3 .\cf2 MAX_HEIGHT \cf3 -\cf2  \cf8 offset\cf3 ;\cf2  i\cf3 --\cf2  \cf5 )\cf0 \
+\cf2          \cf5 \{\cf0 \
+\cf2             tmp\cf5 [\cf2 counter\cf5 ]\cf2  \cf3 =\cf2  image\cf3 .\cf7 getPixel\cf5 (\cf2 i\cf3 ,\cf2  x\cf5 )\cf3 ;\cf0 \
+\cf2             counter\cf3 ++;\cf0 \
+\cf2          \cf5 \}\cf0 \
+\cf2          \cf0 \
+\cf2          \cf1 //Shift Elements\cf0 \
+\cf2          \cf3 for\cf5 (\cf2  \cf3 int\cf2  y \cf3 =\cf2  \cf4 BarcodeImage\cf3 .\cf2 MAX_HEIGHT \cf3 -\cf2  \cf10 1\cf3 ;\cf2  y \cf3 >\cf2  \cf8 offset\cf3 ;\cf2  y\cf3 --\cf2  \cf5 )\cf0 \
+\cf2          \cf5 \{\cf0 \
+\cf2             \cf1 //System.out.printf("x: %d y: %d\\n", x, y);\cf0 \
+\cf2             image\cf3 .\cf7 setPixel\cf5 (\cf2 y\cf3 ,\cf2  x\cf3 ,\cf2  image\cf3 .\cf7 getPixel\cf5 (\cf2 y \cf3 -\cf2  \cf8 offset\cf3 ,\cf2  x\cf5 ))\cf3 ;\cf0 \
+\cf2          \cf5 \}\cf0 \
+\cf2          \cf0 \
+\cf2        \cf1 //Copy dropped elements\cf0 \
+\cf2          \cf3 for\cf5 (\cf2  \cf3 int\cf2  i \cf3 =\cf2  \cf10 0\cf3 ;\cf2  i \cf3 <\cf2  \cf8 offset\cf3 ;\cf2  i\cf3 ++\cf2  \cf5 )\cf0 \
+\cf2          \cf5 \{\cf0 \
+\cf2             image\cf3 .\cf7 setPixel\cf5 (\cf2 i\cf3 ,\cf2  x\cf3 ,\cf2  tmp\cf5 [\cf2 i\cf5 ])\cf3 ;\cf0 \
+\cf2          \cf5 \}\cf0 \
+\cf2       \cf5 \}\cf0 \
+\cf2    \cf5 \}\cf0 \
+\cf2    \cf0 \
+\cf2    \cf1 //Moves image to left by offset\cf0 \
+\cf2    \cf3 public\cf2  \cf3 void\cf2  \cf7 shiftImageLeft\cf5 (\cf3 int\cf2  \cf8 offset\cf5 )\cf0 \
+\cf2    \cf5 \{\cf0 \
+\cf2       \cf3 for\cf5 (\cf2  \cf3 int\cf2  row \cf3 =\cf2  \cf10 0\cf3 ;\cf2  row \cf3 <\cf2  \cf4 BarcodeImage\cf3 .\cf2 MAX_HEIGHT\cf3 ;\cf2  row\cf3 ++\cf2  \cf5 )\cf0 \
+\cf2       \cf5 \{\cf2          \cf0 \
+\cf2          \cf1 //Store elements that are being dropped off into an array\cf0 \
+\cf2          \cf3 boolean\cf5 []\cf2  tmp \cf3 =\cf2  \cf3 new\cf2  \cf3 boolean\cf5 [\cf8 offset\cf5 ]\cf3 ;\cf0 \
+\cf2          \cf3 for\cf2  \cf5 (\cf2  \cf3 int\cf2  i \cf3 =\cf2  \cf10 0\cf3 ;\cf2  i \cf3 <\cf2  \cf8 offset\cf3 ;\cf2  i\cf3 ++\cf2  \cf5 )\cf0 \
+\cf2          \cf5 \{\cf0 \
+\cf2             tmp\cf5 [\cf2 i\cf5 ]\cf2  \cf3 =\cf2  image\cf3 .\cf7 getPixel\cf5 (\cf2 row\cf3 ,\cf2  i\cf5 )\cf3 ;\cf0 \
+\cf2             \cf1 //System.out.printf("row: %d i: %d value: %s\\n", row, i, String.valueOf(\ul tmp\ulnone [i]));\cf0 \
+\cf2          \cf5 \}\cf0 \
+\cf2          \cf0 \
+\cf2          \cf1 //Shift elements\cf0 \
+\cf2          \cf3 for\cf2  \cf5 (\cf2  \cf3 int\cf2  col \cf3 =\cf2  \cf10 0\cf3 ;\cf2  col \cf3 <\cf2  \cf4 BarcodeImage\cf3 .\cf2 MAX_WIDTH \cf3 -\cf2  \cf8 offset\cf3 ;\cf2  col\cf3 ++\cf2  \cf5 )\cf0 \
+\cf2          \cf5 \{\cf0 \
+\cf2             image\cf3 .\cf7 setPixel\cf5 (\cf2 row\cf3 ,\cf2  col\cf3 ,\cf2  image\cf3 .\cf7 getPixel\cf5 (\cf2 row\cf3 ,\cf2  col \cf3 +\cf2  \cf8 offset\cf5 ))\cf3 ;\cf0 \
+\cf2          \cf5 \}\cf0 \
+\cf2          \cf0 \
+\cf2          \cf1 //Copy dropped elements\cf0 \
+\cf2          \cf3 int\cf2  counter \cf3 =\cf2  \cf10 0\cf3 ;\cf0 \
+\cf2          \cf3 for\cf5 (\cf2  \cf3 int\cf2  i \cf3 =\cf2  \cf4 BarcodeImage\cf3 .\cf2 MAX_WIDTH \cf3 -\cf2  \cf8 offset\cf3 ;\cf2  i \cf3 <\cf2  \cf4 BarcodeImage\cf3 .\cf2 MAX_WIDTH\cf3 ;\cf2  i\cf3 ++\cf2  \cf5 )\cf0 \
+\cf2          \cf5 \{\cf0 \
+\cf2             \cf1 //System.out.printf("row: %d i: %d value: %s\\n", row, i, String.valueOf(\ul tmp\ulnone [counter]));\cf0 \
+\cf2             image\cf3 .\cf7 setPixel\cf5 (\cf2 row\cf3 ,\cf2  i\cf3 ,\cf2  tmp\cf5 [\cf2 counter\cf5 ])\cf3 ;\cf0 \
+\cf2             counter\cf3 ++;\cf0 \
+\cf2          \cf5 \}\cf2          \cf0 \
+\cf2       \cf5 \}\cf2       \cf0 \
+\cf2    \cf5 \}\cf0 \
+\cf2    \cf0 \
+\cf2    \cf1 //Sets the image to white = false\cf0 \
+\cf2    \cf3 private\cf2  \cf3 void\cf2  \cf7 clearImage\cf5 ()\cf0 \
+\cf2    \cf5 \{\cf0 \
+\cf2       \cf3 for\cf5 (\cf2  \cf3 int\cf2  y \cf3 =\cf2  \cf10 0\cf3 ;\cf2  y \cf3 <\cf2  \cf4 BarcodeImage\cf3 .\cf2 MAX_HEIGHT\cf3 ;\cf2  y\cf3 ++\cf2  \cf5 )\cf0 \
+\cf2       \cf5 \{\cf0 \
+\cf2          \cf3 for\cf5 (\cf2  \cf3 int\cf2  x \cf3 =\cf2  \cf10 0\cf3 ;\cf2  x \cf3 <\cf2  \cf4 BarcodeImage\cf3 .\cf2 MAX_WIDTH\cf3 ;\cf2  x\cf3 ++\cf2  \cf5 )\cf0 \
+\cf2          \cf5 \{\cf0 \
+\cf2             image\cf3 .\cf7 setPixel\cf5 (\cf2 y\cf3 ,\cf2  x\cf3 ,\cf2  \cf3 false\cf5 )\cf3 ;\cf0 \
+\cf2          \cf5 \}\cf0 \
+\cf2       \cf5 \}\cf0 \
+\cf2    \cf5 \}\cf0 \
+\cf2  \cf0 \
+\cf2    \cf0 \
+\cf2    \cf1 //Displays the raw image in the DataMatrix\cf0 \
+\cf2    \cf3 public\cf2  \cf3 void\cf2  \cf7 displayRawImage\cf5 ()\cf0 \
+\cf2    \cf5 \{\cf0 \
+\cf2       image\cf3 .\cf7 displayToConsole\cf5 ()\cf3 ;\cf0 \
+\cf2    \cf5 \}\cf0 \
+\pard\pardeftab720\partightenfactor0
+\cf5 \}\cf0 \
+\
+\
+\
+\pard\pardeftab720\partightenfactor0
+\cf1 /************ OUTPUT **************\cf0 \
+\cf1 CSUMB CSIT online program is top notch.\cf0 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 ------------------------------------------\cf0 \
+\pard\pardeftab720\partightenfactor0
+\cf1 |* * * * * * * * * * * * * * * * * * * * |\cf0 \
+\cf1 |*                                       |\cf0 \
+\cf1 |****** **** ****** ******* ** *** ***** |\cf0 \
+\cf1 |*     *    *****************************|\cf0 \
+\cf1 |* **    * *        **  *    * * *   *   |\cf0 \
+\cf1 |*   *    *  *****    *   * *   *  **  **|\cf0 \
+\cf1 |*  **     * *** **   **  *    **  ***  *|\cf0 \
+\cf1 |***  * **   **  *   ****    *  *  ** * *|\cf0 \
+\cf1 |*****  ***  *  * *   ** ** **  *   * *  |\cf0 \
+\cf1 |****************************************|\cf0 \
+\cf1 You did it!  Great work.  Celebrate.\cf0 \
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 ---------------------------------------\cf0 \
+\pard\pardeftab720\partightenfactor0
+\cf1 |* * * * * * * * * * * * * * * * * * *|\cf0 \
+\cf1 |*                                    |\cf0 \
+\cf1 |**** *** **   ***** ****   ********* |\cf0 \
+\cf1 |* ************ ************ *********|\cf0 \
+\cf1 |** *      *    *  * * *         * *  |\cf0 \
+\cf1 |***   *  *           * **    *      *|\cf0 \
+\cf1 |* ** * *  *   * * * **  *   ***   ***|\cf0 \
+\cf1 |* *           **    *****  *   **   *|\cf0 \
+\cf1 |****  *  * *  * **  ** *   ** *  * * |\cf0 \
+\cf1 |*************************************|\cf0 \
+\cf1 What a great resume builder this is!\cf0 \
+\pard\pardeftab720\partightenfactor0
+\cf2 ---------------------------------------\cf0 \
+\pard\pardeftab720\partightenfactor0
+\cf1 |* * * * * * * * * * * * * * * * * *  |\cf0 \
+\cf1 |*                                  * |\cf0 \
+\cf1 |*  *  * * **   *****  **  *    ** *  |\cf0 \
+\cf1 |*       **    * *    *     *    *  * |\cf0 \
+\cf1 |*   *   * * *  * ***  * ***  *       |\cf0 \
+\cf1 |* *               *    **     **  ** |\cf0 \
+\cf1 |*   *    *  * * **    *    * *  *    |\cf0 \
+\cf1 |* *** * ***** ****** ******* **** ** |\cf0 \
+\cf1 |* *********************************  |\cf0 \
+\cf1 |************************************ |\cf0 \
+\
+\cf1 ***********************************/}

@@ -57,10 +57,10 @@ public class CardTable extends JFrame
       pnlHumanHand = new JPanel();
       pnlHumanHand.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Your Hand"));
       pnlHumanHand.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 20));
-      add(pnlHumanHand);
+      add(pnlHumanHand, 3, 1);
       pnlPlayArea = new JPanel();
       pnlPlayArea.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Playing Area"));
-      pnlPlayArea.setLayout(new GridLayout(2,2));
+      pnlPlayArea.setLayout(new GridLayout(0,2));
       add(pnlPlayArea);
    }
    

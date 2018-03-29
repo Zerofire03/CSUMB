@@ -70,10 +70,13 @@ public class phase2
          {
             playLabelText[i] = new JLabel("You", JLabel.CENTER );
          }
-         
-         myCardTable.pnlPlayArea.add(playLabelText[i]);
-         myCardTable.pnlPlayArea.add(playedCardLabels[i]);
       }
+      myCardTable.pnlPlayArea.add(playedCardLabels[0], 0, 0);
+      myCardTable.pnlPlayArea.add(playLabelText[0], 1, 0);
+      
+      myCardTable.pnlPlayArea.add(playedCardLabels[1], 1, 1);
+      myCardTable.pnlPlayArea.add(playLabelText[1], 0, 1);
+      
       
       // show everything to the user
       myCardTable.setVisible(true);
