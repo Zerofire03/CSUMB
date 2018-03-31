@@ -1,6 +1,5 @@
-import java.awt.*;
 import javax.swing.*;
-import javax.swing.border.*;
+
 
 
 public class phase2
@@ -22,8 +21,8 @@ public class phase2
    
    public static void main(String[] args)
    {
-      int k;
-      Icon tempIcon;
+      //int k;
+      //Icon tempIcon;
       
       
       // establish main frame in which program will run
@@ -54,7 +53,6 @@ public class phase2
          myCardTable.pnlHumanHand.add(humanLabels[i]);
          myCardTable.pnlComputerHand.add(computerLabels[i]);
       }
-      //myCardTable.pnlHumanHand.add(playedCardLabels[0]);
       
       // and two random cards in the play region (simulating a computer/hum ply)
       //code goes here ...
@@ -71,11 +69,11 @@ public class phase2
             playLabelText[i] = new JLabel("You", JLabel.CENTER );
          }
       }
-      myCardTable.pnlPlayArea.add(playedCardLabels[0], 0, 0);
-      myCardTable.pnlPlayArea.add(playLabelText[0], 1, 0);
+      myCardTable.pnlPlayArea.add(playedCardLabels[0]);
+      myCardTable.pnlPlayArea.add(playedCardLabels[1]);
+      myCardTable.pnlPlayArea.add(playLabelText[0]);
+      myCardTable.pnlPlayArea.add(playLabelText[1]);
       
-      myCardTable.pnlPlayArea.add(playedCardLabels[1], 1, 1);
-      myCardTable.pnlPlayArea.add(playLabelText[1], 0, 1);
       
       
       // show everything to the user

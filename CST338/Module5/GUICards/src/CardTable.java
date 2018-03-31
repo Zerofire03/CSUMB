@@ -1,5 +1,5 @@
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-import java.awt.Frame;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
@@ -49,19 +49,20 @@ public class CardTable extends JFrame
       
       //frmMyWindow = new JFrame(title);
       setTitle(title);
-      setLayout(new GridLayout(3,1));
+      //setLayout(new GridLayout(3,1));
+      setLayout( new BorderLayout() );
       pnlComputerHand = new JPanel();
       pnlComputerHand.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Computer Hand"));
       pnlComputerHand.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 20));
-      add(pnlComputerHand);
+      add(pnlComputerHand, "North");
       pnlHumanHand = new JPanel();
       pnlHumanHand.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Your Hand"));
       pnlHumanHand.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 20));
-      add(pnlHumanHand, 3, 1);
+      add(pnlHumanHand, "South");
       pnlPlayArea = new JPanel();
       pnlPlayArea.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Playing Area"));
-      pnlPlayArea.setLayout(new GridLayout(0,2));
-      add(pnlPlayArea);
+      pnlPlayArea.setLayout(new GridLayout(2,2));
+      add(pnlPlayArea, "Center");
    }
    
    //Accessor for numCardsPerHand
