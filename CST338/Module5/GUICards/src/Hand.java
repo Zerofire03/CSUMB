@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * 
  */
@@ -50,7 +52,17 @@ class Hand
       Card retCard = _myCards[_numCards-1];
       _myCards[_numCards-1] = null;
       _numCards--;
+      Arrays.copyOf(_myCards, _numCards);
 
+      return retCard;
+   }
+   
+   // take the card from the index in hand
+   public Card playCard(int cardIndex){
+      Card retCard = _myCards[cardIndex-1];
+      _myCards[cardIndex-1] = _myCards[_numCards-1];
+      _numCards--;
+      Arrays.copyOf(_myCards, _numCards);
       return retCard;
    }
 

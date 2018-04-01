@@ -124,13 +124,13 @@ class Deck
    //Puts all of the cards in the deck into their order according to their values
    public void sort()
    {
-      
+      Card.arraySort(cards, cards.length);
    }
    
    //Return the number of cards remaining in the deck
    public int getNumCards()
    {
-      return cards.length - topCard;
+      return cards.length;
    }
 
 }

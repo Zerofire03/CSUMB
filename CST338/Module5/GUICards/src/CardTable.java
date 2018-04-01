@@ -1,6 +1,8 @@
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -47,9 +49,7 @@ public class CardTable extends JFrame
          this.numCardsPerHand = numCardsPerHand;
       }
       
-      //frmMyWindow = new JFrame(title);
       setTitle(title);
-      //setLayout(new GridLayout(3,1));
       setLayout( new BorderLayout() );
       pnlComputerHand = new JPanel();
       pnlComputerHand.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Computer Hand"));

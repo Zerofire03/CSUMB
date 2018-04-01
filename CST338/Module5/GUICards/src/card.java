@@ -15,7 +15,8 @@ class Card
    private Suit _suit;
    private boolean _errorFlag;
    private static final ArrayList<String> VALID_VALUES = new ArrayList<>(Arrays.asList("A","1","2","3","4","5","6","7","8","9","T","J","Q","K", "X"));
-   public static char[] valuRanks = {'A', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'X'};
+   public static char[] valueRanks = {'A', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'X'};
+   private static char card1Value;
 
    public char getValue(){
       return _value;
@@ -112,9 +113,10 @@ class Card
    }
    
    //Returns a boolean. Returns true if card1 is higher ranks than card 2
-   private static boolean checkValueRanks(Card card1, Card card2)
+   public static boolean checkValueRanks(Card card1, Card card2)
    {
-      if( Arrays.asList(valuRanks).indexOf(card1.getValue()) > Arrays.asList(valuRanks).indexOf(card2.getValue()) )
+      if( Arrays.binarySearch(valueRanks, card1.getValue()) > 
+      Arrays.binarySearch(valueRanks, card2.getValue()) )
       {
          return true;
       }
