@@ -1,3 +1,8 @@
+/*
+Michael Loeser
+Assignment 5 - Phase 3
+*/
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -42,7 +47,7 @@ public class Assignment5Ph3
    public static void main(String[] args)
    {
       int numPacksPerDeck = 1;
-      int numJokersPerPack = 0;
+      int numJokersPerPack = 4;
       int numUnusedCardsPerPack = 0;
       Card[] unusedCardsPerPack = null;
 
@@ -58,7 +63,7 @@ public class Assignment5Ph3
       {
 	 System.out.println("HighCardGame.deal was unable to deal out enough cards");
       }
-            
+
       // establish main frame in which program will run
       CardTable myCardTable = new CardTable("CardTable", NUM_CARDS_PER_HAND, NUM_PLAYERS);
       myCardTable.setSize(800, 600);
@@ -96,12 +101,6 @@ public class Assignment5Ph3
 	       
 	       // pull a card at random for the computer
 	       Card computerCard = highCardGame.getHand(COMPUTER_HAND).playCard();
-	       
-	       // test for invalid card
-	       if (computerCard.getErrorFlag())
-	       {
-		  // QUESTION: do what with error?
-	       }
 
 	       // testing testing
 	       System.out.println("Computer card: " + computerCard.toString());
@@ -352,7 +351,7 @@ class GUICard
    static String turnIntIntoCardValue(int k)
    {
       // check for invalid index
-      if (k < 0 || k > 13)
+      if (k < 0 || k > 14)
       {
 	 return "";
       }
@@ -504,8 +503,51 @@ class Card{
    {
       int curr = getIntFromCardValue(_value);
       int cVal = getIntFromCardValue(card.getValue());
+      int resultVal = curr - cVal;
+      
+      // spades (high), hearts, clubs, diamonds
+      if (resultVal == 0)
+      {
+	 // cards are the same, check the suits
+	 switch (_suit)
+	 {
+	    case spades:
+	       return 1;
+	    case hearts:
+	       if (card.getSuit() == Suit.spades)
+	       {
+		  return -1;
+	       }
+	       if (card.getSuit() == Suit.hearts)
+	       {
+		  return 0;
+	       }
+	       return 1;
+	    case clubs:
+	       if (card.getSuit() == Suit.spades || card.getSuit() == Suit.hearts)
+	       {
+		  return -1;
+	       }
+	       if (card.getSuit() == Suit.clubs)
+	       {
+		  return 0;
+	       }
+	       return 1;
+	    case diamonds:
+	       if (card.getSuit() == Suit.spades || card.getSuit() == Suit.hearts || card.getSuit() == Suit.clubs)
+	       {
+		  return -1;
+	       }
+	       if (card.getSuit() == Suit.diamonds)
+	       {
+		  return 0;
+	       }
+	       return 1;
+	 }
+      }
 
-      return curr - cVal;
+      // not a match, return card value test
+      return resultVal;
    }
 
    // validate incoming param values
@@ -707,7 +749,7 @@ class Hand{
 }
 
 class Deck{
-   public final int MAX_CARDS = 6 * 52;
+   public final int MAX_CARDS = 6 * 56;
    private static Card[] masterPack;
    private Card[] cards;
    private int topCard;
@@ -717,7 +759,7 @@ class Deck{
    private static void allocateMasterPack(){
       char[] cardValue = {'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K','X'};
       masterPack = new Card [56];
-      for( int i = 0; i < 13; i++ ){
+      for( int i = 0; i < 14; i++ ){
 	 masterPack[ 0 + ( i * 4 ) ] = new Card( cardValue[i], Card.Suit.hearts );
 	 masterPack[ 1 + ( i * 4 ) ] = new Card( cardValue[i], Card.Suit.spades );
 	 masterPack[ 2 + ( i * 4 ) ] = new Card( cardValue[i], Card.Suit.clubs );
@@ -734,13 +776,14 @@ class Deck{
    }
 
    //Constructor params
+   // updated to support the jokers - 56 card packs
    public Deck(int numPacks){
       allocateMasterPack();
       this.numPacks = numPacks;
-      cards = new Card[ numPacks * 52 ];
+      cards = new Card[ numPacks * 56 ];
       for( int i = 0; i < numPacks; i++ ){
-	 for( int j = 0; j < 52; j++ ){
-	    cards[ (i * 52) + j ] = masterPack[j];
+	 for( int j = 0; j < 56; j++ ){
+	    cards[ (i * 56) + j ] = masterPack[j];
 	 }
       }
       topCard = cards.length;
@@ -759,13 +802,13 @@ class Deck{
 
    // methods
 
-   //Re-populate cards[] with the standard 52 x numPacks cards
+   //Re-populate cards[] with the standard 56 x numPacks cards - updated for jokers
    public void init(int numPacks){
       this.numPacks = numPacks;
-      cards = new Card[ numPacks * 52 ];
+      cards = new Card[ numPacks * 56 ];
       for( int i = 0; i < numPacks; i++ ){
-	 for( int j = 0; j < 52; j++ ){
-	    cards[ (i * 52) + j ] = masterPack[j];
+	 for( int j = 0; j < 56; j++ ){
+	    cards[ (i * 56) + j ] = masterPack[j];
 	 }
       }
       topCard = cards.length;
