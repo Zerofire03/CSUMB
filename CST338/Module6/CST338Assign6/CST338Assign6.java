@@ -24,10 +24,13 @@ public class CST338Assign6
 
    static int NUM_CARDS_PER_HAND = 7;
    static int NUM_PLAYERS = 2;
+
+   /**
    static JLabel[] computerLabels = new JLabel[NUM_CARDS_PER_HAND];
    static JButton[] humanButtons = new JButton[NUM_CARDS_PER_HAND];
    static JLabel[] playedCardLabels = new JLabel[NUM_PLAYERS];
    static JLabel[] playLabelText = new JLabel[NUM_PLAYERS];
+   */
 
    // a simple main to throw all the JLabels out there for the world to see
    public static void main(String[] args)
