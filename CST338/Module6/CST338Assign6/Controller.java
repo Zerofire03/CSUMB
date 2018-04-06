@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 // class CardGameFramework ----------------------------------------------------
 public class Controller extends CardGameFramework
 {
+   private static int MAX_CARDS_PER_HAND = 56;
    private static final int MAX_PLAYERS = 50;
 
    private static Card[] winnings = null;
@@ -22,7 +23,7 @@ public class Controller extends CardGameFramework
    private int numPlayers;
    private Model _model;
    private View _view;
-
+   
    public Controller(int numPacks, int numJokersPerPack, int numUnusedCardsPerPack, Card[] unusedCardsPerPack,
 	 int numPlayers, int numCardsPerHand, Model model, View view)
    {
@@ -74,7 +75,30 @@ public class Controller extends CardGameFramework
    // execute the game
    public void RunGame()
    {
-      // 
+      // check for max cards
+      if (numCardsPerHand > MAX_CARDS_PER_HAND)
+      {
+         System.out.println(
+               "numCardsPerHand: " + numCardsPerHand + " was above max: " + MAX_CARDS_PER_HAND + ".  Using the max.");
+         this.numCardsPerHand = MAX_CARDS_PER_HAND;
+      } 
+      else
+      {
+         this.numCardsPerHand = numCardsPerHand;
+      }
+
+      // check for max players
+      if (numPlayers > MAX_PLAYERS)
+      {
+         System.out.println("numPlayers: " + numPlayers + " was above max: " + MAX_PLAYERS + ".  Using the max.");
+         this.numPlayers = MAX_PLAYERS;
+      } 
+      else
+      {
+         this.numPlayers = numPlayers;
+      }
+      
+      
    }
 
    //

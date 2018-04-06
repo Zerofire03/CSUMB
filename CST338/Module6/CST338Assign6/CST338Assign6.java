@@ -45,7 +45,7 @@ public class CST338Assign6
       // Create the Model - model contains 2 hands and bunch of cards
       Model gameModel = new Model();
       
-      View view = new View("CardTable", NUM_CARDS_PER_HAND, NUM_PLAYERS, 800, 600);
+      View view = new View("CardTable", 800, 600);
       
       Controller highCardGame = new Controller(numPacksPerDeck, numJokersPerPack, numUnusedCardsPerPack,
             unusedCardsPerPack, NUM_PLAYERS, NUM_CARDS_PER_HAND, gameModel, view);
