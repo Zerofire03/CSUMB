@@ -14,6 +14,9 @@ public class Controller extends CardGameFramework
    private static Card[] winnings = null;
    private static int numWins = 0;
    private static int playsAvailable = 0;
+   
+   private static final int COMPUTER_HAND = 0;
+   private static final int USER_HAND = 0;
 
    private Card[] unusedCardsPerPack; // an array holding the cards not used
    // in the game. e.g. pinochle does not
@@ -25,14 +28,14 @@ public class Controller extends CardGameFramework
    private View _view;
    
    public Controller(int numPacks, int numJokersPerPack, int numUnusedCardsPerPack, Card[] unusedCardsPerPack,
-	 int numPlayers, int numCardsPerHand, Model model, View view)
+	 int numPlayers, int numCardsPerHand, String title, int width, int height)
    {
       super(numPacks, numJokersPerPack, numUnusedCardsPerPack, unusedCardsPerPack, numPlayers, 
 	    numCardsPerHand);
       
       // record the view and model
-      _model = model;
-      _view = view;
+      _model = new Model();
+      _view = new View(title, width, height);
       
       this.numPlayers = numPlayers;
       this.numCardsPerHand = numCardsPerHand;
@@ -46,30 +49,12 @@ public class Controller extends CardGameFramework
       // prepare deck and shuffle
       newGame();
       deal();
-
-      // Set model hands
-      SetModelHands();
-      
-      // Build the Hands for the computer and user
-      BuildHands();
    }
 
    // constructor overload/default for game like bridge
    public Controller()
    {
-      this(1, 0, 0, null, 4, 13, null, null);
-   }
-
-   // populate the model
-   public void SetModelHands()
-   {
-      // get the hands from controller and populate the model
-      Hand[] hands = new Hand[numPlayers];
-      for (int i = 0; i < numPlayers; i++)
-      {
-	 hands[i] = getHand(i);
-      }
-      _model.setHands(hands);
+      this(1, 0, 0, null, 4, 13, "Card Table", 800, 600);
    }
    
    // execute the game
@@ -98,10 +83,11 @@ public class Controller extends CardGameFramework
          this.numPlayers = numPlayers;
       }
       
-      
+      // Build the Hands for the computer and user
+      BuildHands();
    }
 
-   //
+   // Build the display elements and push to view then start the game
    public void BuildHands()
    {
       // display controls
@@ -118,7 +104,7 @@ public class Controller extends CardGameFramework
       JButton humanButton = null;
       for (int i = 0; i < numCardsPerHand; i++)
       {
-	 Card playCard = _model.getUserHand().inspectCard(i);
+	 Card playCard = getHand(USER_HAND).inspectCard(i);
 	 humanButton = new JButton(GUICard.getIcon(playCard));
 
 	 // attempting a new listener function
@@ -132,15 +118,19 @@ public class Controller extends CardGameFramework
 
 	       playsAvailable--;
 
+	       /*
 	       // testing - show button index output
 	       System.out.println("Button clicked - " + actionCommand);
 	       System.out.println("Human card: " + playCard.toString());
+	       */
 
 	       // pull a card at random for the computer
-	       Card computerCard = _model.getComputerHand().playCard();
+	       Card computerCard = getHand(COMPUTER_HAND).playCard();
 
+	       /*
 	       // testing testing
 	       System.out.println("Computer card: " + computerCard.toString());
+	       */
 
 	       // clear and repopulate the play area panel
 	       _view.pnlPlayArea.removeAll();
@@ -173,6 +163,18 @@ public class Controller extends CardGameFramework
 		  _view.pnlPlayArea.add(new JLabel("Win Total:" + numWins, JLabel.CENTER));
 		  _view.pnlPlayArea.add(new JLabel("You Lost!", JLabel.CENTER));
 	       }
+	       
+	       /*
+	       // testing - wins
+	       System.out.println("numWins: " + numWins);
+	       for (int i = 0; i < winnings.length; i++)
+	       {
+		  if (winnings[i] != null)
+		  {
+		     System.out.println("winnings[" + i + "]: " + winnings[i].toString());
+		  }
+	       }
+	       */
 
 	       // remove the cards from display using counter of plays
 	       // pull the computer item from top component
@@ -189,20 +191,13 @@ public class Controller extends CardGameFramework
 	 humanButtons[i] = humanButton;
       }
 
-      // ADD LABELS TO PANELS -----------------------------------------
-      for (JLabel label : computerLabels)
-      {
-	 _view.pnlComputerHand.add(label);
-      }
-      for (JButton button : humanButtons)
-      {
-	 _view.pnlHumanHand.add(button);
-      }
-
-      // show everything to the user
-      _view.setVisible(true);
+      _model.setComputerLabels(computerLabels);
+      _model.setHumanButtons(humanButtons);
+      
+      _view.SetDisplay(_model);
    }
 
+   /*
    // return a new random card
    static Card generateRandomCard()
    {
@@ -211,4 +206,5 @@ public class Controller extends CardGameFramework
 
       return new Card(Card.valuRanks[cardVal], Card.Suit.values()[suitVal]);
    }
+   */
 }
