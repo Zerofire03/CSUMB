@@ -25,6 +25,10 @@ class View extends JFrame implements ActionListener
       // base constructor call
       super(title);
       
+      // track the display values
+      _width = width;
+      _height = height;
+      
       setSize(width, height);
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -57,6 +61,30 @@ class View extends JFrame implements ActionListener
       }
 
       // show everything to the user
+      setVisible(true);
+   }
+   
+   // rebuild the middle play area
+   public void ShowPlayArea(Model model, JButton userCardPlayed)
+   {
+      pnlPlayArea.removeAll();
+      
+      JLabel[] playLabels = model.getPlayLabels();
+      
+      // loop through the play labels and add them to the panel
+      for (int i = 0; i < playLabels.length; i++)
+      {
+	 pnlPlayArea.add(playLabels[i]);
+      }
+      
+      // check for a played card - if found remove this from display and a corresponding computer card
+      if (userCardPlayed != null)
+      {
+	 userCardPlayed.setVisible(false);
+	 
+	 pnlComputerHand.getComponent(model.getPlaysAvailable()).setVisible(false);
+      }
+      
       setVisible(true);
    }
    

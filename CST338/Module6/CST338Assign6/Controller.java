@@ -13,7 +13,6 @@ public class Controller extends CardGameFramework
 
    private static Card[] winnings = null;
    private static int numWins = 0;
-   private static int playsAvailable = 0;
    
    private static final int COMPUTER_HAND = 0;
    private static final int USER_HAND = 0;
@@ -34,7 +33,7 @@ public class Controller extends CardGameFramework
 	    numCardsPerHand);
       
       // record the view and model
-      _model = new Model();
+      _model = new Model(numCardsPerHand);
       _view = new View(title, width, height);
       
       this.numPlayers = numPlayers;
@@ -42,7 +41,6 @@ public class Controller extends CardGameFramework
 
       // instantiate game tracking variables
       winnings = new Card[numCardsPerHand];
-      playsAvailable = numCardsPerHand;
 
       GUICard.loadCardIcons();
 
@@ -115,8 +113,8 @@ public class Controller extends CardGameFramework
 	    public void actionPerformed(ActionEvent e)
 	    {
 	       String actionCommand = e.getActionCommand();
-
-	       playsAvailable--;
+	       
+	       String computerResult = "", userResult = "", winTotal = "";
 
 	       /*
 	       // testing - show button index output
@@ -132,12 +130,13 @@ public class Controller extends CardGameFramework
 	       System.out.println("Computer card: " + computerCard.toString());
 	       */
 
-	       // clear and repopulate the play area panel
-	       _view.pnlPlayArea.removeAll();
-	       _view.pnlPlayArea.add(new JLabel(GUICard.getIcon(computerCard), JLabel.CENTER));
-	       _view.pnlPlayArea.add(new JLabel(" ", JLabel.CENTER));
-	       _view.pnlPlayArea.add(new JLabel(GUICard.getIcon(playCard), JLabel.CENTER));
-
+	       JLabel[] playLabels = new JLabel[6];
+	       
+	       // create the play labels
+	       playLabels[0] = new JLabel(GUICard.getIcon(computerCard), JLabel.CENTER);
+	       playLabels[1] = new JLabel(" ", JLabel.CENTER);
+	       playLabels[2] = new JLabel(GUICard.getIcon(playCard), JLabel.CENTER);
+	       
 	       // do the testing
 	       if (playCard.compareTo(computerCard) > 0)
 	       {
@@ -145,24 +144,28 @@ public class Controller extends CardGameFramework
 		  numWins++;
 
 		  // human wins
-		  _view.pnlPlayArea.add(new JLabel("Computer Lost!", JLabel.CENTER));
-		  _view.pnlPlayArea.add(new JLabel("Win Total:" + numWins, JLabel.CENTER));
-		  _view.pnlPlayArea.add(new JLabel("You Won!", JLabel.CENTER));
+		  computerResult = "Computer Lost!";
+		  winTotal = "Win Total:" + numWins;
+		  userResult = "You Won!";
 	       } 
 	       else if (playCard.compareTo(computerCard) == 0)
 	       {
 		  // tie
-		  _view.pnlPlayArea.add(new JLabel("Computer Tie!", JLabel.CENTER));
-		  _view.pnlPlayArea.add(new JLabel("Win Total:" + numWins, JLabel.CENTER));
-		  _view.pnlPlayArea.add(new JLabel("You Tie!", JLabel.CENTER));
+		  computerResult = "Computer Tie!";
+		  winTotal = "Win Total:" + numWins;
+		  userResult = "You Tie!";
 	       } 
 	       else if (playCard.compareTo(computerCard) < 0)
 	       {
 		  // computer wins
-		  _view.pnlPlayArea.add(new JLabel("Computer Won!", JLabel.CENTER));
-		  _view.pnlPlayArea.add(new JLabel("Win Total:" + numWins, JLabel.CENTER));
-		  _view.pnlPlayArea.add(new JLabel("You Lost!", JLabel.CENTER));
+		  computerResult = "Computer Won!";
+		  winTotal = "Win Total:" + numWins;
+		  userResult = "You Lost!";
 	       }
+	       
+	       playLabels[3] = new JLabel(computerResult, JLabel.CENTER);
+	       playLabels[4] = new JLabel(winTotal, JLabel.CENTER);
+	       playLabels[5] = new JLabel(userResult, JLabel.CENTER);
 	       
 	       /*
 	       // testing - wins
@@ -175,16 +178,14 @@ public class Controller extends CardGameFramework
 		  }
 	       }
 	       */
-
-	       // remove the cards from display using counter of plays
-	       // pull the computer item from top component
-	       _view.pnlComputerHand.getComponent(playsAvailable).setVisible(false);
-
-	       // pull the original button from the actionevent
-	       ((JButton) e.getSource()).setVisible(false);
-
-	       // show the updated display
-	       _view.setVisible(true);
+	       
+	       // record the playlabels array
+	       _model.setPlayLabels(playLabels);
+	       
+	       // update tracking count for playsavailable
+	       _model.reducePlaysAvailable();
+	       
+	       _view.ShowPlayArea(_model, (JButton)e.getSource());
 	    }
 	 });
 

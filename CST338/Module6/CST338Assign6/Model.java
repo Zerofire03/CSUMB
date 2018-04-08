@@ -18,12 +18,21 @@ public class Model
    
    private JLabel[] _computerLabels;
    private JButton[] _humanButtons;
+   private JLabel[] _playLabels;
+   
+   private int _playsAvailable;
 
    // constructor
-   public Model()
+   public Model(int playsAvailable)
    {
+      _computerLabels = new JLabel[0];
+      _playLabels = new JLabel[0];
+      _humanButtons = new JButton[0];
+      
+      _playsAvailable = playsAvailable;
    }
    
+   // getters and setters
    public JButton[] getHumanButtons()
    {
       return _humanButtons;
@@ -42,6 +51,32 @@ public class Model
    {
       _computerLabels = computerLabels;
       return true;
+   }
+   
+   public JLabel[] getPlayLabels()
+   {
+      return _playLabels;
+   }
+   public boolean setPlayLabels(JLabel[] playLabels)
+   {
+      _playLabels = playLabels;
+      return true;
+   }
+   
+   public int getPlaysAvailable()
+   {
+      return _playsAvailable;
+   }
+   public boolean setPlaysAvailable(int playsAvailable)
+   {
+      _playsAvailable = playsAvailable;
+      return true;
+   }
+   
+   public int reducePlaysAvailable()
+   {
+      _playsAvailable--;
+      return _playsAvailable;
    }
 }
 
