@@ -19,6 +19,7 @@ public class Model
    private JLabel[] _computerLabels;
    private JButton[] _humanButtons;
    private JButton[] _playButtons;
+   private JLabel[] _playLabels;
    
    private int _playsAvailable;
    private int _computerPlayFail;
@@ -65,6 +66,16 @@ public class Model
    public boolean setPlayButtons(JButton[] playButtons)
    {
       _playButtons = playButtons;
+      return true;
+   }
+   
+   public JLabel[] getPlayLabels()
+   {
+      return _playLabels;
+   }
+   public boolean setPlayLabels(JLabel[] playLabels)
+   {
+      _playLabels = playLabels;
       return true;
    }
    
