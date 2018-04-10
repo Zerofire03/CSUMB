@@ -113,6 +113,10 @@ class View extends JFrame implements ActionListener
       {
 	 return "Select a card before a deck";
       }
+      else if (model.getShowDeckCardError())
+      {
+	 return "Selected card can't be added";
+      }
       
       return "";
    }

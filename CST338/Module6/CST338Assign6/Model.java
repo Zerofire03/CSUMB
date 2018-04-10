@@ -19,6 +19,7 @@ public class Model
    private JLabel[] _computerLabels;
    private JButton[] _humanButtons;
    private JButton[] _playButtons;
+   private JButton _userCardButton;
    
    private Card _userPlayCard;
    
@@ -30,6 +31,7 @@ public class Model
    private boolean _showSelectDeck;
    private boolean _showSelectCard;
    private boolean _showDeckError;
+   private boolean _showDeckCardError;
 
    // constructor
    public Model(int playsAvailable)
@@ -79,6 +81,26 @@ public class Model
    public boolean setShowDeckError(boolean showDeckError)
    {
       _showDeckError = showDeckError;
+      return true;
+   }
+   
+   public boolean getShowDeckCardError()
+   {
+      return _showDeckCardError; 
+   }
+   public boolean setShowDeckCardError(boolean showDeckCardError)
+   {
+      _showDeckCardError = showDeckCardError;
+      return true;
+   }
+   
+   public JButton getUserCardButton()
+   {
+      return _userCardButton;
+   }
+   public boolean setUserCardButton(JButton userCardButton)
+   {
+      _userCardButton = userCardButton;
       return true;
    }
    

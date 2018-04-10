@@ -49,7 +49,7 @@ public class Controller extends CardGameFramework
       deal();
       
       // show the select card message
-      UpdateDisplayFlags(true, false, false);
+      UpdateDisplayFlags(true, false, false, false);
    }
 
    // constructor overload/default for game like bridge
@@ -99,9 +99,9 @@ public class Controller extends CardGameFramework
       for (int i = 0; i < playButtons.length - 1; i++)
       {
 	 Card card = getCardFromDeck();
-	 playButtons[i] = new JButton(GUICard.getIcon(card));
-	 
-	 playButtons[i].addActionListener(new ActionListener()
+	 JButton playButton = new JButton(GUICard.getIcon(card));
+
+	 playButton.addActionListener(new ActionListener()
 	 {
 	    @Override
 	    public void actionPerformed(ActionEvent e)
@@ -113,19 +113,53 @@ public class Controller extends CardGameFramework
 		  System.out.println("User has not selected a card from the hand");
 		  
 		  // show the deck selector
-		  UpdateDisplayFlags(false, false, true);
+		  UpdateDisplayFlags(false, false, true, false);
 	       }
 	       
-	       // user has a card selected - do work
-	       
+	       // user has a card selected - do work	       
 	       // validate that the selected card and hand fit rules
+	       int deckValue = GUICard.valueAsInt(card);
+	       int handValue = GUICard.valueAsInt(_model.getUserPlayCard());
 	       
+	       // make sure this is within the set values
+	       if (Math.abs(deckValue - handValue) > 1)
+	       {
+		  UpdateDisplayFlags(false, false, false, true);
+	       }
+	       
+	       // remove the button from the user display and add another
+	       /*
+	       // pull the computer item from top component
+	       myCardTable.pnlComputerHand.getComponent(playsAvailable).setVisible(false);
+	       
+	       // pull the original button from the actionevent
+	       ((JButton)e.getSource()).setVisible(false);
+	       */
+	       
+	       //////////////
+	       // STOPPED HERE
+	       //////////////
+
 	       // update the play panel display item to the selected button
+	       JButton button = (JButton)e.getSource();
+	       button = _model.getUserCardButton();
+	       
+	       // need to update the hand to replace the used card with a new card from the deck
+	       // do this by index?
 	       
 	       
+	       // run the computer evaluation
+	       PlayComputerHand();
+	       
+	       // reset the display
+	       UpdateDisplayFlags(true, false, false, false);
+	       
+	       // TESTING TESTING
 	       System.out.println(card.toString());
 	    }
 	 });
+	 
+	 playButtons[i] = playButton;
       }
       
       // can't play card
@@ -140,6 +174,7 @@ public class Controller extends CardGameFramework
 	    _model.addUserPlayFail();
 	    
 	    // let the computer play
+	    PlayComputerHand();
 	 }
       });
       
@@ -175,15 +210,14 @@ public class Controller extends CardGameFramework
 	    @Override
 	    public void actionPerformed(ActionEvent e)
 	    {
-	       String actionCommand = e.getActionCommand();
-	       
 	       // play this selected card
 	       // store this card as the play card
 	       _model.setUserPlayCard(playCard);
 	       _model.setComputerPlayFailed(false);
+	       _model.setUserCardButton((JButton)e.getSource());
 	       
 	       // show the select deck message
-	       UpdateDisplayFlags(false, true, false);
+	       UpdateDisplayFlags(false, true, false, false);
 	       
 	       _view.ShowPlayArea(_model);
 	    }
@@ -198,11 +232,21 @@ public class Controller extends CardGameFramework
       _view.SetDisplay(_model);
    }
 
-   private void UpdateDisplayFlags(boolean selectCard, boolean selectDeck, boolean deckError)
+   private void UpdateDisplayFlags(boolean selectCard, boolean selectDeck, boolean deckError,
+	 boolean deckCardError)
    {
       _model.setShowSelectCard(selectCard);
       _model.setShowSelectDeck(selectDeck);
       _model.setShowDeckError(deckError);
+      _model.setShowDeckCardError(deckCardError);
+   }
+   
+   
+   // don't know if this will stay since the code will require the play area buttons and some event
+   //	based objects
+   public boolean PlayComputerHand()
+   {
+      return true;
    }
    
    // user can't play
@@ -216,5 +260,4 @@ public class Controller extends CardGameFramework
    {
       
    }
-   
 }
