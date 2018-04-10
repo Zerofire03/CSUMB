@@ -18,18 +18,23 @@ public class Model
    
    private JLabel[] _computerLabels;
    private JButton[] _humanButtons;
-   private JLabel[] _playLabels;
+   private JButton[] _playButtons;
    
    private int _playsAvailable;
+   private int _computerPlayFail;
+   private int _userPlayFail;
 
    // constructor
    public Model(int playsAvailable)
    {
       _computerLabels = new JLabel[0];
-      _playLabels = new JLabel[0];
+      _playButtons = new JButton[0];
       _humanButtons = new JButton[0];
       
       _playsAvailable = playsAvailable;
+      
+      _computerPlayFail = 0;
+      _userPlayFail = 0;
    }
    
    // getters and setters
@@ -53,13 +58,13 @@ public class Model
       return true;
    }
    
-   public JLabel[] getPlayLabels()
+   public JButton[] getPlayButtons()
    {
-      return _playLabels;
+      return _playButtons;
    }
-   public boolean setPlayLabels(JLabel[] playLabels)
+   public boolean setPlayButtons(JButton[] playButtons)
    {
-      _playLabels = playLabels;
+      _playButtons = playButtons;
       return true;
    }
    
@@ -77,6 +82,27 @@ public class Model
    {
       _playsAvailable--;
       return _playsAvailable;
+   }
+   
+   // new tracking variables for "I cannot play" selections
+   public int getUserPlayFail()
+   {
+      return _userPlayFail;
+   }
+   public Boolean addUserPlayFail()
+   {
+      _userPlayFail++;
+      return true;
+   }
+
+   public int getComputerPlayFail()
+   {
+      return _computerPlayFail;
+   }
+   public Boolean addComputerPlayFail()
+   {
+      _computerPlayFail++;
+      return true;
    }
 }
 
