@@ -83,20 +83,38 @@ class View extends JFrame implements ActionListener
       // check for a play fail record
       if (model.getComputerPlayFailed())
       {
-	 pnlPlayArea.add(new JLabel(""));
+	 pnlPlayArea.add(new JLabel("Computer Fails: " + model.getComputerPlayFail(), JLabel.CENTER));
 	 pnlPlayArea.add(new JLabel("Computer Cannot Play"));
-	 pnlPlayArea.add(new JLabel(""));
+	 pnlPlayArea.add(new JLabel("User Fails: " + model.getUserPlayFail(), JLabel.CENTER));
       }
       else
       {
-	 pnlPlayArea.add(new JLabel(""));
-	 pnlPlayArea.add(new JLabel(""));
-	 pnlPlayArea.add(new JLabel(""));
+	 pnlPlayArea.add(new JLabel("Computer Fails: " + model.getComputerPlayFail(), JLabel.CENTER));
+	 pnlPlayArea.add(new JLabel(GetDisplayMessage(model), JLabel.CENTER));
+	 pnlPlayArea.add(new JLabel("User Fails: " + model.getUserPlayFail(), JLabel.CENTER));
       }
       
       // should update to remove the computerplayfailed
 
       setVisible(true);
+   }
+   
+   public String GetDisplayMessage(Model model)
+   {
+      if (model.getShowSelectDeck())
+      {
+	 return "Select a deck";
+      }
+      else if (model.getShowSelectCard())
+      {
+	 return "Select a card from hand";
+      }
+      else if (model.getShowDeckError())
+      {
+	 return "Select a card before a deck";
+      }
+      
+      return "";
    }
    
    @Override

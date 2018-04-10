@@ -20,11 +20,16 @@ public class Model
    private JButton[] _humanButtons;
    private JButton[] _playButtons;
    
-   private int _playsAvailable;
+   private Card _userPlayCard;
+   
    private int _computerPlayFail;
    private int _userPlayFail;
    
    private boolean _computerPlayFailed;
+   
+   private boolean _showSelectDeck;
+   private boolean _showSelectCard;
+   private boolean _showDeckError;
 
    // constructor
    public Model(int playsAvailable)
@@ -33,10 +38,48 @@ public class Model
       _playButtons = new JButton[0];
       _humanButtons = new JButton[0];
       
-      _playsAvailable = playsAvailable;
-      
       _computerPlayFail = 0;
       _userPlayFail = 0;
+   }
+   
+   public Card getUserPlayCard()
+   {
+      return _userPlayCard;
+   }
+   public Boolean setUserPlayCard(Card userPlayCard)
+   {
+      _userPlayCard = userPlayCard;
+      return true;
+   }
+   
+   public boolean getShowSelectDeck()
+   {
+      return _showSelectDeck;
+   }
+   public boolean setShowSelectDeck(boolean showSelectDeck)
+   {
+      _showSelectDeck = showSelectDeck;
+      return true;
+   }
+   
+   public boolean getShowSelectCard()
+   {
+      return _showSelectCard;
+   }
+   public boolean setShowSelectCard(boolean showSelectCard)
+   {
+      _showSelectCard = showSelectCard;
+      return true;
+   }
+   
+   public boolean getShowDeckError()
+   {
+      return _showDeckError;
+   }
+   public boolean setShowDeckError(boolean showDeckError)
+   {
+      _showDeckError = showDeckError;
+      return true;
    }
    
    // getters and setters
@@ -78,22 +121,6 @@ public class Model
    {
       _computerPlayFailed = computerPlayFailed;
       return true;
-   }
-   
-   public int getPlaysAvailable()
-   {
-      return _playsAvailable;
-   }
-   public boolean setPlaysAvailable(int playsAvailable)
-   {
-      _playsAvailable = playsAvailable;
-      return true;
-   }
-   
-   public int reducePlaysAvailable()
-   {
-      _playsAvailable--;
-      return _playsAvailable;
    }
    
    // new tracking variables for "I cannot play" selections

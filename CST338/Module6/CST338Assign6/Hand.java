@@ -62,20 +62,27 @@ class Hand
    }
 
    // new method for Assign5 Ph3 - apply a specific card from the hand
+   // updated to work with BUILD
    public Card playCard(int cardIndex)
    {
-      // check for max number of cards
-      if (_myCards.length < cardIndex)
+      if (_numCards == 0 ) //error
       {
-         return null;
+         //Creates a card that does not work
+         return new Card('M', Card.Suit.spades);
       }
-
-      Card retCard = _myCards[cardIndex - 1];
-      _myCards[cardIndex - 1] = null;
+      //Decreases numCards.
+      Card card = _myCards[cardIndex];
+      
       _numCards--;
-
-      return retCard;
-   }
+      for(int i = cardIndex; i < _numCards; i++)
+      {
+         _myCards[i] = _myCards[i+1];
+      }
+      
+      _myCards[_numCards] = null;
+      
+      return card;
+    }
 
    // show the entire hand
    public String toString()

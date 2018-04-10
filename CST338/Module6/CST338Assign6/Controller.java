@@ -48,8 +48,8 @@ public class Controller extends CardGameFramework
       newGame();
       deal();
       
-      // put the first play cards on the table
-      setupPlayCards();
+      // show the select card message
+      UpdateDisplayFlags(true, false, false);
    }
 
    // constructor overload/default for game like bridge
@@ -106,17 +106,24 @@ public class Controller extends CardGameFramework
 	    @Override
 	    public void actionPerformed(ActionEvent e)
 	    {
-	       // set up the event code for the deck button
-	       // the prior set card should replace this one
-	       // remove the item from the user display
-	       // pull another card from the deck for the user
+	       // error checking - user needs a card first
+	       if (_model.getUserPlayCard() == null)
+	       {
+		  // TESTING TESTING
+		  System.out.println("User has not selected a card from the hand");
+		  
+		  // show the deck selector
+		  UpdateDisplayFlags(false, false, true);
+	       }
 	       
-	       // play the computer side
-	       // can computer play? - loop through cards looking for a playable card
-	       //	remove the card from computer hand
-	       //	pull another card from deck
-	       // if not do the 'can't play' event
+	       // user has a card selected - do work
 	       
+	       // validate that the selected card and hand fit rules
+	       
+	       // update the play panel display item to the selected button
+	       
+	       
+	       System.out.println(card.toString());
 	    }
 	 });
       }
@@ -128,11 +135,17 @@ public class Controller extends CardGameFramework
 	 @Override
 	 public void actionPerformed(ActionEvent e)
 	 {
+	    System.out.println("User can't play");
 	    
+	    _model.addUserPlayFail();
+	    
+	    // let the computer play
 	 }
       });
       
       _model.setPlayButtons(playButtons);
+      
+      _view.ShowPlayArea(_model);
    }
    
    // Build the display elements and push to view then start the game
@@ -164,74 +177,15 @@ public class Controller extends CardGameFramework
 	    {
 	       String actionCommand = e.getActionCommand();
 	       
-	       String computerResult = "", userResult = "", winTotal = "";
-
-	       /*
-	       // testing - show button index output
-	       System.out.println("Button clicked - " + actionCommand);
-	       System.out.println("Human card: " + playCard.toString());
-	       */
-
+	       // play this selected card
+	       // store this card as the play card
+	       _model.setUserPlayCard(playCard);
+	       _model.setComputerPlayFailed(false);
 	       
+	       // show the select deck message
+	       UpdateDisplayFlags(false, true, false);
 	       
-	       // pull a card at random for the computer
-	       Card computerCard = getHand(COMPUTER_HAND).playCard();
-
-	       /*
-	       // testing testing
-	       System.out.println("Computer card: " + computerCard.toString());
-	       */
-
-	       JLabel[] playLabels = new JLabel[6];
-	       
-	       // create the play labels
-	       playLabels[0] = new JLabel(GUICard.getIcon(computerCard), JLabel.CENTER);
-	       playLabels[1] = new JLabel(" ", JLabel.CENTER);
-	       playLabels[2] = new JLabel(GUICard.getIcon(playCard), JLabel.CENTER);
-	       
-	       // do the testing
-	       if (playCard.compareTo(computerCard) > 0)
-	       {
-		  winnings[numWins] = computerCard;
-		  numWins++;
-
-		  // human wins
-		  computerResult = "Computer Lost!";
-		  winTotal = "Win Total:" + numWins;
-		  userResult = "You Won!";
-	       } 
-	       else if (playCard.compareTo(computerCard) == 0)
-	       {
-		  // tie
-		  computerResult = "Computer Tie!";
-		  winTotal = "Win Total:" + numWins;
-		  userResult = "You Tie!";
-	       } 
-	       else if (playCard.compareTo(computerCard) < 0)
-	       {
-		  // computer wins
-		  computerResult = "Computer Won!";
-		  winTotal = "Win Total:" + numWins;
-		  userResult = "You Lost!";
-	       }
-	       
-	       playLabels[3] = new JLabel(computerResult, JLabel.CENTER);
-	       playLabels[4] = new JLabel(winTotal, JLabel.CENTER);
-	       playLabels[5] = new JLabel(userResult, JLabel.CENTER);
-	       
-	       /*
-	       // testing - wins
-	       System.out.println("numWins: " + numWins);
-	       for (int i = 0; i < winnings.length; i++)
-	       {
-		  if (winnings[i] != null)
-		  {
-		     System.out.println("winnings[" + i + "]: " + winnings[i].toString());
-		  }
-	       }
-	       */
-	       
-	       //_view.ShowPlayArea(_model, (JButton)e.getSource());
+	       _view.ShowPlayArea(_model);
 	    }
 	 });
 
@@ -244,6 +198,13 @@ public class Controller extends CardGameFramework
       _view.SetDisplay(_model);
    }
 
+   private void UpdateDisplayFlags(boolean selectCard, boolean selectDeck, boolean deckError)
+   {
+      _model.setShowSelectCard(selectCard);
+      _model.setShowSelectDeck(selectDeck);
+      _model.setShowDeckError(deckError);
+   }
+   
    // user can't play
    public void userCannotPlay()
    {
