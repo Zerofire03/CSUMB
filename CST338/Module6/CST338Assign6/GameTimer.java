@@ -1,4 +1,3 @@
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -9,6 +8,14 @@ public class GameTimer extends Thread
    public void run()
    {
       TheTimer theTimer = new TheTimer();
+      try
+      {
+	 start();	 
+      }
+      catch (IllegalThreadStateException ex)
+      {
+	 // do nothing with this
+      }
    }
    
    public void doNothing(int milliseconds)
@@ -114,6 +121,7 @@ class TheTimer extends JFrame
    public TheTimer()
    {
       super("My Stop Watch");
+      setLocation(800, 520);
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       Container myPane = getContentPane();
 
