@@ -58,6 +58,9 @@ public class CST338Assign6
       // View.show
       Controller highCardGame = new Controller(numPacksPerDeck, numJokersPerPack, numUnusedCardsPerPack,
             unusedCardsPerPack, NUM_PLAYERS, NUM_CARDS_PER_HAND, "Card Table", 800, 600);
+      
+      GameTimer timer = new GameTimer();
+      timer.start();
 
       highCardGame.RunGame();
    }
