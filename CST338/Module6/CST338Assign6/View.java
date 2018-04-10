@@ -60,7 +60,7 @@ class View extends JFrame implements ActionListener
 	 pnlHumanHand.add(button);
       }
       
-      // BUILD game - add the 2 cards for the play buttons
+      // BUILD game - add the 2 cards for the play buttons and the 'i cannot play' button
       ShowPlayArea(model);
 
       // show everything to the user
@@ -87,7 +87,15 @@ class View extends JFrame implements ActionListener
 	 pnlPlayArea.add(new JLabel("Computer Cannot Play"));
 	 pnlPlayArea.add(new JLabel(""));
       }
-            
+      else
+      {
+	 pnlPlayArea.add(new JLabel(""));
+	 pnlPlayArea.add(new JLabel(""));
+	 pnlPlayArea.add(new JLabel(""));
+      }
+      
+      // should update to remove the computerplayfailed
+
       setVisible(true);
    }
    
