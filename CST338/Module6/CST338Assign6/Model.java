@@ -19,11 +19,12 @@ public class Model
    private JLabel[] _computerLabels;
    private JButton[] _humanButtons;
    private JButton[] _playButtons;
-   private JLabel[] _playLabels;
    
    private int _playsAvailable;
    private int _computerPlayFail;
    private int _userPlayFail;
+   
+   private boolean _computerPlayFailed;
 
    // constructor
    public Model(int playsAvailable)
@@ -69,13 +70,13 @@ public class Model
       return true;
    }
    
-   public JLabel[] getPlayLabels()
+   public boolean getComputerPlayFailed()
    {
-      return _playLabels;
+      return _computerPlayFailed;
    }
-   public boolean setPlayLabels(JLabel[] playLabels)
+   public boolean setComputerPlayFailed(boolean computerPlayFailed)
    {
-      _playLabels = playLabels;
+      _computerPlayFailed = computerPlayFailed;
       return true;
    }
    

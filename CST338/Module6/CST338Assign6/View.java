@@ -59,32 +59,35 @@ class View extends JFrame implements ActionListener
       {
 	 pnlHumanHand.add(button);
       }
+      
+      // BUILD game - add the 2 cards for the play buttons
+      ShowPlayArea(model);
 
       // show everything to the user
       setVisible(true);
    }
    
    // rebuild the middle play area
-   public void ShowPlayArea(Model model, JButton userCardPlayed)
+   public void ShowPlayArea(Model model)
    {
       pnlPlayArea.removeAll();
       
-      JLabel[] playLabels = model.getPlayLabels();
+      JButton[] playButtons = model.getPlayButtons();
       
       // loop through the play labels and add them to the panel
-      for (int i = 0; i < playLabels.length; i++)
+      for (int i = 0; i < playButtons.length; i++)
       {
-	 pnlPlayArea.add(playLabels[i]);
+	 pnlPlayArea.add(playButtons[i]);
       }
       
-      // check for a played card - if found remove this from display and a corresponding computer card
-      if (userCardPlayed != null)
+      // check for a play fail record
+      if (model.getComputerPlayFailed())
       {
-	 userCardPlayed.setVisible(false);
-	 
-	 pnlComputerHand.getComponent(model.getPlaysAvailable()).setVisible(false);
+	 pnlPlayArea.add(new JLabel(""));
+	 pnlPlayArea.add(new JLabel("Computer Cannot Play"));
+	 pnlPlayArea.add(new JLabel(""));
       }
-      
+            
       setVisible(true);
    }
    

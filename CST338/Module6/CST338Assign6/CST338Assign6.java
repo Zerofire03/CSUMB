@@ -33,6 +33,25 @@ public class CST338Assign6
       int numUnusedCardsPerPack = 0;
       Card[] unusedCardsPerPack = null;
 
+      // set up for the BUILD game
+      // need to populate the deck
+      //		shuffle the deck
+      // grab 2 cards at random
+      // place the 2 cards as JButtons on the play area
+      //	 add another new button for user selection "I cannot play"
+      // computer goes first
+      // 	computer places a card from it's hand following the game rules
+      //			if computer plays, pull another card from the deck for them and put into hand
+      //		OR computer shows label "I cannot play"
+      // user gets a turn
+      //		user selects a card from the hand to play
+      //			if plays, pull another card from the deck and put into hand
+      //		OR user selects "I cannot play"
+      // count the "I cannot play" selections
+      // continue playing until the deck is gone
+      
+
+      
       // Model
       // View - setup view
       // Controller (Model, View)

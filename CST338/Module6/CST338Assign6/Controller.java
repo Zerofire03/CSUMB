@@ -47,6 +47,9 @@ public class Controller extends CardGameFramework
       // prepare deck and shuffle
       newGame();
       deal();
+      
+      // put the first play cards on the table
+      setupPlayCards();
    }
 
    // constructor overload/default for game like bridge
@@ -83,8 +86,55 @@ public class Controller extends CardGameFramework
       
       // Build the Hands for the computer and user
       BuildHands();
+      
+      setupPlayCards();
    }
-
+   
+   // grab the 2 cards, populate the game play array
+   public void setupPlayCards()
+   {
+      JButton[] playButtons = new JButton[3];
+      
+      // loop through card decks
+      for (int i = 0; i < playButtons.length - 1; i++)
+      {
+	 Card card = getCardFromDeck();
+	 playButtons[i] = new JButton(GUICard.getIcon(card));
+	 
+	 playButtons[i].addActionListener(new ActionListener()
+	 {
+	    @Override
+	    public void actionPerformed(ActionEvent e)
+	    {
+	       // set up the event code for the deck button
+	       // the prior set card should replace this one
+	       // remove the item from the user display
+	       // pull another card from the deck for the user
+	       
+	       // play the computer side
+	       // can computer play? - loop through cards looking for a playable card
+	       //	remove the card from computer hand
+	       //	pull another card from deck
+	       // if not do the 'can't play' event
+	       
+	    }
+	 });
+      }
+      
+      // can't play card
+      playButtons[2] = new JButton("I cannot play");
+      playButtons[2].addActionListener(new ActionListener()
+      {
+	 @Override
+	 public void actionPerformed(ActionEvent e)
+	 {
+	    
+	 }
+      });
+      
+      _model.setPlayButtons(playButtons);
+   }
+   
    // Build the display elements and push to view then start the game
    public void BuildHands()
    {
@@ -122,6 +172,8 @@ public class Controller extends CardGameFramework
 	       System.out.println("Human card: " + playCard.toString());
 	       */
 
+	       
+	       
 	       // pull a card at random for the computer
 	       Card computerCard = getHand(COMPUTER_HAND).playCard();
 
@@ -179,13 +231,7 @@ public class Controller extends CardGameFramework
 	       }
 	       */
 	       
-	       // record the playlabels array
-	       _model.setPlayLabels(playLabels);
-	       
-	       // update tracking count for playsavailable
-	       _model.reducePlaysAvailable();
-	       
-	       _view.ShowPlayArea(_model, (JButton)e.getSource());
+	       //_view.ShowPlayArea(_model, (JButton)e.getSource());
 	    }
 	 });
 
@@ -198,14 +244,16 @@ public class Controller extends CardGameFramework
       _view.SetDisplay(_model);
    }
 
-   /*
-   // return a new random card
-   static Card generateRandomCard()
+   // user can't play
+   public void userCannotPlay()
    {
-      int cardVal = (int) (Math.random() * Card.valuRanks.length);
-      int suitVal = (int) (Math.random() * Card.Suit.values().length);
-
-      return new Card(Card.valuRanks[cardVal], Card.Suit.values()[suitVal]);
+      
    }
-   */
+   
+   // computer can't play
+   public void computerCannotPlay()
+   {
+      
+   }
+   
 }
