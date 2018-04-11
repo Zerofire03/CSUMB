@@ -15,7 +15,7 @@ public class Controller extends CardGameFramework
    private static int numWins = 0;
 
    private static final int COMPUTER_HAND = 0;
-   private static final int USER_HAND = 0;
+   private static final int USER_HAND = 1;
 
    private Card[] unusedCardsPerPack; // an array holding the cards not used
    // in the game. e.g. pinochle does not
@@ -380,20 +380,114 @@ public class Controller extends CardGameFramework
    private boolean PlayComputerHand()
    {
       // TESTING TESTING
-      System.out.println("Computer plays a card");
+      //System.out.println("Computer plays a card");
+      Hand computerHand = getHand(COMPUTER_HAND);
+      System.out.println("Computer " + computerHand );
+      Boolean cardPlayed = false;
       
-      // loop through the cards in the computer hand and see if one fits the left deck
+      // loop through the cards in the computer hand and see if one fits the right deck
+      int rightDeckValue = GUICard.valueAsInt(_model.rightDeckCard);
+      for( int i = 0; i < computerHand.getNumCards(); i++ )
+      {
+         //System.out.println("Checking right deck " + i + " of " + computerHand.getNumCards());
+         if(Math.abs(rightDeckValue - GUICard.valueAsInt(computerHand.inspectCard(i))) == 1)
+         //if(Math.abs(rightDeckValue - GUICard.valueAsInt(computerHand.inspectCard(i))) == 1 || 
+         //      Math.abs(rightDeckValue - GUICard.valueAsInt(computerHand.inspectCard(i))) == 0)
+         {
+            // update the play panel display item to the selected button
+            _model.rightDeckButton = new JButton(GUICard.getIcon(computerHand.inspectCard(i)));
+            _model.rightDeckCard = computerHand.playCard(i);
+            //System.out.println("Computer played card " + computerHand.inspectCard(i) + " at index " + i);
+            
+            // make sure button is visible
+            _model.rightDeckButton.setVisible(true);
+
+            // remove the button from the array at the index.
+            // play the card in the hand at the index
+            // add another card to the hand if provided
+            //int index = _model.getUserHandSelectedIndex();
+            //Card userCard = getHand(USER_HAND).playCard(index);
+            
+            // attempt to add a card to the user hand
+            Card newCard = getCardFromDeck();
+            
+            // check for empty deck - add card to hand if good
+            if (!newCard.getErrorFlag())
+            {
+               getHand(COMPUTER_HAND).takeCard(newCard);
+               
+               // TESTING TESTING
+               System.out.println("Card added to hand :" + newCard);
+            }
+            
+            // clear the user selections in the model
+            //_model.setUserHandSelectedIndex(-1);
+            //_model.setUserCardButton(null);
+            cardPlayed = true;
+            break;
+         }
+         
+      }
       
-      // if not found on left, try the right
+      // if not found on right, try the left
+      if(!cardPlayed)
+      {
+         int leftDeckValue = GUICard.valueAsInt(_model.leftDeckCard);
+         for( int i = 0; i < computerHand.getNumCards(); i++ )
+         {
+            //System.out.println("Checking left deck " + i + " of " + computerHand.getNumCards());
+            if(Math.abs(leftDeckValue - GUICard.valueAsInt(computerHand.inspectCard(i))) == 1)
+            //if(Math.abs(rightDeckValue - GUICard.valueAsInt(computerHand.inspectCard(i))) == 1 || 
+            //      Math.abs(rightDeckValue - GUICard.valueAsInt(computerHand.inspectCard(i))) == 0)
+            {
+               // update the play panel display item to the selected button
+               _model.leftDeckButton = new JButton(GUICard.getIcon(computerHand.inspectCard(i)));
+               _model.leftDeckCard = computerHand.playCard(i);
+               //System.out.println("Computer played card " + computerHand.inspectCard(i) + " at index " + i);
+               
+               // make sure button is visible
+               _model.rightDeckButton.setVisible(true);
+   
+               // remove the button from the array at the index.
+               // play the card in the hand at the index
+               // add another card to the hand if provided
+               //int index = _model.getUserHandSelectedIndex();
+               //Card userCard = getHand(USER_HAND).playCard(index);
+               
+               // attempt to add a card to the user hand
+               Card newCard = getCardFromDeck();
+               
+               // check for empty deck - add card to hand if good
+               if (!newCard.getErrorFlag())
+               {
+                  getHand(COMPUTER_HAND).takeCard(newCard);
+                  
+                  // TESTING TESTING
+                  System.out.println("Card added to hand :" + newCard);
+               }
+               
+               // clear the user selections in the model
+               //_model.setUserHandSelectedIndex(-1);
+               //_model.setUserCardButton(null);
+               cardPlayed = true;
+               break;
+            }
+            
+         }
+      }
       
       // if not found at all, increment the cannot play and reset the display
-      _model.addComputerPlayFail();
+      if(!cardPlayed)
+      {
+         System.out.println("Computer couldn't play.");
+         _model.addComputerPlayFail();
+      }
       
       // reset the display
       UpdateDisplayFlags(true, false, false, false);
       
       // create the new hand displays
-      BuildHands();
+      //BuildHands();
       
       _view.ShowPlayArea(_model);
       
