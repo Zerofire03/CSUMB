@@ -18,7 +18,7 @@ public class Model
    
    private JLabel[] _computerLabels;
    private JButton[] _humanButtons;
-   private JButton[] _playButtons;
+   //private JButton[] _playButtons;
    private JButton _userCardButton;
    
    private Card _userPlayCard;
@@ -45,7 +45,7 @@ public class Model
    public Model(int playsAvailable)
    {
       _computerLabels = new JLabel[0];
-      _playButtons = new JButton[0];
+      //_playButtons = new JButton[0];
       _humanButtons = new JButton[0];
       
       _computerPlayFail = 0;
@@ -142,7 +142,8 @@ public class Model
       _computerLabels = computerLabels;
       return true;
    }
-   
+
+   /*
    public JButton[] getPlayButtons()
    {
       return _playButtons;
@@ -152,6 +153,7 @@ public class Model
       _playButtons = playButtons;
       return true;
    }
+   */
    
    public boolean getComputerPlayFailed()
    {

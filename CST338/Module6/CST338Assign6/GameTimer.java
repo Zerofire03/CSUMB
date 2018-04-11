@@ -10,14 +10,14 @@ public class GameTimer extends Thread
       TheTimer theTimer = new TheTimer();
       try
       {
-         start();    
+	 start();	 
       }
       catch (IllegalThreadStateException ex)
       {
-         // do nothing with this
+	 // do nothing with this
       }
    }
-
+   
    public void doNothing(int milliseconds)
    {
       try
@@ -35,13 +35,17 @@ public class GameTimer extends Thread
 class StopWatch extends JPanel
 {
    // Variable Declaration
+   //private Timer myTimer1;
    private Timer myTimer1;
-   //public static final int PAUSE = 100;   //time step in milliseconds
+   public static final int PAUSE = 100;   //time step in milliseconds
    public static final int TENTH_SEC = 1000;
+
    private Font myClockFont;
-   private JButton startStopBtn;
+
+   private JButton startBtn;
    private JLabel timeLbl;
    private JPanel topPanel, bottomPanel;
+
    private int clockTick; 
    private String clockTimeString;
    private int minutes, seconds;
@@ -50,13 +54,16 @@ class StopWatch extends JPanel
    {
       // Variable initialization
       clockTick = 0; 
+
       clockTimeString = String.format("%02d:%02d", minutes, seconds);
       myClockFont = new Font("Serif", Font.PLAIN, 50);
+
       timeLbl = new JLabel();
       timeLbl.setFont(myClockFont);
       timeLbl.setText(clockTimeString);
-      startStopBtn = new JButton("Start/Stop");
 
+      startBtn = new JButton("Start/Stop");
+      
 
       myTimer1 = new Timer(TENTH_SEC, new ActionListener() {
          @Override  
@@ -73,11 +80,11 @@ class StopWatch extends JPanel
                seconds = clockTick;
             }
             timeLbl.setText(String.format("%02d:%02d", minutes, seconds));
-         }
+          }
 
       });
-
-      startStopBtn.addActionListener(new ActionListener(){
+      
+      startBtn.addActionListener(new ActionListener(){
          @Override
          public void actionPerformed(ActionEvent evt) {
             if (!myTimer1.isRunning()) {
@@ -87,11 +94,11 @@ class StopWatch extends JPanel
             {
                myTimer1.stop();
             }
-
+               
          }
 
       });
-   }
+   }//end of StopWatch constructor
 
    public void launchStopWatch()
    {
@@ -100,21 +107,21 @@ class StopWatch extends JPanel
       bottomPanel = new JPanel();
       bottomPanel.setBackground(Color.blue);
       topPanel.add(timeLbl);
-      bottomPanel.add(startStopBtn);
+      bottomPanel.add(startBtn);
 
       this.setLayout(new BorderLayout());
-
+      
       add(topPanel, BorderLayout.CENTER);
       add(bottomPanel, BorderLayout.SOUTH);
-   }
+   }//end of launchClock
 }
-///////////////////////////////////////////////////////////////////////
+
 class TheTimer extends JFrame
 {
    public TheTimer()
    {
-      super("Game Timer");
-      setLocation(800, 440);
+      super("My Stop Watch");
+      setLocation(800, 520);
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       Container myPane = getContentPane();
 
