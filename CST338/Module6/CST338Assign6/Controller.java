@@ -434,7 +434,7 @@ public class Controller extends CardGameFramework
                getHand(COMPUTER_HAND).takeCard(newCard);
                
                // TESTING TESTING
-               System.out.println("Card added to hand :" + newCard);
+               //System.out.println("Card added to hand :" + newCard);
             }
             
             // clear the user selections in the model
