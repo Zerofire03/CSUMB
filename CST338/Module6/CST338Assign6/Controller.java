@@ -505,10 +505,12 @@ public class Controller extends CardGameFramework
             Card newCard = getCardFromDeck();
             _model.leftDeckButton = new JButton(GUICard.getIcon(newCard));
             _model.leftDeckCard = newCard;
+            AddEventHandlingToLeftPlayButton();
             
             newCard = getCardFromDeck();
             _model.rightDeckButton = new JButton(GUICard.getIcon(newCard));
             _model.rightDeckCard = newCard;
+            AddEventHandlingToRightPlayButton();
             //System.out.println("Computer played card " + computerHand.inspectCard(i) + " at index " + i);
             
             // make sure button is visible
