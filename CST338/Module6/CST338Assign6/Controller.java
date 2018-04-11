@@ -412,6 +412,8 @@ public class Controller extends CardGameFramework
             // update the play panel display item to the selected button
             _model.rightDeckButton = new JButton(GUICard.getIcon(computerHand.inspectCard(i)));
             _model.rightDeckCard = computerHand.playCard(i);
+            AddEventHandlingToRightPlayButton();
+            
             //System.out.println("Computer played card " + computerHand.inspectCard(i) + " at index " + i);
             
             // make sure button is visible
@@ -458,6 +460,7 @@ public class Controller extends CardGameFramework
                // update the play panel display item to the selected button
                _model.leftDeckButton = new JButton(GUICard.getIcon(computerHand.inspectCard(i)));
                _model.leftDeckCard = computerHand.playCard(i);
+               AddEventHandlingToLeftPlayButton();
                //System.out.println("Computer played card " + computerHand.inspectCard(i) + " at index " + i);
                
                // make sure button is visible
