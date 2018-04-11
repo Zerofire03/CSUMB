@@ -61,7 +61,7 @@ public class CST338Assign6
       highCardGame.RunGame();
       
       GameTimer timer = new GameTimer();
-      timer.run();
+      timer.start();
    }
 }
 
