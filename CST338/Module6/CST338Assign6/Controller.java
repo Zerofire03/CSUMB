@@ -13,7 +13,7 @@ public class Controller extends CardGameFramework
 
    private static Card[] winnings = null;
    private static int numWins = 0;
-   
+
    private static final int COMPUTER_HAND = 0;
    private static final int USER_HAND = 0;
 
@@ -25,29 +25,31 @@ public class Controller extends CardGameFramework
    private int numPlayers;
    private Model _model;
    private View _view;
-   
+
    public Controller(int numPacks, int numJokersPerPack, int numUnusedCardsPerPack, Card[] unusedCardsPerPack,
-	 int numPlayers, int numCardsPerHand, String title, int width, int height)
+         int numPlayers, int numCardsPerHand, String title, int width, int height)
    {
       super(numPacks, numJokersPerPack, numUnusedCardsPerPack, unusedCardsPerPack, numPlayers, 
-	    numCardsPerHand);
-      
+            numCardsPerHand);
+
       // record the view and model
       _model = new Model(numCardsPerHand);
       _view = new View(title, width, height);
-      
+
       this.numPlayers = numPlayers;
       this.numCardsPerHand = numCardsPerHand;
 
+      /*
       // instantiate game tracking variables
       winnings = new Card[numCardsPerHand];
+      */
 
       GUICard.loadCardIcons();
 
       // prepare deck and shuffle
       newGame();
       deal();
-      
+
       // show the select card message
       UpdateDisplayFlags(true, false, false, false);
    }
@@ -57,7 +59,7 @@ public class Controller extends CardGameFramework
    {
       this(1, 0, 0, null, 4, 13, "Card Table", 800, 600);
    }
-   
+
    // execute the game
    public void RunGame()
    {
@@ -83,106 +85,53 @@ public class Controller extends CardGameFramework
       {
          this.numPlayers = numPlayers;
       }
-      
+
       // Build the Hands for the computer and user
-      BuildHands();
-      
       setupPlayCards();
+      BuildHands();
    }
-   
+
    // grab the 2 cards, populate the game play array
    public void setupPlayCards()
    {
-      JButton[] playButtons = new JButton[3];
-      
-      // loop through card decks
-      for (int i = 0; i < playButtons.length - 1; i++)
+      // first run, take cards from deck
+      if (_model.leftDeckButton == null || _model.rightDeckButton == null)
       {
+	 // build the left button
 	 Card card = getCardFromDeck();
-	 JButton playButton = new JButton(GUICard.getIcon(card));
-
-	 playButton.addActionListener(new ActionListener()
+	 _model.leftDeckButton = new JButton(GUICard.getIcon(card));
+	 _model.leftDeckCard = card;
+	 
+	 // build the right button
+	 card = getCardFromDeck();
+	 _model.rightDeckButton = new JButton(GUICard.getIcon(card));
+	 _model.rightDeckCard = card;
+	 
+	 _model.userCannotPlayButton = new JButton("I cannot play");
+	 _model.userCannotPlayButton.addActionListener(new ActionListener()
 	 {
 	    @Override
 	    public void actionPerformed(ActionEvent e)
 	    {
-	       // error checking - user needs a card first
-	       if (_model.getUserPlayCard() == null)
-	       {
-		  // TESTING TESTING
-		  System.out.println("User has not selected a card from the hand");
-		  
-		  // show the deck selector
-		  UpdateDisplayFlags(false, false, true, false);
-	       }
-	       
-	       // user has a card selected - do work	       
-	       // validate that the selected card and hand fit rules
-	       int deckValue = GUICard.valueAsInt(card);
-	       int handValue = GUICard.valueAsInt(_model.getUserPlayCard());
-	       
-	       // make sure this is within the set values
-	       if (Math.abs(deckValue - handValue) > 1)
-	       {
-		  UpdateDisplayFlags(false, false, false, true);
-	       }
-	       
-	       // remove the button from the user display and add another
-	       /*
-	       // pull the computer item from top component
-	       myCardTable.pnlComputerHand.getComponent(playsAvailable).setVisible(false);
-	       
-	       // pull the original button from the actionevent
-	       ((JButton)e.getSource()).setVisible(false);
-	       */
-	       
-	       //////////////
-	       // STOPPED HERE
-	       //////////////
+	       System.out.println("User can't play");
 
-	       // update the play panel display item to the selected button
-	       JButton button = (JButton)e.getSource();
-	       button = _model.getUserCardButton();
-	       
-	       // need to update the hand to replace the used card with a new card from the deck
-	       // do this by index?
-	       
-	       
-	       // run the computer evaluation
+	       _model.addUserPlayFail();
+
+	       // let the computer play
 	       PlayComputerHand();
-	       
-	       // reset the display
-	       UpdateDisplayFlags(true, false, false, false);
-	       
-	       // TESTING TESTING
-	       System.out.println(card.toString());
+
+	       _view.ShowPlayArea(_model);
 	    }
 	 });
-	 
-	 playButtons[i] = playButton;
       }
       
-      // can't play card
-      playButtons[2] = new JButton("I cannot play");
-      playButtons[2].addActionListener(new ActionListener()
-      {
-	 @Override
-	 public void actionPerformed(ActionEvent e)
-	 {
-	    System.out.println("User can't play");
-	    
-	    _model.addUserPlayFail();
-	    
-	    // let the computer play
-	    PlayComputerHand();
-	 }
-      });
-      
-      _model.setPlayButtons(playButtons);
-      
+      // add the event handling - buttons may have changed
+      AddEventHandlingToLeftPlayButton();
+      AddEventHandlingToRightPlayButton();
+
       _view.ShowPlayArea(_model);
    }
-   
+
    // Build the display elements and push to view then start the game
    public void BuildHands()
    {
@@ -193,47 +142,58 @@ public class Controller extends CardGameFramework
       // computer cards
       for (int i = 0; i < numCardsPerHand; i++)
       {
-	 computerLabels[i] = new JLabel(GUICard.getBackCardIcon());
+         computerLabels[i] = new JLabel(GUICard.getBackCardIcon());
       }
 
       // human cards
       JButton humanButton = null;
       for (int i = 0; i < numCardsPerHand; i++)
       {
-	 Card playCard = getHand(USER_HAND).inspectCard(i);
-	 humanButton = new JButton(GUICard.getIcon(playCard));
+         Card playCard = getHand(USER_HAND).inspectCard(i);
+         humanButton = new JButton(GUICard.getIcon(playCard));
 
-	 // attempting a new listener function
-	 humanButton.addActionListener(new ActionListener()
-	 {
+         // attempting a new listener function
+         humanButton.addActionListener(new ActionListener()
+         {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+               // play this selected card
+               // store this card as the play card
+               _model.setUserPlayCard(playCard);
+               _model.setComputerPlayFailed(false);
+               _model.setUserCardButton((JButton)e.getSource());
 
-	    @Override
-	    public void actionPerformed(ActionEvent e)
-	    {
-	       // play this selected card
-	       // store this card as the play card
-	       _model.setUserPlayCard(playCard);
-	       _model.setComputerPlayFailed(false);
-	       _model.setUserCardButton((JButton)e.getSource());
-	       
-	       // show the select deck message
-	       UpdateDisplayFlags(false, true, false, false);
-	       
-	       _view.ShowPlayArea(_model);
-	    }
-	 });
+               int index = GetUserHandSelectedIndex(_model.getHumanButtons(), (JButton)e.getSource());
 
-	 humanButtons[i] = humanButton;
+               if (index >= 0)
+               {
+        	  	_model.setUserHandSelectedIndex(index);
+               }
+               else
+               {
+        	  	// there was some sort of error
+        	  	System.out.println("Error occurred when searching for user selected index.");
+               }
+
+               // show the select deck message
+               UpdateDisplayFlags(false, true, false, false);
+
+               _view.ShowPlayArea(_model);
+            }
+         });
+
+         humanButtons[i] = humanButton;
       }
 
       _model.setComputerLabels(computerLabels);
       _model.setHumanButtons(humanButtons);
-      
+
       _view.SetDisplay(_model);
    }
 
    private void UpdateDisplayFlags(boolean selectCard, boolean selectDeck, boolean deckError,
-	 boolean deckCardError)
+         boolean deckCardError)
    {
       _model.setShowSelectCard(selectCard);
       _model.setShowSelectDeck(selectDeck);
@@ -241,23 +201,202 @@ public class Controller extends CardGameFramework
       _model.setShowDeckCardError(deckCardError);
    }
    
+   // loop through the buttons in the array passed in (computer or user) - return the index
+   //	this index will be the same as the index in the hand 
+   private int GetUserHandSelectedIndex(JButton[] buttons, JButton button)
+   {
+      for (int i = 0; i < buttons.length; i++)
+      {
+	 if (button == buttons[i])
+	 {
+	    return i;
+	 }
+      }
+      
+      return -1;
+   }
+
+   // add the event logic to the button
+   // this method will be called separately for the left and right play deck buttons
+   private void AddEventHandlingToLeftPlayButton()
+   {
+      _model.leftDeckButton.addActionListener(new ActionListener()
+      {
+         @Override
+         public void actionPerformed(ActionEvent e)
+         {
+            // TESTING TESTING
+            System.out.println("Left deck button clicked");
+            
+            // error checking - user needs a card first
+            if (_model.getUserPlayCard() == null)
+            {
+               // TESTING TESTING
+               System.out.println("User has not selected a card from the hand");
+
+               // show the deck selector
+               UpdateDisplayFlags(false, false, true, false);
+               
+               // stop processing event
+               return;
+            }
+
+            // user has a card selected - do work
+            // validate that the selected card and hand fit rules
+            int deckValue = GUICard.valueAsInt(_model.leftDeckCard);
+            int handValue = GUICard.valueAsInt(_model.getUserPlayCard());
+
+            // make sure this is within the set values
+            // ensure we handle the 0-13 or 13-0 cases
+            if (Math.abs(deckValue - handValue) > 1 || Math.abs(deckValue - handValue) - 13 != 0)
+            {
+               UpdateDisplayFlags(false, false, false, true);
+            }
+
+            // update the play panel display item to the selected button - references work??
+            _model.leftDeckButton = _model.getUserCardButton();
+            _model.leftDeckCard = _model.getUserPlayCard();
+            
+            // make sure button is visible
+            _model.leftDeckButton.setVisible(true);
+
+            // remove the button from the array at the index.
+            // play the card in the hand at the index
+            // add another card to the hand if provided
+            int index = _model.getUserHandSelectedIndex();
+            Card userCard = getHand(USER_HAND).playCard(index);
+            
+            // attempt to add a card to the user hand
+            Card newCard = getCardFromDeck();
+            
+            // check for empty deck - add card to hand if good
+            if (!newCard.getErrorFlag())
+            {
+               getHand(USER_HAND).takeCard(newCard);
+               
+               // TESTING TESTING
+               System.out.println("Card added to hand :" + newCard);
+            }
+            
+            // clear the user selections in the model
+            _model.setUserHandSelectedIndex(-1);
+            _model.setUserCardButton(null);
+            
+            // run the computer evaluation
+            PlayComputerHand();
+
+            // reset the display
+            UpdateDisplayFlags(true, false, false, false);
+
+            // create the new hand displays
+            BuildHands();
+            
+            _view.ShowPlayArea(_model);
+         }
+      });
+   }
    
+   // add event handling to the right deck button
+   private void AddEventHandlingToRightPlayButton()
+   {
+      _model.rightDeckButton.addActionListener(new ActionListener()
+      {
+         @Override
+         public void actionPerformed(ActionEvent e)
+         {
+            // TESTING TESTING
+            System.out.println("Right deck button clicked");
+            
+            // error checking - user needs a card first
+            if (_model.getUserPlayCard() == null)
+            {
+               // TESTING TESTING
+               System.out.println("User has not selected a card from the hand");
+
+               // show the deck selector
+               UpdateDisplayFlags(false, false, true, false);
+               
+               // stop processing event
+               return;
+            }
+
+            // user has a card selected - do work
+            // validate that the selected card and hand fit rules
+            int deckValue = GUICard.valueAsInt(_model.rightDeckCard);
+            int handValue = GUICard.valueAsInt(_model.getUserPlayCard());
+
+            // make sure this is within the set values
+            // ensure we handle the 0-13 or 13-0 cases
+            if (Math.abs(deckValue - handValue) > 1 || Math.abs(deckValue - handValue) - 13 != 0)
+            {
+               UpdateDisplayFlags(false, false, false, true);
+            }
+
+            // update the play panel display item to the selected button - references work??
+            _model.rightDeckButton = _model.getUserCardButton();
+            _model.rightDeckCard = _model.getUserPlayCard();
+            
+            // make sure button is visible
+            _model.rightDeckButton.setVisible(true);
+
+            // remove the button from the array at the index.
+            // play the card in the hand at the index
+            // add another card to the hand if provided
+            int index = _model.getUserHandSelectedIndex();
+            Card userCard = getHand(USER_HAND).playCard(index);
+            
+            // attempt to add a card to the user hand
+            Card newCard = getCardFromDeck();
+            
+            // check for empty deck - add card to hand if good
+            if (!newCard.getErrorFlag())
+            {
+               getHand(USER_HAND).takeCard(newCard);
+               
+               // TESTING TESTING
+               System.out.println("Card added to hand :" + newCard);
+            }
+            
+            // clear the user selections in the model
+            _model.setUserHandSelectedIndex(-1);
+            _model.setUserCardButton(null);
+            
+            // run the computer evaluation
+            PlayComputerHand();
+
+            // reset the display
+            UpdateDisplayFlags(true, false, false, false);
+
+            // create the new hand displays
+            BuildHands();
+            
+            _view.ShowPlayArea(_model);
+         }
+      });
+   }
+
    // don't know if this will stay since the code will require the play area buttons and some event
    //	based objects
-   public boolean PlayComputerHand()
+   private boolean PlayComputerHand()
    {
+      // TESTING TESTING
+      System.out.println("Computer plays a card");
+      
+      // loop through the cards in the computer hand and see if one fits the left deck
+      
+      // if not found on left, try the right
+      
+      // if not found at all, increment the cannot play and reset the display
+      _model.addComputerPlayFail();
+      
+      // reset the display
+      UpdateDisplayFlags(true, false, false, false);
+      
+      // create the new hand displays
+      BuildHands();
+      
+      _view.ShowPlayArea(_model);
+      
       return true;
-   }
-   
-   // user can't play
-   public void userCannotPlay()
-   {
-      
-   }
-   
-   // computer can't play
-   public void computerCannotPlay()
-   {
-      
    }
 }

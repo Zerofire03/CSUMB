@@ -50,14 +50,17 @@ class View extends JFrame implements ActionListener
    // build the display from the labels and buttons
    public void SetDisplay(Model model)
    {
+      pnlComputerHand.removeAll();
+      pnlHumanHand.removeAll();
+      
       // ADD LABELS TO PANELS -----------------------------------------
       for (JLabel label : model.getComputerLabels())
       {
-	 pnlComputerHand.add(label);
+         pnlComputerHand.add(label);
       }
       for (JButton button : model.getHumanButtons())
       {
-	 pnlHumanHand.add(button);
+         pnlHumanHand.add(button);
       }
       
       // BUILD game - add the 2 cards for the play buttons and the 'i cannot play' button
@@ -72,30 +75,24 @@ class View extends JFrame implements ActionListener
    {
       pnlPlayArea.removeAll();
       
-      JButton[] playButtons = model.getPlayButtons();
-      
-      // loop through the play labels and add them to the panel
-      for (int i = 0; i < playButtons.length; i++)
-      {
-	 pnlPlayArea.add(playButtons[i]);
-      }
+      pnlPlayArea.add(model.leftDeckButton);
+      pnlPlayArea.add(model.rightDeckButton);
+      pnlPlayArea.add(model.userCannotPlayButton);
       
       // check for a play fail record
       if (model.getComputerPlayFailed())
       {
-	 pnlPlayArea.add(new JLabel("Computer Fails: " + model.getComputerPlayFail(), JLabel.CENTER));
-	 pnlPlayArea.add(new JLabel("Computer Cannot Play"));
-	 pnlPlayArea.add(new JLabel("User Fails: " + model.getUserPlayFail(), JLabel.CENTER));
+         pnlPlayArea.add(new JLabel("Computer Fails: " + model.getComputerPlayFail(), JLabel.CENTER));
+         pnlPlayArea.add(new JLabel("Computer Cannot Play"));
+         pnlPlayArea.add(new JLabel("User Fails: " + model.getUserPlayFail(), JLabel.CENTER));
       }
       else
       {
-	 pnlPlayArea.add(new JLabel("Computer Fails: " + model.getComputerPlayFail(), JLabel.CENTER));
-	 pnlPlayArea.add(new JLabel(GetDisplayMessage(model), JLabel.CENTER));
-	 pnlPlayArea.add(new JLabel("User Fails: " + model.getUserPlayFail(), JLabel.CENTER));
+         pnlPlayArea.add(new JLabel("Computer Fails: " + model.getComputerPlayFail(), JLabel.CENTER));
+         pnlPlayArea.add(new JLabel(GetDisplayMessage(model), JLabel.CENTER));
+         pnlPlayArea.add(new JLabel("User Fails: " + model.getUserPlayFail(), JLabel.CENTER));
       }
       
-      // should update to remove the computerplayfailed
-
       setVisible(true);
    }
    

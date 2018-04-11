@@ -22,6 +22,7 @@ public class Model
    private JButton _userCardButton;
    
    private Card _userPlayCard;
+   private int _userHandSelectedIndex;
    
    private int _computerPlayFail;
    private int _userPlayFail;
@@ -32,6 +33,13 @@ public class Model
    private boolean _showSelectCard;
    private boolean _showDeckError;
    private boolean _showDeckCardError;
+   
+   public Card leftDeckCard;
+   public Card rightDeckCard;
+   public JButton leftDeckButton;
+   public JButton rightDeckButton;
+   
+   public JButton userCannotPlayButton;
 
    // constructor
    public Model(int playsAvailable)
@@ -51,6 +59,16 @@ public class Model
    public Boolean setUserPlayCard(Card userPlayCard)
    {
       _userPlayCard = userPlayCard;
+      return true;
+   }
+   
+   public int getUserHandSelectedIndex()
+   {
+      return _userHandSelectedIndex;
+   }
+   public boolean setUserHandSelectedIndex(int index)
+   {
+      _userHandSelectedIndex = index;
       return true;
    }
    
