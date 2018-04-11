@@ -397,7 +397,7 @@ public class Controller extends CardGameFramework
       // TESTING TESTING
       //System.out.println("Computer plays a card");
       Hand computerHand = getHand(COMPUTER_HAND);
-      System.out.println("Computer " + computerHand );
+      //System.out.println("Computer " + computerHand );
       Boolean cardPlayed = false;
       
       // loop through the cards in the computer hand and see if one fits the right deck
@@ -481,7 +481,7 @@ public class Controller extends CardGameFramework
                   getHand(COMPUTER_HAND).takeCard(newCard);
                   
                   // TESTING TESTING
-                  System.out.println("Card added to hand :" + newCard);
+                  //System.out.println("Card added to hand :" + newCard);
                }
                
                // clear the user selections in the model
@@ -497,7 +497,7 @@ public class Controller extends CardGameFramework
       // if not found at all, increment the cannot play and reset the display
       if(!cardPlayed)
       {
-         System.out.println("Computer couldn't play.");
+         //System.out.println("Computer couldn't play.");
          _model.addComputerPlayFail();
          if(userPlayFailed)
          {
