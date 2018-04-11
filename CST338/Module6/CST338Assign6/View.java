@@ -75,9 +75,9 @@ class View extends JFrame implements ActionListener
    {
       pnlPlayArea.removeAll();
       
-      pnlPlayArea.add(model.leftDeckButton);
-      pnlPlayArea.add(model.rightDeckButton);
-      pnlPlayArea.add(model.userCannotPlayButton);
+      pnlPlayArea.add(model.getLeftDeckButton());
+      pnlPlayArea.add(model.getRightDeckButton());
+      pnlPlayArea.add(model.getUserCannotPlayButton());
       
       // check for a play fail record
       if (model.getComputerPlayFailed())
@@ -113,6 +113,14 @@ class View extends JFrame implements ActionListener
       else if (model.getShowDeckCardError())
       {
 	 return "Selected card can't be added";
+      }
+      else if (model.getShowComputerWon())
+      {
+	 return "The Computer Won!";
+      }
+      else if (model.getShowUserWon())
+      {
+	 return "You Won!";
       }
       
       return "";

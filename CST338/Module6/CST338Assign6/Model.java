@@ -33,13 +33,15 @@ public class Model
    private boolean _showSelectCard;
    private boolean _showDeckError;
    private boolean _showDeckCardError;
+   private boolean _showComputerWon;
+   private boolean _showUserWon;
    
-   public Card leftDeckCard;
-   public Card rightDeckCard;
-   public JButton leftDeckButton;
-   public JButton rightDeckButton;
+   private Card _leftDeckCard;
+   private Card _rightDeckCard;
+   private JButton _leftDeckButton;
+   private JButton _rightDeckButton;
    
-   public JButton userCannotPlayButton;
+   private JButton _userCannotPlayButton;
 
    // constructor
    public Model(int playsAvailable)
@@ -50,6 +52,56 @@ public class Model
       
       _computerPlayFail = 0;
       _userPlayFail = 0;
+   }
+   
+   public Card getLeftDeckCard()
+   {
+      return _leftDeckCard;
+   }
+   public boolean setLeftDeckCard(Card leftDeckCard)
+   {
+      _leftDeckCard = leftDeckCard;
+      return true;
+   }
+   
+   public JButton getLeftDeckButton()
+   {
+      return _leftDeckButton;
+   }
+   public boolean setLeftDeckButton(JButton leftDeckButton)
+   {
+      _leftDeckButton = leftDeckButton;
+      return true;
+   }
+   
+   public Card getRightDeckCard()
+   {
+      return _rightDeckCard;
+   }
+   public boolean setRightDeckCard(Card rightDeckCard)
+   {
+      _rightDeckCard = rightDeckCard;
+      return true;
+   }
+   
+   public JButton getRightDeckButton()
+   {
+      return _rightDeckButton;
+   }
+   public boolean setRightDeckButton(JButton rightDeckButton)
+   {
+      _rightDeckButton = rightDeckButton;
+      return true;
+   }
+   
+   public JButton getUserCannotPlayButton()
+   {
+      return _userCannotPlayButton;
+   }
+   public boolean setUserCannotPlayButton(JButton userCannotPlayButton)
+   {
+      _userCannotPlayButton = userCannotPlayButton;
+      return true;
    }
    
    public Card getUserPlayCard()
@@ -109,6 +161,26 @@ public class Model
    public boolean setShowDeckCardError(boolean showDeckCardError)
    {
       _showDeckCardError = showDeckCardError;
+      return true;
+   }
+   
+   public boolean getShowComputerWon()
+   {
+      return _showComputerWon;
+   }
+   public boolean setShowComputerWon(boolean showComputerWon)
+   {
+      _showComputerWon = showComputerWon;
+      return true;
+   }
+   
+   public boolean getShowUserWon()
+   {
+      return _showUserWon;
+   }
+   public boolean setShowUserWon(boolean showUserWon)
+   {
+      _showUserWon = showUserWon;
       return true;
    }
    
