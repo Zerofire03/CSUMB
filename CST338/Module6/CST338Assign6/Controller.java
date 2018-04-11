@@ -454,8 +454,8 @@ public class Controller extends CardGameFramework
          {
             //System.out.println("Checking left deck " + i + " of " + computerHand.getNumCards());
             //if(Math.abs(leftDeckValue - GUICard.valueAsInt(computerHand.inspectCard(i))) == 1)
-            if(Math.abs(rightDeckValue - GUICard.valueAsInt(computerHand.inspectCard(i))) == 1 || 
-                  Math.abs(rightDeckValue - GUICard.valueAsInt(computerHand.inspectCard(i))) == 0)
+            if(Math.abs(leftDeckValue - GUICard.valueAsInt(computerHand.inspectCard(i))) == 1 || 
+                  Math.abs(leftDeckValue - GUICard.valueAsInt(computerHand.inspectCard(i))) == 0)
             {
                // update the play panel display item to the selected button
                _model.leftDeckButton = new JButton(GUICard.getIcon(computerHand.inspectCard(i)));
