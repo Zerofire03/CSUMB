@@ -114,7 +114,7 @@ public class Controller extends CardGameFramework
 	       _model.addUserPlayFail();
 
 	       // let the computer play
-	       PlayComputerHand();
+	       PlayComputerHand(true);
 
 	       _view.ShowPlayArea(_model);
 	    }
@@ -256,7 +256,7 @@ public class Controller extends CardGameFramework
             _model.setUserPlayCard(null);
             
             // run the computer evaluation
-            PlayComputerHand();
+            PlayComputerHand(false);
 
             // reset the display
             UpdateDisplayFlags(true, false, false, false);
@@ -340,7 +340,7 @@ public class Controller extends CardGameFramework
             _model.setUserPlayCard(null);
             
             // run the computer evaluation
-            PlayComputerHand();
+            PlayComputerHand(false);
 
             // reset the display
             UpdateDisplayFlags(true, false, false, false);
@@ -392,7 +392,7 @@ public class Controller extends CardGameFramework
 
    // don't know if this will stay since the code will require the play area buttons and some event
    //	based objects
-   private boolean PlayComputerHand()
+   private boolean PlayComputerHand(boolean userPlayFailed)
    {
       // TESTING TESTING
       //System.out.println("Computer plays a card");
@@ -496,6 +496,22 @@ public class Controller extends CardGameFramework
       {
          System.out.println("Computer couldn't play.");
          _model.addComputerPlayFail();
+         if(userPlayFailed)
+         {
+            // update the play panel display item to the selected button
+            Card newCard = getCardFromDeck();
+            _model.leftDeckButton = new JButton(GUICard.getIcon(newCard));
+            _model.leftDeckCard = newCard;
+            
+            newCard = getCardFromDeck();
+            _model.rightDeckButton = new JButton(GUICard.getIcon(newCard));
+            _model.rightDeckCard = newCard;
+            //System.out.println("Computer played card " + computerHand.inspectCard(i) + " at index " + i);
+            
+            // make sure button is visible
+            _model.rightDeckButton.setVisible(true);
+            
+         }
       }
       
       // reset the display
