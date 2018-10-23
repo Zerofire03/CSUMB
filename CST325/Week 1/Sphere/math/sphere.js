@@ -2,8 +2,8 @@
 
 
 var Sphere = function(origin, radius) {
-	this.origin = origin;
-	this.radius = radius;
+	this.origin = origin || new Vector3(0,0,0);
+	this.radius = radius || 1;
 
 	// todo - make sure origin and radius are replaced with default values if and only
 	//        if they are invalid(i.e. origin & radius should be Vector3) or undefined
@@ -12,6 +12,10 @@ var Sphere = function(origin, radius) {
 
 	this.raycast = function(ray) {
 		// todo determine whether the ray intersects this sphere and where
+		
+		//console.log(ray.direction);
+		var c = origin;
+		var raydir = ray.direction;
 		
 		// Recommended steps
 		// 1. review slides/book math
@@ -31,12 +35,12 @@ var Sphere = function(origin, radius) {
 		//              distance: 'a scalar containing the intersection distance from the ray origin'
 		//          }
 
-		var result = {
-			hit: ?,
-			point: ?,
-			normal: ?,
-			distance: ?
-		};
+		//var result = {
+		//	hit: ?,
+		//	point: ?,
+		//	normal: ?,
+		//	distance: ?
+		//};
 
 		return result;
 	}
