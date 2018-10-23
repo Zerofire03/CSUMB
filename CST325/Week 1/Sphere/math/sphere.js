@@ -13,33 +13,47 @@ var Sphere = function(origin, radius) {
 	this.raycast = function(ray) {
 		// todo determine whether the ray intersects this sphere and where
 		
-		
+		//Distance from ray origin to sphere center
 		var L = (ray.origin).subtract(origin);
+		
+		//Distance from potential point on sphere to 
 		var tc = (L).dot(ray.direction)
 		
-		//Check to see if ray intersects sphere
+		//Check to see if ray intersects sphere. If it doesn't return false
 		if(tc < 0)
 		{
 			var result = { hit: false, point: null };
 			return result;
 		}
-		//console.log(L.lengthSqr());
+		
+		//Solve for distance between ray path and center of sphere
 		var d = Math.sqrt(Math.pow(tc,2)-L.lengthSqr());
+		
+		//If distance is greater than radius, ray does not intersect sphere
 		if(d > radius)
 		{
 			var result = { hit: false, point: null };
 			return result;
 		}
 		
+		//Distance between point of intersection on sphere and d
 		var t1c = Math.sqrt(Math.pow(radius,2)-Math.pow(d,2));
+		
+		//Distance between ray origin and first potential intersection
 		var t1 = tc - t1c;
+		
+		//Distance between ray origin and second potential intersection
 		var t2 = tc + t1c;
 		//console.log((ray.origin).add((ray.direction).multiplyScalar(t1)));
 		//console.log((ray.origin).add((ray.direction).multiplyScalar(t2)));
+		
+		//Vector of first potential intersection
 		var p1 = (ray.origin).add((ray.direction).multiplyScalar(t1));
+		
+		//Vector of second potential intersection
 		var p2 = (ray.origin).add((ray.direction).multiplyScalar(t2));
-		console.log(p1);
-		console.log(p2);
+		//console.log(p1);
+		//console.log(p2);
 		
 		
 		var result = {
