@@ -14,9 +14,9 @@ var Sphere = function(origin, radius) {
 		// todo determine whether the ray intersects this sphere and where
 		
 		//Distance from ray origin to sphere center
-		var L = (ray.origin).subtract(origin);
+		var L = (origin).subtract(ray.origin);
 		
-		//Distance from potential point on sphere to 
+		//Distance from potential point on sphere to d
 		var tc = (L).dot(ray.direction)
 		
 		//Check to see if ray intersects sphere. If it doesn't return false
@@ -27,10 +27,11 @@ var Sphere = function(origin, radius) {
 		}
 		
 		//Solve for distance between ray path and center of sphere
-		var d = Math.sqrt(Math.pow(tc,2)-L.lengthSqr());
+		var d = Math.sqrt(L.dot(L)-Math.pow(tc,2));
+		//console.log(Math.sqrt(L.dot(L)-Math.pow(tc,2)));
 		
 		//If distance is greater than radius, ray does not intersect sphere
-		if(d > radius)
+		if(d > radius || d < 0)
 		{
 			var result = { hit: false, point: null };
 			return result;
