@@ -33,9 +33,11 @@ var Sphere = function(origin, radius) {
 		var d = Math.sqrt(L.dot(L)-Math.pow(tc,2));
 		console.log("d:", d);
 		
+		
 		//If distance is greater than radius, ray does not intersect sphere
 		if(d > radius || d < 0)
 		{
+			console.log("Radius: ", radius);
 			var result = { hit: false, point: null };
 			return result;
 		}
@@ -69,12 +71,25 @@ var Sphere = function(origin, radius) {
 		console.log("Normalized");
 		console.log(p1.normalized());
 		
-		var result = {
-			hit: true,
-			point: p1,
-			normal: p1.normalized(),
-			distance: t1
-		};
+		if(t1 < t2)
+		{
+			var result = {
+				hit: true,
+				point: p1,
+				normal: p1.normalized(),
+				distance: t1
+			};
+		}
+		else
+		{
+			var result = {
+				hit: true,
+				point: p2,
+				normal: p2.normalized(),
+				distance: t2
+			};
+		}
+		
 		
 		
 		// Recommended steps
