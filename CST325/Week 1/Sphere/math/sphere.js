@@ -35,7 +35,7 @@ var Sphere = function(origin, radius) {
 		//If distance is greater than radius, ray does not intersect sphere
 		if(d > radius || d < 0)
 		{
-			console.log("Radius: ", radius);
+			//console.log("Radius: ", radius);
 			var result = { hit: false, point: null };
 			return result;
 		}
