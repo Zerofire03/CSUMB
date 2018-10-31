@@ -40,11 +40,11 @@ var imageData = canvasContext.getImageData(0, 0, pixelsAcross, pixelsDown);
 var fov = 45;   // if this changes, your code should still work
 var fovRadians = fov * Math.PI/180; // todo -> convert degrees to radians
 
-var pixelWidth; // todo -> what's the size of a pixel from left to right?
-var pixelHalfWidth; // todo -> half of the pixel width
+var pixelWidth = 1 / (pixelsAcross * pixelScale); // todo -> what's the size of a pixel from left to right?
+var pixelHalfWidth = pixelWidth / 2; // todo -> half of the pixel width
 
 // How far away (scalar) the eye is from the image plane (see MV3202 guide for more info)
-var eyeDistance; // = todo -> hint: related to tangent and field of view (see slides)
+var eyeDistance = pixelsAcross/Math.tan(fovRadians); // = todo -> hint: related to tangent and field of view (see slides)
 // -----------
 // |         /
 // |        /
@@ -69,8 +69,8 @@ var up = new Vector3(0, 1, 0);
 // They also provide a "raycast" function that you can pass a ray to
 // in order to find intersection between the ray and the object
 
-var sphere; // todo = new Sphere(..., ...);
-var plane; // todo = new Plane(..., ...);
+var sphere = new Sphere(new Vector3(0,0,0), 0.2); // todo = new Sphere(..., ...);
+var plane = new Plane(new Vector3(0,1,0), new Vector3(0,-0.2,0)); // todo = new Plane(..., ...); var Plane = function(normal, validPoint, color, reflectivity)
 
 // end of raytracer setup ******************************************************
 
@@ -91,7 +91,7 @@ function generateRayForPixel(xPixelIndex, yPixelIndex) {
 // -----------------------------------------------------------------------------
 function setPixelColor(xPixelIndex, yPixelIndex, shadeOfGray /*[0,1]*/) {
 	var bytesAcross = (xPixelIndex * 4);
-	var bytesDown = yPixelIndex * 1024;
+	var bytesDown = yPixelIndex * (pixelsAcross * 4);
 	var index = (bytesDown) + bytesAcross;
 
 	imageData.data[index + 0] = shadeOfGray * 255;
