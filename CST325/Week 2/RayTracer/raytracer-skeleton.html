@@ -40,7 +40,7 @@ var imageData = canvasContext.getImageData(0, 0, pixelsAcross, pixelsDown);
 var fov = 45;   // if this changes, your code should still work
 var fovRadians = fov * Math.PI/180; // todo -> convert degrees to radians
 
-var pixelWidth = 1 / (pixelsAcross * pixelScale); // todo -> what's the size of a pixel from left to right?
+var pixelWidth = 3 / pixelsAcross; // todo -> what's the size of a pixel from left to right?
 var pixelHalfWidth = pixelWidth / 2; // todo -> half of the pixel width
 
 // How far away (scalar) the eye is from the image plane (see MV3202 guide for more info)
