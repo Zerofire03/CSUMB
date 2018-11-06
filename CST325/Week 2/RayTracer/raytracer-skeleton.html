@@ -115,27 +115,38 @@ function updateAndRender(timeElapsed) {
 			// Uncomment this once you've coded generateRayForPixel
 			var pixelRay = generateRayForPixel(xPixelIndex, yPixelIndex);
 
+
+
 			//The largest absolute value of the x component in our ray's direction
-			var maxValue = Math.sin(Math.sqrt(2)/4);
+			//var maxValue = Math.sin(Math.sqrt(2)/4);
 
 
-			setPixelColor(xPixelIndex, yPixelIndex, Math.abs(pixelRay.direction.x) / maxValue);
-			/*
+			//setPixelColor(xPixelIndex, yPixelIndex, Math.abs(pixelRay.direction.x) / maxValue);
+
 			// See if the ray intersects the sphere or the plane (or every object in our scene)
 			// Uncomment when your sphere or plane code is ready
 			var sphereResult = sphere.raycast(pixelRay);
-			var planeResult = plane.raycast(pixelRay);
+			//var planeResult = plane.raycast(pixelRay);
 
-			var hitAnything = (sphereResult.hit || planeResult.hit);
-
-			if (hitAnything) {
-				// determine  which hit object is the closest (in case there is more than 1 hit)
-				setPixelColor(xPixelIndex, yPixelIndex, 0.5); // middle gray
-			} else {
-				// we didn't hit anything, choose an appropriate backbround color
-				setPixelColor(xPixelIndex, yPixelIndex, 0.1); // dark gray
+			if(sphereResult)
+			{
+				setPixelColor(xPixelIndex, yPixelIndex, 0.8);
 			}
-			*/
+			else
+			{
+				setPixelColor(xPixelIndex, yPixelIndex, 0.1);
+			}
+
+			//var hitAnything = (sphereResult.hit || planeResult.hit);
+
+			//if (hitAnything) {
+				// determine  which hit object is the closest (in case there is more than 1 hit)
+			//	setPixelColor(xPixelIndex, yPixelIndex, 0.5); // middle gray
+			//} else {
+				// we didn't hit anything, choose an appropriate backbround color
+			//	setPixelColor(xPixelIndex, yPixelIndex, 0.1); // dark gray
+			//}
+
 		}
 	}
 
