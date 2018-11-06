@@ -44,7 +44,7 @@ var pixelWidth = 3 / pixelsAcross; // todo -> what's the size of a pixel from le
 var pixelHalfWidth = pixelWidth / 2; // todo -> half of the pixel width
 
 // How far away (scalar) the eye is from the image plane (see MV3202 guide for more info)
-var eyeDistance = pixelsAcross/Math.tan(fovRadians); // = todo -> hint: related to tangent and field of view (see slides)
+var eyeDistance = (pixelsAcross/2)/Math.tan(fovRadians); // = todo -> hint: related to tangent and field of view (see slides)
 // -----------
 // |         /
 // |        /
@@ -78,8 +78,13 @@ var plane = new Plane(new Vector3(0,1,0), new Vector3(0,-0.2,0)); // todo = new 
 // return a ray that goes from the eye point through the pixel at index (xPixelIndex, yPixelIndex)
 function generateRayForPixel(xPixelIndex, yPixelIndex) {
 
-	var pixelCoordinate; // = todo: calculate pixel position
-	var direction; // = vector from the eye to the pixel
+	//var pixelCoordinate = new Vector3((xPixelIndex * 4) + pixelHalfWidth, yPixelIndex * (pixelsAcross * 4) + pixelHalfWidth, 0); // = todo: calculate pixel position
+	//var pixelCoordinate = new Vector3(xPixelIndex + pixelHalfWidth, yPixelIndex + pixelHalfWidth, 0);
+	var xCoor = (pixelsAcross/2) * pixelWidth * xPixelIndex;
+	var yCoor = (pixelsDown/2) * pixelWidth * yPixelIndex;
+	var pixelCoordinate = new Vector3(xCoor, yCoor, 0);
+	var cloneEyeCoordinate = eyeCoordinate.clone();
+	var direction = cloneEyeCoordinate.subtract(pixelCoordinate); // = vector from the eye to the pixel
 
 	// Creates a ray that will automatically normalize the direction
 	// Uncomment this (the ray line of code) once you've calculated the pixelCoordinate in space and the
@@ -98,7 +103,10 @@ function setPixelColor(xPixelIndex, yPixelIndex, shadeOfGray /*[0,1]*/) {
 	imageData.data[index + 1] = shadeOfGray * 255;
 	imageData.data[index + 2] = shadeOfGray * 255;
 	imageData.data[index + 3] = 255;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 51eb6d737766363e98ba6e1a2c9991056ffc1d0f
 }
 
 // -----------------------------------------------------------------------------
@@ -109,22 +117,29 @@ function updateAndRender(timeElapsed) {
 		for (var xPixelIndex = 0; xPixelIndex < pixelsAcross; ++xPixelIndex) {
 
 			// Uncomment this once you've coded generateRayForPixel
-			//var pixelRay = generateRayForPixel(xPixelIndex, yPixelIndex);
+			var pixelRay = generateRayForPixel(xPixelIndex, yPixelIndex);
 
+			//The largest absolute value of the x component in our ray's direction
+			var maxValue = Math.sin(Math.sqrt(2)/4);
+
+
+			setPixelColor(xPixelIndex, yPixelIndex, Math.abs(pixelRay.direction.x) / maxValue);
+			/*
 			// See if the ray intersects the sphere or the plane (or every object in our scene)
 			// Uncomment when your sphere or plane code is ready
-			//var sphereResult = sphere.raycast(pixelRay);
-			//var planeResult = plane.raycast(pixelRay);
+			var sphereResult = sphere.raycast(pixelRay);
+			var planeResult = plane.raycast(pixelRay);
 
-			//var hitAnything = (sphereResult.hit || planeResult.hit);
+			var hitAnything = (sphereResult.hit || planeResult.hit);
 
-			//if (hitAnything) {
+			if (hitAnything) {
 				// determine  which hit object is the closest (in case there is more than 1 hit)
 				setPixelColor(xPixelIndex, yPixelIndex, 0.5); // middle gray
-			//} else {
+			} else {
 				// we didn't hit anything, choose an appropriate backbround color
 				setPixelColor(xPixelIndex, yPixelIndex, 0.1); // dark gray
-			//}
+			}
+			*/
 		}
 	}
 
