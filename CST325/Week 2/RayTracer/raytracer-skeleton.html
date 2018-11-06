@@ -99,13 +99,6 @@ function setPixelColor(xPixelIndex, yPixelIndex, shadeOfGray /*[0,1]*/) {
 	imageData.data[index + 2] = shadeOfGray * 255;
 	imageData.data[index + 3] = 255;
 
-	// feel free to delete this when you are done implementing this function
-
-	if (index == undefined) {
-		alert('need to calculate the image data index for setting pixel color');
-		throw 'error';
-	}
-
 }
 
 // -----------------------------------------------------------------------------
