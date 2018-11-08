@@ -106,6 +106,8 @@ function setPixelColor(xPixelIndex, yPixelIndex, shadeOfGray /*[0,1]*/) {
 
 // -----------------------------------------------------------------------------
 function updateAndRender(timeElapsed) {
+	var seconds = timeElapsed * 0.001;
+	var lightSource = new Vector3(Math.cos(seconds) * 0.5, 0, Math.sin(seconds) * 0.5);
 	// Go through every pixel
 	for (var yPixelIndex = 0; yPixelIndex < pixelsDown; ++yPixelIndex) {
 
@@ -127,29 +129,44 @@ function updateAndRender(timeElapsed) {
 			var hitAnything = (sphereResult.hit || planeResult.hit);
 
 			//Light Source
-			var lightSource = new Vector3(1, 0, 0);
+			//var lightSource = new Vector3(1, 0, 0);
 
-			//Calculate normal vector to sphere at point of intersection
-			var normalSphere = new Vector3((xPixelIndex-sphere.origin.x)/sphere.radius,(yPixelIndex-sphere.origin.y)/sphere.radius, sphere.origin.z/sphere.radius);
-
-			//Calcuate light vector to point of intersection
-			var lightVector = lightSource.clone().subtract(new Vector3(xPixelIndex,yPixelIndex,0));
-
-			// Get the cos(theta) between the 2 vectors
-			var normalDotLight = Math.acos(normalSphere.dot(lightVector)/(normalSphere.length() * lightVector.length())); // todo = your calculation
-			//setPixelColor(xPixelIndex, yPixelIndex, normalDotLight);
-
-
-			if (hitAnything)
+			/*
+			if(hitAnything)
 			{
-
 				if ( sphereResult.distance < planeResult.distance || sphereResult.hit)
 				{
+					setPixelColor(xPixelIndex, yPixelIndex, 0.8); // light gray
+				}
+				else
+				{
+					setPixelColor(xPixelIndex, yPixelIndex, 0.5); // middle gray
+				}
+			}
+			else
+			{
+				setPixelColor(xPixelIndex, yPixelIndex, 0.1); //dark gray
+			}
+			*/
+			
+			if (hitAnything)
+			{
+				if ( sphereResult.distance < planeResult.distance || sphereResult.hit)
+				{
+					// Get the cos(theta) between the 2 vectors
+					var aVector = sphereResult.normal
+					//var bVector = (sphereResult.point).clone().subtract(lightSource).normalized();
+					var bVector = (lightSource).clone().subtract(sphereResult.point).normalized();
+					//var normalDotLight = (sphereResult.normal).dot((sphereResult.point.clone().subtract(lightSource)).normalized()) / ((sphereResult.normal).length() * ((sphereResult.point.clone().subtract(lightSource)).normalized().length())); // todo = your calculation
+					var normalDotLight = aVector.dot(bVector) / (aVector.length() * bVector.length());
 					//setPixelColor(xPixelIndex, yPixelIndex, 0.8); // light gray
 					setPixelColor(xPixelIndex, yPixelIndex, normalDotLight);
 				}
 				else
 				{
+					var aVector = planeResult.normal
+					var bVector = (lightSource).clone().subtract(planeResult.point).normalized();
+					var normalDotLight = aVector.dot(bVector) / (aVector.length() * bVector.length());
 					//setPixelColor(xPixelIndex, yPixelIndex, 0.5); // middle gray
 					setPixelColor(xPixelIndex, yPixelIndex, normalDotLight);
 				}
@@ -158,7 +175,7 @@ function updateAndRender(timeElapsed) {
 			{
 				setPixelColor(xPixelIndex, yPixelIndex, 0.1); //dark gray
 			}
-
+			
 		}
 	}
 
