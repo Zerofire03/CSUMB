@@ -127,27 +127,6 @@ function updateAndRender(timeElapsed) {
 			var planeResult = plane.raycast(pixelRay);
 			
 			var hitAnything = (sphereResult.hit || planeResult.hit);
-
-			//Light Source
-			//var lightSource = new Vector3(1, 0, 0);
-
-			/*
-			if(hitAnything)
-			{
-				if ( sphereResult.distance < planeResult.distance || sphereResult.hit)
-				{
-					setPixelColor(xPixelIndex, yPixelIndex, 0.8); // light gray
-				}
-				else
-				{
-					setPixelColor(xPixelIndex, yPixelIndex, 0.5); // middle gray
-				}
-			}
-			else
-			{
-				setPixelColor(xPixelIndex, yPixelIndex, 0.1); //dark gray
-			}
-			*/
 			
 			if (hitAnything)
 			{
