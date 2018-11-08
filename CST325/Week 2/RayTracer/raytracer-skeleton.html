@@ -157,11 +157,7 @@ function updateAndRender(timeElapsed) {
 					var aVector = sphereResult.normal
 					//var bVector = (sphereResult.point).clone().subtract(lightSource).normalized();
 					var bVector = (lightSource).clone().subtract(sphereResult.point).normalized();
-<<<<<<< HEAD
-
-=======
 					//var normalDotLight = (sphereResult.normal).dot((sphereResult.point.clone().subtract(lightSource)).normalized()) / ((sphereResult.normal).length() * ((sphereResult.point.clone().subtract(lightSource)).normalized().length())); // todo = your calculation
->>>>>>> parent of 7c58433... Double shadow currently
 					var normalDotLight = aVector.dot(bVector) / (aVector.length() * bVector.length());
 					//setPixelColor(xPixelIndex, yPixelIndex, 0.8); // light gray
 					setPixelColor(xPixelIndex, yPixelIndex, normalDotLight);
@@ -171,31 +167,8 @@ function updateAndRender(timeElapsed) {
 					var aVector = planeResult.normal
 					var bVector = (lightSource).clone().subtract(planeResult.point).normalized();
 					var normalDotLight = aVector.dot(bVector) / (aVector.length() * bVector.length());
-<<<<<<< HEAD
-
-					var sphereResult2 = sphere.raycast(new Ray(planeResult.point, bVector));
-
-					if(sphereResult2.hit)
-					{
-						if(sphereResult2.distance <= bVector.length())
-						{
-							//setPixelColor(xPixelIndex, yPixelIndex, normalDotLight);
-							setPixelColor(xPixelIndex, yPixelIndex, 0);
-						}
-						else
-						{
-							setPixelColor(xPixelIndex, yPixelIndex, normalDotLight);
-						}
-					}
-					else
-					{
-							setPixelColor(xPixelIndex, yPixelIndex, normalDotLight);
-						
-					}
-=======
 					//setPixelColor(xPixelIndex, yPixelIndex, 0.5); // middle gray
 					setPixelColor(xPixelIndex, yPixelIndex, normalDotLight);
->>>>>>> parent of 7c58433... Double shadow currently
 				}
 			} 
 			else
