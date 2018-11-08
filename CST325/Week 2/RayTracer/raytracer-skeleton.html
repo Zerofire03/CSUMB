@@ -139,8 +139,6 @@ function updateAndRender(timeElapsed) {
 					var aVector = sphereResult.normal
 					var bVector = (lightSource).clone().subtract(sphereResult.point).normalized();
 
-					var bVectorNegate = bVector.clone().negate();
-
 					var normalDotLight = aVector.dot(bVector) / (aVector.length() * bVector.length());
 					setPixelColor(xPixelIndex, yPixelIndex, normalDotLight);
 				}
@@ -150,24 +148,20 @@ function updateAndRender(timeElapsed) {
 					var bVector = (lightSource).clone().subtract(planeResult.point).normalized();
 					var normalDotLight = aVector.dot(bVector) / (aVector.length() * bVector.length());
 
-					var bVectorNegate = bVector.clone().negate();
-
 					var sphereResult2 = sphere.raycast(new Ray(planeResult.point, bVector));
 
 					if(!sphereResult2.hit)
 					{
-						setPixelColor(xPixelIndex, yPixelIndex, normalDotLight);
+						if(!(sphereResult2.distance < bVector.length()))
+						{
+							setPixelColor(xPixelIndex, yPixelIndex, normalDotLight);
+						}
+						
 					}
 					else
 					{
-						setPixelColor(xPixelIndex, yPixelIndex, 0.1);
+						setPixelColor(xPixelIndex, yPixelIndex, 0);
 					}
-					
-					
-					
-
-					
-					
 				}
 			} 
 			else
