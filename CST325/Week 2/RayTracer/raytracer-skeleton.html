@@ -130,24 +130,6 @@ function updateAndRender(timeElapsed) {
 
 			//Light Source
 			//var lightSource = new Vector3(1, 0, 0);
-
-			/*
-			if(hitAnything)
-			{
-				if ( sphereResult.distance < planeResult.distance || sphereResult.hit)
-				{
-					setPixelColor(xPixelIndex, yPixelIndex, 0.8); // light gray
-				}
-				else
-				{
-					setPixelColor(xPixelIndex, yPixelIndex, 0.5); // middle gray
-				}
-			}
-			else
-			{
-				setPixelColor(xPixelIndex, yPixelIndex, 0.1); //dark gray
-			}
-			*/
 			
 			if (hitAnything)
 			{
@@ -155,11 +137,11 @@ function updateAndRender(timeElapsed) {
 				{
 					// Get the cos(theta) between the 2 vectors
 					var aVector = sphereResult.normal
-					//var bVector = (sphereResult.point).clone().subtract(lightSource).normalized();
 					var bVector = (lightSource).clone().subtract(sphereResult.point).normalized();
-					//var normalDotLight = (sphereResult.normal).dot((sphereResult.point.clone().subtract(lightSource)).normalized()) / ((sphereResult.normal).length() * ((sphereResult.point.clone().subtract(lightSource)).normalized().length())); // todo = your calculation
+
+					var bVectorNegate = bVector.clone().negate();
+
 					var normalDotLight = aVector.dot(bVector) / (aVector.length() * bVector.length());
-					//setPixelColor(xPixelIndex, yPixelIndex, 0.8); // light gray
 					setPixelColor(xPixelIndex, yPixelIndex, normalDotLight);
 				}
 				else
@@ -167,8 +149,25 @@ function updateAndRender(timeElapsed) {
 					var aVector = planeResult.normal
 					var bVector = (lightSource).clone().subtract(planeResult.point).normalized();
 					var normalDotLight = aVector.dot(bVector) / (aVector.length() * bVector.length());
-					//setPixelColor(xPixelIndex, yPixelIndex, 0.5); // middle gray
-					setPixelColor(xPixelIndex, yPixelIndex, normalDotLight);
+
+					var bVectorNegate = bVector.clone().negate();
+
+					var sphereResult2 = sphere.raycast(new Ray(planeResult.point, bVector));
+
+					if(!sphereResult2.hit)
+					{
+						setPixelColor(xPixelIndex, yPixelIndex, normalDotLight);
+					}
+					else
+					{
+						setPixelColor(xPixelIndex, yPixelIndex, 0.1);
+					}
+					
+					
+					
+
+					
+					
 				}
 			} 
 			else
