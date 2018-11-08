@@ -150,17 +150,22 @@ function updateAndRender(timeElapsed) {
 
 					var sphereResult2 = sphere.raycast(new Ray(planeResult.point, bVector));
 
-					if(!sphereResult2.hit)
+					if(sphereResult2.hit)
 					{
-						if(!(sphereResult2.distance < bVector.length()))
+						if(sphereResult2.distance <= bVector.length())
+						{
+							//setPixelColor(xPixelIndex, yPixelIndex, normalDotLight);
+							setPixelColor(xPixelIndex, yPixelIndex, 0);
+						}
+						else
 						{
 							setPixelColor(xPixelIndex, yPixelIndex, normalDotLight);
 						}
-						
 					}
 					else
 					{
-						setPixelColor(xPixelIndex, yPixelIndex, 0);
+							setPixelColor(xPixelIndex, yPixelIndex, normalDotLight);
+						
 					}
 				}
 			} 
