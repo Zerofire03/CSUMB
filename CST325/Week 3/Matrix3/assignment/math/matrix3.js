@@ -125,7 +125,17 @@ var Matrix3 = function() {
 	this.determinant = function() {
 		// todo
 		// compute and return the determinant for 'this' matrix
-		return Math.Infinity; // should be the determinant
+		var determinant = 0;
+		console.log("")
+
+
+
+		var firstMinor = this.elements[0]*((this.elements[4] * this.elements[8]) - (this.elements[5] * this.elements[7]));
+		var secondMinor = this.elements[1]*((this.elements[5] * this.elements[6]) - (this.elements[3] * this.elements[8]));
+		var thirdMinor = this.elements[2]*((this.elements[3] * this.elements[7]) - (this.elements[4] * this.elements[6]));
+		determinant = firstMinor + secondMinor + thirdMinor;
+
+		return determinant; // should be the determinant
 	};
 
 	// -------------------------------------------------------------------------
@@ -133,6 +143,7 @@ var Matrix3 = function() {
 		// todo
 		// modify 'this' matrix so that it becomes its transpose
 		var elementHolder = 0;
+		console.log("Before transpose")
 		this.log();
 		elementHolder = this.elements[1];
 	//	console.log(elementHolder);
@@ -150,8 +161,9 @@ var Matrix3 = function() {
 		this.elements[5] = this.elements[7];
 		this.elements[7] = elementHolder;
 		
+		console.log("After Transpose");
 		this.log();
-	//	console.log("End of Transpose");
+		
 		return this;
 	};
 
@@ -169,8 +181,7 @@ var Matrix3 = function() {
 					'\n ' + e[0]  + ', ' + e[1]  + ', ' + e[2]  +
 			        '\n ' + e[3]  + ', ' + e[4]  + ', ' + e[5]  +
 			        '\n ' + e[6]  + ', ' + e[7]  + ', ' + e[8] +
-			        '\n ' + e[9] + ', ' + e[10] + ', ' + e[11] +
-			        '\n]'
+			        '\n] '
 		);
 
 		return this;
