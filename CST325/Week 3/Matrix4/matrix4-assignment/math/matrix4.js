@@ -45,6 +45,17 @@ var Matrix4 = function() {
         // todo
         // first convert to radians
         // set "this" matrix to be a rotation around the x-axis by angle degrees
+        var radians = degrees * Math.PI / 180;
+
+		var e = this.elements;
+		var c = Math.cos(radians);
+		var s = Math.sin(radians);
+
+		e[0] = 1;   e[1] = 0;   e[2] = 0;   e[3] = 0;
+		e[4] = 0;   e[5] = c;   e[6] = -s;  e[7] = 0;
+		e[8] = 0;   e[9] = s;   e[10] = c;  e[11] = 0;
+		e[12] = 0;  e[13] = 0;  e[14] = 0;  e[15] = 1;
+
         return this;
     };
 
@@ -53,6 +64,16 @@ var Matrix4 = function() {
         // todo
         // first convert to radians
         // set "this" matrix to be a rotation around the y-axis by angle degrees
+        var radians = degrees * Math.PI / 180;
+
+		var e = this.elements;
+		var c = Math.cos(radians);
+		var s = Math.sin(radians);
+
+		e[0] = c;   e[1] = 0;   e[2] = s;   e[3] = 0;
+		e[4] = 0;   e[5] = 1;   e[6] = 0;   e[7] = 0;
+		e[8] = -s;  e[9] = 0;   e[10] = c;  e[11] = 0;
+		e[12] = 0;  e[13] = 0;  e[14] = 0;  e[15] = 1;
         return this;
     };
 
@@ -61,6 +82,17 @@ var Matrix4 = function() {
         // todo
         // first convert to radians
         // set "this" matrix to be a rotation around the z-axis by angle degrees
+        var radians = degrees * Math.PI / 180;
+
+		var e = this.elements;
+		var c = Math.cos(radians);
+		var s = Math.sin(radians);
+
+		e[0] = c;   e[1] = -s;  e[2] = 0;   e[3] = 0;
+		e[4] = s;   e[5] = c;   e[6] = 0;   e[7] = 0;
+		e[8] = 0;   e[9] = 0;   e[10] = 1;  e[11] = 0;
+		e[12] = 0;  e[13] = 0;  e[14] = 0;  e[15] = 1;
+
         return this;
     };
 
@@ -73,10 +105,14 @@ var Matrix4 = function() {
         // - arg1 is a Vector3 (arg2 and arg3 will be undefined)
         // - arg1 is x, arg2 is y, and arg3 is zd
         if (arg1 instanceof Vector3) {
-
-        } else {
-
-        }
+			this.elements[3] += arg1.x;
+			this.elements[7] += arg1.y;
+			this.elements[11] += arg1.z;
+		} else {
+			this.elements[3] += arg1;
+			this.elements[7] += arg2;
+			this.elements[11] += arg3;
+		}
 
         return this;
     }
