@@ -1,0 +1,367 @@
+<html>
+<head>
+    <script src="../math/vector3.js"></script>
+    <script src="../math/matrix4.js"></script>
+    <script src="test.js"></script>
+<script>
+
+// If any test fails this will be false
+var reporter = new TestReporter();
+
+//-----------------------------------------------------------------------------
+function testMatrix3() {
+    // Tests for your part of the code
+    testTranslation();
+    testRotationZ();
+    testRotationY();
+    testRotationX();
+
+    // uncomment below if doing the bonus
+    // testPerspectiveProjection();
+
+    reporter.reportFinalResults();
+}
+
+//-----------------------------------------------------------------------------
+function testTranslation() {
+    reporter.reportTestStart("translation");
+
+    try {
+        var m1 = new Matrix4();
+        var v1 = new Vector3(1, 2, 3);
+        var expectedResult1 = new Matrix4().set(
+            1, 0, 0, 1,
+            0, 1, 0, 2,
+            0, 0, 1, 3,
+            0, 0, 0, 1
+        );
+
+        m1.translate(v1);
+        assert(matrix4Equal(m1, expectedResult1), "testTranslation1");
+
+        var expectedResult2 = new Matrix4().set(
+            1, 0, 0, 2,
+            0, 1, 0, 4,
+            0, 0, 1, 6,
+            0, 0, 0, 1
+        );
+
+        m1.translate(1, 2, 3);
+
+        assert(matrix4Equal(m1, expectedResult2), "testTranslation2");
+        reporter.reportTestEnd(true);
+    } catch(err) {
+        reporter.reportTestEnd(false);
+    }
+}
+
+//-----------------------------------------------------------------------------
+function testRotationZ() {
+    reporter.reportTestStart("rotation z");
+
+    try {
+        var rotation = new Matrix4().setRotationZ(90);
+
+        var expectedResult = new Matrix4().set(
+            0, -1, 0, 0,
+            1, 0, 0, 0,
+            0, 0, 1, 0,
+            0, 0, 0, 1
+        );
+
+        assert(matrix4Equal(rotation, expectedResult), "testRotationZ");
+        reporter.reportTestEnd(true);
+    } catch(err) {
+        reporter.reportTestEnd(false);
+    }
+}
+
+//-----------------------------------------------------------------------------
+function testRotationY() {
+    reporter.reportTestStart("rotation y");
+
+    try {
+        var rotation = new Matrix4().setRotationY(90);
+
+        var expectedResult = new Matrix4().set(
+            0, 0, 1, 0,
+            0, 1, 0, 0,
+            -1, 0, 0, 0,
+            0, 0, 0, 1
+        );
+
+        assert(matrix4Equal(rotation, expectedResult), "testRotationY");
+        reporter.reportTestEnd(true);
+    } catch(err) {
+        reporter.reportTestEnd(false);
+    }
+}
+
+//-----------------------------------------------------------------------------
+function testRotationX() {
+    reporter.reportTestStart("rotation x");
+
+    try {
+        var rotation = new Matrix4().setRotationX(90);
+
+        var expectedResult = new Matrix4().set(
+            1, 0, 0, 0,
+            0, 0, -1, 0,
+            0, 1, 0, 0,
+            0, 0, 0, 1
+        );
+
+        assert(matrix4Equal(rotation, expectedResult), "testRotationX");
+        reporter.reportTestEnd(true);
+    } catch(err) {
+        reporter.reportTestEnd(false);
+    }
+}
+
+//-----------------------------------------------------------------------------
+function testPerspectiveProjection() {
+    reporter.reportTestStart("rotation z");
+
+    try {
+        var perspective = new Matrix4().setPerspective(90, 2, 1, 100);
+        var m33 = -1.0202020406723022;
+        var m34 = -2.0202019214630127;
+        var expectedResult = new Matrix4().set(
+            0.5, 0, 0, 0,
+            0, 1, 0, 0,
+            0, 0, m33, m34,
+            0, 0, -1, 0
+        );
+
+        assert(matrix4Equal(perspective, expectedResult), "testPerspectiveProjection");
+        reporter.reportTestEnd(true);
+    } catch(err) {
+        reporter.reportTestEnd(false);
+    }
+}
+
+//-----------------------------------------------------------------------------
+function testDefaultValues() {
+    reporter.reportTestStart("default values");
+
+    try {
+        // manually creating identity matrix for comparison
+        var identity = new Matrix4();
+        for (var i = 0; i < 16; ++i) {
+            identity.elements[i] = (i % 4 == Math.floor(i / 4)) ? 1 : 0;
+        }
+
+        var m1 = new Matrix4();
+
+        assert(matrix4Equal(m1, identity), "default values");
+        reporter.reportTestEnd(true);
+    } catch(err) {
+        reporter.reportTestEnd(false);
+    }
+}
+
+//-----------------------------------------------------------------------------
+function testClone() {
+    reporter.reportTestStart("clone");
+
+    try {
+        var m1 = new Matrix4().set(
+            2, 4, 6, 8,
+            10, 12, 14, 16,
+            18, 20, 22, 24,
+            26, 28, 32, 36
+        );
+
+        var m2 = m1.clone();
+
+        assert(m1 != m2, "clone should return a new instance");
+        assert(matrix4Equal(m1, m2), "clone values should match the original");
+        reporter.reportTestEnd(true);
+    } catch(err) {
+        reporter.reportTestEnd(false);
+    }
+}
+
+//-----------------------------------------------------------------------------
+function testSet() {
+    reporter.reportTestStart("set");
+
+    try {
+        var m1 = new Matrix4();
+
+        for (var i = 0; i < 16; ++i) {
+            m1.elements[i] = (i + 1) * 2;
+        }
+
+        var m2 = new Matrix4().set(
+            2, 4, 6, 8,
+            10, 12, 14, 16,
+            18, 20, 22, 24,
+            26, 28, 30, 32
+        );
+
+        assert(matrix4Equal(m1, m2), "matrix set");
+        reporter.reportTestEnd(true);
+    } catch(err) {
+        reporter.reportTestEnd(false);
+    }
+}
+
+
+//-----------------------------------------------------------------------------
+function testCopy() {
+    reporter.reportTestStart("copy");
+
+    try {
+        var m1 = new Matrix4().set(
+            9, 8, 7, 6,
+            6, 5, 4, 3,
+            3, 2, 1, 0,
+            1, 2, 3, 4
+        );
+
+        var m2 = new Matrix4().copy(m1);
+
+        assert(m1 != m2, "copy should only copy values");
+        assert(matrix4Equal(m1, m2), "values should be equal in a matrix copy");
+        reporter.reportTestEnd(true);
+    } catch(err) {
+        reporter.reportTestEnd(false);
+    }
+}
+
+//-----------------------------------------------------------------------------
+function testIdentity() {
+    reporter.reportTestStart("identity");
+
+    try {
+        var identity = new Matrix4();
+        for (var i = 0; i < 16; ++i) {
+            identity.elements[i] = (i % 4 == Math.floor(i / 4)) ? 1 : 0;
+        }
+
+        var m1 = new Matrix4().set(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
+        m1.identity();
+
+        assert(matrix4Equal(m1, identity), "matrix should be identity");
+        reporter.reportTestEnd(true);
+    } catch(err) {
+        reporter.reportTestEnd(false);
+    }
+}
+
+//-----------------------------------------------------------------------------
+function testMultiplyScalar() {
+    reporter.reportTestStart("multiply scalar");
+
+    try {
+        var m1 = new Matrix4().set(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
+        m1.multiplyScalar(2);
+
+        for (var i = 0; i < 16; ++i) {
+            assert(floatEqual(m1.elements[i], (i + 1) * 2), "scalar-matrix multiplication");
+        }
+
+        reporter.reportTestEnd(true);
+    } catch(err) {
+        reporter.reportTestEnd(false);
+    }
+}
+
+//-----------------------------------------------------------------------------
+function testMultiplyRightSide() {
+    reporter.reportTestStart("multiply right side");
+
+    try {
+        var matRight = new Matrix4().set(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
+        var m1 = new Matrix4().set(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
+        var expectedResult = new Matrix4().set(62, 68, 74, 80, 174, 196, 218, 240, 286, 324, 362, 400, 398, 452, 506, 560);
+
+        m1.multiplyRightSide(matRight);
+
+        assert(matrix4Equal(m1, expectedResult), "matrix multiply from right side");
+        reporter.reportTestEnd(true);
+    } catch(err) {
+        reporter.reportTestEnd(false);
+    }
+}
+
+//-----------------------------------------------------------------------------
+function testDeterminant() {
+    reporter.reportTestStart("determinant");
+
+    try {
+        var m1 = new Matrix4().set(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
+        var det = m1.determinant();
+
+        assert(floatEqual(det, 0), "determinant of linearly dependent basis vectors should be 0");
+        reporter.reportTestEnd(true);
+    } catch(err) {
+        reporter.reportTestEnd(false);
+    }
+}
+
+//-----------------------------------------------------------------------------
+function testTranspose() {
+    reporter.reportTestStart("transpose");
+
+    try {
+        var m1 = new Matrix4().set(
+            10, 20, 30, 40,
+            50, 60, 70, 80,
+            60, 70, 80, 90,
+            91, 92, 93, 94
+        );
+
+        var m2 = m1.clone();
+        m1.transpose();
+
+        for (var i = 0; i < 16; ++i) {
+            var row = Math.floor(i / 4);
+            var col = i % 4;
+            assert(floatEqual(m1.getElement(row, col), m2.getElement(col, row)), "tranpose should reflect around the diagonal");
+        }
+
+        reporter.reportTestEnd(true);
+    } catch(err) {
+        reporter.reportTestEnd(false);
+    }
+}
+
+//-----------------------------------------------------------------------------
+function testInverse() {
+    // This test is here for completeness-sake, you are not expected to have implemented this
+    reporter.reportTestStart("inverse");
+
+    try {
+        var m1 = new Matrix4().set(
+            1, 2, 2, 2,
+            1, 0, 0, 1,
+            1, 0, 0, 0,
+            1, 0, 1, 0
+        );
+        m1.inverse();
+
+        var expectedInverse = new Matrix4().set(
+            0,   0,    1,  0,
+            0.5, -1, 1.5, -1,
+            0,    0,  -1,  1,
+            0,    1,  -1,   0
+        );
+
+        assert(matrix4Equal(m1, expectedInverse), "inverse should match the 'expected' values");
+        reporter.reportTestEnd(true);
+    } catch(err) {
+        reporter.reportTestEnd(false);
+    }
+}
+
+
+</script>
+
+</head>
+
+<body onload="testMatrix3()">
+</body>
+
+</html>
