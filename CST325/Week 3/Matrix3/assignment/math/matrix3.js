@@ -127,7 +127,7 @@ var Matrix3 = function() {
 		// todo
 		// compute and return the determinant for 'this' matrix
 		var determinant = 0;
-		console.log("")
+		
 
 
 
@@ -173,12 +173,12 @@ var Matrix3 = function() {
 		// todo
 		var determinant = this.determinant();
 		var inbetweenMatrix = this.inverseStep();
-		console.log("After inverseStep");
-		inbetweenMatrix.log();
-		console.log(1/determinant + " 1/determinant");
+		//console.log("After inverseStep");
+		//inbetweenMatrix.log();
+		//console.log(1/determinant + " 1/determinant");
 		
 		inbetweenMatrix.multiplyScalar(1/determinant);
-		inbetweenMatrix.log();
+		//inbetweenMatrix.log();
 		this.copy(inbetweenMatrix);
 		
 	
@@ -205,9 +205,9 @@ var Matrix3 = function() {
 		indexEight = -1 * indexEight;
 		
 		returnMatrix.set(indexOne,indexTwo,indexThree,indexFour,indexFive,indexSix,indexSeven,indexEight,indexNine);
-		returnMatrix.log();
+		//returnMatrix.log();
 		returnMatrix.transpose();
-		returnMatrix.log();
+		//returnMatrix.log();
 		return returnMatrix;
 
 
