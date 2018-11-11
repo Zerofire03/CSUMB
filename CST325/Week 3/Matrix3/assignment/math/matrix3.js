@@ -144,8 +144,8 @@ var Matrix3 = function() {
 		// todo
 		// modify 'this' matrix so that it becomes its transpose
 		var elementHolder = 0;
-		console.log("Before transpose")
-		this.log();
+		//console.log("Before transpose")
+		//this.log();
 		elementHolder = this.elements[1];
 	//	console.log(elementHolder);
 	//	console.log(this.elements[3] +" Element 3 " + this.elements[1] + " Element 1");
@@ -162,8 +162,8 @@ var Matrix3 = function() {
 		this.elements[5] = this.elements[7];
 		this.elements[7] = elementHolder;
 		
-		console.log("After Transpose");
-		this.log();
+		//console.log("After Transpose");
+		//this.log();
 		
 		return this;
 	};
@@ -171,8 +171,46 @@ var Matrix3 = function() {
 	// -------------------------------------------------------------------------
 	this.inverse = function() {
 		// todo
+		var determinant = this.determinant();
+		var inbetweenMatrix = this.inverseStep();
+		console.log("After inverseStep");
+		inbetweenMatrix.log();
+		console.log(1/determinant + " 1/determinant");
+		
+		inbetweenMatrix.multiplyScalar(1/determinant);
+		inbetweenMatrix.log();
+		this.copy(inbetweenMatrix);
+		
+	
+
+
 		// modify 'this' matrix so that it becomes its inverse
 		return this;
+	};
+
+	this.inverseStep = function(){
+		var returnMatrix = new Matrix3();
+		var indexOne = this.elements[4] * this.elements[0] - this.elements[5] * this.elements[7];
+		var indexTwo = this.elements[3] * this.elements[8] - this.elements[5] * this.elements[6];
+		var indexThree = this.elements[3] * this.elements[7] - this.elements[4] * this.elements[6];
+		var indexFour = this.elements[1] * this.elements[8] - this.elements[2] * this.elements[7];
+		var indexFive = this.elements[0] * this.elements[8] - this.elements[2] * this.elements[6];
+		var indexSix = this.elements[0] * this.elements[7] - this.elements[1] * this.elements[6];
+		var indexSeven = this.elements[1] * this.elements[5] - this.elements[2] * this.elements[4];
+		var indexEight = this.elements[0] * this.elements[5] - this.elements[2] * this.elements[3];
+		var indexNine = this.elements[0] * this.elements[4] - this.elements[1] * this.elements[3];
+		indexTwo = -1 * indexTwo;
+		indexFour = -1 * indexFour;
+		indexSix = -1 * indexSix;
+		indexEight = -1 * indexEight;
+		
+		returnMatrix.set(indexOne,indexTwo,indexThree,indexFour,indexFive,indexSix,indexSeven,indexEight,indexNine);
+		returnMatrix.log();
+		returnMatrix.transpose();
+		returnMatrix.log();
+		return returnMatrix;
+
+
 	};
 
 	// -------------------------------------------------------------------------
