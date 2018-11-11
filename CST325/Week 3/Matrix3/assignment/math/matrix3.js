@@ -56,7 +56,8 @@ var Matrix3 = function() {
 	// -------------------------------------------------------------------------
 	this.getElement = function(row, col) {
 		// todo
-		var returnElement = (3 * row) + col;
+		var returnElement = this.elements[(3 * row) + col];
+		//console.log(row + " row " + " col " + col);
 		// use the row and col to get the proper index into the 1d element array and return it
 		// return this.elements[/*index computed from row and col*/];
 		
