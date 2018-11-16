@@ -39,6 +39,35 @@
     }
 
 
+    function createShaders() {
+        // Get the objects representing individual shaders
+
+        // todo get access to the shader source code text and compile
+        var vertexShaderText = document.getElementById("webgl-canvas").textContent;
+        var vertexShader = createCompiledShader(vertexShaderText, gl.VERTEX_SHADER);
+
+        var fragmentShaderText = document.getElementById("webgl-canvas").textContent;
+        var fragmentShader = createCompiledShader(fragmentShaderText, gl.FRAGMENT_SHADER);
+    }
+
+
+
+    function createCompiledShader(shaderText, shaderType) {
+        var shader = gl.createShader(shaderType);
+
+        gl.shaderSource(shader, shaderText);
+        gl.compileShader(shader);
+
+        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+            alert(gl.getShaderInfoLog(shader));
+            console.log(gl.getShaderInfoLog(shader));
+            return null;
+        }
+        return shader;
+    }
+
+
+
     // -------------------------------------------------------------------------
     function updateAndRender() {
         requestAnimationFrame(updateAndRender);
