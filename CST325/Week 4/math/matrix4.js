@@ -119,9 +119,22 @@ var Matrix4 = function() {
 
     // -------------------------------------------------------------------------
     this.setPerspective = function(fovy, aspect, near, far) {
-        // +5 bonus points for this
-        // set "this" matrix to be a perspective projection as described in class
-        return this;
+        var fovyRads = (Math.PI / 180) * fovy;
+		var t = near * Math.tan(fovyRads / 2);
+		var r = t * aspect;
+
+		// lazy
+		this.identity();
+
+		var e = this.elements;
+		e[0] = near / r;
+		e[5] = near / t;
+		e[10] = -(far + near) / (far - near);
+		e[11] = (-2 * near * far) / (far - near);
+		e[14] = -1;
+		e[15] = 0; // easy to forget this one (that lazy identity call...)
+
+		return this;
     };
 
     // -------------------------------------------------------------------------

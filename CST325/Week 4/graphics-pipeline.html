@@ -68,6 +68,10 @@
     // the shader that will be used by each piece of geometry (they could each use their own shader but in this case it will be the same)
     var shaderProgram;
 
+    //Start time of animation
+    var startTime = new Date();
+    var startSeconds = startTime.getSeconds();
+
     // -------------------------------------------------------------------------
     function initializeAndStartRendering() {
         initGL();
@@ -238,7 +242,9 @@
         gl.clearColor(0.707, 0.707, 1, 1.0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-        // renderTriangle(0);
+        var now = new Date();
+        //renderTriangle(now.getSeconds() - startSeconds);
+        renderTriangle(0);
         // renderLines();
     }
 
@@ -249,10 +255,14 @@
         var degrees = secondsElapsedSinceStart * 60;
 
         // todo update the triangle geometry world matrix here (used to place the triangle into world space)
+        triangleGeometry.worldMatrix.identity();
+        //triangleGeometry.worldMatrix.setRotationY(degrees);
+        triangleGeometry.worldMatrix.translate(0,0,-7);
         // todo set view matrix to identity
         viewMatrix.identity();
         // todo set the projection matrix using values from online guide
-        projectionMatrix.translate(0,0,-7);
+        //projectionMatrix.setPerspective(45, 1.5 , 0.1, 1000);
+        //projectionMatrix.log();
 
         gl.bindBuffer(gl.ARRAY_BUFFER, triangleGeometry.positionBuffer);
         gl.vertexAttribPointer(
