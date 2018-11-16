@@ -21,6 +21,11 @@
     // -------------------------------------------------------------------------
     function initializeAndStartRendering() {
         initGL();
+
+        createShaders();
+        //createTriangleGeometry();
+        //createLineGridGeometry();
+
         updateAndRender();
     }
 
@@ -43,10 +48,10 @@
         // Get the objects representing individual shaders
 
         // todo get access to the shader source code text and compile
-        var vertexShaderText = document.getElementById("webgl-canvas").textContent;
+        var vertexShaderText = document.getElementById("gl").textContent;
         var vertexShader = createCompiledShader(vertexShaderText, gl.VERTEX_SHADER);
 
-        var fragmentShaderText = document.getElementById("webgl-canvas").textContent;
+        var fragmentShaderText = document.getElementById("gl").textContent;
         var fragmentShader = createCompiledShader(fragmentShaderText, gl.FRAGMENT_SHADER);
     }
 
