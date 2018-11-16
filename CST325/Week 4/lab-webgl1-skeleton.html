@@ -27,7 +27,7 @@
     // -------------------------------------------------------------------------
     // Get a valid link to the GL "context"
     function initGL(canvas) {
-        var canvas = document.getElementById(/* todo - choose correct id */);
+        var canvas = document.getElementById("webgl-canvas");
 
         try {
             gl = canvas.getContext("webgl");
@@ -41,9 +41,9 @@
 
     // -------------------------------------------------------------------------
     function updateAndRender() {
-        requestAnimationFrame(render);
+        requestAnimationFrame(updateAndRender);
 
-        gl.viewport(0, 0, /* todo - width of viewport */, /* todo - height of viewport */);
+        gl.viewport(0, 0, 1024, 768);
 
         gl.clearColor(0.707, 0.707, 1, 1.0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
