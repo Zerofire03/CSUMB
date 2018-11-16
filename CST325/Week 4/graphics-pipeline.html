@@ -156,7 +156,7 @@
         triangleGeometry.worldMatrix = new Matrix4();
 
         // specify the shader which carries the instructions for "how" to render
-        triangleGeometry.shaderProgram = shaderProgram;
+        //  triangleGeometry.shaderProgram = shaderProgram;
 
         var positionBuffer = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
@@ -175,9 +175,6 @@
             0.0,    0.0,   1.0 //blue
         ];
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(colors), gl.STATIC_DRAW);
-
-        // allocate a matrix that we will reuse for this object
-        triangleGeometry.worldMatrix = new Matrix4();
 
         //Specify the shaders which carries the instructions for "how" to render
         triangleGeometry.shaderProgram = shaderProgram;
@@ -261,7 +258,7 @@
         // todo set view matrix to identity
         viewMatrix.identity();
         // todo set the projection matrix using values from online guide
-        //projectionMatrix.setPerspective(45, 1.5 , 0.1, 1000);
+        projectionMatrix.setPerspective(45, 1.5 , 0.1, 1000);
         //projectionMatrix.log();
 
         gl.bindBuffer(gl.ARRAY_BUFFER, triangleGeometry.positionBuffer);
@@ -276,7 +273,7 @@
 
         gl.bindBuffer(gl.ARRAY_BUFFER, triangleGeometry.colorBuffer);
         gl.vertexAttribPointer(
-            shaderProgram.vertexColorAttribute,
+            triangleGeometry.shaderProgram.vertexColorAttribute,
             3,
             gl.FLOAT,
             gl.FALSE,
