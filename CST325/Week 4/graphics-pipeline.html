@@ -71,6 +71,7 @@
     //Start time of animation
     var startTime = new Date();
     var startSeconds = startTime.getSeconds();
+    var frameCount = 0;
 
     // -------------------------------------------------------------------------
     function initializeAndStartRendering() {
@@ -78,7 +79,7 @@
 
         createShaders();
         createTriangleGeometry();
-        //createLineGridGeometry();
+        createLineGridGeometry();
 
         updateAndRender();
     }
@@ -155,9 +156,6 @@
         // allocate a matrix that we will reuse for this object (situate it in the world)
         triangleGeometry.worldMatrix = new Matrix4();
 
-        // specify the shader which carries the instructions for "how" to render
-        //  triangleGeometry.shaderProgram = shaderProgram;
-
         var positionBuffer = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
         var positions = [
@@ -192,7 +190,7 @@
         lineGridGeometry.worldMatrix = new Matrix4();
 
         // specify the shader which carries the instructions for "how" to render
-        triangleGeometry.shaderProgram = shaderProgram;
+        lineGridGeometry.shaderProgram = shaderProgram;
 
         var positionBuffer = gl.createBuffer();
         gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
@@ -203,12 +201,15 @@
         for (var i = -10; i <= 10; ++i) {
             // add position for line start point (x value should be i)
             // add position for line end point (x value should be i)
+            //(vertex 1: x, y, z)
+            linePositions.push(i, 0, 0);
         }
 
         // specify the lateral lines
         for (var i = -10; i <= 10; ++i) {
             // add position for line start point (z value should be i)
             // add position for line end point (z value should be i)
+            linePositions.push(0, 0, i);
         }
 
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(linePositions), gl.STATIC_DRAW);
@@ -233,33 +234,35 @@
         requestAnimationFrame(updateAndRender);
 
         // specify what portion of the canvas we want to draw to (all of it, full width and height)
-        gl.viewport(0, 0, 1024, 768);
+        gl.viewport(0, 0, gl.canvasWidth, gl.canvasHeight);
 
         // this is a new frame so let's clear out whatever happened last frame
         gl.clearColor(0.707, 0.707, 1, 1.0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
         var now = new Date();
-        //renderTriangle(now.getSeconds() - startSeconds);
-        renderTriangle(0);
-        // renderLines();
+        var nowSeconds = now.getSeconds();
+        //renderTriangle(nowSeconds - startSeconds);
+        frameCount++;
+        renderTriangle(frameCount+10);
+        //renderTriangle(0);
+        renderLines();
     }
 
     // -------------------------------------------------------------------------
     function renderTriangle(secondsElapsedSinceStart) {
         // calculate the number of degrees we should have rotated given how much time has elapsed
         // 60 degrees per second
-        var degrees = secondsElapsedSinceStart * 60;
+        var degrees = secondsElapsedSinceStart;
 
         // todo update the triangle geometry world matrix here (used to place the triangle into world space)
         triangleGeometry.worldMatrix.identity();
-        //triangleGeometry.worldMatrix.setRotationY(degrees);
+        triangleGeometry.worldMatrix.setRotationY(degrees);
         triangleGeometry.worldMatrix.translate(0,0,-7);
         // todo set view matrix to identity
         viewMatrix.identity();
         // todo set the projection matrix using values from online guide
-        projectionMatrix.setPerspective(45, 1.5 , 0.1, 1000);
-        //projectionMatrix.log();
+        projectionMatrix.setPerspective(45, gl.canvasWidth / gl.canvasHeight , 0.1, 1000);
 
         gl.bindBuffer(gl.ARRAY_BUFFER, triangleGeometry.positionBuffer);
         gl.vertexAttribPointer(
@@ -292,19 +295,35 @@
     // -------------------------------------------------------------------------
     function renderLines() {
         // todo update the triangle geometry world matrix here (used to place the triangle into world space)
+        lineGridGeometry.worldMatrix.identity();
+        lineGridGeometry.worldMatrix.translate(0,0,-7);
         // todo set view matrix to identity
+        viewMatrix.identity();
         // todo set the projection matrix using values from online guide
+        projectionMatrix.setPerspective(45, gl.canvasWidth / gl.canvasHeight, 0.1, 1000);
 
         // todo bind and map(gl.vertexAttribPointer) the buffers
+        gl.bindBuffer(gl.ARRAY_BUFFER, lineGridGeometry.positionBuffer);
+        gl.vertexAttribPointer(
+            lineGridGeometry.shaderProgram.vertexPositionAttribute,
+            2,
+            gl.FLOAT,
+            gl.FALSE,
+            0,
+            0
+        );
 
         // todo - send matrices to shader
+        gl.uniformMatrix4fv(shaderProgram.worldMatrixUniform, false, lineGridGeometry.worldMatrix.clone().transpose().elements);
+        gl.uniformMatrix4fv(shaderProgram.viewMatrixUniform, false, viewMatrix.clone().transpose().elements);
+        gl.uniformMatrix4fv(shaderProgram.projectionMatrixUniform, false, projectionMatrix.clone().transpose().elements);
 
         // --------------------------------------------
         // below is done for you, uncomment when ready
 
         //gl.uniform1f(shaderProgram.timeUniform, time.secondsElapsedSinceStart);
 
-        // gl.drawArrays(gl.LINES, 0, lineGridGeometry.bufferItemCount);
+        gl.drawArrays(gl.LINES, 0, lineGridGeometry.bufferItemCount);
     }
 
 </script>
