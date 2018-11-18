@@ -202,14 +202,14 @@
             // add position for line start point (x value should be i)
             // add position for line end point (x value should be i)
             //(vertex 1: x, y, z)
-            linePositions.push(i, 0, 0);
+            linePositions.push.apply(linePositions, [i, 0, 0]);
         }
 
         // specify the lateral lines
         for (var i = -10; i <= 10; ++i) {
             // add position for line start point (z value should be i)
             // add position for line end point (z value should be i)
-            linePositions.push(0, 0, i);
+            linePositions.push.apply(linePositions, [0, 0, i]);
         }
 
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(linePositions), gl.STATIC_DRAW);
@@ -245,7 +245,6 @@
         //renderTriangle(nowSeconds - startSeconds);
         frameCount++;
         renderTriangle(frameCount+10);
-        //renderTriangle(0);
         renderLines();
     }
 
