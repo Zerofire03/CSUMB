@@ -88,6 +88,8 @@
     function initGL(canvas) {
         var canvas = document.getElementById("webgl-canvas");
 
+        
+
         try {
             gl = canvas.getContext("webgl");
             gl.canvasWidth = canvas.width;
@@ -97,6 +99,8 @@
         if (!gl) {
             alert("Could not initialise WebGL, sorry :-(");
         }
+
+        gl.enable(gl.DEPTH_TEST);
     }
 
     // -------------------------------------------------------------------------
