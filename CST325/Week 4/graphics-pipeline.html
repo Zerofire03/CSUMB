@@ -201,20 +201,24 @@
 
         var linePositions = [];
 
+        
         // specify the horizontal lines
         for (var i = -10; i <= 10; ++i) {
             // add position for line start point (x value should be i)
             // add position for line end point (x value should be i)
             //(vertex 1: x, y, z)
-            linePositions.push.apply(linePositions, [i, 0, 0]);
+            linePositions.push.apply(linePositions, [i, -1, -5]);
+            linePositions.push.apply(linePositions, [i, -1, 15]);
         }
 
         // specify the lateral lines
         for (var i = -10; i <= 10; ++i) {
             // add position for line start point (z value should be i)
             // add position for line end point (z value should be i)
-            linePositions.push.apply(linePositions, [0, 0, i]);
+            linePositions.push.apply(linePositions, [-10, -1, i]);
+            linePositions.push.apply(linePositions, [10, -1, i]);
         }
+        
 
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(linePositions), gl.STATIC_DRAW);
 
@@ -244,9 +248,6 @@
         gl.clearColor(0.707, 0.707, 1, 1.0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-        var now = new Date();
-        var nowSeconds = now.getSeconds();
-        //renderTriangle(nowSeconds - startSeconds);
         frameCount++;
         renderTriangle(frameCount+10);
         renderLines();
@@ -309,11 +310,21 @@
         gl.bindBuffer(gl.ARRAY_BUFFER, lineGridGeometry.positionBuffer);
         gl.vertexAttribPointer(
             lineGridGeometry.shaderProgram.vertexPositionAttribute,
-            2,
+            3,
             gl.FLOAT,
             gl.FALSE,
             0,
             0
+        );
+
+        gl.bindBuffer(gl.ARRAY_BUFFER, lineGridGeometry.colorBuffer);
+        gl.vertexAttribPointer(
+            lineGridGeometry.shaderProgram.vertexColorAttribute,
+            4,
+            gl.FLOAT,
+            gl.FALSE,
+            0, // stride - used for mixing data in a single buffer, ignore
+            0  // offset - used for mixing data in a single buffer, ignore
         );
 
         // todo - send matrices to shader
