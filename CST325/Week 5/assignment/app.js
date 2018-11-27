@@ -125,7 +125,7 @@ function createScene() {
         // raise it by the radius to make it sit on the ground
         sphereGeometry.worldMatrix.translate(0, 1.5, -5 + i * 5);
         sphereGeometry.alpha = 1.0 - 0.8 * (i / 2);
-
+        
         sphereGeometryList.push(sphereGeometry);
     }
 }
@@ -157,11 +157,81 @@ function updateAndRender() {
     // todo - disable writing of objects to the depth buffer (depthMask) (future renders will ignore previous ones)
     gl.depthMask(false);
 
+    // Formula for placement of the Sphere (0, 1.5, -5 + i * 5)
+    // runs a function in the camera.orbit.js to return the current camera position
+    var cameraPosition = camera.camPosition();
+   
+    
+    var orderSpheres = sphereOrder(cameraPosition);
+
     for (var i = 0; i < sphereGeometryList.length; ++i) {
-         sphereGeometryList[i].render(camera, projectionMatrix, textureShaderProgram);
+         sphereGeometryList[(orderSpheres[i])].render(camera, projectionMatrix, textureShaderProgram);
     }
 
     // todo - return to previous state (disable blending and turn depth writing back on)
     gl.disable(gl.BLEND);
     gl.depthMask(true);
+}
+
+// function to calculate the render order of the spheres based off of the camera position within the z-axis returns an array with the order of the three spheres
+function sphereOrder(camPosition){
+
+    var order = [];
+
+    // Positive values greater than 5 is near the most transparant sphere
+    if (camPosition.z >= 5){
+       //console.log("Near Front of Spheres ");
+        order[0] = 0;
+        order[1] = 1;
+        order[2] = 2;
+    }
+
+    // logic for when the camera is near the middle sphere
+    else if (camPosition.z < 5 && camPosition.z > -5){
+       //console.log("Near Middle of Spheres");
+        
+       // logic for when the camera is between the middle sphere and the most transparant sphere
+        if (camPosition.z < 5 && camPosition.z >= 0){
+            order[0] = 0;
+
+            // logic to determin if the camera is closer to the most transparant sphere or the middle sphere
+            if (camPosition.z > 2.5){
+                order[1] = 1;
+                order[2] = 2;
+            }
+
+            else {
+                order[1] = 2;
+                order[2] = 1;
+                }
+            }
+
+            // logic for when the camera is between the middle and the most solid sphere
+        else {
+            order[0] = 2;
+
+            // logic for when the camera is closer to the middle sphere
+            if (camPosition.z > -2.5){
+                order[1] = 0;
+                order[2] = 1;
+            }
+
+            else {
+                order[1] = 1;
+                order[2] = 0;
+                }
+        }
+    }
+
+    // Negative values are closer to the most solid sphere
+    else if (camPosition.z <= -5){
+        //console.log("Near Back of Spheres");
+        order[0] = 2;
+        order[1] = 1;
+        order[2] = 0;
+    }
+
+    return order;
+
+
 }

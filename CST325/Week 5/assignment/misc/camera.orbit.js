@@ -7,6 +7,8 @@ function OrbitCamera(input) {
     this.maxDistance = 30;
     this.zoomScale = 1;
 
+
+    var camPosition = new Vector3();
     var lastMouseX = 0;
     var lastMouseY = 0;
     var isDragging = false;
@@ -52,7 +54,14 @@ function OrbitCamera(input) {
         var fromTargetToCamera = this.cameraTarget.clone().add(tether);
 
         var position = this.cameraTarget.clone().add(fromTargetToCamera);
+        camPosition.copy(position);
+        
         this.cameraWorldMatrix.setLookAt(position, new Vector3(), new Vector3(0, 1, 0));
+    }
+
+    // -------------------------------------------------------------------------
+    this.camPosition = function() {
+        return camPosition;
     }
 
     // -------------------------------------------------------------------------
