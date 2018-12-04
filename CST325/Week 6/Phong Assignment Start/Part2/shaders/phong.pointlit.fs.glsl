@@ -9,21 +9,21 @@ varying vec3 vWorldNormal;
 varying vec3 vWorldPosition;
 
 void main(void) {
-    /*
+    
     // todo - diffuse contribution
     // 1. normalize the light direction and store in a separate variable
-    vec3 uLightDirectionNormal = normalize(uLightDirection);
+    vec3 uLightPositionNormal = normalize(uLightPosition - vWorldPosition);
     // 2. normalize the world normal and store in a separate variable
     vec3 vWorldNormalized = normalize(vWorldNormal);
     // 3. calculate the lambert term
-    float lambert = dot(uLightDirectionNormal, vWorldNormalized);
+    float lambert = dot(uLightPositionNormal, vWorldNormalized);
 
     // todo - specular contribution
     // 1. in world space, calculate the direction from the surface point to the eye (normalized)
     vec3 directionNormal = normalize(uCameraPosition - vWorldPosition);
     // 2. in world space, calculate the reflection vector (normalized)
     //2(N to the surface of the mirror dot incident light ray L)N to the surface of the mirror - incident light ray L
-    vec3 reflectionVector = 2.0 * dot(vWorldNormalized, uLightDirectionNormal) * vWorldNormalized - uLightDirectionNormal;
+    vec3 reflectionVector = 2.0 * dot(vWorldNormalized, uLightPositionNormal) * vWorldNormalized - uLightPositionNormal;
     // 3. calculate the phong term
     float phong = pow(dot(reflectionVector, directionNormal), 64.0);
 
@@ -39,9 +39,7 @@ void main(void) {
     vec3 diffuseColor = albedo * lightColor * lambert;
     vec3 specularColor = lightColor * vec3(.3, .3, .3) * phong;
     vec3 finalColor = ambient + diffuseColor + specularColor;
-    */
+    
 
-    gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
-    //gl_FragColor = texture2D(uTexture, vTexcoords);
-    //gl_FragColor.a = lambert;
+    gl_FragColor = vec4(finalColor, 1.0);
 }

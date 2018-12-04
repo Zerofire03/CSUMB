@@ -125,6 +125,31 @@ function updateAndRender() {
 
     // todo 
     // add keyboard controls for changing light direction here
+    
+
+    /*
+    document.onkeydown = function(event) {
+        var key_press = String.fromCharCode(event.keyCode);
+        var key_code = event.keyCode;
+        if(key_code == 38){
+            //console.log("Put script to run specific for up key here");
+            pitch.setRotationY(1.0);
+        }
+        else if(key_code == 37){
+            //console.log("Put script to run specific for left key here");
+            yaw.setRotationX(-1.0);
+        }
+        else if(key_code == 39){
+            //console.log("Put script to run specific for right key here");
+            yaw.setRotationX(1.0);
+            yaw.log();
+        }
+        else if(key_code == 40){
+            //console.log("Put script to run specific for down key here");
+            pitch.setRotationY(-1.0);
+        }
+    }
+    */
 
     time.update();
     camera.update(time.deltaTime);
