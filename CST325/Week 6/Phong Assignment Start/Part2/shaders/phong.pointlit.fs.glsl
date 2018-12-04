@@ -1,6 +1,6 @@
 precision mediump float;
 
-uniform vec3 uLightDirection;
+uniform vec3 uLightPosition;
 uniform vec3 uCameraPosition;
 uniform sampler2D uTexture;
 
@@ -9,6 +9,7 @@ varying vec3 vWorldNormal;
 varying vec3 vWorldPosition;
 
 void main(void) {
+    /*
     // todo - diffuse contribution
     // 1. normalize the light direction and store in a separate variable
     vec3 uLightDirectionNormal = normalize(uLightDirection);
@@ -30,14 +31,17 @@ void main(void) {
 
     // todo - combine
     // 1. apply light and material interaction for diffuse value by using the texture color as the material
+    vec3 lightColor = vec3(1.0, 1.0, 1.0);
+    
     // 2. apply light and material interaction for phong, assume phong material color is (0.3, 0.3, 0.3)
 
     vec3 ambient = albedo * 0.1;
-    // vec3 diffuseColor = ;
-    // vec3 specularColor = todo;
-    vec3 finalColor = ambient; // + diffuseColor + specularColor;
+    vec3 diffuseColor = albedo * lightColor * lambert;
+    vec3 specularColor = lightColor * vec3(.3, .3, .3) * phong;
+    vec3 finalColor = ambient + diffuseColor + specularColor;
+    */
 
-    gl_FragColor = vec4(albedo, 1.0);
+    gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
     //gl_FragColor = texture2D(uTexture, vTexcoords);
     //gl_FragColor.a = lambert;
 }
