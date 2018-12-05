@@ -27,6 +27,13 @@ var loadedAssets = {
     crackedMudImage: null
 };
 
+//Matrix for rotations
+var pitch = new Matrix3();
+pitch.identity();
+
+var yaw = new Matrix3();
+yaw.identity();
+
 // -------------------------------------------------------------------------
 function initializeAndStartRendering() {
     initGL();
@@ -125,7 +132,22 @@ function updateAndRender() {
 
     // todo 
     // add keyboard controls for changing light direction here
+
+    if(appInput.up || appInput.w)
+    {
+        pitch.setRotationY(1.0);
+    }
     
+    pitch.multiplyVector(lightDirection);
+    /*
+    switch(appInput){
+        case appInput.up:
+            pitch.setRotationY(1.0);
+            break;
+        default:
+            break;
+    }
+    */
 
     /*
     document.onkeydown = function(event) {
