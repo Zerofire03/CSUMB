@@ -137,8 +137,22 @@ function updateAndRender() {
     {
         pitch.setRotationY(1.0);
     }
+    else if(appInput.down || appInput.s)
+    {
+        pitch.setRotationY(-1.0);
+    }
+    else if(appInput.left || appInput.a)
+    {
+        yaw.setRotationX(-1.0);
+    }
+    else if(appInput.right || appInput.d)
+    {
+        yaw.setRotationX(1.0);
+    }
     
-    pitch.multiplyVector(lightDirection);
+    var combined = yaw.multiplyRightSide(pitch);
+
+    combined.multiplyVector(lightDirection);
     /*
     switch(appInput){
         case appInput.up:
