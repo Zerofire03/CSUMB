@@ -132,7 +132,7 @@ var Matrix4 = function(x, y, z) {
 		e[0] = 2/(right - left); e[1] = 0; e[2] = 0; e[3] = -(right + left)/(right - left);
 		e[4] = 0; e[5] = 2/(top - bottom); e[6] = 0; e[7] = -(top + bottom)/(top - bottom);
 		e[8] = 0; e[9] = 0; e[10] = -2/(far - near); e[11] = -(far + near)/(far - near);
-		e[12] = 0; e[13] = 0; e[14] = 0; e[15] = 0;
+		e[12] = 0; e[13] = 0; e[14] = 0; e[15] = 1;
 		return this;
 	}
 

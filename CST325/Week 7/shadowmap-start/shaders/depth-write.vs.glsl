@@ -11,6 +11,8 @@
          gl_Position = uProjectionMatrix * uViewMatrix * uWorldMatrix * vec4(aVertexPosition, 1.0);
 
         // todo convert clip space depth into NDC and rescale from [-1, 1] to [0, 1]
+        
 
-        vDepth = gl_Position.z;
+        vDepth = .5 * gl_Position.z + .5 ;
+        //vDepth = gl_Position.z;
     }
