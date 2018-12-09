@@ -13,6 +13,6 @@
         // todo convert clip space depth into NDC and rescale from [-1, 1] to [0, 1]
         
 
-        vDepth = .5 * gl_Position.z + .5 ;
+        vDepth = .5 * gl_Position.z + .5;
         //vDepth = gl_Position.z;
     }
