@@ -47,14 +47,15 @@ void main(void) {
     // todo #7
     // Sample from the shadow map texture using the previously calculated lightSpaceUV
      vec4 shadowColor = texture2D(uShadowTexture, lightSpaceUV);
-    gl_FragColor = shadowColor;
+    //gl_FragColor = shadowColor;
 
     // todo #9
-    gl_FragColor = vec4(lightDepth,lightDepth,lightDepth, 1.0);
+    //gl_FragColor = vec4(lightDepth,lightDepth,lightDepth, 1.0);
     //gl_FragColor = vec4(finalColor, 1.0); // remove this when you are ready to add shadows
-    //if (vWorldPosition.z > lightDepth) {
-    //   gl_FragColor = vec4(ambient, 1.0);
-    //} else {
-    //    gl_FragColor = vec4(finalColor, 1.0);
-    //}
+    
+    if (shadowColor.z + bias < lightDepth) {
+       gl_FragColor = vec4(ambient, 1.0);
+    } else {
+        gl_FragColor = vec4(finalColor, 1.0);
+    }
 }
