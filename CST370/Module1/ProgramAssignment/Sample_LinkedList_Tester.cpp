@@ -1,3 +1,8 @@
+/*
+ * Christopher Holmes
+ * Module 1 - Programming Assignment
+ * 1/12/19
+ */
 #include <iostream>
 #include <string>
 using namespace std;
@@ -16,52 +21,8 @@ int main()
    do
    {
 	   charList.insert(userString[pos], pos);
-	   cout << userString[pos] << " ";
 	   pos++;
    } while(pos < userString.length());
-   charList.display(cout);
-
-   /*
-   cout << "Constructing intList\n";
-
-   // Test insert()
-   intList.insert(100, 0);
-   intList.display(cout);
-   cout << endl;
-
-   intList.insert(200, 0);
-   intList.display(cout);
-   cout << endl;
-   
-   intList.insert(300, 1);
-   intList.display(cout);
-   cout << endl;
-   
-   intList.insert(400, 1);
-   intList.display(cout);
-   cout << endl;
-   
-   intList.insert(500, 3);
-   intList.display(cout);
-   cout << endl;
-
-   // Test destructor
-   {
-      LinkedList anotherList;
-      for (int i = 0; i < 10; i++)
-      {
-	anotherList.insert(100*i, i);
-      }
-      cout << "\nThis is another list\n";
-      anotherList.display(cout);
-   }
-
-   // Test erase
-   intList.erase(1);
-   intList.erase(1);
-   cout << "\n\nTwo items are erased from the first list\n";
-   intList.display(cout);
-   cout << endl;
-   */
+   charList.displaySubstrings(cout);
 
 }

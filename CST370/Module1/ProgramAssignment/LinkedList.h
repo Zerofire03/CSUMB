@@ -1,3 +1,8 @@
+/*
+ * Christopher Holmes
+ * Module 1 - Programming Assignment
+ * 1/12/19
+ */
 //----- LinkedList.h -----
 #ifndef LINKEDLIST
 #define LINKEDLIST
@@ -5,7 +10,7 @@
 #include <iostream>
 using namespace std;
 
-typedef int ElementType;
+typedef char ElementType;
 
 class LinkedList
 { 
@@ -14,8 +19,8 @@ public:
 	~LinkedList();  // destructor
 	LinkedList(const LinkedList & original); //copy constructor
 	void insert(ElementType item, int pos);
-	void erase(ElementType item);
-
+	void erase(int item);
+	void displaySubstrings(ostream & out) const;
 	void display(ostream & out) const;
 	/*--------------------------------------------------------------------
 	Display the contensts of this LinkedList.

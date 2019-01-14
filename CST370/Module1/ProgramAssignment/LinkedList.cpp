@@ -1,3 +1,8 @@
+/*
+ * Christopher Holmes
+ * Module 1 - Programming Assignment
+ * 1/12/19
+ */
 #include <iostream>
 using namespace std;
 
@@ -76,6 +81,7 @@ void LinkedList::insert(ElementType dataVal, int index)
 
 //-- Definition of erase()
 void LinkedList::erase(int index)
+//void LinkedList::erase(int index)
 {
 	if (index < 0 || index >= mySize)
 	{
@@ -102,6 +108,44 @@ void LinkedList::erase(int index)
 	}
 }
 
+//-- Definition of displaySibstrings()
+void LinkedList::displaySubstrings(ostream & out) const
+{
+	Node * ptr = first;
+	Node * ptrA;
+	int numStrings = 0;
+
+	while(ptr != 0)
+	{
+		if(ptr->data == 'A') //If the data stored at that node is an A, start looking for a B
+		{
+			ptrA = ptr;
+			string output;
+			string foo;
+			while(ptrA != 0)
+			{
+				if(ptrA->data == 'B') //If the data stored at that node is a B, output the stored string
+				{
+					output += ptrA->data;
+					numStrings++;
+					cout << "Substring " << numStrings << " " << output << endl;
+					ptrA = ptrA->next;
+				}
+				else
+				{
+					output += ptrA->data;
+					ptrA = ptrA->next;
+				}
+			}
+			ptr = ptr->next;
+		}
+		else
+		{
+			ptr = ptr->next;
+		}
+	}
+	cout << "Total " << numStrings << " substrings";
+}
 
 
 //-- Definition of display()
