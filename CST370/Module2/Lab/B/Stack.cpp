@@ -1,3 +1,11 @@
+/*
+ * Christopher Holmes
+ * ID: 002928626
+ * Module 2 - Lab Part A
+ * 1/13/19
+ * Abstract: No changes
+ */
+
 /*-- Stack.cpp-------------------------------------------------------------
               This file implements Stack member functions.
 --------------------------------------------------------------------------*/

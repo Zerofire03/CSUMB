@@ -179,3 +179,17 @@ bool LinkedList::isAscendingOrder()
 	}
 }
 
+
+//-- Definition of insertnew()
+void LinkedList::insertnew(ElementType dataVal, int index)
+{
+	mySize++;
+	Node * newPtr = new Node(dataVal);
+	Node * predPtr = first;
+	for(int i = 0; i <= index; i++)
+	{
+		predPtr = predPtr->next;
+	}
+	newPtr->next = predPtr->next;
+	predPtr->next = newPtr;
+}

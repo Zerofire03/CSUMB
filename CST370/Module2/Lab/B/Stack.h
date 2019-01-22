@@ -1,3 +1,11 @@
+/*
+ * Christopher Holmes
+ * ID: 002928626
+ * Module 2 - Lab Part A
+ * 1/13/19
+ * Abstract: No changes
+ */
+
 /*-- Stack.h ---------------------------------------------------------------
  
   This header file defines a Stack data type.

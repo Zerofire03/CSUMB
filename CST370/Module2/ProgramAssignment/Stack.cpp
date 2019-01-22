@@ -1,8 +1,8 @@
 /*
  * Christopher Holmes
  * ID: 002928626
- * Module 2 - Lab Part A
- * 1/13/19
+ * Module 2 - Programming Assignment
+ * 1/21/19
  * Abstract: No changes
  */
 
@@ -46,8 +46,7 @@ void Stack::push(const StackElement & value)
 void Stack::display(ostream & out) const
 {
    for (int i = myTop; i >= 0; i--) 
-      out << myArray[i];
-   out << endl;
+      out << myArray[i] << endl;
 }
 
 //--- Definition of top()

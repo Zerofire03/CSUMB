@@ -26,6 +26,7 @@ public:
 	ElementType maxItem();
 	bool isAscendingOrder();
 	void display(ostream & out) const;
+	void insertnew(ElementType dataVal, int index);
 	/*--------------------------------------------------------------------
 	Display the contensts of this LinkedList.
 	Precondition: ostream out is open

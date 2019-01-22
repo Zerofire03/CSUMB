@@ -1,3 +1,12 @@
+/*
+ * Christopher Holmes
+ * ID: 002928626
+ * Module 2 - Lab Part A
+ * 1/13/19
+ * Abstract: Read in a number, convert to binary, stored to stack,
+ * printed out in binary in correct order
+ */
+
 /*---------------------------------------------------------------------
                Driver program to test the Stack class.
   ----------------------------------------------------------------------*/
@@ -29,30 +38,4 @@ int main()
    s.display(cout);
 
 
-   /*
-   for (int i = 0; i < userString.length(); i++)
-   {
-      s.push(userString[i]);
-   }
-
-   cout << "Reverse is ";
-   s.display(cout);
-
-
-   cout << "Stack contents:\n";
-   s.display(cout);
-   cout << "Stack empty? " << s.empty() << endl;
-
-   cout << "Top value: " << s.top() << endl;
-
-   while (!s.empty())
-   {
-     cout << "Popping " << s.top() << endl;
-     s.pop();
-   }
-   cout << "Stack empty? " << s.empty() << endl;
-   cout << "Top value: " << s.top() << endl;
-   cout << "Trying to pop: " << endl;
-   s.pop();
-   */
 }

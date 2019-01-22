@@ -1,3 +1,11 @@
+/*
+ * Christopher Holmes
+ * ID: 002928626
+ * Module 2 - Lab Part A
+ * 1/13/19
+ * Abstract: Read in a string, stored to stack, printed out in reverse from stack
+ */
+
 /*---------------------------------------------------------------------
                Driver program to test the Stack class.
   ----------------------------------------------------------------------*/
@@ -24,21 +32,5 @@ int main()
    cout << "Reverse is ";
    s.display(cout);
 
-   /*
-   cout << "Stack contents:\n";
-   s.display(cout);
-   cout << "Stack empty? " << s.empty() << endl;
 
-   cout << "Top value: " << s.top() << endl;
-
-   while (!s.empty())
-   {
-     cout << "Popping " << s.top() << endl;
-     s.pop();
-   }
-   cout << "Stack empty? " << s.empty() << endl;
-   cout << "Top value: " << s.top() << endl;
-   cout << "Trying to pop: " << endl;
-   s.pop();
-   */
 }

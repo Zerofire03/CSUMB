@@ -1,9 +1,9 @@
 /*
  * Christopher Holmes
  * ID: 002928626
- * Module 2 - Lab Part A
- * 1/13/19
- * Abstract: No Changes
+ * Module 2 - Programming Assignment
+ * 1/21/19
+ * Abstract: No changes
  */
 
 /*-- Stack.h ---------------------------------------------------------------
@@ -29,7 +29,7 @@
 #define STACK
 
 const int STACK_CAPACITY = 128;
-typedef char StackElement;
+typedef int StackElement;
 
 class Stack
 {

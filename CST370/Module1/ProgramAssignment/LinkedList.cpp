@@ -1,8 +1,11 @@
 /*
  * Christopher Holmes
+ * ID: 002928626
  * Module 1 - Programming Assignment
  * 1/12/19
+ * Abstract: Defined displaySubstrings function
  */
+
 #include <iostream>
 using namespace std;
 
@@ -79,6 +82,7 @@ void LinkedList::insert(ElementType dataVal, int index)
 }
 
 
+
 //-- Definition of erase()
 void LinkedList::erase(int index)
 //void LinkedList::erase(int index)
@@ -111,40 +115,39 @@ void LinkedList::erase(int index)
 //-- Definition of displaySibstrings()
 void LinkedList::displaySubstrings(ostream & out) const
 {
-	Node * ptr = first;
-	Node * ptrA;
-	int numStrings = 0;
+	Node * ptr = first; //Begging of linked list
+	Node * ptrA; //Pointer for beginning of substring
+	int numStrings = 0; //Number of substrings found
 
 	while(ptr != 0)
 	{
 		if(ptr->data == 'A') //If the data stored at that node is an A, start looking for a B
 		{
-			ptrA = ptr;
+			ptrA = ptr; //Store current location to pointer so we don't lose our place in list
 			string output;
-			string foo;
 			while(ptrA != 0)
 			{
 				if(ptrA->data == 'B') //If the data stored at that node is a B, output the stored string
 				{
-					output += ptrA->data;
-					numStrings++;
-					cout << "Substring " << numStrings << " " << output << endl;
-					ptrA = ptrA->next;
+					output += ptrA->data; //Store current node data to output string
+					numStrings++; //increase number of strings found
+					cout << "Substring " << numStrings << " " << output << endl; //output to console
+					ptrA = ptrA->next; //Move to next node
 				}
 				else
 				{
-					output += ptrA->data;
-					ptrA = ptrA->next;
+					output += ptrA->data; //Store current node data to output string
+					ptrA = ptrA->next; //Move to next node
 				}
 			}
-			ptr = ptr->next;
+			ptr = ptr->next; //Move to next node
 		}
-		else
+		else //If not an a move to next node
 		{
-			ptr = ptr->next;
+			ptr = ptr->next; //Move to next node
 		}
 	}
-	cout << "Total " << numStrings << " substrings";
+	cout << "Total " << numStrings << " substrings"; //Output total number substrings
 }
 
 
@@ -158,3 +161,5 @@ void LinkedList::display(ostream & out) const
 		ptr = ptr->next;
 	}
 }
+
+

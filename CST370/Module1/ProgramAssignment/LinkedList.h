@@ -1,8 +1,11 @@
 /*
  * Christopher Holmes
+ * ID: 002928626
  * Module 1 - Programming Assignment
  * 1/12/19
+ * Abstract: Define displaySubstrings function
  */
+
 //----- LinkedList.h -----
 #ifndef LINKEDLIST
 #define LINKEDLIST
