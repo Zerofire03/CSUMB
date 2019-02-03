@@ -1,11 +1,3 @@
-/*
- * Christopher Holmes
- * ID: 002928626
- * Module 3 - Lab
- * 1/28/19
- * Abstract: No changes made
- */
-
 /* Queue.h contains the declaration of class Queue.
    Basic operations:
      Constructor: Constructs an empty queue
@@ -27,7 +19,7 @@
 #define QUEUE
 
 const int QUEUE_CAPACITY = 128;
-typedef string QueueElement;
+typedef int QueueElement;
 
 class Queue
 {

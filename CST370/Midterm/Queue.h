@@ -1,9 +1,9 @@
 /*
  * Christopher Holmes
  * ID: 002928626
- * Module 3 - Lab
- * 1/28/19
- * Abstract: No changes made
+ * Midterm - Coding
+ * 2/3/19
+ * Abstract: Declare getNthqueue()
  */
 
 /* Queue.h contains the declaration of class Queue.
@@ -27,12 +27,14 @@
 #define QUEUE
 
 const int QUEUE_CAPACITY = 128;
-typedef string QueueElement;
+typedef int QueueElement;
 
 class Queue
 {
  public:
   /***** Function Members *****/
+  QueueElement getNthQueue(int element);
+
   /***** Constructor *****/
   Queue();
   /*-----------------------------------------------------------------------
@@ -91,6 +93,7 @@ class Queue
         is empty; in that case, an error message is displayed and 
         execution is terminated.
    ----------------------------------------------------------------------*/ 
+
 
  private:
   /***** Data Members *****/

@@ -1,9 +1,9 @@
 /*
  * Christopher Holmes
  * ID: 002928626
- * Module 3 - Program Assignment
- * 1/28/19
- * Abstract: No changes
+ * Module 2 - Lab Part A
+ * 1/13/19
+ * Abstract: No Changes
  */
 
 /*-- Stack.h ---------------------------------------------------------------

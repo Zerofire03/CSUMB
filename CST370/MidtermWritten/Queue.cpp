@@ -1,11 +1,3 @@
-/*
- * Christopher Holmes
- * ID: 002928626
- * Module 3 - Program Assignment
- * 1/28/19
- * Abstract: No changes
- */
-
 /*-- Queue.cpp-----------------------------------------------------------
              This file implements Queue member functions.
 -------------------------------------------------------------------------*/
@@ -59,7 +51,7 @@ QueueElement Queue::front() const
    else
    {
       cerr << "*** Queue is empty -- returning garbage value ***\n";
-      QueueElement garbage = '9';
+      QueueElement garbage = 9999;
       return garbage;
    }
 }

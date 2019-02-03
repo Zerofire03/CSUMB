@@ -1,3 +1,12 @@
+/*
+ * Christopher Holmes
+ * ID: 002928626
+ * Module 3 - Lab
+ * 1/28/19
+ * Abstract: Read in text from a file, parse out the footnotes, display text
+ * without footnotes, display footnotes grouped together at the end
+ */
+
 /*---------------------------------------------------------------------
                   Driver program to test the Queue class.
   ----------------------------------------------------------------------*/

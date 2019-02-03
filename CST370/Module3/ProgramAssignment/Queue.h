@@ -1,3 +1,11 @@
+/*
+ * Christopher Holmes
+ * ID: 002928626
+ * Module 3 - Program Assignment
+ * 1/28/19
+ * Abstract: No changes
+ */
+
 /* Queue.h contains the declaration of class Queue.
    Basic operations:
      Constructor: Constructs an empty queue

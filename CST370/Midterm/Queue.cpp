@@ -1,9 +1,9 @@
 /*
  * Christopher Holmes
  * ID: 002928626
- * Module 3 - Program Assignment
- * 1/28/19
- * Abstract: No changes
+ * Midterm - Coding
+ * 2/3/19
+ * Abstract: Implemented getNthqueue()
  */
 
 /*-- Queue.cpp-----------------------------------------------------------
@@ -59,7 +59,7 @@ QueueElement Queue::front() const
    else
    {
       cerr << "*** Queue is empty -- returning garbage value ***\n";
-      QueueElement garbage = '9';
+      QueueElement garbage = 9999;
       return garbage;
    }
 }
@@ -75,4 +75,27 @@ void Queue::dequeue()
               "can't remove a value ***\n";
       exit(1);
    }
+}
+
+//-- Definition of getNthQueue()
+QueueElement Queue::getNthQueue(int element)
+{
+	if(!empty() && element < myBack)
+	{
+		for(int i=myFront; i != myBack; i = (i + 1)%QUEUE_CAPACITY)
+		{
+			if(i==element-1)
+			{
+				QueueElement temp = myArray[i];
+				for(int j=myFront; j < element - 1; j = (j + 1)%QUEUE_CAPACITY)
+				{
+					this->dequeue();
+				}
+				//myFront = i;
+				return temp;
+			}
+		}
+	}
+	cerr << "Invalid location" << endl;
+	return -1;
 }

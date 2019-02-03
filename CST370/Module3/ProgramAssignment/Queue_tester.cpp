@@ -1,3 +1,11 @@
+/*
+ * Christopher Holmes
+ * ID: 002928626
+ * Module 3 - Program Assignment
+ * 1/28/19
+ * Abstract: Read in a string from the user, determine if it's a palindrome using queue and stack
+ */
+
 /*---------------------------------------------------------------------
                   Driver program to test the Queue class.
   ----------------------------------------------------------------------*/

@@ -1,3 +1,11 @@
+/*
+ * Christopher Holmes
+ * ID: 002928626
+ * Module 3 - Lab
+ * 1/28/19
+ * Abstract: No changes made
+ */
+
 /*-- Queue.cpp-----------------------------------------------------------
              This file implements Queue member functions.
 -------------------------------------------------------------------------*/
