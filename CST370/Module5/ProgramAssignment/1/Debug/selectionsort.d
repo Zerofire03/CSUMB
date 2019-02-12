@@ -1,1 +1,0 @@
-selectionsort.o: ../selectionsort.cpp
