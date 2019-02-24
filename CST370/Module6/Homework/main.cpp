@@ -72,9 +72,6 @@ int split(int arr[], int first, int last)
 		}
 	}
 
-	//int pos = right;
-	//arr[first] = arr[pos];
-	//arr[pos] = pivot;
 	return pivot;
 }
 
