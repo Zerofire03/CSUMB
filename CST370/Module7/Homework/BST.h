@@ -1,10 +1,3 @@
-/*
- * Christopher Holmes
- * ID: 002928626
- * Module 6 - Program Assignment
- * 2/17/19
- * Abstract: Defined inOrder, preOrder, nodeCount, searchAux, inOrderAux, preOrderAux, and nodeCountAux
- */
 #include <iostream>
 using namespace std;  
 
@@ -17,10 +10,13 @@ class BST
   /***** Function Members *****/
   BST();
   bool empty() const;
-  bool search(int & item);
-  void insert(const int & item);
+  bool search(char & item);
+  void insert(const char & item);
   void inOrder(ostream & out);
   void preOrder(ostream & out);
+  void postOrder(ostream & out);
+  void remove(char & item);
+  void graph(ostream & out);
   int nodeCount();
   
  private:
@@ -28,7 +24,7 @@ class BST
   class BinNode 
   {
    public:
-    int data;
+    char data;
     BinNode * left;
     BinNode * right;
 
@@ -49,10 +45,13 @@ class BST
   BinNode * myRoot; 
 
   /**** Private Member Functions *****/
-  bool searchAux(int & item, BST::BinNode* subtreeRoot);
+  bool searchAux(char & item, BST::BinNode* subtreeRoot);
   void inOrderAux(ostream & out, BST::BinNode* subtreeRoot);
   void preOrderAux(ostream & out, BST::BinNode* subtreeRoot);
+  void postOrderAux(ostream & out, BST::BinNode* subtreeRoot);
   int nodeCountAux(BST::BinNode* subtreeRoot);
+  void search2(char & item, bool & found, BinNode* & locptr, BinNode* & parent);
+  void graphAux(ostream & out, int indent, BST::BinNode* subtreeRoot);
 
 }; // end of class declaration
 

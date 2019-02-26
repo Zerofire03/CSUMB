@@ -1,11 +1,3 @@
-/*
- * Christopher Holmes
- * ID: 002928626
- * Module 7 - Program Assignment
- * 2/25/19
- * Abstract: Modified to call additional functions as required
- */
-
 /*----- treetester.cpp -----------------------------------------------------
                 Program for testing BST.
  ------------------------------------------------------------------------*/
@@ -24,12 +16,12 @@ int main()
    // Testing insert
    cout << "\nNow insert a bunch of integers into the BST."
            "\nTry items not in the BST and some that are in it:\n";
-   int number;
+   char number;
    for (;;)
    {
-      cout << "Item to insert (-999 to stop): ";
+      cout << "Item to insert (z to stop): ";
       cin >> number;
-      if (number == -999) break;
+      if (number == 'z') break;
       intBST.insert(number);
    }
    cout << "BST " << (intBST.empty() ? "is" : "is not") << " empty\n";
@@ -38,13 +30,24 @@ int main()
       cout << "\n\nNow testing the inOrder() operation." << endl;
       intBST.inOrder(cout);
 
-   // Testing inOrder()
+   // Testing preOrder()
       cout << "\n\nNow testing the preOrder() operation." << endl;
       intBST.preOrder(cout);
 
-   // Testing inOrder()
+   // Testing preOrder()
+      cout << "\n\nNow testing the postOrder() operation." << endl;
+      intBST.postOrder(cout);
+
+      /*
+
+   // Testing nodeCount()
       cout << "\n\nNow testing the nodeCount() operation." << endl;
       cout << "Node count: " << intBST.nodeCount() << endl;
+
+
+   // Testing nodeOrder()
+      cout << "\n\nNow testing the graph() operation." << endl;
+      intBST.graph(cout);
 
    // Testing search()
    cout << "\n\nNow testing the search() operation."
@@ -56,5 +59,5 @@ int main()
       if (number == -999) break;
       cout << (intBST.search(number) ? "Found" : "Not found") << endl;
    }
-
+*/
 }

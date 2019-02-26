@@ -1,11 +1,3 @@
-/*
- * Christopher Holmes
- * ID: 002928626
- * Module 6 - Program Assignment
- * 2/17/19
- * Abstract: Implemented inOrder, preOrder, nodeCount, searchAux, inOrderAux, preOrderAux, and nodeCountAux
- */
-
 #include <iostream>
 #include <iomanip>
 
@@ -21,36 +13,46 @@ BST::BST()
 bool BST::empty() const
 { return myRoot == 0; }
 
-//Public function that has access to private data to do recursion
-bool BST::search(int & item)
+
+bool BST::search(char & item)
 {
 	return searchAux(item, myRoot);
+	/*
+   BinNode * locptr = myRoot;
+   bool found = false;
+   while (!found && locptr != 0)
+   {
+      if (item < locptr->data)       // descend left
+        locptr = locptr->left;
+      else if (locptr->data < item)  // descend right
+        locptr = locptr->right;
+      else                           // item found
+        found = true;
+   }
+   return found;
+   */
 }
 
-//Aux function that actually does recursive search
-bool BST::searchAux(int & item, BinNode* subtreeRoot)
+bool BST::searchAux(char & item, BinNode* subtreeRoot)
 {
-	//Empty search tree, return false
+	//Empty search tree
 	if(subtreeRoot == 0)
 	{
 		return false;
 	}
-	//Item found, return true
 	else if(subtreeRoot->data == item)
 	{
 		return true;
 	}
-	//Current node less than search term
 	else if(subtreeRoot->data < item)
 	{
 		return searchAux(item, subtreeRoot->right);
 	}
-	//Current node greater than search term
 	return searchAux(item, subtreeRoot->left);
 }
 
 
-void BST::insert(const int & item)
+void BST::insert(const char & item)
 {
    BinNode * locptr = myRoot;   // search pointer
    BinNode * parent = 0;        // pointer to parent of current node
@@ -79,13 +81,11 @@ void BST::insert(const int & item)
       cout << "Item already in the tree\n";
 }
 
-//Public function that has access to private data to do recursion
 void BST::inOrder(ostream & out)
 {
 	inOrderAux(out, myRoot);
 }
 
-//Aux function that actually does inOrder display
 void BST::inOrderAux(ostream & out, BST::BinNode* subtreeRoot)
 {
 	if (subtreeRoot != 0)
@@ -96,13 +96,11 @@ void BST::inOrderAux(ostream & out, BST::BinNode* subtreeRoot)
 	}
 }
 
-//Public function that has access to private data to do recursion
 void BST::preOrder(ostream & out)
 {
 	preOrderAux(out, myRoot);
 }
 
-//Aux function that actually does preOrder display
 void BST::preOrderAux(ostream & out, BST::BinNode* subtreeRoot)
 {
 	if (subtreeRoot != 0)
@@ -113,27 +111,124 @@ void BST::preOrderAux(ostream & out, BST::BinNode* subtreeRoot)
 	}
 }
 
-//Public function that has access to private data to do recursion
+void BST::postOrder(ostream & out)
+{
+	postOrderAux(out, myRoot);
+}
+
+void BST::postOrderAux(ostream & out, BST::BinNode* subtreeRoot)
+{
+	if (subtreeRoot != 0)
+	{
+		postOrderAux(out, subtreeRoot->left); //Left operation
+		postOrderAux(out, subtreeRoot->right); //Right operation
+		out << subtreeRoot->data << " "; //Root operation
+	}
+}
+
 int BST::nodeCount()
 {
 	return nodeCountAux(myRoot)-1;
 }
 
-//Aux function that actually does nodeCount
 int BST::nodeCountAux(BST::BinNode* subtreeRoot)
 {
-	//Reached bottom of tree
 	if(subtreeRoot == 0)
 	{
 		return 1;
 	}
 	int total = 0;
-	//If node has two leafs
 	if(subtreeRoot->left && subtreeRoot->right)
 	{
 		total++;
 	}
-	//Recursive call that adds all left and right trees
 	total += (nodeCountAux(subtreeRoot->left) + nodeCountAux(subtreeRoot->right));
 	return total;
+}
+
+void BST::remove(char & item)
+{
+	/*
+	bool found;
+	BinNode* x, parent;
+	search2(item, found, x, parent);
+	if(!found)
+	{
+		cout << "Item not in the BST\n";
+		return;
+	}
+	if(x->left != 0 && x->right != 0)
+	{
+		BinNode* xSucc = x->right;
+		parent = x;
+		while(xSucc->left != 0)
+		{
+			parent = xSucc;
+			xSucc = xSucc->left;
+		}
+
+		x->data = xSucc->data;
+		x = xSucc;
+	}
+
+	BinNode* subtree = x->left;
+	if(subtree == 0)
+	{
+		subtree = x->right;
+	}
+	if(parent == 0)
+	{
+		myRoot = subtree;
+	}
+	else if(parent->left == x)
+	{
+		parent->left = subtree;
+	}
+	else
+	{
+		parent->right = subtree
+	}
+	delete x;
+*/
+}
+
+void BST::search2(char & item, bool & found, BinNode* & locptr, BinNode* & parent)
+{
+	/*
+	locptr = myRoot;
+	parent = 0;
+	found = false;
+	while(!found && locptr != 0)
+	{
+		if(item < locptr->data)
+		{
+			parent = locptr;
+			locptr = locptr->left;
+		}
+		else if(locptr->data < item)
+		{
+			parent = locptr;
+			locptr = locptr->right
+		}
+		else
+		{
+			found = true;
+		}
+	}
+	*/
+}
+
+void BST::graph(ostream & out)
+{
+	graphAux(out, 0, myRoot);
+}
+
+void BST::graphAux(ostream & out, int indent, BST::BinNode* subtreeRoot)
+{
+	if(subtreeRoot != 0)
+	{
+		graphAux(out, indent + 8, subtreeRoot->right);
+		out << setw(indent) << " " << subtreeRoot->data << endl;
+		graphAux(out, indent + 8, subtreeRoot->left);
+	}
 }
