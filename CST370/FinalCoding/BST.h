@@ -1,3 +1,11 @@
+/*
+ * Christopher Holmes
+ * ID: 002928626
+ * Final Coding
+ * 2/25/19
+ * Abstract: Define insertBalanced, insertBalancedAux, findLevel, findLevelAux
+ */
+
 #include <iostream>
 using namespace std;  
 

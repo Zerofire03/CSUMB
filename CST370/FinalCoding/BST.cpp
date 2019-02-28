@@ -1,3 +1,11 @@
+/*
+ * Christopher Holmes
+ * ID: 002928626
+ * Final Coding
+ * 2/25/19
+ * Abstract: Implement insertBalanced, insertBalancedAux, findLevel, findLevelAux
+ */
+
 #include <iostream>
 #include <iomanip>
 
@@ -88,21 +96,6 @@ BST::BinNode* BST::insertBalancedAux(int array[], int start, int end)
 	return root;
 }
 
-void BST::graph(ostream & out)
-{
-	graphAux(out, 0, myRoot);
-}
-
-void BST::graphAux(ostream & out, int indent, BST::BinNode* subtreeRoot)
-{
-	if(subtreeRoot != 0)
-	{
-		graphAux(out, indent + 8, subtreeRoot->right);
-		out << setw(indent) << " " << subtreeRoot->data << endl;
-		graphAux(out, indent + 8, subtreeRoot->left);
-	}
-}
-
 void BST::preOrder(ostream & out)
 {
 	preOrderAux(out, myRoot);
@@ -118,6 +111,7 @@ void BST::preOrderAux(ostream & out, BST::BinNode* subtreeRoot)
 	}
 }
 
+//Create new node to insert into tree
 BST::BinNode* BST::newNode(int data)
 {
 	BinNode* node = new BinNode(data);
@@ -127,23 +121,28 @@ BST::BinNode* BST::newNode(int data)
 	return node;
 }
 
+//Public function to return level
 int BST::findLevel(int item)
 {
-	return findLevelAux(myRoot, item, 1);
+	return findLevelAux(myRoot, item, 0);
 }
 
+//Private function to recursively find level of item
 int BST::findLevelAux(BinNode* subtreeRoot, int item, int level)
 {
+	//Base case
 	if(subtreeRoot == 0)
 	{
 		return 0;
 	}
 
+	//Item found returning level
 	if(subtreeRoot -> data == item)
 	{
 		return level;
 	}
 
+	//Recurssive call down left side of tree
 	int nextLevel = findLevelAux(subtreeRoot->left, item, level+1);
 
 	if(nextLevel != 0)
@@ -151,6 +150,7 @@ int BST::findLevelAux(BinNode* subtreeRoot, int item, int level)
 		return nextLevel;
 	}
 
+	//Recursisve call down right side of tree
 	nextLevel = findLevelAux(subtreeRoot->right, item, level+1);
 	return nextLevel;
 }
